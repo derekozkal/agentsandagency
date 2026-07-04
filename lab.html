@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Lab · Agents &amp; Agency</title>
+<meta name="description" content="Working prototypes of the work frontier models create. An interactive model of the Liquidity Crisis of Expertise and a living ledger of jobs that did not exist before.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,600;0,800;1,500;1,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF7EE;
+  --paper-deep:#F2ECDC;
+  --ink:#191611;
+  --ink-soft:#57503F;
+  --rule:#D9D0BC;
+  --spruce:#1E4D3B;
+  --spruce-deep:#143528;
+  --gold:#A9791C;
+  --gold-bright:#C9962E;
+  --max:1080px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important;transition:none !important}
+}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+::selection{background:var(--gold-bright);color:var(--ink)}
+a{color:var(--spruce);text-decoration:none;border-bottom:1px solid var(--rule);transition:border-color .15s ease,color .15s ease}
+a:hover{border-bottom-color:var(--spruce)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:1px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.total-rule{border:0;height:7px;position:relative;background:transparent}
+.total-rule::before,.total-rule::after{content:"";position:absolute;left:0;right:0;background:var(--gold)}
+.total-rule::before{top:0;height:2px}
+.total-rule::after{bottom:0;height:1px}
+
+header.masthead{border-bottom:1px solid var(--rule);background:var(--paper);position:sticky;top:0;z-index:50}
+.masthead-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:var(--max);margin:0 auto;gap:16px}
+.wordmark{font-family:'Bitter',serif;font-weight:800;font-size:19px;letter-spacing:-.01em;color:var(--ink);border:0}
+.wordmark .amp{color:var(--gold);font-style:italic}
+nav.primary{display:flex;gap:22px;align-items:center}
+nav.primary a{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);border:0}
+nav.primary a:hover{color:var(--spruce)}
+nav.primary a[aria-current]{color:var(--spruce);box-shadow:inset 0 -2px var(--gold)}
+.btn{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;background:var(--spruce);color:var(--paper);padding:9px 16px;border:1px solid var(--spruce);cursor:pointer}
+.btn:hover{background:var(--spruce-deep);border-color:var(--spruce-deep);color:var(--paper)}
+.btn.ghost{background:transparent;color:var(--spruce)}
+.btn.ghost:hover{background:var(--spruce);color:var(--paper)}
+.menu-toggle{display:none;background:none;border:1px solid var(--rule);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:8px 12px;color:var(--ink);cursor:pointer}
+@media (max-width:820px){
+  nav.primary{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--rule);flex-direction:column;align-items:flex-start;padding:18px 24px;gap:16px}
+  nav.primary.open{display:flex}
+  .menu-toggle{display:block}
+}
+
+.lab-hero{padding:64px 0 48px}
+.lab-hero h1{font-family:'Bitter',serif;font-weight:800;font-size:clamp(32px,4.8vw,50px);line-height:1.15;letter-spacing:-.015em;margin:16px 0 20px}
+.lab-hero h1 em{font-style:italic;color:var(--spruce)}
+.lab-hero p{color:var(--ink-soft);max-width:64ch}
+
+.triptych{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin:40px 0 0}
+.trip-col{background:var(--paper);padding:24px}
+.trip-col.genesis{background:var(--spruce-deep);color:var(--paper)}
+.trip-col .lbl{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.trip-col.genesis .lbl{color:var(--gold-bright)}
+.trip-col h3{font-family:'Bitter',serif;font-weight:800;font-size:22px;margin:8px 0 8px}
+.trip-col p{font-size:14.5px;color:var(--ink-soft)}
+.trip-col.genesis p{color:#CBDCCF}
+.trip-col .verdict{margin-top:12px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft)}
+.trip-col.genesis .verdict{color:var(--gold-bright)}
+@media (max-width:760px){.triptych{grid-template-columns:1fr}}
+
+section{padding:64px 0}
+.sec-head h2{font-family:'Bitter',serif;font-weight:800;font-size:clamp(26px,3.4vw,36px);letter-spacing:-.01em}
+.sec-head .n{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;color:var(--gold);display:block;margin-bottom:8px}
+.sec-intro{max-width:64ch;color:var(--ink-soft);margin:14px 0 34px}
+.sec-intro strong{color:var(--ink)}
+
+/* Simulator */
+.sim{border:1px solid var(--ink);background:var(--paper)}
+.sim-head{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:16px 22px;border-bottom:1px solid var(--rule);flex-wrap:wrap}
+.sim-head .t{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.sim-body{display:grid;grid-template-columns:300px 1fr;gap:0}
+.sim-controls{padding:22px;border-right:1px solid var(--rule)}
+.ctl{margin-bottom:26px}
+.ctl label{display:flex;justify-content:space-between;align-items:baseline;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:8px}
+.ctl label output{color:var(--spruce);font-weight:500}
+.ctl .hint{font-size:13px;color:var(--ink-soft);margin-top:7px;line-height:1.5}
+input[type=range]{width:100%;appearance:none;-webkit-appearance:none;height:2px;background:var(--rule);outline-offset:6px}
+input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--gold);border:2px solid var(--ink);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--ink);cursor:pointer}
+.presets{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.presets button{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--ink-soft);padding:6px 10px;cursor:pointer}
+.presets button:hover{border-color:var(--spruce);color:var(--spruce)}
+.sim-chart{padding:22px}
+.sim-chart svg{width:100%;height:auto;display:block}
+.verdict-bar{padding:16px 22px;border-top:1px solid var(--rule);background:var(--paper-deep);font-family:'Bitter',serif;font-style:italic;font-size:17px;min-height:56px}
+.verdict-bar strong{color:var(--spruce);font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-right:10px}
+.sim-note{font-size:14px;color:var(--ink-soft);margin-top:18px;max-width:66ch}
+.sim-note em{color:var(--ink)}
+@media (max-width:820px){.sim-body{grid-template-columns:1fr}.sim-controls{border-right:0;border-bottom:1px solid var(--rule)}}
+
+/* Genesis Ledger */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.filters button{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--ink-soft);padding:8px 14px;cursor:pointer;transition:all .15s ease}
+.filters button:hover{border-color:var(--spruce);color:var(--spruce)}
+.filters button.active{background:var(--spruce);border-color:var(--spruce);color:var(--paper)}
+.ledger-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.ledger-card{background:var(--paper);padding:22px;display:flex;flex-direction:column;gap:8px}
+.ledger-card .cap{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:var(--gold);align-self:flex-start;border:1px solid var(--rule);padding:3px 8px}
+.ledger-card h3{font-family:'Bitter',serif;font-weight:600;font-size:19.5px;letter-spacing:-.005em}
+.ledger-card p{font-size:14.5px;color:var(--ink-soft);flex:1}
+.ledger-card .why{font-size:13px;color:var(--spruce);border-top:1px dotted var(--rule);padding-top:10px}
+.ledger-card .why::before{content:"WHY NOW · ";font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--gold)}
+.ledger-count{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);margin-bottom:14px;letter-spacing:.06em}
+
+/* On deck */
+.deck-list{list-style:none;border-top:2px solid var(--ink)}
+.deck-list li{display:grid;grid-template-columns:170px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--rule)}
+.deck-list .st{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);padding-top:4px}
+.deck-list h3{font-family:'Bitter',serif;font-weight:600;font-size:20px;margin-bottom:4px}
+.deck-list p{font-size:15px;color:var(--ink-soft);max-width:62ch}
+@media (max-width:640px){.deck-list li{grid-template-columns:1fr;gap:6px}}
+
+footer{background:var(--ink);color:var(--paper);padding:44px 0;margin-top:20px}
+.foot-grid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:baseline}
+footer a{color:var(--gold-bright);border-bottom-color:rgba(201,150,46,.4)}
+footer .mono{font-size:12.5px;color:#B9B2A0;letter-spacing:.06em}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="index.html">Agents <span class="amp">&amp;</span> Agency</a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="nav" onclick="toggleMenu(this)">Menu</button>
+    <nav class="primary" id="nav" aria-label="Primary">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#writing">Writing</a>
+      <a href="lab.html" aria-current="page">The Lab</a>
+      <a href="index.html#standing">Standing</a>
+      <a href="index.html#about">About</a>
+      <a class="btn ghost" href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Subscribe</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="lab-hero" style="padding-bottom:0">
+  <div class="wrap">
+    <p class="eyebrow">The Lab</p>
+    <h1>The third column of the ledger is <em>genesis</em>.</h1>
+    <p>The public argument about AI and work runs on two columns: the tasks machines take and the tasks machines assist. The third column gets almost no measurement: the tasks, tools, and occupations that <strong style="color:var(--ink)">could not exist</strong> before frontier models. Economists call it new task creation. I call it the interesting part. These are working prototypes of that column.</p>
+
+    <div class="triptych" role="list">
+      <div class="trip-col" role="listitem">
+        <span class="lbl">Column 01</span>
+        <h3>Automation</h3>
+        <p>The machine substitutes for the task. The worker exits or moves.</p>
+        <p class="verdict">Measured to death.</p>
+      </div>
+      <div class="trip-col" role="listitem">
+        <span class="lbl">Column 02</span>
+        <h3>Augmentation</h3>
+        <p>The machine assists the task. The worker produces more.</p>
+        <p class="verdict">The current darling.</p>
+      </div>
+      <div class="trip-col genesis" role="listitem">
+        <span class="lbl">Column 03</span>
+        <h3>Genesis</h3>
+        <p>The machine makes a task possible that no one could do at any price before.</p>
+        <p class="verdict">Barely counted. Start here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROTOTYPE 01 · EXPERTISE FLOW SIMULATOR
+     ============================================================ -->
+<section id="simulator">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="n">PROTOTYPE 01 · INTERACTIVE MODEL</span>
+      <h2>The Expertise Flow Simulator</h2>
+    </div>
+    <p class="sec-intro">My essay <strong>The Liquidity Crisis of Expertise</strong> makes a claim: professions can run out of usable judgment the way banks run out of cash, solvent on paper and illiquid in the moment that counts. This is that claim as a machine you can argue with. Set three levers. Watch a profession's knowledge balance sheet over 25 years.</p>
+
+    <div class="sim">
+      <div class="sim-head">
+        <span class="t">One profession · 25 year horizon · indexed, year 0 = 100</span>
+        <span class="t mono" style="color:var(--ink-soft)">Model v1.0</span>
+      </div>
+      <div class="sim-body">
+        <div class="sim-controls">
+          <div class="ctl">
+            <label for="sAdopt">AI adoption speed <output id="oAdopt">70</output></label>
+            <input type="range" id="sAdopt" min="0" max="100" value="70">
+            <p class="hint">How fast the profession hands cognitive work to models. Speeds encoding. Erodes apprenticeship.</p>
+          </div>
+          <div class="ctl">
+            <label for="sApprentice">Apprenticeship investment <output id="oApprentice">30</output></label>
+            <input type="range" id="sApprentice" min="0" max="100" value="30">
+            <p class="hint">Deliberate spending on the slow way: juniors doing hard things next to seniors.</p>
+          </div>
+          <div class="ctl">
+            <label for="sFidelity">Encoding fidelity <output id="oFidelity">50</output></label>
+            <input type="range" id="sFidelity" min="0" max="100" value="50">
+            <p class="hint">How much of a departing expert's judgment actually survives capture into usable form.</p>
+          </div>
+          <div class="presets" aria-label="Preset scenarios">
+            <button type="button" onclick="preset(85,15,40)">The default path</button>
+            <button type="button" onclick="preset(70,75,60)">Managed transition</button>
+            <button type="button" onclick="preset(95,10,90)">Bet it all on encoding</button>
+          </div>
+        </div>
+        <div class="sim-chart">
+          <svg id="chart" viewBox="0 0 760 400" role="img" aria-label="Line chart of tacit expertise, encoded expertise, and total capacity over 25 years"></svg>
+        </div>
+      </div>
+      <div class="verdict-bar" id="verdict" aria-live="polite"></div>
+    </div>
+
+    <p class="sim-note"><em>A note on method.</em> This is a toy model, deliberately. Toys make assumptions visible. Three stocks: tacit expertise held by working seniors, encoded expertise captured into models and systems, and the junior pipeline. Retirement drains the first at five percent a year. Encoding capability ramps over the first decade rather than arriving fully formed. Everything else is your three levers. If you think a coefficient is wrong, good. That is the conversation. <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Argue with me on Substack</a>.</p>
+  </div>
+</section>
+
+<hr class="total-rule" aria-hidden="true">
+
+<!-- ============================================================
+     PROTOTYPE 02 · THE GENESIS LEDGER
+     ============================================================ -->
+<section id="ledger">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="n">PROTOTYPE 02 · LIVING INDEX</span>
+      <h2>The Genesis Ledger</h2>
+    </div>
+    <p class="sec-intro">An index of work that did not exist before frontier models. Not old jobs with new tools. New entries in the occupational ledger. Each one is tagged with the capability that unlocked it and the reason it was impossible before. <strong>This is a living document.</strong> Entries are added as the frontier moves.</p>
+
+    <div class="filters" id="filters" role="group" aria-label="Filter by unlocking capability"></div>
+    <p class="ledger-count" id="ledgerCount"></p>
+    <div class="ledger-grid" id="ledgerGrid"></div>
+  </div>
+</section>
+
+<hr class="total-rule" aria-hidden="true">
+
+<!-- ============================================================
+     ON DECK
+     ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="n">NEXT ON THE BENCH</span>
+      <h2>On deck</h2>
+    </div>
+    <p class="sec-intro">Prototypes in progress. Each will land here when it works.</p>
+    <ul class="deck-list">
+      <li>
+        <span class="st">In development</span>
+        <div>
+          <h3>The Counterfactual Desk</h3>
+          <p>Run a policy decision through a thousand alternate histories before anyone votes once. Genesis-column work for legislatures and boards.</p>
+        </div>
+      </li>
+      <li>
+        <span class="st">In development</span>
+        <div>
+          <h3>The Translation Bench</h3>
+          <p>One research finding, rendered faithfully for five audiences: the scholar, the legislator, the founder, the journalist, the neighbor. Translation as infrastructure.</p>
+        </div>
+      </li>
+      <li>
+        <span class="st">Sketching</span>
+        <div>
+          <h3>The Apprenticeship Protocol</h3>
+          <p>A designed loop where a junior, a senior, and a model make each other better instead of the model quietly replacing the middle. The fix the simulator keeps asking for.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <span style="font-family:'Bitter',serif;font-weight:800;font-size:17px">Agents <span style="color:var(--gold-bright);font-style:italic">&amp;</span> Agency</span>
+      <p class="mono" style="margin-top:6px">Written and built by hand in Kansas City · &copy; 2026 Derek Ozkal</p>
+    </div>
+    <div class="mono">
+      <a href="index.html">Home</a>
+      &nbsp;·&nbsp;
+      <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Substack</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(btn){
+  var nav=document.getElementById('nav');
+  var open=nav.classList.toggle('open');
+  btn.setAttribute('aria-expanded',open?'true':'false');
+}
+document.querySelectorAll('nav.primary a').forEach(function(a){
+  a.addEventListener('click',function(){document.getElementById('nav').classList.remove('open');});
+});
+
+/* ================= PROTOTYPE 01 · SIMULATOR ================= */
+var S={adopt:70,apprentice:30,fidelity:50};
+var YEARS=25;
+
+function simulate(a,p,f){
+  a/=100;p/=100;f/=100;
+  var T=100,E=8,J=45;
+  var rows=[];
+  for(var y=0;y<=YEARS;y++){
+    var C=T+0.85*f*E+0.35*J;
+    rows.push({y:y,T:T,E:E,J:J,C:C});
+    var retire=0.05*T;
+    var promote=0.05*p*J;
+    var ramp=1-Math.exp(-y/7); // encoding capability matures over roughly a decade
+    var capture=retire*f*(0.15+0.45*a);
+    T=Math.max(0,T-retire+promote);
+    E=Math.max(0,E*(0.97+0.03*a)+capture+3.2*a*f*ramp);
+    J=Math.min(130,Math.max(0,J*(1+0.10*p-0.09*a*(1-0.5*p))+1));
+  }
+  return rows;
+}
+
+function drawChart(){
+  var rows=simulate(S.adopt,S.apprentice,S.fidelity);
+  var W=760,H=400,padL=44,padR=118,padT=24,padB=40;
+  var x0=padL,x1=W-padR,y0=H-padB,y1=padT;
+  var maxV=0;rows.forEach(function(r){maxV=Math.max(maxV,r.C,r.T,r.E);});
+  var yMax=Math.max(140,Math.ceil((maxV+12)/20)*20);
+  function X(y){return x0+(x1-x0)*(y/YEARS);}
+  function Y(v){return y0-(y0-y1)*(Math.min(v,yMax)/yMax);}
+  function path(key){
+    return rows.map(function(r,i){return (i?'L':'M')+X(r.y).toFixed(1)+' '+Y(r[key]).toFixed(1);}).join(' ');
+  }
+  var C0=rows[0].C;
+  // find the minimum of capacity
+  var minI=0;
+  rows.forEach(function(r,i){if(r.C<rows[minI].C)minI=i;});
+  var minR=rows[minI],endR=rows[rows.length-1];
+  var crunch=minR.C < 0.88*C0 && minI>0;
+  var trough=crunch && minI<YEARS;
+
+  var s='';
+  // reference: starting capacity, dotted
+  s+='<line x1="'+x0+'" y1="'+Y(C0)+'" x2="'+x1+'" y2="'+Y(C0)+'" stroke="#B9B2A0" stroke-width="1" stroke-dasharray="2 5"/>';
+  s+='<text x="'+x0+'" y="'+(Y(C0)-7)+'" font-family="IBM Plex Mono" font-size="10.5" letter-spacing="1.5" fill="#8A8270">STARTING CAPACITY</text>';
+  // axes
+  s+='<line x1="'+x0+'" y1="'+y0+'" x2="'+x1+'" y2="'+y0+'" stroke="#191611" stroke-width="1.5"/>';
+  for(var t=0;t<=YEARS;t+=5){
+    s+='<line x1="'+X(t)+'" y1="'+y0+'" x2="'+X(t)+'" y2="'+(y0+5)+'" stroke="#191611" stroke-width="1"/>';
+    s+='<text x="'+X(t)+'" y="'+(y0+20)+'" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#57503F">'+(t===0?'YR 0':t)+'</text>';
+  }
+  // crunch marker
+  if(trough){
+    s+='<line x1="'+X(minR.y)+'" y1="'+Y(minR.C)+'" x2="'+X(minR.y)+'" y2="'+y0+'" stroke="#A9791C" stroke-width="1" stroke-dasharray="3 4"/>';
+    s+='<text x="'+X(minR.y)+'" y="'+(Y(minR.C)-10)+'" text-anchor="middle" font-family="IBM Plex Mono" font-size="10.5" letter-spacing="1" fill="#A9791C">CRUNCH · YR '+minR.y+'</text>';
+  }
+  // lines
+  s+='<path d="'+path('T')+'" fill="none" stroke="#1E4D3B" stroke-width="2.5"/>';
+  s+='<path d="'+path('E')+'" fill="none" stroke="#C9962E" stroke-width="2.5"/>';
+  s+='<path d="'+path('C')+'" fill="none" stroke="#191611" stroke-width="3.5"/>';
+  // direct labels at line ends, with simple collision spread
+  var labels=[
+    {v:endR.C,txt:'TOTAL CAPACITY',c:'#191611'},
+    {v:endR.T,txt:'TACIT (SENIORS)',c:'#1E4D3B'},
+    {v:endR.E,txt:'ENCODED',c:'#A9791C'}
+  ].sort(function(m,n){return n.v-m.v;});
+  var used=[];
+  labels.forEach(function(L){
+    var y=Y(L.v);
+    used.forEach(function(u){if(Math.abs(y-u)<16)y=u+16;});
+    used.push(y);
+    s+='<text x="'+(x1+8)+'" y="'+(y+4)+'" font-family="IBM Plex Mono" font-size="11" letter-spacing="1" fill="'+L.c+'">'+L.txt+'</text>';
+  });
+  document.getElementById('chart').innerHTML=s;
+
+  // verdict
+  var pct=Math.round(100*minR.C/C0);
+  var endPct=Math.round(100*endR.C/C0);
+  var rebound=trough && endR.C>=minR.C*1.04;
+  var v;
+  if(!crunch){
+    v='<strong>No crunch</strong>The apprenticeship pipeline keeps replenishing tacit judgment while encoding compounds quietly underneath. This is the managed transition. It is also the expensive one.';
+  }else if(rebound){
+    v='<strong>Crunch, then partial recovery</strong>Capacity bottoms out at '+pct+'% of start in year '+minR.y+', then the encoded stock matures and pulls it back to '+endPct+'%. Survivable, if the profession can hold its breath that long.';
+  }else if(minR.y>=YEARS){
+    v='<strong>Crunch, no recovery</strong>Capacity falls all horizon long and ends at '+endPct+'% of start. The seniors left faster than anything replaced them. This is the liquidity crisis: solvent on paper, illiquid when it counted.';
+  }else{
+    v='<strong>Crunch, no recovery</strong>Capacity bottoms out at '+pct+'% in year '+minR.y+' and ends the horizon at '+endPct+'%. The seniors left before the encoded stock matured. This is the liquidity crisis: solvent on paper, illiquid when it counted.';
+  }
+  document.getElementById('verdict').innerHTML=v;
+}
+
+function bindSlider(id,outId,key){
+  var el=document.getElementById(id),out=document.getElementById(outId);
+  el.addEventListener('input',function(){
+    S[key]=parseInt(el.value,10);
+    out.textContent=el.value;
+    drawChart();
+  });
+}
+function preset(a,p,f){
+  S={adopt:a,apprentice:p,fidelity:f};
+  document.getElementById('sAdopt').value=a;document.getElementById('oAdopt').textContent=a;
+  document.getElementById('sApprentice').value=p;document.getElementById('oApprentice').textContent=p;
+  document.getElementById('sFidelity').value=f;document.getElementById('oFidelity').textContent=f;
+  drawChart();
+}
+bindSlider('sAdopt','oAdopt','adopt');
+bindSlider('sApprentice','oApprentice','apprentice');
+bindSlider('sFidelity','oFidelity','fidelity');
+drawChart();
+
+/* ================= PROTOTYPE 02 · GENESIS LEDGER =================
+   EDIT: add a new entry by copying an object in this array.
+   cap must be one of: CONTEXT, AGENCY, GENERALITY, CODE, COST, MULTIMODAL
+*/
+var LEDGER=[
+ {t:'Expertise Encoder',cap:'CONTEXT',d:'Sits with a retiring machinist, nurse, or loan officer and turns thirty years of judgment into a working corpus a model can actually use.',y:'No system could hold, let alone apply, a career of unstructured judgment.'},
+ {t:'Evals Designer',cap:'GENERALITY',d:'Writes the exams for minds nobody fully specified. Defines what good means for a system with no spec sheet.',y:'Software did what it was told. There was nothing open-ended to examine.'},
+ {t:'Agent Operations Lead',cap:'AGENCY',d:'Runs a fleet of autonomous agents the way a plant manager runs a line: throughput, error budgets, escalation paths.',y:'Software never acted on its own long enough to need an operations discipline.'},
+ {t:'Context Engineer',cap:'CONTEXT',d:'Designs what a model sees before it thinks: the corpus, the ordering, the framing. Information architecture as a live production role.',y:'Nothing read a million tokens, so nobody curated a million tokens.'},
+ {t:'Verification Specialist',cap:'GENERALITY',d:'Audits machine output for a living: provenance, calibration, failure modes. Quality control for cognition.',y:'Output volume was human scale and mostly self-verifying.'},
+ {t:'Synthetic Data Curator',cap:'COST',d:'Designs training worlds instead of collecting the real one. Curates data that never happened to teach things that did.',y:'Generating data used to cost more than gathering it.'},
+ {t:'Counterfactual Analyst',cap:'COST',d:'Runs a policy through a thousand alternate histories before a legislature votes once.',y:'Each scenario used to take a team a quarter. Now the marginal history is nearly free.'},
+ {t:'Institutional Translator',cap:'CONTEXT',d:'Makes one organization\u2019s tacit process legible to agents. The unwritten rules, rendered executable.',y:'The unwritten rules could not run on anything.'},
+ {t:'Model Welfare Researcher',cap:'GENERALITY',d:'Studies whether and when systems like these warrant moral consideration, and what we owe them if so.',y:'Nothing artificial was a serious enough candidate to study.'},
+ {t:'Red Team Author',cap:'AGENCY',d:'Attacks models for a living so the failures get found on payroll instead of in production.',y:'Adversarial testing meant networks and locks, not minds.'},
+ {t:'Agent Economist',cap:'AGENCY',d:'Designs market rules for populations of autonomous buyers, sellers, and negotiators. Mechanism design goes operational.',y:'Markets had no non-human participants with budgets and goals.'},
+ {t:'Curriculum Compiler',cap:'CODE',d:'Turns a master practitioner\u2019s method into a teachable, testable agent. Pedagogy becomes an engineering artifact.',y:'Teaching could not be compiled.'},
+ {t:'Simulation Demographer',cap:'COST',d:'Builds synthetic populations so a city can test a policy on everyone before trying it on anyone.',y:'Population-scale simulation was a supercomputer grant, not a Tuesday.'},
+ {t:'Deep Research Editor',cap:'AGENCY',d:'Assigns, supervises, and edits a research corps that never sleeps. Judgment moves up a level. The reading moves down.',y:'An editor\u2019s staff was limited to people.'},
+ {t:'Memory Architect',cap:'CONTEXT',d:'Designs what a long-lived agent keeps, forgets, and consolidates. Institutional memory as a built system.',y:'Software had storage. It did not have memory worth architecting.'},
+ {t:'Multimodal Field Auditor',cap:'MULTIMODAL',d:'Points a model at the physical world, bridge photos, shop-floor video, crop imagery, and gets structured findings back.',y:'Seeing was not something you could delegate.'},
+ {t:'Capability Forecaster',cap:'GENERALITY',d:'Tracks the frontier and tells institutions what becomes possible next quarter, not next decade.',y:'The frontier moved slowly enough that strategy could ignore it.'},
+ {t:'Preference Elicitor',cap:'GENERALITY',d:'Turns messy human values into training signal. The pollster for what machines should want.',y:'There was no system that could take values as an input.'}
+];
+
+var CAPS=['ALL','CONTEXT','AGENCY','GENERALITY','CODE','COST','MULTIMODAL'];
+var activeCap='ALL';
+
+function renderFilters(){
+  var f=document.getElementById('filters');
+  f.innerHTML=CAPS.map(function(c){
+    return '<button type="button" data-cap="'+c+'" class="'+(c===activeCap?'active':'')+'">'+(c==='ALL'?'All entries':c.toLowerCase())+'</button>';
+  }).join('');
+  f.querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click',function(){activeCap=b.getAttribute('data-cap');renderFilters();renderLedger();});
+  });
+}
+function renderLedger(){
+  var items=LEDGER.filter(function(e){return activeCap==='ALL'||e.cap===activeCap;});
+  document.getElementById('ledgerCount').textContent=items.length+' of '+LEDGER.length+' entries';
+  document.getElementById('ledgerGrid').innerHTML=items.map(function(e){
+    return '<div class="ledger-card"><span class="cap">'+e.cap+'</span><h3>'+e.t+'</h3><p>'+e.d+'</p><p class="why">'+e.y+'</p></div>';
+  }).join('');
+}
+renderFilters();
+renderLedger();
+</script>
+</body>
+</html>
