@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Diffusion Atlas · Agents &amp; Agency · Derek Özkal</title>
+<meta name="description" content="Who is actually adopting AI in America: businesses, workers, and states. Built on real, published data from the Census Bureau, the Federal Reserve, and the Anthropic Economic Index.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600;1,9..144,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FCFBF7;
+  --wash:#F4F1E8;
+  --ink:#1C1B17;
+  --soft:#5C5850;
+  --line:#E3DFD3;
+  --brick:#A8432A;
+  --brick-deep:#7E2F1C;
+  --dark:#211F1A;
+  --heart:#A8432A;
+  --west:#46628C;
+  --east:#3E7A70;
+  --max:1000px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:'Newsreader',Georgia,serif;font-size:16px;line-height:1.6}
+::selection{background:#EAD9C4;color:var(--ink)}
+a{color:var(--brick);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:#D8B7A8}
+a:hover{color:var(--brick-deep)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--brick);outline-offset:3px;border-radius:1px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+.sans{font-family:'Archivo',sans-serif}
+
+header.hd{background:var(--dark);color:#F3EFE6;padding:30px 0 28px}
+.hd .kicker{font-family:'Archivo',sans-serif;font-size:13px;color:#B9B2A2;margin-bottom:12px}
+.hd .kicker a{color:#E8A084;text-decoration-color:rgba(232,160,132,.4)}
+.hd .kicker b{color:#E8A084;font-weight:600}
+h1{font-family:'Fraunces',serif;font-size:clamp(27px,4.5vw,40px);font-weight:700;line-height:1.1}
+.statusline{font-family:'Archivo',sans-serif;font-size:12.5px;color:#D98A6E;margin-top:8px}
+.lede{max-width:720px;font-size:16px;line-height:1.6;color:#B9B2A2;margin-top:12px}
+.lede strong{color:#F3EFE6}
+.stats{display:flex;gap:34px;margin-top:22px;flex-wrap:wrap}
+.stat .v{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:#E8A084}
+.stat .l{font-family:'Archivo',sans-serif;font-size:11.5px;color:#8F897B;margin-top:2px;max-width:190px;line-height:1.45}
+
+nav.tabsbar{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:5}
+.tabs{display:flex;overflow-x:auto;gap:4px}
+.tab{padding:14px 14px 12px;font-size:15px;white-space:nowrap;background:none;border:none;cursor:pointer;color:var(--soft);border-bottom:2px solid transparent;font-family:'Newsreader',serif;font-weight:500}
+.tab.on{color:var(--ink);border-bottom-color:var(--brick);font-weight:600}
+.tab:hover{color:var(--brick)}
+
+main{padding:30px 0 60px}
+section.pane{display:none}
+section.pane.on{display:block}
+h2{font-family:'Fraunces',serif;font-size:25px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
+h3{font-family:'Fraunces',serif;font-size:18px;font-weight:600;margin-bottom:6px}
+.sub{font-size:15.5px;line-height:1.6;color:var(--soft);max-width:740px;margin-bottom:22px}
+.sub strong{color:var(--ink)}
+.card{background:#fff;border:1px solid var(--line)}
+.pad{padding:18px 20px}
+.srcnote{font-family:'Archivo',sans-serif;font-size:11.5px;color:var(--soft);line-height:1.7;margin-top:14px;max-width:780px}
+.srcnote a{color:var(--brick)}
+
+/* Two numbers */
+.duel{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px}
+.duel .card{padding:22px}
+.duel .big{font-family:'Fraunces',serif;font-size:46px;font-weight:900;color:var(--ink);line-height:1}
+.duel .big.alt{color:var(--brick)}
+.duel .who{font-family:'Fraunces',serif;font-weight:600;font-size:18px;margin:8px 0 4px}
+.duel .src{font-family:'Archivo',sans-serif;font-size:11.5px;color:var(--soft);line-height:1.6}
+.duel p.d{font-size:14.5px;color:var(--soft);margin-top:8px}
+@media (max-width:640px){.duel{grid-template-columns:1fr}}
+.third{margin-top:4px;padding:18px 22px;border-left:3px solid var(--brick);background:var(--wash)}
+.third .big{font-family:'Fraunces',serif;font-size:30px;font-weight:900}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:24px}
+.why{border-top:2px solid var(--ink);padding-top:10px}
+.why .k{font-family:'Archivo',sans-serif;font-size:12px;color:var(--brick);margin-bottom:5px;font-weight:600}
+.why p{font-size:14.5px;color:var(--soft)}
+.why p b{color:var(--ink)}
+@media (max-width:640px){.why-grid{grid-template-columns:1fr}}
+
+/* Ledger */
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.chip{padding:6px 12px;font-size:13px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--soft);font-family:'Archivo',sans-serif;border-radius:2px}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip:hover:not(.on){border-color:var(--brick);color:var(--brick)}
+.regcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:8px 0 18px}
+.regcard{border-top:2px solid var(--line);padding-top:10px}
+.regcard .nm{font-family:'Fraunces',serif;font-weight:600;font-size:16px}
+.regcard .n{font-family:'Archivo',sans-serif;font-size:11px;color:var(--soft)}
+.regcard .v{font-family:'Fraunces',serif;font-size:19px;font-weight:700;margin-top:5px}
+.regcard .v small{font-family:'Archivo',sans-serif;font-size:11.5px;color:var(--soft);font-weight:400}
+.row{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none}
+.rk{font-family:'Archivo',sans-serif;font-size:12px;color:var(--soft)}
+.nm{font-family:'Fraunces',serif;font-weight:600;font-size:15px}
+.rtag{font-family:'Archivo',sans-serif;font-size:11px;margin-left:8px;font-weight:500}
+.track{background:#ECE8DB;border-radius:99px;height:8px;overflow:hidden;position:relative;margin-top:5px;max-width:620px}
+.fill{height:100%;border-radius:99px;position:absolute;left:0;top:0}
+.statline{font-family:'Archivo',sans-serif;font-size:12px;color:var(--soft);margin-top:5px}
+.statline b{color:var(--ink);font-weight:600}
+.explain{border-left:3px solid var(--brick);background:var(--wash);padding:14px 18px;margin-top:16px;font-size:14.5px;line-height:1.6;max-width:760px}
+.explain b{font-family:'Fraunces',serif}
+
+/* Bars */
+.bar-list{margin-top:8px}
+.bar-item{padding:10px 0;border-bottom:1px solid var(--line)}
+.bar-item:last-child{border-bottom:0}
+.bar-item .t{display:flex;justify-content:space-between;font-size:14px;margin-bottom:5px}
+.bar-item .t b{font-family:'Fraunces',serif;font-weight:700}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}}
+
+/* Usage map tab */
+.aei-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:6px}
+.aei-card{border-top:2px solid var(--ink);padding-top:12px}
+.aei-card .v{font-family:'Fraunces',serif;font-size:32px;font-weight:900;color:var(--brick)}
+.aei-card .l{font-size:14.5px;color:var(--soft);margin-top:6px;line-height:1.55}
+.aei-card .l b{color:var(--ink)}
+@media (max-width:640px){.aei-grid{grid-template-columns:1fr}}
+
+/* Method */
+.prose{max-width:740px;font-size:15.5px;line-height:1.7}
+.prose h3{margin:22px 0 6px}
+.prose p{margin-bottom:10px;color:var(--soft)}
+.prose p b,.prose p strong{color:var(--ink)}
+.prose ul{margin:0 0 10px 20px;color:var(--soft)}
+.prose li{margin-bottom:6px}
+
+footer.ft{border-top:1px solid var(--line);padding:22px 0 44px}
+.fineprint{font-family:'Archivo',sans-serif;font-size:11.5px;color:var(--soft);line-height:1.7}
+</style>
+</head>
+<body>
+
+<header class="hd"><div class="wrap">
+  <p class="kicker"><a href="index.html">Agents &amp; Agency</a> · <b>The Lab, Exhibit A</b></p>
+  <h1>The AI Diffusion Atlas</h1>
+  <p class="statusline">Status: working prototype · every figure real and sourced, as dated · the tool itself unaudited</p>
+  <p class="lede">Who is actually adopting AI in America? It depends on what you count. <strong>Every number on this page is real and published</strong> (Census Bureau, Federal Reserve, Anthropic Economic Index), with the date and source attached and the gaps labeled as gaps. The interesting part isn't any single number. It's why they disagree.</p>
+  <div class="stats" id="hdrstats"></div>
+</div></header>
+
+<nav class="tabsbar"><div class="wrap"><div class="tabs" id="tabs" role="tablist"></div></div></nav>
+
+<main><div class="wrap">
+
+<!-- PANE 0 · THE TWO NUMBERS -->
+<section class="pane" id="p0">
+  <h2>Two numbers that are both true</h2>
+  <p class="sub">Ask "how much AI adoption is there?" and you'll hear everything from "under a fifth of businesses" to "most of the workforce." Those answers come from different, well-run surveys, and they're both right. Anyone planning around AI needs to know which number answers which question.</p>
+
+  <div class="duel">
+    <div class="card">
+      <div class="big">19.8%</div>
+      <div class="who">…of U.S. businesses use AI</div>
+      <div class="src">U.S. Census Bureau, Business Trends &amp; Outlook Survey · biweekly, ~1.2M-business frame · as of May 3, 2026</div>
+      <p class="d">Firm-weighted: every business counts once, and 95% of U.S. firms have fewer than 50 employees. The best answer to "what share of <i>businesses</i> have adopted?"</p>
+    </div>
+    <div class="card">
+      <div class="big alt">41%</div>
+      <div class="who">…of the labor force uses generative AI at work</div>
+      <div class="src">Real-Time Population Survey (Bick, Blandin &amp; Deming) · Nov 2025 · 12% daily, 35% weekly</div>
+      <p class="d">Person-weighted: every worker counts once, and most workers work at large firms. The best answer to "what share of <i>workers</i> use it?"</p>
+    </div>
+  </div>
+
+  <div class="third">
+    <div class="big">78%</div>
+    <p class="d" style="font-size:14.5px;color:var(--soft);margin-top:6px"><b style="color:var(--ink)">…of the labor force works at a firm that has adopted AI</b>, the employment-weighted view, from the Atlanta Fed's Survey of Business Uncertainty (Nov 2025). About 54% work at firms using large language models specifically. Read this as the upper bound on who has access to AI at work.</p>
+  </div>
+
+  <h3 style="margin-top:28px">Why the numbers disagree (legitimately)</h3>
+  <div class="why-grid">
+    <div class="why"><div class="k">Composition</div><p><b>Big firms adopt most and employ most.</b> Firms with 250+ employees adopt at roughly twice the rate of the smallest firms, and they employ 56% of the workforce. Count firms, you get about 20%. Count people, you get several times that.</p></div>
+    <div class="why"><div class="k">Question design</div><p><b>"Producing goods or services" vs. "any business function."</b> The Census asked the narrow version until November 2025, then broadened it, and measured adoption jumped. Same firms, different question, different number.</p></div>
+    <div class="why"><div class="k">Materiality</div><p><b>Using AI once is not running on AI.</b> Worker surveys catch any use; business surveys are read as asking about meaningful deployment. Both are worth measuring. They are not the same thing.</p></div>
+    <div class="why"><div class="k">Who answers</div><p><b>Executives, workers, and survey-fillers know different things.</b> Some respondents don't know what their firm uses; some leaders now face pressure to say yes. The Fed's review treats this as real but secondary.</p></div>
+  </div>
+
+  <p class="srcnote">Sources: <a href="https://www.federalreserve.gov/econres/notes/feds-notes/monitoring-ai-adoption-in-the-u-s-economy-20260403.html" target="_blank" rel="noopener">Federal Reserve, "Monitoring AI Adoption in the US Economy" (Apr 2026)</a> · <a href="https://www.census.gov/library/stories/2026/05/ai-use-businesses.html" target="_blank" rel="noopener">Census Bureau, "AI Use at U.S. Businesses" (May 2026)</a> · Real-Time Population Survey (Bick, Blandin &amp; Deming 2026).</p>
+</section>
+
+<!-- PANE 1 · STATE LEDGER -->
+<section class="pane" id="p1">
+  <h2>The state ledger</h2>
+  <p class="sub">Share of businesses using AI in any business function, by state: real BTOS estimates from the survey wave closing out 2025, compiled by Ooma from Census data. Also shown: the share <strong>expecting</strong> to use AI within six months, which is where the movement is. Sort by the gap between the two and the map gets interesting.</p>
+
+  <div class="chips" id="regfilter"></div>
+  <div class="chips" id="sorts"></div>
+  <div class="regcards" id="regcards"></div>
+  <div class="card" id="ledger"></div>
+  <div class="explain" id="ledgerexplain"></div>
+  <p class="srcnote">Source: U.S. Census Bureau BTOS (question: AI use "in any business function," last two weeks), state estimates from the final 2025 survey segment as <a href="https://www.ooma.com/blog/business/states-fastest-to-adopt-ai-in-workplace/" target="_blank" rel="noopener">compiled by Ooma</a>. Values marked * use the most recent unsuppressed segment. North Dakota and Alaska current-use estimates were suppressed for data quality in all 2025 segments. Single-segment state estimates are noisier than national ones; treat ranks as neighborhoods, not verdicts. The "Heartland" here is the 20-state mid-continent definition. DC is excluded from this table (not in the compilation); in early-2026 multi-wave averages it ranks near the top, around 22.5%.</p>
+</section>
+
+<!-- PANE 2 · SECTORS & SIZE -->
+<section class="pane" id="p2">
+  <h2>Sectors and size: where adoption actually lives</h2>
+  <p class="sub">Two patterns do most of the explaining. AI adoption concentrates in <strong>information and finance</strong> (cognitive, analytical work), and it rises steeply with <strong>firm size</strong>. If you know a state's industry mix and firm-size mix, you can roughly guess its adoption rate before looking it up.</p>
+
+  <div class="grid2">
+    <div class="card pad">
+      <h3>Businesses using AI, by sector</h3>
+      <div class="bar-list">
+        <div class="bar-item"><div class="t"><span>Information</span><b>39.7%</b></div><div class="track"><div class="fill" style="width:79%;background:var(--ink)"></div></div></div>
+        <div class="bar-item"><div class="t"><span>Finance &amp; insurance</span><b>33.9%</b></div><div class="track"><div class="fill" style="width:68%;background:var(--ink)"></div></div></div>
+        <div class="bar-item"><div class="t"><span>All sectors (national)</span><b>19.8%</b></div><div class="track"><div class="fill" style="width:40%;background:var(--brick)"></div></div></div>
+        <div class="bar-item"><div class="t"><span>Retail trade</span><b>~14%</b></div><div class="track"><div class="fill" style="width:28%;background:#A9A294"></div></div></div>
+      </div>
+      <p class="srcnote" style="margin-top:10px">BTOS, week ending May 3, 2026.</p>
+    </div>
+    <div class="card pad">
+      <h3>Businesses using AI, by firm size</h3>
+      <div class="bar-list">
+        <div class="bar-item"><div class="t"><span>250+ employees</span><b>37%</b></div><div class="track"><div class="fill" style="width:74%;background:var(--ink)"></div></div></div>
+        <div class="bar-item"><div class="t"><span>100–249 employees</span><b>32%</b></div><div class="track"><div class="fill" style="width:64%;background:var(--ink)"></div></div></div>
+        <div class="bar-item"><div class="t"><span>4 or fewer employees</span><b>&lt;20%</b></div><div class="track"><div class="fill" style="width:38%;background:#A9A294"></div></div></div>
+      </div>
+      <p class="srcnote" style="margin-top:10px">BTOS, Dec 2025 to May 2026. Growth over that stretch came from firms with 20+ employees; the smallest firms didn't move significantly.</p>
+    </div>
+  </div>
+
+  <div class="explain" style="margin-top:20px"><b>The worker-side mirror.</b> The same sectors lead when you ask people instead of firms: 63% of workers in finance and 62% in professional services report using generative AI for work (Real-Time Population Survey, Nov 2025). Fastest year-over-year growth in worker use? Manufacturing, up about 14.5 percentage points. Worth watching for every state whose economy leans that way.</div>
+
+  <p class="srcnote">Sources: <a href="https://www.census.gov/library/stories/2026/05/ai-use-businesses.html" target="_blank" rel="noopener">Census Bureau (May 2026)</a> · <a href="https://www.federalreserve.gov/econres/notes/feds-notes/monitoring-ai-adoption-in-the-u-s-economy-20260403.html" target="_blank" rel="noopener">Federal Reserve note (Apr 2026)</a>, figs. 3 and 4.</p>
+</section>
+
+<!-- PANE 3 · USAGE MAP -->
+<section class="pane" id="p3">
+  <h2>The usage map, from the inside</h2>
+  <p class="sub">Surveys ask people what they do. The <strong>Anthropic Economic Index</strong> measures what one frontier model actually does all day: millions of anonymized Claude conversations, mapped to tasks, occupations, and places. It's one company's traffic, not the whole economy. It is also the only public state-level usage data that isn't self-reported.</p>
+
+  <div class="aei-grid">
+    <div class="aei-card">
+      <div class="v">3.82×</div>
+      <div class="l"><b>Washington, DC</b> leads the country in Claude use per working-age adult, at 3.82 times its population share. The heaviest uses: editing documents and searching for information. Draw your own conclusions about what DC does for a living.</div>
+    </div>
+    <div class="aei-card">
+      <div class="v">Top 5</div>
+      <div class="l"><b>DC, Utah, California, New York, Virginia</b> lead per-capita usage. California alone accounts for about 25% of total U.S. usage. Note Utah: also #3 in the country on <i>expected</i> business adoption in the state ledger. Two datasets, same signal.</div>
+    </div>
+    <div class="aei-card">
+      <div class="v">30% → 24%</div>
+      <div class="l">The top five states' share of per-person usage <b>fell</b> from 30% to 24% between August 2025 and February 2026. Usage is spreading out, not concentrating. At the current rate, states converge to roughly equal per-capita use in <b>5 to 9 years</b>.</div>
+    </div>
+    <div class="aei-card">
+      <div class="v">+0.7%</div>
+      <div class="l">A 1% higher state GDP per capita is associated with about 0.7% higher usage per capita. Adoption follows income and occupation mix, which means it follows the economic geography we already have. Unless something changes it.</div>
+    </div>
+  </div>
+
+  <div class="explain" style="margin-top:20px"><b>Why this matters for the middle of the country.</b> Diffusion is happening; the convergence numbers are genuinely good news. But "equal usage in 5 to 9 years at the current rate" is a projection, not a promise. The states that close the gap faster will be the ones whose businesses, schools, and civic institutions treat adoption as a skill to build rather than weather to endure. That's a policy choice, which means it's a thing regions can actually do something about.</div>
+
+  <p class="srcnote">Sources: <a href="https://www.anthropic.com/research/economic-index-geography" target="_blank" rel="noopener">Anthropic Economic Index: geographic report (2025)</a> · <a href="https://www.anthropic.com/research/economic-index-march-2026-report" target="_blank" rel="noopener">AEI "Learning curves" report (Mar 2026)</a> · <a href="https://www.anthropic.com/economic-index" target="_blank" rel="noopener">the index</a>. Disclosure: I've funded and followed AI-and-work research since 2016; I use these data because they're public and methodologically documented, not because this site was built with Claude. Though it was. See <a href="lab.html">the Lab</a>.</p>
+</section>
+
+<!-- PANE 4 · METHOD -->
+<section class="pane" id="p4">
+  <h2>Method, sources, and what's still missing</h2>
+  <div class="prose">
+    <h3>What this page is</h3>
+    <p>A working atlas of AI diffusion built only from real, published estimates, each labeled with its source and date. It exists because the public conversation keeps colliding two kinds of numbers, firm-weighted and person-weighted, and calling the collision a controversy. It isn't one. It's arithmetic plus question design.</p>
+
+    <h3>The sources, and what each is best for</h3>
+    <ul>
+      <li><b>Census BTOS</b>: best estimate of the share of U.S. <i>businesses</i> using AI. Biweekly, huge frame, state-level detail. Question broadened in Nov 2025 from "producing goods or services" to "any business function," so be careful comparing across that seam.</li>
+      <li><b>Real-Time Population Survey</b> (Bick, Blandin &amp; Deming): best estimate of the share of the <i>labor force</i> using generative AI at work. Quarterly since Aug 2024.</li>
+      <li><b>Atlanta Fed Survey of Business Uncertainty</b>: employment-weighted view from executives; best read as the share of workers <i>at</i> adopting firms.</li>
+      <li><b>Anthropic Economic Index</b>: observed usage of one frontier model, mapped to tasks, occupations, and geography. Not the whole market; uniquely not self-reported.</li>
+    </ul>
+
+    <h3>A correction, in public</h3>
+    <p>An earlier version of this atlas leaned hard on a "shadow adoption" story: workers using AI far ahead of their employers' formal programs. Newer evidence says most of the firm-versus-worker gap is composition and question framing, with genuinely informal use a real but smaller slice. Executives now report adoption at rates that leave little room for secrecy. So this page changed. Updating in public is the point of publishing at all.</p>
+
+    <h3>What's still missing (the useful part)</h3>
+    <p>Three things I'd fund tomorrow: <b>(1)</b> a person-weighted worker survey with state-level samples, so the worker map could sit beside the business map; <b>(2)</b> a public state-by-state split of AI exposure into automation-leaning and augmentation-leaning work, so states could tell a productivity opportunity from a transition problem; <b>(3)</b> adoption-intensity measures (hours, tasks, spend), because "used AI in the last two weeks" is a low bar and everyone knows it. I wrote about why absent data is itself information in <a href="https://www.kauffman.org/currents/the-value-in-knowing-what-is-missing/" target="_blank" rel="noopener">The Value in Knowing What Is Missing</a>, back when the missing data was about entrepreneurs. The song remains the same.</p>
+
+    <h3>Update cadence</h3>
+    <p>BTOS publishes biweekly; RPS quarterly; AEI periodically. I refresh this page when the numbers change enough to matter. If you catch a stale figure, <a href="mailto:derekozkal@gmail.com">tell me</a> and I'll fix it and thank you.</p>
+  </div>
+</section>
+
+</div></main>
+
+<footer class="ft"><div class="wrap"><div class="fineprint">
+The AI Diffusion Atlas · an Agents &amp; Agency Lab exhibit · all figures from published sources as dated: U.S. Census Bureau BTOS · Federal Reserve Board · Federal Reserve Bank of Atlanta SBU · Real-Time Population Survey · Anthropic Economic Index · state compilation via Ooma<br>
+Written and built with Claude Fable 5 in Kansas City · © 2026 Derek Özkal
+</div></div></footer>
+
+<script>
+/* ---------- Header stats ---------- */
+function st(l,v){return '<div class="stat"><div class="v">'+v+'</div><div class="l">'+l+'</div></div>';}
+document.getElementById("hdrstats").innerHTML=
+ st("of businesses use AI · Census BTOS, May 2026","19.8%")+
+ st("of the labor force uses GenAI at work · RPS, Nov 2025","41%")+
+ st("of workers are at firms that adopted AI · Atlanta Fed, Nov 2025","78%");
+
+/* ---------- Tabs ---------- */
+var TABS=["The two numbers","State ledger","Sectors & size","The usage map","Method & gaps"];
+var tabsEl=document.getElementById("tabs");
+TABS.forEach(function(t,i){
+  var b=document.createElement("button");
+  b.className="tab"+(i===0?" on":"");b.textContent=t;b.setAttribute("role","tab");
+  b.onclick=function(){
+    document.querySelectorAll(".tab").forEach(function(x){x.classList.remove("on")});
+    b.classList.add("on");
+    document.querySelectorAll("main section.pane").forEach(function(s,j){s.classList.toggle("on",j===i)});
+    window.scrollTo({top:0});
+  };
+  tabsEl.appendChild(b);
+});
+document.getElementById("p0").classList.add("on");
+
+/* ---------- State data ----------
+   Source: Census BTOS state estimates (AI use in any business function),
+   final 2025 segment, as compiled by Ooma (see source note on the page).
+   cur = % currently using; fut = % expecting use within six months.
+   null = suppressed. star = value from an earlier unsuppressed segment.
+   Region: H = Heartland (20-state mid-continent definition), W = West, E = East.
+*/
+var S=[
+["CO","Colorado","W",25.2,27.8,false],
+["AZ","Arizona","W",24.5,27.2,false],
+["NV","Nevada","W",21.3,23.1,false],
+["MD","Maryland","E",21.2,25.5,false],
+["OR","Oregon","W",21.1,20.9,false],
+["NC","North Carolina","E",20.6,21.9,false],
+["TN","Tennessee","H",20.4,18.7,false],
+["NE","Nebraska","H",20.2,23.1,false],
+["VA","Virginia","E",19.8,23.0,false],
+["TX","Texas","H",19.6,25.8,false],
+["CA","California","W",19.4,23.6,false],
+["KS","Kansas","H",19.1,23.9,false],
+["MN","Minnesota","H",19.1,22.9,false],
+["WY","Wyoming","W",19.0,22.5,false],
+["IN","Indiana","H",18.9,20.8,false],
+["MO","Missouri","H",18.6,20.2,false],
+["WA","Washington","W",17.8,22.1,false],
+["MA","Massachusetts","E",17.7,19.6,false],
+["DE","Delaware","E",17.4,22.7,true],
+["GA","Georgia","E",16.6,20.3,false],
+["FL","Florida","E",16.5,20.7,false],
+["MI","Michigan","H",16.4,21.1,false],
+["SC","South Carolina","E",16.2,25.1,false],
+["OH","Ohio","H",15.9,19.9,false],
+["OK","Oklahoma","H",15.8,16.5,false],
+["CT","Connecticut","E",15.7,21.2,false],
+["PA","Pennsylvania","E",15.5,17.9,false],
+["HI","Hawaii","W",15.4,17.6,false],
+["UT","Utah","W",15.3,26.1,false],
+["MT","Montana","W",14.6,18.0,false],
+["AL","Alabama","H",14.5,15.3,false],
+["AR","Arkansas","H",14.4,19.7,false],
+["IL","Illinois","H",14.4,19.0,false],
+["IA","Iowa","H",14.2,19.9,false],
+["WI","Wisconsin","H",14.2,18.4,false],
+["NY","New York","E",13.9,15.5,false],
+["KY","Kentucky","H",13.5,17.7,false],
+["LA","Louisiana","H",13.3,16.7,false],
+["VT","Vermont","E",13.1,11.7,true],
+["ID","Idaho","W",12.8,16.8,false],
+["NJ","New Jersey","E",12.7,16.5,false],
+["NH","New Hampshire","E",11.8,12.2,false],
+["MS","Mississippi","H",11.6,14.4,false],
+["SD","South Dakota","H",11.5,17.7,false],
+["ME","Maine","E",11.4,17.7,false],
+["RI","Rhode Island","E",11.1,17.3,true],
+["NM","New Mexico","W",9.0,14.6,false],
+["WV","West Virginia","E",7.1,8.6,true],
+["ND","North Dakota","H",null,12.0,true],
+["AK","Alaska","W",null,10.6,false]
+].map(function(a){return {st:a[0],name:a[1],r:a[2],cur:a[3],fut:a[4],star:a[5],
+  jump:(a[3]!==null&&a[4]!==null)?+(a[4]-a[3]).toFixed(1):null};});
+
+var RHEX={H:"#A8432A",W:"#46628C",E:"#3E7A70"};
+var RN={H:"Heartland",W:"West",E:"East"};
+
+var EXPLAIN={
+ cur:"<b>Ranked by current use.</b> Number one is the state where the largest share of businesses reported using AI in the previous two weeks. Worth noticing: this is not a coastal-elite list. Tennessee, Nebraska, Kansas, Minnesota, Indiana, and Missouri all sit in the top 16. The middle of the country is not sitting this out, whatever the discourse says.",
+ fut:"<b>Ranked by expected use.</b> The share of businesses expecting to use AI within six months. Intention, not behavior, but intention is where next year's ranking comes from. Utah's leap (29th in current use, 3rd in expected) is the one to watch; Texas, Kansas, and South Carolina also expect big moves.",
+ jump:"<b>Ranked by the gap between expected and current use.</b> The states whose businesses expect the most adoption growth in the next six months. Arguably the most policy-relevant sort on the page: expectation gaps are where training programs, extension services, and chambers of commerce can meet demand instead of manufacturing it."
+};
+
+var curReg="ALL",curSort="cur";
+var regEl=document.getElementById("regfilter");
+[["ALL","All states"],["H","Heartland (20)"],["W","West"],["E","East"]].forEach(function(pair){
+  var c=document.createElement("button");c.className="chip"+(pair[0]==="ALL"?" on":"");c.textContent=pair[1];
+  c.onclick=function(){curReg=pair[0];regEl.querySelectorAll(".chip").forEach(function(x){x.classList.remove("on")});c.classList.add("on");ledger();};
+  regEl.appendChild(c);
+});
+var sortEl=document.getElementById("sorts");
+[["cur","Rank: current use"],["fut","Rank: expected in 6 months"],["jump","Rank: biggest expected jump"]].forEach(function(pair){
+  var c=document.createElement("button");c.className="chip"+(pair[0]==="cur"?" on":"");c.textContent=pair[1];
+  c.onclick=function(){curSort=pair[0];sortEl.querySelectorAll(".chip").forEach(function(x){x.classList.remove("on")});c.classList.add("on");ledger();};
+  sortEl.appendChild(c);
+});
+
+function avg(arr,k){var v=arr.filter(function(s){return s[k]!==null});return v.reduce(function(t,s){return t+s[k]},0)/v.length;}
+
+function regcards(){
+  var host=document.getElementById("regcards");
+  var groups=["H","W","E"].map(function(r){return {r:r,d:S.filter(function(s){return s.r===r})};});
+  host.innerHTML=groups.map(function(g){
+    return '<div class="regcard" style="border-top-color:'+RHEX[g.r]+'"><div class="nm">'+RN[g.r]+'</div><div class="n">'+g.d.length+' states · unweighted average</div><div class="v" style="color:'+RHEX[g.r]+'">'+avg(g.d,"cur").toFixed(1)+'% <small>now</small> · '+avg(g.d,"fut").toFixed(1)+'% <small>expected</small></div></div>';
+  }).join("")+
+  '<div class="regcard" style="border-top-color:#A9A294"><div class="nm">All states</div><div class="n">50 states · unweighted average</div><div class="v">'+avg(S,"cur").toFixed(1)+'% <small>now</small> · '+avg(S,"fut").toFixed(1)+'% <small>expected</small></div></div>';
+}
+regcards();
+
+function ledger(){
+  var d=S.filter(function(s){return curReg==="ALL"||s.r===curReg});
+  d=d.slice().sort(function(a,b){
+    var av=a[curSort],bv=b[curSort];
+    if(av===null)return 1;if(bv===null)return -1;
+    return bv-av;
+  });
+  document.getElementById("ledger").innerHTML=d.map(function(s,i){
+    var curTxt=s.cur===null?"suppressed":s.cur.toFixed(1)+"%"+(s.star?"*":"");
+    var futTxt=s.fut===null?"suppressed":s.fut.toFixed(1)+"%";
+    var jumpTxt=s.jump===null?"n/a":(s.jump>=0?"+":"")+s.jump.toFixed(1)+" pts";
+    var curW=s.cur===null?0:s.cur/26*100;
+    var futW=s.fut===null?0:s.fut/28*100;
+    return '<div class="row"><span class="rk">'+String(i+1).padStart(2,"0")+'</span><div>'+
+      '<span class="nm">'+s.name+'<span class="rtag" style="color:'+RHEX[s.r]+'">'+RN[s.r]+'</span></span>'+
+      '<div class="track"><div class="fill" style="width:'+futW+'%;background:#DCCFB6"></div><div class="fill" style="width:'+curW+'%;background:'+RHEX[s.r]+'"></div></div>'+
+      '<div class="statline">Using now <b>'+curTxt+'</b> · expected in 6 months <b>'+futTxt+'</b> · expected jump <b>'+jumpTxt+'</b></div>'+
+      '</div></div>';
+  }).join("");
+  document.getElementById("ledgerexplain").innerHTML=EXPLAIN[curSort];
+}
+ledger();
+</script>
+</body>
+</html>
