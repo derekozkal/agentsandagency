@@ -2156,7 +2156,7 @@ function snakeCapNote(){
     : 'Arrow keys, WASD, swipe, or buttons. Daily snake coins are maxed — now you play for glory. 🏆';
 }
 function snakeSpeed(){
-  let ms=Math.max(85, 135 - Math.floor(sn.foods/5)*8);
+  let ms=Math.max(150, 220 - Math.floor(sn.foods/5)*5);
   const h=sn.cells[0];
   if(isWater(h.x,h.y)) ms=Math.round(ms*1.8); // swimming is slow
   return ms;
