@@ -1,0 +1,2338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math Grove · A Summer Math Adventure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#22433B; --ink-soft:#4C6B5F;
+  --grass:#3E9B62; --deep:#2C7A4B;
+  --gold:#F2A93B; --gold-deep:#D98F1F;
+  --berry:#E4638E; --lav:#8B7CE8; --lav-deep:#6E5DD3;
+  --paper:#FFFDF6; --line:#DCE8DD;
+  --sky1:#DFF1E6; --sky2:#F8F4E4;
+  --good-bg:#E4F5E7; --good-line:#7FC894;
+  --bad-bg:#FDECEF; --bad-line:#F0A9BC;
+  --hint-bg:#FFF6E0; --hint-line:#F0CE7E;
+  --r:16px;
+  --shadow:0 2px 10px rgba(34,67,59,.08);
+}
+*{box-sizing:border-box; margin:0; padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'Nunito',system-ui,sans-serif; color:var(--ink);
+  background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 60%,var(--sky2) 100%);
+  min-height:100vh; line-height:1.45;
+}
+.wrap{max-width:720px; margin:0 auto; padding:14px 14px 56px}
+
+/* ---------- header ---------- */
+header{display:flex; align-items:center; justify-content:space-between; padding:6px 2px 2px}
+.brand{font-family:'Fredoka',sans-serif; font-weight:700; font-size:26px; letter-spacing:.2px}
+.brand .leaf{display:inline-block}
+.sub{font-size:13px; color:var(--ink-soft); font-weight:700; margin:0 2px 10px}
+.iconbtn{border:2px solid var(--line); background:var(--paper); border-radius:12px; font-size:17px; padding:5px 10px; cursor:pointer; box-shadow:var(--shadow)}
+.iconbtn:hover{transform:translateY(-1px)}
+
+.stats{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:14px}
+.pill{background:var(--paper); border:2px solid var(--line); border-radius:999px; padding:5px 12px; font-weight:800; font-size:14px; box-shadow:var(--shadow); display:flex; align-items:center; gap:6px}
+.pill.level{border-color:#CFC5F6; color:var(--lav-deep); background:#F4F1FE}
+.pill.coins{border-color:#F0D9A8; color:var(--gold-deep); background:#FFF8E7}
+.pill.flame{border-color:#F4C0A6; color:#C75B2A; background:#FFF1E7}
+.xpwrap{flex:1 1 140px; min-width:130px}
+.xpbar{height:14px; background:#E9F0E8; border:2px solid var(--line); border-radius:999px; overflow:hidden}
+.xpfill{height:100%; width:0%; background:linear-gradient(90deg,var(--lav),var(--berry)); border-radius:999px; transition:width .5s ease}
+.xplabel{font-size:11px; font-weight:800; color:var(--ink-soft); margin-top:2px; text-align:right}
+
+/* ---------- tabs ---------- */
+nav{display:flex; gap:8px; margin-bottom:14px}
+.tab{flex:1; font-family:'Fredoka',sans-serif; font-weight:600; font-size:16px; padding:10px 4px; border-radius:14px; border:2px solid var(--line); background:var(--paper); color:var(--ink-soft); cursor:pointer; box-shadow:var(--shadow)}
+.tab.on{background:var(--grass); border-color:var(--deep); color:#fff}
+.tab:focus-visible,.btn:focus-visible,.chip:focus-visible,input:focus-visible,.iconbtn:focus-visible{outline:3px solid var(--lav); outline-offset:2px}
+
+/* ---------- cards ---------- */
+.card{background:var(--paper); border:2px solid var(--line); border-radius:var(--r); box-shadow:var(--shadow); padding:16px; margin-bottom:14px}
+.eyebrow{display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:900; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px}
+.combo{color:#C75B2A; font-size:13px}
+
+/* ---------- daily ---------- */
+.daily{background:linear-gradient(120deg,#FFF3D6,#FFE7B8); border-color:#F0D9A8; display:flex; align-items:center; gap:12px; justify-content:space-between; flex-wrap:wrap}
+.daily h3{font-family:'Fredoka',sans-serif; font-size:18px}
+.daily p{font-size:13px; color:#7A5A17; font-weight:700}
+.daily .done{color:var(--deep)}
+
+/* ---------- topic chips ---------- */
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px}
+.chip{border:2px solid var(--line); background:var(--paper); border-radius:999px; padding:7px 13px; font-weight:800; font-size:13.5px; cursor:pointer; color:var(--ink-soft); box-shadow:var(--shadow)}
+.chip.on{background:var(--ink); color:#FBF6E9; border-color:var(--ink)}
+.chip .stars{font-size:11px; letter-spacing:1px}
+
+/* ---------- question ---------- */
+.prompt{font-family:'Fredoka',sans-serif; font-weight:600; font-size:25px; line-height:1.5; margin:6px 0 16px}
+.fr{display:inline-flex; flex-direction:column; text-align:center; vertical-align:middle; margin:0 3px; line-height:1.05; font-size:.82em}
+.fr b{border-bottom:2.5px solid currentColor; padding:0 5px}
+.fr i{font-style:normal; padding:0 5px}
+.answerrow{display:flex; gap:8px}
+.answerrow input{flex:1; font:800 20px 'Nunito',sans-serif; padding:11px 14px; border:2.5px solid var(--line); border-radius:14px; background:#fff; color:var(--ink); min-width:0}
+.answerrow input::placeholder{color:#A9BCAF; font-weight:700}
+.btn{font-family:'Fredoka',sans-serif; font-weight:600; font-size:17px; padding:11px 20px; border-radius:14px; border:2px solid var(--deep); background:var(--grass); color:#fff; cursor:pointer; box-shadow:var(--shadow); white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn.gold{background:var(--gold); border-color:var(--gold-deep); color:#5C3D05}
+.btn.ghost{background:var(--paper); border-color:var(--line); color:var(--ink-soft)}
+.btn:disabled{opacity:.45; cursor:default; transform:none}
+.underrow{display:flex; justify-content:space-between; margin-top:10px; font-size:13px}
+.linky{background:none; border:none; color:var(--ink-soft); font-weight:800; cursor:pointer; text-decoration:underline; font-size:13px; font-family:'Nunito',sans-serif}
+
+.feedback{border-radius:14px; padding:12px 14px; margin-top:14px; font-weight:700; font-size:15px; border:2px solid transparent; display:none}
+.feedback.show{display:block}
+.feedback.good{background:var(--good-bg); border-color:var(--good-line); color:#1F6B37}
+.feedback.bad{background:var(--bad-bg); border-color:var(--bad-line); color:#A93B60}
+.feedback.hint{background:var(--hint-bg); border-color:var(--hint-line); color:#8A6410}
+.gain{font-weight:900; color:var(--gold-deep)}
+.explain{background:#F3F8F1; border:2px dashed #BBD6BE; border-radius:14px; padding:12px 14px; margin-top:10px; font-size:15px; display:none}
+.explain.show{display:block}
+.explain .lead{font-weight:900; color:var(--deep); margin-bottom:4px}
+.dailybarwrap{margin-top:6px; margin-bottom:12px}
+.dailybar{height:12px; border-radius:999px; border:2px solid #F0D9A8; background:#FFF8E7; overflow:hidden}
+.dailyfill{height:100%; background:linear-gradient(90deg,var(--gold),#F6C465); width:0%; transition:width .4s ease}
+
+/* ---------- garden ---------- */
+.scene{position:relative; height:340px; border-radius:var(--r); border:2px solid var(--line); overflow:hidden; box-shadow:var(--shadow);
+  background:linear-gradient(180deg,#BFE3F2 0%,#D9F0E4 42%,#8FCB84 44%,#6FB868 72%,#5AA85C 100%)}
+.scene .sun{position:absolute; top:22px; right:30px; width:58px; height:58px; border-radius:50%; background:radial-gradient(circle,#FFE9A8 0 55%,#FFD34D 56% 100%); box-shadow:0 0 40px 14px rgba(255,214,90,.55)}
+.scene .hill{position:absolute; bottom:52%; width:70%; height:90px; border-radius:50% 50% 0 0; background:#A6D89B; opacity:.8}
+.scene .hill.two{left:45%; width:80%; height:70px; background:#97CF8C}
+.scene .sign{position:absolute; left:50%; top:56%; transform:translate(-50%,-50%); background:rgba(255,253,246,.92); border:2px solid var(--line); border-radius:14px; padding:10px 16px; font-weight:800; font-size:14px; color:var(--ink-soft); text-align:center; max-width:78%}
+.gitem{position:absolute; transform:translate(-50%,-50%); text-shadow:0 2px 3px rgba(0,0,0,.14); user-select:none}
+.gitem.sky{animation:bob 3.6s ease-in-out infinite}
+.gitem.flip{transform:translate(-50%,-50%) scaleX(-1)}
+@keyframes bob{0%,100%{margin-top:0}50%{margin-top:-9px}}
+.shophead{display:flex; justify-content:space-between; align-items:baseline; margin:4px 2px 10px}
+.shophead h3{font-family:'Fredoka',sans-serif; font-size:19px}
+.shop{display:grid; grid-template-columns:repeat(auto-fill,minmax(128px,1fr)); gap:10px}
+.item{background:var(--paper); border:2px solid var(--line); border-radius:14px; padding:12px 8px; text-align:center; box-shadow:var(--shadow); position:relative}
+.item .em{font-size:34px; line-height:1.1}
+.item .nm{font-weight:800; font-size:13px; margin:4px 0 2px}
+.item .cost{font-weight:900; font-size:12.5px; color:var(--gold-deep); margin-bottom:7px}
+.item button{font-family:'Fredoka',sans-serif; font-weight:600; font-size:13px; border-radius:10px; border:2px solid var(--deep); background:var(--grass); color:#fff; padding:5px 14px; cursor:pointer}
+.item button:disabled{background:#CBD9CC; border-color:#B7C9B8; color:#7d8f80; cursor:default}
+.item .own{position:absolute; top:6px; right:8px; background:var(--lav); color:#fff; font-size:11px; font-weight:900; border-radius:999px; padding:1px 7px}
+
+/* ---------- progress ---------- */
+.totals{display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px; margin-bottom:14px}
+.tot{background:var(--paper); border:2px solid var(--line); border-radius:14px; text-align:center; padding:12px 6px; box-shadow:var(--shadow)}
+.tot .big{font-family:'Fredoka',sans-serif; font-weight:700; font-size:24px}
+.tot .lbl{font-size:11.5px; font-weight:800; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em}
+.trow{display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1.5px solid var(--line)}
+.trow:last-child{border-bottom:none}
+.trow .nm{flex:1; font-weight:800; font-size:14.5px}
+.trow .nm small{display:block; color:var(--ink-soft); font-weight:700; font-size:11.5px}
+.trow .st{font-size:15px; letter-spacing:2px; color:var(--gold-deep); width:64px}
+.trow .acc{font-weight:900; font-size:13px; color:var(--ink-soft); width:88px; text-align:right}
+.tierchip{font-size:11px; font-weight:900; color:var(--lav-deep); background:#F4F1FE; border:1.5px solid #CFC5F6; border-radius:999px; padding:2px 8px}
+
+/* ---------- modal & toast ---------- */
+.overlay{position:fixed; inset:0; background:rgba(34,67,59,.45); display:none; align-items:center; justify-content:center; padding:18px; z-index:50}
+.overlay.show{display:flex}
+.modal{background:var(--paper); border:2px solid var(--line); border-radius:20px; padding:24px 22px; max-width:420px; width:100%; box-shadow:0 12px 40px rgba(34,67,59,.25); text-align:center}
+.modal h2{font-family:'Fredoka',sans-serif; font-size:24px; margin-bottom:8px}
+.modal p{font-size:14.5px; color:var(--ink-soft); font-weight:700; margin-bottom:14px}
+.modal input{width:100%; font:800 18px 'Nunito',sans-serif; padding:10px 14px; border:2.5px solid var(--line); border-radius:14px; margin-bottom:14px; text-align:center}
+.toast{position:fixed; top:14px; left:50%; transform:translateX(-50%) translateY(-80px); background:var(--ink); color:#FBF6E9; font-weight:800; font-size:14px; padding:10px 18px; border-radius:999px; box-shadow:0 6px 24px rgba(0,0,0,.25); transition:transform .35s ease; z-index:60; max-width:92vw; text-align:center}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ---------- burst ---------- */
+.pet{position:fixed; font-size:22px; pointer-events:none; z-index:70; transition:transform .9s cubic-bezier(.2,.7,.3,1), opacity .9s ease}
+
+footer{margin-top:20px; font-size:12px; color:var(--ink-soft); font-weight:700; text-align:center; line-height:1.6}
+.hidden{display:none !important}
+
+/* ---------- grade picker ---------- */
+.gradebtns{display:flex; gap:10px; margin-top:6px}
+.gradebtn{flex:1; border:2.5px solid var(--line); background:#fff; border-radius:16px; padding:14px 8px; cursor:pointer; font-family:'Fredoka',sans-serif; font-weight:600; font-size:16px; color:var(--ink); box-shadow:var(--shadow)}
+.gradebtn small{display:block; font-family:'Nunito',sans-serif; font-weight:800; font-size:11.5px; color:var(--ink-soft); margin-top:2px}
+.gradebtn.on{border-color:var(--deep); background:#EAF7EE}
+.gradebtn:hover{transform:translateY(-1px)}
+
+/* ---------- notes sheet ---------- */
+.sheet{text-align:left; font-size:14.5px; font-weight:600; line-height:1.7; background:#F3F8F1; border:2px dashed #BBD6BE; border-radius:14px; padding:12px 14px; margin-bottom:14px}
+.sheet b{color:var(--deep)}
+
+/* ---------- garden snake ---------- */
+.snakebar{background:linear-gradient(120deg,#E4F5E7,#D3EEDC); border-color:#A9D8B4; display:flex; align-items:center; gap:12px; justify-content:space-between; flex-wrap:wrap}
+.snakebar h3{font-family:'Fredoka',sans-serif; font-size:18px}
+.snakebar p{font-size:13px; color:#2C6B44; font-weight:700}
+#snakeCanvas{display:block; width:100%; max-width:391px; margin:0 auto; background:linear-gradient(180deg,#CFEBB8,#B7E0A0); border:2.5px solid #7FB56B; border-radius:14px; touch-action:none}
+.snakehud{display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:10px; font-weight:800; font-size:14px}
+.snakehud .pill{padding:4px 11px}
+.dpad{display:grid; grid-template-columns:repeat(3,54px); gap:6px; justify-content:center; margin-top:12px}
+.dpad button{font-size:19px; padding:10px 0; border-radius:12px; border:2px solid var(--line); background:var(--paper); cursor:pointer; box-shadow:var(--shadow)}
+.dpad button:active{background:#EAF7EE}
+.dpad .blank{visibility:hidden}
+.snakefoot{margin-top:10px; text-align:center; font-size:12.5px; color:var(--ink-soft); font-weight:700}
+@media (max-width:480px){
+  .prompt{font-size:22px}
+  .scene{height:280px}
+  .brand{font-size:22px}
+}
+@media (prefers-reduced-motion:reduce){
+  .gitem.sky{animation:none}
+  .pet{transition:none}
+  *{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><span class="leaf">🌱</span> Math Grove</div>
+    <div style="display:flex; gap:8px">
+      <button class="iconbtn" id="gradeBtn" title="Switch grade level" aria-label="Switch grade level">🎓</button>
+      <button class="iconbtn" id="soundBtn" title="Sound on/off" aria-label="Toggle sound">🔊</button>
+    </div>
+  </header>
+  <p class="sub" id="subline">A summer math adventure</p>
+
+  <div class="stats">
+    <span class="pill level" id="levelPill">🌿 Seedling</span>
+    <div class="xpwrap">
+      <div class="xpbar"><div class="xpfill" id="xpFill"></div></div>
+      <div class="xplabel" id="xpLabel"></div>
+    </div>
+    <span class="pill coins" id="coinPill">🪙 0</span>
+    <span class="pill flame" id="streakPill" title="Days in a row">🔥 0</span>
+  </div>
+
+  <nav>
+    <button class="tab on" data-tab="play">Play</button>
+    <button class="tab" data-tab="garden">Garden</button>
+    <button class="tab" data-tab="progress">Progress</button>
+  </nav>
+
+  <!-- ============ PLAY ============ -->
+  <section id="tab-play">
+    <div class="card daily" id="dailyCard">
+      <div>
+        <h3>🌞 Daily Ten</h3>
+        <p id="dailyText">Ten quick questions. Finish for a +40 coin bonus.</p>
+      </div>
+      <button class="btn gold" id="dailyBtn">Start</button>
+    </div>
+
+    <div class="chips" id="chips"></div>
+
+    <div class="card">
+      <div class="dailybarwrap hidden" id="dailyBarWrap">
+        <div class="dailybar"><div class="dailyfill" id="dailyFill"></div></div>
+      </div>
+      <div class="eyebrow"><span id="qMeta">Fractions · Tier 1</span><span class="combo" id="comboTag"></span></div>
+      <div class="prompt" id="prompt">Loading…</div>
+      <div class="answerrow">
+        <input id="answer" autocomplete="off" inputmode="text" placeholder="Your answer" aria-label="Your answer">
+        <button class="btn" id="checkBtn">Check</button>
+      </div>
+      <div class="feedback" id="feedback" role="status"></div>
+      <div class="explain" id="explain"></div>
+      <div class="underrow">
+        <span>
+          <button class="linky" id="hintBtn">💡 Hint</button>
+          &nbsp;·&nbsp;
+          <button class="linky" id="notesBtn">📖 Notes</button>
+        </span>
+        <span>
+          <button class="linky hidden" id="whyBtn">Show me why</button>
+          <button class="linky" id="skipBtn">Skip this one</button>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GARDEN ============ -->
+  <section id="tab-garden" class="hidden">
+    <div class="scene" id="scene">
+      <div class="sun"></div>
+      <div class="hill"></div>
+      <div class="hill two"></div>
+      <div class="sign" id="gardenSign">🪧 Your garden is waiting.<br>Solve problems, earn coins, grow it!</div>
+    </div>
+    <div class="card snakebar" style="margin-top:14px">
+      <div>
+        <h3>🐍 Garden Snake</h3>
+        <p>A bonus game played inside the garden <b>you</b> grew.</p>
+      </div>
+      <button class="btn gold" id="snakeOpenBtn">Play</button>
+    </div>
+
+    <div class="card hidden" id="snakeCard">
+      <div class="snakehud">
+        <span class="pill">🍎 <span id="snScore">0</span></span>
+        <span class="pill">🏆 Best: <span id="snBest">0</span></span>
+        <span style="display:flex; gap:8px">
+          <button class="btn" id="snStartBtn" style="padding:7px 16px; font-size:15px">▶ Start</button>
+          <button class="btn ghost" id="snCloseBtn" style="padding:7px 14px; font-size:15px">Close</button>
+        </span>
+      </div>
+      <canvas id="snakeCanvas" width="391" height="391" aria-label="Garden Snake game"></canvas>
+      <div class="dpad" id="dpad">
+        <span class="blank"></span><button data-d="up" aria-label="Up">⬆️</button><span class="blank"></span>
+        <button data-d="left" aria-label="Left">⬅️</button><button data-d="down" aria-label="Down">⬇️</button><button data-d="right" aria-label="Right">➡️</button>
+      </div>
+      <div class="snakefoot" id="snFoot">Arrow keys, WASD, swipe, or buttons. Things you planted show up in the game…</div>
+    </div>
+
+    <div class="shophead">
+      <h3>🛒 Garden Shop</h3>
+      <span class="pill coins" id="coinPill2">🪙 0</span>
+    </div>
+    <div class="shop" id="shop"></div>
+  </section>
+
+  <!-- ============ PROGRESS ============ -->
+  <section id="tab-progress" class="hidden">
+    <div class="totals">
+      <div class="tot"><div class="big" id="tSolved">0</div><div class="lbl">Solved</div></div>
+      <div class="tot"><div class="big" id="tCombo">0</div><div class="lbl">Best combo</div></div>
+      <div class="tot"><div class="big" id="tStreak">0</div><div class="lbl">Day streak</div></div>
+      <div class="tot"><div class="big" id="tGarden">0</div><div class="lbl">Garden friends</div></div>
+    </div>
+    <div class="card" id="topicTable"></div>
+    <div style="text-align:center; margin-top:8px">
+      <button class="linky" id="resetBtn">Start completely over</button>
+    </div>
+  </section>
+
+  <footer>
+    Two summer bridges: <b>2nd → 3rd grade</b> and <b>5th → 6th grade</b>, each with 8 topics and 3 tiers.<br>
+    Free to play · no account, no ads · your garden saves right in this browser. 🌟
+  </footer>
+</div>
+
+<!-- modal -->
+<div class="overlay" id="overlay">
+  <div class="modal" id="modalBox"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/*__CORE_START__*/
+// ================= CORE (pure logic, no DOM) =================
+function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b];}return a||1;}
+function lcm(a,b){return a*b/gcd(a,b);}
+function simp(n,d){const g=gcd(n,d);return [n/g,d/g];}
+function ri(rng,a,b){return a+Math.floor(rng()*(b-a+1));}
+function pick(rng,arr){return arr[Math.floor(rng()*arr.length)];}
+function round2(x){return Math.round(x*100)/100;}
+// stacked fraction HTML
+function F(n,d){return '<span class="fr"><b>'+n+'</b><i>'+d+'</i></span>';}
+function MIX(w,n,d){return w+' '+F(n,d);}
+// seeded rng for Daily Ten
+function mulberry32(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function hashStr(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
+
+// ---------- answer parsing ----------
+// accepts: 12 | -3 | 4.5 | 3/4 | 1 1/2 | 3:2 | "3 to 2" | "$4.20" | "24 cm" | "35%"
+function parseAnswer(raw){
+  if(raw==null) return null;
+  let s=String(raw).trim().toLowerCase();
+  s=s.replace(/\bto\b/g,':');
+  s=s.replace(/[$,%°]/g,'');
+  s=s.replace(/[a-z]+/g,'');          // strip units/words
+  s=s.replace(/\s+/g,' ').trim();
+  if(!s) return null;
+  let m;
+  if(m=s.match(/^(-?\d+(?:\.\d+)?)\s*:\s*(\d+(?:\.\d+)?)$/)){
+    const a=parseFloat(m[1]), b=parseFloat(m[2]);
+    if(!isFinite(a)||!isFinite(b)||b===0) return null;
+    return {kind:'ratio', a:a, b:b, value:a/b};
+  }
+  if(m=s.match(/^(-?\d+)\s+(\d+)\s*\/\s*(\d+)$/)){   // mixed number
+    const w=parseInt(m[1]), n=parseInt(m[2]), d=parseInt(m[3]);
+    if(d===0) return null;
+    const sign=w<0?-1:1;
+    return {kind:'frac', n:sign*(Math.abs(w)*d+n), d:d, value:sign*(Math.abs(w)+n/d)};
+  }
+  if(m=s.match(/^(-?\d+)\s*\/\s*(\d+)$/)){
+    const n=parseInt(m[1]), d=parseInt(m[2]);
+    if(d===0) return null;
+    return {kind:'frac', n:n, d:d, value:n/d};
+  }
+  if(m=s.match(/^-?\d+(?:\.\d+)?$/)){
+    return {kind:'num', value:parseFloat(s)};
+  }
+  return null;
+}
+
+// ---------- answer checking ----------
+// answer spec: {type:'num'|'frac'|'ratio', value, n?,d?, a?,b?, simplest?:bool}
+// returns 'right' | 'wrong' | 'simplify'  ('simplify' = right value, wants simplest form)
+function checkAnswer(ans, p){
+  if(!p) return 'wrong';
+  const eps=1e-4;
+  if(ans.type==='num'){
+    if(p.kind==='ratio') return 'wrong';
+    return Math.abs(p.value-ans.value)<eps ? 'right' : 'wrong';
+  }
+  if(ans.type==='frac'){
+    if(p.kind==='ratio') return 'wrong';
+    const equal=Math.abs(p.value-ans.value)<eps;
+    if(!equal) return 'wrong';
+    if(ans.simplest){
+      if(p.kind!=='frac') return (Number.isInteger(ans.value)&&p.kind==='num')?'right':'simplify';
+      const [sn,sd]=simp(p.n,p.d);
+      return (sn===p.n&&sd===p.d)?'right':'simplify';
+    }
+    return 'right';
+  }
+  if(ans.type==='ratio'){
+    let a,b;
+    if(p.kind==='ratio'){a=p.a;b=p.b;}
+    else if(p.kind==='frac'){a=p.n;b=p.d;}
+    else return 'wrong';
+    if(b===0||ans.b===0) return 'wrong';
+    const equal=Math.abs(a/b-ans.a/ans.b)<eps;
+    if(!equal) return 'wrong';
+    if(ans.simplest){
+      const g=gcd(Math.round(a),Math.round(b));
+      return (Number.isInteger(a)&&Number.isInteger(b)&&g===1)?'right':'simplify';
+    }
+    return 'right';
+  }
+  return 'wrong';
+}
+
+// pretty-print an answer for explanations
+function ansText(ans){
+  if(ans.type==='frac'){
+    if(ans.d===1) return String(ans.n);
+    return ans.n+'/'+ans.d;
+  }
+  if(ans.type==='ratio') return ans.a+' : '+ans.b;
+  return String(ans.value);
+}
+
+// ---------- topics (two grade tracks) ----------
+const TRACKS={
+ g3:[
+  {key:'add', name:'Addition',       icon:'➕'},
+  {key:'sub', name:'Subtraction',    icon:'➖'},
+  {key:'mul', name:'Multiplication', icon:'✖️'},
+  {key:'plc', name:'Place Value',    icon:'🔢'},
+  {key:'mny', name:'Money',          icon:'🪙'},
+  {key:'tim', name:'Time',           icon:'⏰'},
+  {key:'shp', name:'Shapes',         icon:'🔷'},
+  {key:'fr0', name:'Fractions',      icon:'🍰'}
+ ],
+ g6:[
+  {key:'frac',  name:'Fractions',        icon:'🍕'},
+  {key:'dec',   name:'Decimals',         icon:'💰'},
+  {key:'pct',   name:'Percents',         icon:'🎯'},
+  {key:'ratio', name:'Ratios & Rates',   icon:'⚖️'},
+  {key:'int',   name:'Negative Numbers', icon:'🌡️'},
+  {key:'ord',   name:'Order of Ops',     icon:'🧩'},
+  {key:'geo',   name:'Geometry',         icon:'📐'},
+  {key:'num',   name:'Number Sense',     icon:'✨'}
+ ]
+};
+const GRADE_LABEL={g3:'3rd grade', g6:'6th grade'};
+const ALL_TOPICS=TRACKS.g3.concat(TRACKS.g6);
+
+// each generator returns {prompt, hint(placeholder), answer, explain}
+const GEN={
+/* ================= FRACTIONS ================= */
+frac:{
+ 1:function(r){
+  const kind=ri(r,1,3);
+  if(kind===1){ // same denominator add/sub
+    const d=pick(r,[4,5,6,8,10,12]);
+    let a=ri(r,1,d-2), b=ri(r,1,d-1-a);
+    const add=r()<0.6;
+    let n = add? a+b : Math.max(a,b)-Math.min(a,b);
+    if(!add){const hi=Math.max(a,b),lo=Math.min(a,b);a=hi;b=lo;n=a-b;if(n===0){a=b+1;n=1;}}
+    const [sn,sd]=simp(n,d);
+    return {
+      prompt:'What is '+F(a,d)+(add?' + ':' − ')+F(b,d)+' ? <small style="font-size:.55em;font-weight:800;color:#4C6B5F">(simplest form)</small>',
+      hint:'like 3/4',
+      answer:{type:'frac', n:sn, d:sd, value:sn/sd, simplest:true},
+      explain:'Same denominator, so just '+(add?'add':'subtract')+' the tops: '+(add?(a+' + '+b):(a+' − '+b))+' = '+n+', giving '+F(n,d)+'.'+(sd!==d?' Then divide top and bottom by '+gcd(n,d)+' to get '+F(sn,sd)+'.':' Already in simplest form!')
+    };
+  }
+  if(kind===2){ // equivalent fractions
+    const b=ri(r,2,6), a=ri(r,1,b-1), k=ri(r,2,6);
+    return {
+      prompt:F(a,b)+' = '+F('?',b*k)+' &nbsp; What number goes on top?',
+      hint:'a number',
+      answer:{type:'num', value:a*k},
+      explain:'The bottom went from '+b+' to '+(b*k)+', which is × '+k+'. Do the same on top: '+a+' × '+k+' = '+(a*k)+'.'
+    };
+  }
+  // simplify
+  const g=pick(r,[2,3,4,5,6]);
+  let b=ri(r,2,8), a=ri(r,1,b-1);
+  const [sa,sb]=simp(a,b); a=sa;b=sb;
+  return {
+    prompt:'Write '+F(a*g,b*g)+' in simplest form.',
+    hint:'like 3/4',
+    answer:{type:'frac', n:a, d:b, value:a/b, simplest:true},
+    explain:'Both '+ (a*g) +' and '+ (b*g) +' can be divided by '+g+'. That gives '+F(a,b)+'.'
+  };
+ },
+ 2:function(r){
+  const kind=ri(r,1,3);
+  if(kind===1){ // unlike denominators
+    const dens=[2,3,4,5,6,8,10,12];
+    let d1=pick(r,dens), d2=pick(r,dens);
+    let guard=0; while((d1===d2||lcm(d1,d2)>24)&&guard++<50){d1=pick(r,dens);d2=pick(r,dens);}
+    const L=lcm(d1,d2);
+    let a=ri(r,1,d1-1), b=ri(r,1,d2-1);
+    const add=r()<0.65;
+    let n1=a*(L/d1), n2=b*(L/d2);
+    if(!add && n1<n2){[a,b]=[b,a];[d1,d2]=[d2,d1];[n1,n2]=[n2,n1];}
+    if(!add && n1===n2){ b=Math.max(1,b-1); n2=b*(L/d2); if(n1===n2){ return GEN.frac[2](r); } }
+    const n=add? n1+n2 : n1-n2;
+    const [sn,sd]=simp(n,L);
+    return {
+      prompt:'What is '+F(a,d1)+(add?' + ':' − ')+F(b,d2)+' ? <small style="font-size:.55em;font-weight:800;color:#4C6B5F">(simplest form)</small>',
+      hint:'like 3/4 or 1 1/2',
+      answer:{type:'frac', n:sn, d:sd, value:sn/sd, simplest:true},
+      explain:'The denominators don\u2019t match. The least common denominator of '+d1+' and '+d2+' is '+L+'. Rewrite: '+F(a,d1)+' = '+F(n1,L)+' and '+F(b,d2)+' = '+F(n2,L)+'. Then '+(add?(n1+' + '+n2):(n1+' − '+n2))+' = '+n+', so the answer is '+F(sn,sd)+'.'
+    };
+  }
+  if(kind===2){ // fraction of a number
+    const b=pick(r,[2,3,4,5,6,8]), a=ri(r,1,b-1), unit=ri(r,2,9), w=b*unit;
+    return {
+      prompt:'What is '+F(a,b)+' of '+w+' ?',
+      hint:'a number',
+      answer:{type:'num', value:a*unit},
+      explain:'First find '+F(1,b)+' of '+w+': that\u2019s '+w+' ÷ '+b+' = '+unit+'. Then take '+a+' of those: '+a+' × '+unit+' = '+(a*unit)+'.'
+    };
+  }
+  // mixed → improper
+  const d=pick(r,[2,3,4,5,6,8]);
+  let nn=ri(r,1,d-1); const s=simp(nn,d); nn=s[0]; const dd=s[1];
+  const w=ri(r,1,5);
+  return {
+    prompt:'Write '+MIX(w,nn,dd)+' as an improper fraction.',
+    hint:'like 7/4',
+    answer:{type:'frac', n:w*dd+nn, d:dd, value:(w*dd+nn)/dd, simplest:true},
+    explain:'Multiply the whole number by the bottom, then add the top: '+w+' × '+dd+' + '+nn+' = '+(w*dd+nn)+'. Keep the same bottom: '+F(w*dd+nn,dd)+'.'
+  };
+ },
+ 3:function(r){
+  const kind=ri(r,1,3);
+  if(kind===1){ // multiply fractions
+    const b=ri(r,2,8), a=ri(r,1,b-1), d=ri(r,2,8), c=ri(r,1,d-1);
+    const [sn,sd]=simp(a*c,b*d);
+    return {
+      prompt:'What is '+F(a,b)+' × '+F(c,d)+' ? <small style="font-size:.55em;font-weight:800;color:#4C6B5F">(simplest form)</small>',
+      hint:'like 3/8',
+      answer:{type:'frac', n:sn, d:sd, value:sn/sd, simplest:true},
+      explain:'Multiply straight across: tops '+a+' × '+c+' = '+(a*c)+', bottoms '+b+' × '+d+' = '+(b*d)+'. That\u2019s '+F(a*c,b*d)+(sd!==b*d?', which simplifies to '+F(sn,sd)+'.':'.')
+    };
+  }
+  if(kind===2){ // divide by a fraction
+    if(r()<0.5){ // whole ÷ unit fraction
+      const w=ri(r,2,8), n=ri(r,2,6);
+      return {
+        prompt:'What is '+w+' ÷ '+F(1,n)+' ?',
+        hint:'a number',
+        answer:{type:'num', value:w*n},
+        explain:'Dividing by '+F(1,n)+' asks: how many '+F(1,n)+'-size pieces fit in '+w+'? Each whole holds '+n+' pieces, so '+w+' × '+n+' = '+(w*n)+'. (Flip and multiply!)'
+      };
+    }
+    const b=ri(r,2,6), a=ri(r,1,b-1), d=ri(r,2,6), c=ri(r,1,d-1);
+    const [sn,sd]=simp(a*d,b*c);
+    return {
+      prompt:'What is '+F(a,b)+' ÷ '+F(c,d)+' ? <small style="font-size:.55em;font-weight:800;color:#4C6B5F">(simplest form)</small>',
+      hint:'like 3/4 or 1 1/2',
+      answer:{type:'frac', n:sn, d:sd, value:sn/sd, simplest:true},
+      explain:'Keep, change, flip: '+F(a,b)+' × '+F(d,c)+'. Multiply across: '+F(a*d,b*c)+(sd!==b*c||sn!==a*d?' = '+F(sn,sd)+'.':'.')
+    };
+  }
+  // mixed number addition, same denominator with regrouping
+  const d=pick(r,[3,4,5,6,8]);
+  const n1=ri(r,1,d-1), n2=ri(r,Math.max(1,d-n1), d-1);
+  const w1=ri(r,1,3), w2=ri(r,1,3);
+  const totN=n1+n2, extra=Math.floor(totN/d), rem=totN%d;
+  const W=w1+w2+extra;
+  let fn, fd;
+  if(rem===0){fn=W; fd=1;} else {const s2=simp(rem,d); fn=W*s2[1]+s2[0]; fd=s2[1];}
+  const regroupTxt = rem===0 ? (' = '+extra+' whole'+(extra>1?'s':'')+' exactly (regroup!)') : (' = '+MIX(extra, rem, d)+' (regroup!)');
+  return {
+    prompt:'What is '+MIX(w1,n1,d)+' + '+MIX(w2,n2,d)+' ?',
+    hint:'like 4 1/2',
+    answer:{type:'frac', n:fn, d:fd, value:fn/fd, simplest:false},
+    explain:'Add the wholes: '+w1+' + '+w2+' = '+(w1+w2)+'. Add the fractions: '+F(n1,d)+' + '+F(n2,d)+' = '+F(totN,d)+regroupTxt+'. Total: '+(rem===0? String(W) : MIX(W, simp(rem,d)[0], simp(rem,d)[1]))+'.'
+  };
+ }
+},
+/* ================= DECIMALS ================= */
+dec:{
+ 1:function(r){
+  const money=r()<0.5;
+  const a=ri(r,120,899)/100, b=ri(r,105,799)/100;
+  const add=r()<0.6;
+  const hi=Math.max(a,b), lo=Math.min(a,b);
+  const val=round2(add? a+b : hi-lo);
+  const A=add?a:hi, B=add?b:lo;
+  const fa=money?('$'+A.toFixed(2)):A.toFixed(2), fb=money?('$'+B.toFixed(2)):B.toFixed(2);
+  return {
+    prompt:(money?(add?'You spend '+fa+' and then '+fb+'. How much altogether?':'You have '+fa+' and spend '+fb+'. How much is left?'):('What is '+fa+(add?' + ':' − ')+fb+' ?')),
+    hint:'like 4.25',
+    answer:{type:'num', value:val},
+    explain:'Line up the decimal points, then '+(add?'add':'subtract')+' like whole numbers: '+A.toFixed(2)+(add?' + ':' − ')+B.toFixed(2)+' = '+val.toFixed(2)+'.'
+  };
+ },
+ 2:function(r){
+  if(r()<0.5){ // decimal × whole
+    const m=ri(r,11,89), a=m/10, b=ri(r,2,9);
+    const val=(m*b)/10;
+    return {
+      prompt:'What is '+a.toFixed(1)+' × '+b+' ?',
+      hint:'like 20.4',
+      answer:{type:'num', value:val},
+      explain:'Ignore the decimal first: '+m+' × '+b+' = '+(m*b)+'. The problem has one decimal place, so put it back: '+val+'.'
+    };
+  }
+  const places=pick(r,[1,0]); // round to tenth or whole
+  const mm=ri(r,1005,9899); // thousandths as an integer
+  const x=mm/1000;
+  const val=places===1? Math.round(mm/100)/10 : Math.round(mm/1000);
+  const name=places===1?'tenth':'whole number';
+  const lookDigit=places===1? Math.floor(mm/10)%10 : Math.floor(mm/100)%10;
+  return {
+    prompt:'Round '+x.toFixed(3)+' to the nearest '+name+'.',
+    hint:places===1?'like 3.5':'a number',
+    answer:{type:'num', value:val},
+    explain:'Look at the digit just after the '+name+'s place: it\u2019s '+lookDigit+'. '+(lookDigit>=5?'That\u2019s 5 or more, so round up':'That\u2019s less than 5, so keep it')+': '+ (places===1? val.toFixed(1) : val)+'.'
+  };
+ },
+ 3:function(r){
+  const kind=ri(r,1,3);
+  if(kind===1){ // decimal × decimal
+    const m=ri(r,2,9), n2=ri(r,2,9), a=m/10, b=n2/10;
+    const val=(m*n2)/100;
+    return {
+      prompt:'What is '+a.toFixed(1)+' × '+b.toFixed(1)+' ?',
+      hint:'like 0.24',
+      answer:{type:'num', value:val},
+      explain:'Multiply as whole numbers: '+m+' × '+n2+' = '+(m*n2)+'. Count decimal places in the problem: 1 + 1 = 2. So the answer has two: '+val.toFixed(2)+'.'
+    };
+  }
+  if(kind===2){ // decimal ÷ whole
+    const qm=ri(r,11,89), q=qm/10, d=ri(r,2,6);
+    const total=(qm*d)/10;
+    return {
+      prompt:'What is '+total.toFixed(1).replace(/\.0$/,'')+' ÷ '+d+' ?',
+      hint:'like 3.5',
+      answer:{type:'num', value:q},
+      explain:'Divide like normal and keep the decimal point in the same spot: '+total+' ÷ '+d+' = '+q+'. Check: '+q+' × '+d+' = '+total+'. ✓'
+    };
+  }
+  if(r()<0.5){ // fraction → decimal
+    const pairs=[[1,2],[1,4],[3,4],[1,5],[2,5],[3,5],[4,5],[1,10],[3,10],[7,10],[9,10],[1,20],[1,25]];
+    const [a,b]=pick(r,pairs);
+    return {
+      prompt:'Write '+F(a,b)+' as a decimal.',
+      hint:'like 0.75',
+      answer:{type:'num', value:a/b},
+      explain:'A fraction is a division problem: '+a+' ÷ '+b+' = '+(a/b)+'. (Tip: turn the bottom into 100. '+F(a,b)+' = '+F(a*(100/b),100)+', and hundredths are just decimals.)'
+    };
+  }
+  const opts=[[0.5,1,2],[0.25,1,4],[0.75,3,4],[0.2,1,5],[0.4,2,5],[0.6,3,5],[0.8,4,5],[0.1,1,10],[0.3,3,10],[0.7,7,10],[0.9,9,10]];
+  const [v,n,d2]=pick(r,opts);
+  return {
+    prompt:'Write '+v+' as a fraction in simplest form.',
+    hint:'like 3/4',
+    answer:{type:'frac', n:n, d:d2, value:v, simplest:true},
+    explain:v+' means '+F(v*100,100)+' (or '+F(v*10,10)+'). Simplify by dividing top and bottom by their greatest common factor: '+F(n,d2)+'.'
+  };
+ }
+},
+/* ================= PERCENTS ================= */
+pct:{
+ 1:function(r){
+  const p=pick(r,[10,25,50,20]);
+  const mult={10:10,25:4,50:2,20:5}[p];
+  const n=mult*ri(r,2,12);
+  const frac={10:'1/10',25:'1/4',50:'1/2',20:'1/5'}[p];
+  return {
+    prompt:'What is '+p+'% of '+n+' ?',
+    hint:'a number',
+    answer:{type:'num', value:n*p/100},
+    explain:p+'% is the same as '+frac+'. So take '+n+' ÷ '+mult+' = '+(n*p/100)+'.'
+  };
+ },
+ 2:function(r){
+  if(r()<0.55){
+    const p=pick(r,[15,30,40,60,70,75,80,90]);
+    const n=20*ri(r,1,10);
+    const ten=n/10;
+    return {
+      prompt:'What is '+p+'% of '+n+' ?',
+      hint:'a number',
+      answer:{type:'num', value:n*p/100},
+      explain:'Use the 10% trick: 10% of '+n+' is '+ten+'. '+(p%10===0? (p+'% is '+(p/10)+' of those: '+(p/10)+' × '+ten+' = '+(n*p/100)+'.') : (p+'% = '+(Math.floor(p/10)*10)+'% + 5%, so '+(Math.floor(p/10))+' × '+ten+' + '+(ten/2)+' = '+(n*p/100)+'.'))
+    };
+  }
+  const p=pick(r,[10,20,25,50,75,40,60]);
+  const n=pick(r,[20,40,60,80,100,120]);
+  const part=n*p/100;
+  return {
+    prompt:part+' is what percent of '+n+' ?',
+    hint:'like 25',
+    answer:{type:'num', value:p},
+    explain:'Write it as a fraction: '+F(part,n)+'. As a percent of 100 that\u2019s '+p+'%. (Check: '+p+'% of '+n+' = '+part+'. ✓)'
+  };
+ },
+ 3:function(r){
+  const kind=ri(r,1,3);
+  if(kind===1){
+    const price=pick(r,[20,40,60,80,120]);
+    const off=pick(r,[10,20,25,50]);
+    const disc=price*off/100, sale=price-disc;
+    return {
+      prompt:'A $'+price+' hoodie is '+off+'% off. What is the sale price, in dollars?',
+      hint:'like 30',
+      answer:{type:'num', value:sale},
+      explain:'Find the discount first: '+off+'% of $'+price+' = $'+disc+'. Then subtract: $'+price+' − $'+disc+' = $'+sale+'.'
+    };
+  }
+  if(kind===2){
+    const bill=pick(r,[20,40,60,80]);
+    const tip=pick(r,[10,15,20]);
+    const t=bill*tip/100;
+    return {
+      prompt:'A pizza bill is $'+bill+'. You add a '+tip+'% tip. What is the total, in dollars?',
+      hint:'like 46',
+      answer:{type:'num', value:bill+t},
+      explain:'The tip is '+tip+'% of $'+bill+' = $'+t+'. Total: $'+bill+' + $'+t+' = $'+(bill+t)+'.'
+    };
+  }
+  const p=pick(r,[5,12,35,40,65,80,95,4,8]);
+  return {
+    prompt:'Write '+p+'% as a decimal.',
+    hint:'like 0.35',
+    answer:{type:'num', value:p/100},
+    explain:'Percent means "out of 100," so divide by 100. Slide the decimal point two places left: '+p+'% = '+(p/100)+'.'
+  };
+ }
+},
+/* ================= RATIOS ================= */
+ratio:{
+ 1:function(r){
+  const g=ri(r,2,6);
+  let a=ri(r,1,6), b=ri(r,1,6);
+  const s=simp(a,b); a=s[0]; b=s[1];
+  if(a===b){b=a+1;}
+  const themes=[
+    ['red beads','blue beads'],['cats','dogs'],['pencils','erasers'],['wins','losses'],['girls','boys']
+  ];
+  const t=pick(r,themes);
+  return {
+    prompt:'A bag has '+(a*g)+' '+t[0]+' and '+(b*g)+' '+t[1]+'. Write the ratio of '+t[0]+' to '+t[1]+' in simplest form.',
+    hint:'like 3:2',
+    answer:{type:'ratio', a:a, b:b, value:a/b, simplest:true},
+    explain:'Start with '+(a*g)+' : '+(b*g)+'. Both sides divide by '+g+', giving '+a+' : '+b+'.'
+  };
+ },
+ 2:function(r){
+  if(r()<0.5){
+    const rate=ri(r,3,12)*5, h=ri(r,2,5);
+    return {
+      prompt:'A car goes '+(rate*h)+' miles in '+h+' hours. How many miles per hour is that?',
+      hint:'a number',
+      answer:{type:'num', value:rate},
+      explain:'A unit rate is "per 1." Divide: '+(rate*h)+' ÷ '+h+' = '+rate+' miles each hour.'
+    };
+  }
+  const per=pick(r,[0.5,1,1.5,2,2.5,3]), k=ri(r,3,8);
+  const total=round2(per*k);
+  return {
+    prompt:k+' stickers cost $'+total.toFixed(2).replace(/\.00$/,'')+'. How much does 1 sticker cost, in dollars?',
+    hint:'like 1.50',
+    answer:{type:'num', value:per},
+    explain:'Divide the total by the number of stickers: '+total+' ÷ '+k+' = '+per+'. That\u2019s the unit price.'
+  };
+ },
+ 3:function(r){
+  const c=ri(r,2,5), b=ri(r,2,4), k=ri(r,2,4);
+  const items=pick(r,[['cups of flour','batches of muffins'],['scoops of mix','pitchers of lemonade'],['bags of soil','planters']]);
+  return {
+    prompt:'A recipe uses '+c+' '+items[0]+' for '+b+' '+items[1]+'. How many '+items[0]+' do you need for '+(b*k)+' '+items[1]+'?',
+    hint:'a number',
+    answer:{type:'num', value:c*k},
+    explain:'Find the scale factor first: '+(b*k)+' ÷ '+b+' = '+k+'. You\u2019re making '+k+' times as much, so multiply: '+c+' × '+k+' = '+(c*k)+' '+items[0]+'.'
+  };
+ }
+},
+/* ================= INTEGERS ================= */
+int:{
+ 1:function(r){
+  const kind=ri(r,1,3);
+  if(kind===1){
+    const n=ri(r,2,15)*(r()<0.5?-1:1);
+    return {
+      prompt:'What is the opposite of '+n+' ?',
+      hint:'like -7',
+      answer:{type:'num', value:-n},
+      explain:'The opposite is the same distance from 0 on the other side of the number line: '+(-n)+'.'
+    };
+  }
+  if(kind===2){
+    const n=ri(r,2,15)*(r()<0.7?-1:1);
+    return {
+      prompt:'What is |'+n+'| ? <small style="font-size:.55em;font-weight:800;color:#4C6B5F">(absolute value)</small>',
+      hint:'a number',
+      answer:{type:'num', value:Math.abs(n)},
+      explain:'Absolute value asks: how far from 0? '+n+' is '+Math.abs(n)+' steps from 0, so |'+n+'| = '+Math.abs(n)+'.'
+    };
+  }
+  const start=-ri(r,2,9), rise=ri(r,Math.abs(start)+1,15);
+  return {
+    prompt:'The temperature is '+start+'°. It rises '+rise+'°. What is the new temperature?',
+    hint:'like 5 or -2',
+    answer:{type:'num', value:start+rise},
+    explain:'Start at '+start+' on the number line and hop '+rise+' to the right: first '+Math.abs(start)+' hops get you to 0, then '+(rise+start)+' more. New temperature: '+(start+rise)+'°.'
+  };
+ },
+ 2:function(r){
+  const a=ri(r,2,12)*(r()<0.5?-1:1);
+  let b=ri(r,2,12);
+  const sub=r()<0.5;
+  if(sub){
+    const A=ri(r,1,9), B=ri(r,A+1,15); // a - b < 0
+    return {
+      prompt:'What is '+A+' − '+B+' ?',
+      hint:'like -4',
+      answer:{type:'num', value:A-B},
+      explain:'You\u2019re taking away more than you have. '+A+' − '+A+' gets you to 0, and there\u2019s still '+(B-A)+' left to subtract, so you land at '+(A-B)+'.'
+    };
+  }
+  let B=ri(r,2,12)*(a>0?-1:1);
+  if(B===-a){ B += (B>0? 1 : -1); }
+  return {
+    prompt:'What is '+a+' + ('+B+') ?',
+    hint:'like -4',
+    answer:{type:'num', value:a+B},
+    explain:'Signs are different, so it\u2019s a tug-of-war: |'+a+'| vs |'+B+'|. Subtract the smaller from the bigger ('+Math.max(Math.abs(a),Math.abs(B))+' − '+Math.min(Math.abs(a),Math.abs(B))+' = '+Math.abs(a+B)+') and keep the sign of the stronger side: '+(a+B)+'.'
+  };
+ },
+ 3:function(r){
+  if(r()<0.5){
+    const a=ri(r,2,9)*(r()<0.6?-1:1), b=ri(r,2,9), c=ri(r,2,9);
+    const val=a+b-c;
+    return {
+      prompt:'What is '+a+' + '+b+' − '+c+' ?',
+      hint:'like -3',
+      answer:{type:'num', value:val},
+      explain:'Work left to right: '+a+' + '+b+' = '+(a+b)+', then '+(a+b)+' − '+c+' = '+val+'.'
+    };
+  }
+  const a=-ri(r,2,9), b=ri(r,2,9);
+  return {
+    prompt:'How far apart are '+a+' and '+b+' on the number line?',
+    hint:'a number',
+    answer:{type:'num', value:b-a},
+    explain:'From '+a+' up to 0 is '+Math.abs(a)+' steps, and from 0 up to '+b+' is '+b+' more. Total distance: '+Math.abs(a)+' + '+b+' = '+(b-a)+'.'
+  };
+ }
+},
+/* ================= ORDER OF OPERATIONS ================= */
+ord:{
+ 1:function(r){
+  const a=ri(r,2,9), b=ri(r,2,9), c=ri(r,2,9);
+  if(r()<0.5){
+    return {
+      prompt:'What is '+a+' + '+b+' × '+c+' ?',
+      hint:'a number',
+      answer:{type:'num', value:a+b*c},
+      explain:'Multiplication comes before addition: '+b+' × '+c+' = '+(b*c)+' first, then '+a+' + '+(b*c)+' = '+(a+b*c)+'.'
+    };
+  }
+  return {
+    prompt:'What is ('+a+' + '+b+') × '+c+' ?',
+    hint:'a number',
+    answer:{type:'num', value:(a+b)*c},
+    explain:'Parentheses first: '+a+' + '+b+' = '+(a+b)+'. Then multiply: '+(a+b)+' × '+c+' = '+((a+b)*c)+'.'
+  };
+ },
+ 2:function(r){
+  if(r()<0.5){
+    const a=ri(r,3,9), b=ri(r,2,6), d=ri(r,2,4), c=d*ri(r,2,6);
+    return {
+      prompt:'What is '+a+' × '+b+' − '+c+' ÷ '+d+' ?',
+      hint:'a number',
+      answer:{type:'num', value:a*b-c/d},
+      explain:'Do × and ÷ first, left to right: '+a+' × '+b+' = '+(a*b)+' and '+c+' ÷ '+d+' = '+(c/d)+'. Then subtract: '+(a*b)+' − '+(c/d)+' = '+(a*b-c/d)+'.'
+    };
+  }
+  const a=ri(r,2,10), b=ri(r,2,6), c=ri(r,5,12), d=ri(r,2,c-1);
+  return {
+    prompt:'What is '+a+' + '+b+' × ('+c+' − '+d+') ?',
+    hint:'a number',
+    answer:{type:'num', value:a+b*(c-d)},
+    explain:'Parentheses first: '+c+' − '+d+' = '+(c-d)+'. Then multiply: '+b+' × '+(c-d)+' = '+(b*(c-d))+'. Then add: '+a+' + '+(b*(c-d))+' = '+(a+b*(c-d))+'.'
+  };
+ },
+ 3:function(r){
+  if(r()<0.5){
+    const b=ri(r,2,6), a=ri(r,2,5), c=ri(r,2,6);
+    return {
+      prompt:'What is '+b+'² + '+a+' × '+c+' ?',
+      hint:'a number',
+      answer:{type:'num', value:b*b+a*c},
+      explain:'Exponents first: '+b+'² = '+b+' × '+b+' = '+(b*b)+'. Then multiply: '+a+' × '+c+' = '+(a*c)+'. Then add: '+(b*b)+' + '+(a*c)+' = '+(b*b+a*c)+'.'
+    };
+  }
+  const a=ri(r,2,6), b=ri(r,2,6), d=ri(r,2,4), cBase=ri(r,d+1,9);
+  const val=(a+b)*cBase-d*d;
+  return {
+    prompt:'What is ('+a+' + '+b+') × '+cBase+' − '+d+'² ?',
+    hint:'a number',
+    answer:{type:'num', value:val},
+    explain:'Parentheses: '+a+' + '+b+' = '+(a+b)+'. Exponent: '+d+'² = '+(d*d)+'. Multiply: '+(a+b)+' × '+cBase+' = '+((a+b)*cBase)+'. Subtract: '+((a+b)*cBase)+' − '+(d*d)+' = '+val+'.'
+  };
+ }
+},
+/* ================= GEOMETRY ================= */
+geo:{
+ 1:function(r){
+  const l=ri(r,3,12), w=ri(r,2,9);
+  if(r()<0.5){
+    return {
+      prompt:'A rectangle is '+l+' cm long and '+w+' cm wide. What is its <b>area</b>, in square cm?',
+      hint:'a number',
+      answer:{type:'num', value:l*w},
+      explain:'Area of a rectangle = length × width = '+l+' × '+w+' = '+(l*w)+' square cm.'
+    };
+  }
+  return {
+    prompt:'A rectangle is '+l+' m long and '+w+' m wide. What is its <b>perimeter</b>, in meters?',
+    hint:'a number',
+    answer:{type:'num', value:2*(l+w)},
+    explain:'Perimeter is the distance all the way around: 2 × ('+l+' + '+w+') = 2 × '+(l+w)+' = '+(2*(l+w))+' m.'
+  };
+ },
+ 2:function(r){
+  if(r()<0.5){
+    const b=ri(r,2,10)*2, h=ri(r,3,9);
+    return {
+      prompt:'A triangle has a base of '+b+' cm and a height of '+h+' cm. What is its area, in square cm?',
+      hint:'a number',
+      answer:{type:'num', value:b*h/2},
+      explain:'A triangle is half a rectangle: area = (base × height) ÷ 2 = ('+b+' × '+h+') ÷ 2 = '+(b*h)+' ÷ 2 = '+(b*h/2)+' square cm.'
+    };
+  }
+  const l=ri(r,2,6), w=ri(r,2,5), h=ri(r,2,5);
+  return {
+    prompt:'A box is '+l+' by '+w+' by '+h+' inches. What is its volume, in cubic inches?',
+    hint:'a number',
+    answer:{type:'num', value:l*w*h},
+    explain:'Volume of a box = length × width × height = '+l+' × '+w+' × '+h+' = '+(l*w*h)+' cubic inches.'
+  };
+ },
+ 3:function(r){
+  const kind=ri(r,1,3);
+  if(kind===1){
+    const w=ri(r,3,9), l=ri(r,4,12), A=w*l;
+    return {
+      prompt:'A rectangle has an area of '+A+' square feet. Its width is '+w+' feet. How long is it, in feet?',
+      hint:'a number',
+      answer:{type:'num', value:l},
+      explain:'Area = length × width, so work backwards: length = '+A+' ÷ '+w+' = '+l+' feet.'
+    };
+  }
+  if(kind===2){
+    const b=ri(r,3,12), h=ri(r,2,9);
+    return {
+      prompt:'A parallelogram has a base of '+b+' m and a height of '+h+' m. What is its area, in square meters?',
+      hint:'a number',
+      answer:{type:'num', value:b*h},
+      explain:'A parallelogram is a pushed-over rectangle: area = base × height = '+b+' × '+h+' = '+(b*h)+' square meters.'
+    };
+  }
+  const l=ri(r,2,6), w=ri(r,2,5), h=ri(r,2,6), V=l*w*h;
+  return {
+    prompt:'A box has a volume of '+V+' cubic cm. Its base is '+l+' cm by '+w+' cm. How tall is it, in cm?',
+    hint:'a number',
+    answer:{type:'num', value:h},
+    explain:'Volume = base area × height. The base area is '+l+' × '+w+' = '+(l*w)+'. So height = '+V+' ÷ '+(l*w)+' = '+h+' cm.'
+  };
+ }
+},
+/* ================= NUMBER SENSE ================= */
+num:{
+ 1:function(r){
+  if(r()<0.5){
+    const a=ri(r,12,49), b=ri(r,3,9);
+    return {
+      prompt:'What is '+a+' × '+b+' ?',
+      hint:'a number',
+      answer:{type:'num', value:a*b},
+      explain:'Break '+a+' apart: '+(Math.floor(a/10)*10)+' × '+b+' = '+(Math.floor(a/10)*10*b)+', and '+(a%10)+' × '+b+' = '+((a%10)*b)+'. Add them: '+(a*b)+'.'
+    };
+  }
+  const q=ri(r,12,40), d=ri(r,3,9);
+  return {
+    prompt:'What is '+(q*d)+' ÷ '+d+' ?',
+    hint:'a number',
+    answer:{type:'num', value:q},
+    explain:'Think multiplication in reverse: '+d+' × ? = '+(q*d)+'. Since '+d+' × '+q+' = '+(q*d)+', the answer is '+q+'.'
+  };
+ },
+ 2:function(r){
+  const g=pick(r,[2,3,4,5,6,7,8]);
+  let a=ri(r,2,7), b=ri(r,2,7);
+  let guard=0; while(gcd(a,b)!==1&&guard++<30){b=ri(r,2,9);}
+  if(gcd(a,b)!==1){a=2;b=3;}
+  const x=g*a, y=g*b;
+  return {
+    prompt:'What is the greatest common factor (GCF) of '+x+' and '+y+' ?',
+    hint:'a number',
+    answer:{type:'num', value:g},
+    explain:'List what divides both. '+x+' = '+g+' × '+a+' and '+y+' = '+g+' × '+b+'. Since '+a+' and '+b+' share nothing else, the GCF is '+g+'.'
+  };
+ },
+ 3:function(r){
+  let a=pick(r,[2,3,4,5,6,8,9,10,12]), b=pick(r,[2,3,4,5,6,8,9,10,12]);
+  let guard=0; while(a===b&&guard++<20){b=pick(r,[2,3,4,5,6,8,9,10,12]);}
+  if(a===b){b=a+2;}
+  const L=lcm(a,b);
+  return {
+    prompt:'What is the least common multiple (LCM) of '+a+' and '+b+' ?',
+    hint:'a number',
+    answer:{type:'num', value:L},
+    explain:'Skip-count by the bigger number ('+Math.max(a,b)+') until you hit a multiple of '+Math.min(a,b)+': '+L+' works, because '+L+' ÷ '+a+' = '+(L/a)+' and '+L+' ÷ '+b+' = '+(L/b)+'.'
+  };
+ }
+},
+/* ================= G3: ADDITION ================= */
+add:{
+ 1:function(r){
+  const a=ri(r,4,9), b=ri(r,3,9), s=a+b;
+  if(s>10){
+    const toTen=10-a, rest=b-toTen;
+    return {
+      prompt:'What is '+a+' + '+b+' ?',
+      hint:'a number',
+      answer:{type:'num', value:s},
+      explain:'Make a ten! '+a+' needs '+toTen+' more to reach 10. Take '+toTen+' from the '+b+': now you have 10 + '+rest+' = '+s+'.'
+    };
+  }
+  return {
+    prompt:'What is '+a+' + '+b+' ?',
+    hint:'a number',
+    answer:{type:'num', value:s},
+    explain:'Start at the bigger number, '+Math.max(a,b)+', and count up '+Math.min(a,b)+' more: '+s+'.'
+  };
+ },
+ 2:function(r){
+  const a=ri(r,12,60), b=ri(r,11,99-a), s=a+b;
+  const ta=Math.floor(a/10)*10, tb=Math.floor(b/10)*10, oa=a%10, ob=b%10;
+  const regroup=(oa+ob)>=10;
+  return {
+    prompt:'What is '+a+' + '+b+' ?',
+    hint:'a number',
+    answer:{type:'num', value:s},
+    explain:'Add the tens: '+ta+' + '+tb+' = '+(ta+tb)+'. Add the ones: '+oa+' + '+ob+' = '+(oa+ob)+'.'+(regroup?' The ones made a new ten (regroup!).':'')+' Together: '+(ta+tb)+' + '+(oa+ob)+' = '+s+'.'
+  };
+ },
+ 3:function(r){
+  if(r()<0.5){
+    const a=ri(r,126,589), b=ri(r,114,989-a), s=a+b;
+    return {
+      prompt:'What is '+a+' + '+b+' ?',
+      hint:'a number',
+      answer:{type:'num', value:s},
+      explain:'Break both apart. Hundreds: '+(Math.floor(a/100)*100)+' + '+(Math.floor(b/100)*100)+' = '+((Math.floor(a/100)+Math.floor(b/100))*100)+'. Tens: '+(Math.floor(a/10)%10*10)+' + '+(Math.floor(b/10)%10*10)+' = '+((Math.floor(a/10)%10+Math.floor(b/10)%10)*10)+'. Ones: '+(a%10)+' + '+(b%10)+' = '+(a%10+b%10)+'. Add the pieces to get '+s+'.'
+    };
+  }
+  const a=ri(r,140,560), c=a+ri(r,120,990-a);
+  return {
+    prompt:a+' + <b>?</b> = '+c+' &nbsp; What is the missing number?',
+    hint:'a number',
+    answer:{type:'num', value:c-a},
+    explain:'A missing part means subtract: '+c+' \u2212 '+a+' = '+(c-a)+'. Check: '+a+' + '+(c-a)+' = '+c+'. \u2713'
+  };
+ }
+},
+/* ================= G3: SUBTRACTION ================= */
+sub:{
+ 1:function(r){
+  const a=ri(r,8,18), b=ri(r,2,a-2);
+  return {
+    prompt:'What is '+a+' \u2212 '+b+' ?',
+    hint:'a number',
+    answer:{type:'num', value:a-b},
+    explain:'Think addition: '+b+' + <b>?</b> = '+a+'. Count up from '+b+' to '+a+': that\u2019s '+(a-b)+' hops.'
+  };
+ },
+ 2:function(r){
+  const a=ri(r,35,98), b=ri(r,12,a-3);
+  const borrow=(a%10)<(b%10);
+  return {
+    prompt:'What is '+a+' \u2212 '+b+' ?',
+    hint:'a number',
+    answer:{type:'num', value:a-b},
+    explain: borrow
+      ? 'The ones aren\u2019t enough ('+(a%10)+' is smaller than '+(b%10)+'), so borrow a ten: '+a+' becomes '+(Math.floor(a/10)-1)+' tens and '+(a%10+10)+' ones. Ones: '+(a%10+10)+' \u2212 '+(b%10)+' = '+(a%10+10-b%10)+'. Tens: '+((Math.floor(a/10)-1)*10)+' \u2212 '+(Math.floor(b/10)*10)+' = '+((Math.floor(a/10)-1-Math.floor(b/10))*10)+'. Answer: '+(a-b)+'.'
+      : 'Subtract the tens: '+(Math.floor(a/10)*10)+' \u2212 '+(Math.floor(b/10)*10)+' = '+((Math.floor(a/10)-Math.floor(b/10))*10)+'. Subtract the ones: '+(a%10)+' \u2212 '+(b%10)+' = '+(a%10-b%10)+'. Answer: '+(a-b)+'.'
+  };
+ },
+ 3:function(r){
+  if(r()<0.5){
+    const a=ri(r,305,900), b=ri(r,118,a-50);
+    return {
+      prompt:'What is '+a+' \u2212 '+b+' ?',
+      hint:'a number',
+      answer:{type:'num', value:a-b},
+      explain:'Count up from '+b+' instead of down from '+a+'! From '+b+' to '+(Math.ceil(b/100)*100)+' is '+(Math.ceil(b/100)*100-b)+'. From '+(Math.ceil(b/100)*100)+' to '+a+' is '+(a-Math.ceil(b/100)*100)+'. Total jump: '+(Math.ceil(b/100)*100-b)+' + '+(a-Math.ceil(b/100)*100)+' = '+(a-b)+'.'
+    };
+  }
+  const names=pick(r,[['Maya','Leo','shells'],['Sam','Ivy','trading cards'],['Noor','Eli','stickers']]);
+  const x=ri(r,46,98), y=ri(r,12,x-8);
+  return {
+    prompt:names[0]+' has '+x+' '+names[2]+'. '+names[1]+' has '+y+'. How many more does '+names[0]+' have?',
+    hint:'a number',
+    answer:{type:'num', value:x-y},
+    explain:'"How many more" is a subtraction question: '+x+' \u2212 '+y+' = '+(x-y)+'.'
+  };
+ }
+},
+/* ================= G3: MULTIPLICATION ================= */
+mul:{
+ 1:function(r){
+  const b=pick(r,[2,5,10]), a=ri(r,2,9);
+  const skips=[]; for(let i=1;i<=a;i++){skips.push(b*i);}
+  if(r()<0.5){
+    return {
+      prompt:'What is '+a+' × '+b+' ?',
+      hint:'a number',
+      answer:{type:'num', value:a*b},
+      explain:'Skip-count by '+b+'s, '+a+' times: '+skips.join(', ')+'. You land on '+(a*b)+'.'
+    };
+  }
+  const things=pick(r,[['baskets','apples'],['ponds','frogs'],['jars','fireflies'],['nests','eggs']]);
+  return {
+    prompt:'There are '+a+' '+things[0]+' with '+b+' '+things[1]+' in each. How many '+things[1]+' in all?',
+    hint:'a number',
+    answer:{type:'num', value:a*b},
+    explain:a+' equal groups of '+b+' means '+a+' × '+b+'. Skip-count: '+skips.join(', ')+' → '+(a*b)+' '+things[1]+'.'
+  };
+ },
+ 2:function(r){
+  const a=ri(r,3,6), b=ri(r,3,9);
+  const adds=[]; for(let i=0;i<a;i++){adds.push(b);}
+  return {
+    prompt:'What is '+a+' × '+b+' ?',
+    hint:'a number',
+    answer:{type:'num', value:a*b},
+    explain:a+' × '+b+' means '+a+' groups of '+b+': '+adds.join(' + ')+' = '+(a*b)+'. (Handy trick: '+a+' × '+b+' is the same as '+b+' × '+a+'.)'
+  };
+ },
+ 3:function(r){
+  const kind=ri(r,1,3);
+  if(kind===1){
+    const a=ri(r,6,9), b=ri(r,3,9);
+    return {
+      prompt:'What is '+a+' × '+b+' ?',
+      hint:'a number',
+      answer:{type:'num', value:a*b},
+      explain:'Break the big fact apart: '+a+' × '+b+' = (5 × '+b+') + ('+(a-5)+' × '+b+') = '+(5*b)+' + '+((a-5)*b)+' = '+(a*b)+'.'
+    };
+  }
+  if(kind===2){
+    const a=ri(r,3,9), q=ri(r,3,9);
+    return {
+      prompt:a+' × <b>?</b> = '+(a*q)+' &nbsp; What is the missing number?',
+      hint:'a number',
+      answer:{type:'num', value:q},
+      explain:'Ask: '+a+' times what makes '+(a*q)+'? Since '+a+' × '+q+' = '+(a*q)+', the missing number is '+q+'. (That\u2019s what division does: '+(a*q)+' ÷ '+a+' = '+q+'.)'
+    };
+  }
+  const n=ri(r,3,60), tens=r()<0.6;
+  const mlt=tens?10:100;
+  return {
+    prompt:'What is '+n+' × '+mlt+' ?',
+    hint:'a number',
+    answer:{type:'num', value:n*mlt},
+    explain:'Multiplying by '+mlt+' slides every digit '+(tens?'one place':'two places')+' bigger. Just write '+n+' with '+(tens?'one zero':'two zeros')+' after it: '+(n*mlt)+'.'
+  };
+ }
+},
+/* ================= G3: PLACE VALUE ================= */
+plc:{
+ 1:function(r){
+  const twoDigit=r()<0.5;
+  const N=twoDigit? ri(r,24,98) : ri(r,120,989);
+  const spots=twoDigit? ['ones','tens'] : ['ones','tens','hundreds'];
+  const iSpot=ri(r,0,spots.length-1);
+  const digit=Math.floor(N/Math.pow(10,iSpot))%10;
+  return {
+    prompt:'In the number <b>'+N+'</b>, what digit is in the '+spots[iSpot]+' place?',
+    hint:'one digit',
+    answer:{type:'num', value:digit},
+    explain:'Read places from the right: ones, then tens'+(twoDigit?'':', then hundreds')+'. The '+spots[iSpot]+' place of '+N+' holds a '+digit+'.'
+  };
+ },
+ 2:function(r){
+  const h=ri(r,1,9), t=ri(r,0,9), o=ri(r,0,9);
+  const N=h*100+t*10+o;
+  const choices=[['hundreds',h,h*100],['tens',t,t*10],['ones',o,o]].filter(c=>c[1]>0);
+  const c=pick(r,choices);
+  return {
+    prompt:'In the number <b>'+N+'</b>, what is the <b>value</b> of the '+c[1]+' ?',
+    hint:'a number',
+    answer:{type:'num', value:c[2]},
+    explain:'The '+c[1]+' sits in the '+c[0]+' place, so it\u2019s worth '+c[1]+' '+c[0].slice(0,-1)+(c[1]>1?'s':'')+': '+c[2]+'.'
+  };
+ },
+ 3:function(r){
+  const kind=ri(r,1,3);
+  if(kind===1){
+    const h=ri(r,1,9), t=ri(r,1,9), o=ri(r,1,9);
+    return {
+      prompt:'What number is '+(h*100)+' + '+(t*10)+' + '+o+' ?',
+      hint:'a number',
+      answer:{type:'num', value:h*100+t*10+o},
+      explain:'That\u2019s expanded form: '+h+' hundreds, '+t+' tens, and '+o+' ones snap together into '+(h*100+t*10+o)+'.'
+    };
+  }
+  if(kind===2){
+    const N=ri(r,23,97);
+    const val=Math.round(N/10)*10, ones=N%10;
+    return {
+      prompt:'Round '+N+' to the nearest ten.',
+      hint:'a number',
+      answer:{type:'num', value:val},
+      explain:'Look at the ones digit: it\u2019s '+ones+'. '+(ones>=5?'That\u2019s 5 or more, so round up to ':'That\u2019s less than 5, so stay at ')+val+'.'
+    };
+  }
+  const N=ri(r,105,880), jump=pick(r,[10,100]);
+  return {
+    prompt:'What is '+jump+' more than '+N+' ?',
+    hint:'a number',
+    answer:{type:'num', value:N+jump},
+    explain:'Adding '+jump+' only changes the '+(jump===10?'tens':'hundreds')+' place'+((jump===10&&Math.floor(N/10)%10===9)?' (and it rolls over!)':'')+': '+N+' → '+(N+jump)+'.'
+  };
+ }
+},
+/* ================= G3: MONEY ================= */
+mny:{
+ 1:function(r){
+  let q=ri(r,0,3), d=ri(r,0,4), n=ri(r,0,3), p=ri(r,0,4);
+  if(q+d===0){q=1;}
+  if(q+d+n+p<2){d+=1;}
+  const total=q*25+d*10+n*5+p;
+  const parts=[];
+  if(q) parts.push(q+' quarter'+(q>1?'s':''));
+  if(d) parts.push(d+' dime'+(d>1?'s':''));
+  if(n) parts.push(n+' nickel'+(n>1?'s':''));
+  if(p) parts.push(p+' penn'+(p>1?'ies':'y'));
+  const steps=[];
+  if(q) steps.push(q+' × 25 = '+(q*25));
+  if(d) steps.push(d+' × 10 = '+(d*10));
+  if(n) steps.push(n+' × 5 = '+(n*5));
+  if(p) steps.push(p+' × 1 = '+p);
+  return {
+    prompt:'You have '+parts.join(', ').replace(/, ([^,]*)$/,' and $1')+'. How many <b>cents</b> is that?',
+    hint:'a number',
+    answer:{type:'num', value:total},
+    explain:'Count the big coins first: '+steps.join('; ')+'. Add them up: '+total+' cents.'
+  };
+ },
+ 2:function(r){
+  const a=5*ri(r,24,79), b=5*ri(r,24,79);
+  const s=a+b;
+  const fm=c=>'$'+Math.floor(c/100)+'.'+String(c%100).padStart(2,'0');
+  const carry=(a%100+b%100)>=100;
+  return {
+    prompt:'A juice costs '+fm(a)+' and a pretzel costs '+fm(b)+'. How much together, in dollars?',
+    hint:'like 4.75',
+    answer:{type:'num', value:s/100},
+    explain:'Add the cents: '+(a%100)+' + '+(b%100)+' = '+(a%100+b%100)+' cents'+(carry?' — that\u2019s more than 100, so trade 100 cents for a dollar':'')+'. Add the dollars: '+Math.floor(a/100)+' + '+Math.floor(b/100)+(carry?' + 1':'')+' = '+Math.floor(s/100)+'. Total: '+fm(s)+'.'
+  };
+ },
+ 3:function(r){
+  const cost=5*ri(r,21,95);
+  const fm=c=>'$'+Math.floor(c/100)+'.'+String(c%100).padStart(2,'0');
+  const change=500-cost;
+  const toDollar=(100-cost%100)%100;
+  const nextD=Math.ceil(cost/100);
+  return {
+    prompt:'A snack costs '+fm(cost)+'. You pay with a $5 bill. How much change do you get, in dollars?',
+    hint:'like 1.35',
+    answer:{type:'num', value:change/100},
+    explain:'Count up like a cashier! '+(toDollar>0? ('From '+fm(cost)+', add '+toDollar+' cents to reach $'+nextD+'. Then add $'+(5-nextD)+' to reach $5. ') : ('From '+fm(cost)+', add $'+(5-nextD)+' to reach $5. '))+'Change: '+fm(change)+'.'
+  };
+ }
+},
+/* ================= G3: TIME ================= */
+tim:{
+ 1:function(r){
+  if(r()<0.5){
+    const H=ri(r,1,3);
+    return {
+      prompt:'How many minutes are in '+H+' hour'+(H>1?'s':'')+' ?',
+      hint:'a number',
+      answer:{type:'num', value:H*60},
+      explain:'One hour is 60 minutes. So '+H+' hour'+(H>1?'s':'')+' = '+H+' × 60 = '+(H*60)+' minutes.'
+    };
+  }
+  const k=ri(r,1,11);
+  const skips=[]; for(let i=1;i<=Math.min(k,4);i++){skips.push(i*5);}
+  return {
+    prompt:'On a clock, the minute hand points at the <b>'+k+'</b>. How many minutes past the hour is that?',
+    hint:'a number',
+    answer:{type:'num', value:k*5},
+    explain:'Each clock number is worth 5 minutes. Skip-count by 5s: '+skips.join(', ')+(k>4?', … ':' ')+'→ the '+k+' means '+(k*5)+' minutes.'
+  };
+ },
+ 2:function(r){
+  const h=ri(r,1,11);
+  const m1=5*ri(r,0,6), m2=m1+5*ri(r,2,Math.min(10,(55-m1)/5));
+  const pad=m=>String(m).padStart(2,'0');
+  const act=pick(r,['Recess','Art class','A cartoon','Library time']);
+  return {
+    prompt:act+' starts at '+h+':'+pad(m1)+' and ends at '+h+':'+pad(m2)+'. How many <b>minutes</b> is that?',
+    hint:'a number',
+    answer:{type:'num', value:m2-m1},
+    explain:'Both times are in the same hour, so subtract the minutes: '+m2+' \u2212 '+m1+' = '+(m2-m1)+' minutes.'
+  };
+ },
+ 3:function(r){
+  const h=ri(r,1,10);
+  const m1=5*ri(r,5,11), m2=5*ri(r,1,7);
+  const pad=m=>String(m).padStart(2,'0');
+  const first=60-m1, total=first+m2;
+  const act=pick(r,['Soccer practice','A bike ride','Swim lessons','A movie']);
+  return {
+    prompt:act+' starts at '+h+':'+pad(m1)+' and ends at '+(h+1)+':'+pad(m2)+'. How many <b>minutes</b> is that?',
+    hint:'a number',
+    answer:{type:'num', value:total},
+    explain:'Break it at the hour. From '+h+':'+pad(m1)+' to '+(h+1)+':00 is '+first+' minutes. Then '+m2+' more. Total: '+first+' + '+m2+' = '+total+' minutes.'
+  };
+ }
+},
+/* ================= G3: SHAPES ================= */
+shp:{
+ 1:function(r){
+  const shapes=[['triangle',3,'"Tri" means three!'],['square',4,'All 4 sides match.'],['rectangle',4,'Two long, two short.'],['pentagon',5,'"Penta" means five.'],['hexagon',6,'"Hexa" means six, like honeycomb cells.'],['octagon',8,'"Octa" means eight, like a stop sign.']];
+  const s=pick(r,shapes);
+  const corners=r()<0.4;
+  return {
+    prompt:'How many '+(corners?'corners':'sides')+' does a <b>'+s[0]+'</b> have?',
+    hint:'a number',
+    answer:{type:'num', value:s[1]},
+    explain:'A '+s[0]+' has '+s[1]+' sides and '+s[1]+' corners. '+s[2]
+  };
+ },
+ 2:function(r){
+  const l=ri(r,3,9), w=ri(r,2,l);
+  return {
+    prompt:'A rectangle garden bed is '+l+' feet long and '+w+' feet wide. Walk all the way around it — how many feet is that? <small style="font-size:.55em;font-weight:800;color:#4C6B5F">(perimeter)</small>',
+    hint:'a number',
+    answer:{type:'num', value:2*(l+w)},
+    explain:'Perimeter means adding every side: '+l+' + '+w+' + '+l+' + '+w+' = '+(2*(l+w))+' feet.'
+  };
+ },
+ 3:function(r){
+  const kind=ri(r,1,3);
+  if(kind===1){
+    const s=ri(r,3,9);
+    return {
+      prompt:'A square has sides of '+s+' cm. What is its perimeter, in cm?',
+      hint:'a number',
+      answer:{type:'num', value:4*s},
+      explain:'A square\u2019s 4 sides are all equal, so it\u2019s a multiplication shortcut: 4 × '+s+' = '+(4*s)+' cm.'
+    };
+  }
+  if(kind===2){
+    const l=ri(r,4,9), w=ri(r,2,l-1), P=2*(l+w);
+    return {
+      prompt:'A rectangle\u2019s perimeter is '+P+' m. Its long side is '+l+' m. How long is the short side, in m?',
+      hint:'a number',
+      answer:{type:'num', value:w},
+      explain:'The two long sides use 2 × '+l+' = '+(2*l)+' m. That leaves '+P+' \u2212 '+(2*l)+' = '+(P-2*l)+' m for the two short sides. Each one: '+(P-2*l)+' ÷ 2 = '+w+' m.'
+    };
+  }
+  const rows=ri(r,2,6), cols=ri(r,3,8);
+  return {
+    prompt:'A chocolate bar has '+rows+' rows with '+cols+' squares in each row. How many squares in all?',
+    hint:'a number',
+    answer:{type:'num', value:rows*cols},
+    explain:'Rows of equal groups is multiplication: '+rows+' × '+cols+' = '+(rows*cols)+' squares. (You just measured its area!)'
+  };
+ }
+},
+/* ================= G3: FRACTIONS INTRO ================= */
+fr0:{
+ 1:function(r){
+  const d=pick(r,[2,3,4,6,8]), n=ri(r,1,d-1);
+  const food=pick(r,[['pizza','slices'],['pie','pieces'],['sandwich','parts'],['waffle','sections']]);
+  return {
+    prompt:'A '+food[0]+' is cut into '+d+' equal '+food[1]+'. You eat '+n+'. What <b>fraction</b> of the '+food[0]+' did you eat?',
+    hint:'like 1/4',
+    answer:{type:'frac', n:n, d:d, value:n/d, simplest:false},
+    explain:'The bottom number counts all the '+food[1]+' ('+d+'). The top counts yours ('+n+'). So you ate '+F(n,d)+' of it.'
+  };
+ },
+ 2:function(r){
+  const b=pick(r,[2,3,4]), u=ri(r,2,8), w=b*u;
+  const things=pick(r,['marbles','crayons','blueberries','seashells']);
+  return {
+    prompt:'You have '+w+' '+things+'. '+F(1,b)+' of them are red. How many are red?',
+    hint:'a number',
+    answer:{type:'num', value:u},
+    explain:F(1,b)+' means split into '+b+' equal groups. '+w+' ÷ '+b+' = '+u+', so '+u+' '+things+' are red.'
+  };
+ },
+ 3:function(r){
+  if(r()<0.6){
+    const dens=[2,3,4,5,6,8];
+    let a=pick(r,dens), b=pick(r,dens);
+    let guard=0; while(a===b&&guard++<20){b=pick(r,dens);}
+    if(a===b){b=a===2?3:2;}
+    const win=Math.min(a,b);
+    return {
+      prompt:'Which is bigger: '+F(1,a)+' or '+F(1,b)+' ? <small style="font-size:.55em;font-weight:800;color:#4C6B5F">(type it like 1/3)</small>',
+      hint:'like 1/3',
+      answer:{type:'frac', n:1, d:win, value:1/win, simplest:false},
+      explain:'Cutting into more pieces makes each piece smaller. '+win+' pieces are bigger than '+Math.max(a,b)+' pieces, so '+F(1,win)+' wins.'
+    };
+  }
+  const n=pick(r,[2,4,6,8,10]);
+  return {
+    prompt:'What number is exactly halfway between 0 and '+n+' ?',
+    hint:'a number',
+    answer:{type:'num', value:n/2},
+    explain:'Halfway means '+F(1,2)+' of the way. Half of '+n+' is '+n+' ÷ 2 = '+(n/2)+'.'
+  };
+ }
+}
+};
+
+function makeProblem(topicKey, tier, rng){
+  const r = rng || Math.random;
+  const p = GEN[topicKey][tier](r);
+  p.topic = topicKey; p.tier = tier;
+  return p;
+}
+
+// Daily Ten: seeded by date + grade, mixed topics
+function dailySet(dateStr, topicList){
+  const rng = mulberry32(hashStr('grove-'+dateStr));
+  const keys = topicList.map(t=>t.key);
+  const set = [];
+  for(let i=0;i<10;i++){
+    const k = keys[Math.floor(rng()*keys.length)];
+    const tier = 1 + Math.floor(rng()*2); // daily uses tiers 1-2
+    set.push(makeProblem(k, tier, rng));
+  }
+  return set;
+}
+
+// ---------- levels ----------
+const LEVELS=[
+  {xp:0,    name:'Seedling',           icon:'🌱'},
+  {xp:80,   name:'Sprout',             icon:'🌿'},
+  {xp:200,  name:'Sapling',            icon:'🪴'},
+  {xp:360,  name:'Bud',                icon:'🌷'},
+  {xp:560,  name:'Bloom',              icon:'🌸'},
+  {xp:800,  name:'Wildflower',         icon:'🌼'},
+  {xp:1100, name:'Sunflower',          icon:'🌻'},
+  {xp:1450, name:'Garden Keeper',      icon:'🧑‍🌾'},
+  {xp:1900, name:'Grove Guardian',     icon:'🌳'},
+  {xp:2450, name:'Meadow Master',      icon:'🦋'},
+  {xp:3100, name:'Legendary Botanist', icon:'🏆'}
+];
+function levelFor(xp){
+  let i=0;
+  for(let k=0;k<LEVELS.length;k++){ if(xp>=LEVELS[k].xp) i=k; }
+  return i;
+}
+
+// ---------- shop ----------
+const SHOP=[
+  {id:'daisy',   em:'🌼', name:'Daisy',        cost:15,  zone:'ground'},
+  {id:'tulip',   em:'🌷', name:'Tulip',        cost:20,  zone:'ground'},
+  {id:'fern',    em:'🌿', name:'Fern',         cost:20,  zone:'ground'},
+  {id:'sunfl',   em:'🌻', name:'Sunflower',    cost:30,  zone:'ground'},
+  {id:'rose',    em:'🌹', name:'Rose',         cost:35,  zone:'ground'},
+  {id:'shroom',  em:'🍄', name:'Toadstool',    cost:35,  zone:'ground'},
+  {id:'snail',   em:'🐌', name:'Snail',        cost:35,  zone:'ground'},
+  {id:'ladybug', em:'🐞', name:'Ladybug',      cost:40,  zone:'ground'},
+  {id:'lupine',  em:'🪻', name:'Lupine',       cost:40,  zone:'ground'},
+  {id:'bee',     em:'🐝', name:'Bee',          cost:45,  zone:'sky'},
+  {id:'berry',   em:'🍓', name:'Berry patch',  cost:50,  zone:'ground'},
+  {id:'butter',  em:'🦋', name:'Butterfly',    cost:55,  zone:'sky'},
+  {id:'pumpkin', em:'🎃', name:'Pumpkin',      cost:60,  zone:'ground'},
+  {id:'frog',    em:'🐸', name:'Frog',         cost:65,  zone:'ground'},
+  {id:'bird',    em:'🐦', name:'Songbird',     cost:70,  zone:'sky'},
+  {id:'pine',    em:'🌲', name:'Pine tree',    cost:75,  zone:'ground', big:true},
+  {id:'oak',     em:'🌳', name:'Oak tree',     cost:80,  zone:'ground', big:true},
+  {id:'turtle',  em:'🐢', name:'Turtle',       cost:85,  zone:'ground'},
+  {id:'pond',    em:'🪷', name:'Lily pond',    cost:90,  zone:'ground', unique:true},
+  {id:'hedge',   em:'🦔', name:'Hedgehog',     cost:95,  zone:'ground'},
+  {id:'bunny',   em:'🐇', name:'Bunny',        cost:110, zone:'ground'},
+  {id:'owl',     em:'🦉', name:'Owl',          cost:120, zone:'sky',   unique:true},
+  {id:'firefly', em:'✨', name:'Fireflies',    cost:130, zone:'sky',   unique:true},
+  {id:'deer',    em:'🦌', name:'Deer',         cost:140, zone:'ground', unique:true, big:true},
+  {id:'fox',     em:'🦊', name:'Fox',          cost:150, zone:'ground', unique:true},
+  {id:'fountain',em:'⛲', name:'Fountain',     cost:160, zone:'ground', unique:true, big:true},
+  {id:'rainbow', em:'🌈', name:'Rainbow',      cost:200, zone:'sky',   unique:true, big:true},
+  {id:'cottage', em:'🏡', name:'Cottage',      cost:250, zone:'ground', unique:true, big:true}
+];
+
+// ---------- help: topic notes (sheet) + per-tier strategy hints ----------
+const HELP={
+ frac:{
+  sheet:'<b>Add/subtract:</b> denominators must match first.<br><b>Equivalent fractions:</b> multiply top and bottom by the same number.<br><b>Simplest form:</b> divide top and bottom by their GCF.<br><b>Multiply:</b> straight across. <b>Divide:</b> keep, change, flip.',
+  hint:{1:'Same bottoms? Just add or subtract the tops. Then check: can it be simplified?',
+        2:'Find the least common denominator first. Rewrite both fractions before adding or subtracting.',
+        3:'Multiply straight across. For division, flip the second fraction and multiply.'}
+ },
+ dec:{
+  sheet:'<b>Add/subtract:</b> line up the decimal points.<br><b>Multiply:</b> ignore decimals, multiply, then count decimal places back in.<br><b>Rounding:</b> look one digit to the right — 5 or more rounds up.<br><b>Fraction ↔ decimal:</b> a fraction is a division problem.',
+  hint:{1:'Line up the decimal points like buttons on a shirt, then add or subtract normally.',
+        2:'For ×: ignore the decimal, multiply, then slide it back in. For rounding: peek one digit right.',
+        3:'Count total decimal places in the problem — the answer needs that many.'}
+ },
+ pct:{
+  sheet:'<b>Percent</b> means "out of 100."<br>10% = divide by 10 · 25% = divide by 4 · 50% = divide by 2.<br><b>Any percent:</b> build from 10% chunks.<br><b>Percent → decimal:</b> slide the point two places left.',
+  hint:{1:'Turn the percent into an easy fraction: 50% is half, 25% is a quarter, 10% means ÷ 10.',
+        2:'Find 10% first (divide by 10), then stack copies of it to build the percent you need.',
+        3:'Discounts: find the discount amount first, then subtract. Tips: find the tip, then add.'}
+ },
+ ratio:{
+  sheet:'<b>Ratio</b> compares two amounts, like 3:2.<br><b>Simplest form:</b> divide both sides by the same number.<br><b>Unit rate:</b> "per 1" — divide to find it.<br><b>Scaling recipes:</b> find the scale factor, multiply everything by it.',
+  hint:{1:'Write the two amounts in order, then divide both sides by the same number until you can\u2019t.',
+        2:'"Per" means divide. Miles per hour = miles ÷ hours.',
+        3:'How many times bigger is the new batch? Multiply the ingredient by that same number.'}
+ },
+ int:{
+  sheet:'<b>Number line:</b> negatives live left of 0.<br><b>Opposite:</b> same distance, other side.<br><b>|x|</b> = distance from 0 (never negative).<br><b>Adding different signs:</b> subtract, keep the stronger sign.',
+  hint:{1:'Picture the number line. Opposites are mirror twins across 0.',
+        2:'Different signs? It\u2019s a tug-of-war: subtract, and the bigger side\u2019s sign wins.',
+        3:'Distance between a negative and a positive: count to 0, then keep counting.'}
+ },
+ ord:{
+  sheet:'<b>Order of operations:</b><br>1. Parentheses ( )<br>2. Exponents ²<br>3. Multiply & Divide, left to right<br>4. Add & Subtract, left to right',
+  hint:{1:'Multiplication jumps the line — do it before adding, unless parentheses say otherwise.',
+        2:'Parentheses first. Then do × and ÷ left to right before + and −.',
+        3:'Parentheses, then exponents, then × ÷, then + −. One step per line keeps it clean.'}
+ },
+ geo:{
+  sheet:'<b>Rectangle:</b> area = length × width · perimeter = 2 × (l + w)<br><b>Triangle:</b> area = base × height ÷ 2<br><b>Parallelogram:</b> area = base × height<br><b>Box:</b> volume = length × width × height',
+  hint:{1:'Area fills the inside (multiply). Perimeter walks around the edge (add all sides).',
+        2:'A triangle is half a rectangle. A box is area of the base × how tall it is.',
+        3:'Given the answer but missing a side? Run the formula backwards with division.'}
+ },
+ num:{
+  sheet:'<b>Break numbers apart:</b> 34 × 6 = 30 × 6 + 4 × 6.<br><b>GCF:</b> biggest number that divides both.<br><b>LCM:</b> smallest number both divide into.<br><b>Division:</b> multiplication in reverse.',
+  hint:{1:'Split the big number into tens and ones, multiply each piece, add them back.',
+        2:'GCF: write each number as (something) × (something) and spot the shared factor.',
+        3:'LCM: skip-count by the bigger number until you land on a multiple of the smaller one.'}
+ },
+ add:{
+  sheet:'<b>Make a ten:</b> 8 + 5 → 8 + 2 + 3 = 13.<br><b>Big numbers:</b> add tens with tens, ones with ones.<br><b>Regroup:</b> 10 ones become 1 ten.<br><b>Missing part:</b> subtract to find it.',
+  hint:{1:'Start at the bigger number. Can you make a ten on the way?',
+        2:'Add the tens first, then the ones. If the ones reach 10, trade them for a ten.',
+        3:'Break both numbers into hundreds, tens, and ones. Add the pieces.'}
+ },
+ sub:{
+  sheet:'<b>Think addition:</b> 13 − 8 asks 8 + ? = 13.<br><b>Borrow:</b> not enough ones? Trade 1 ten for 10 ones.<br><b>Count up:</b> jump from the small number to the big one.<br><b>"How many more"</b> = subtract.',
+  hint:{1:'Flip it into addition: what do you add to the small number to reach the big one?',
+        2:'Check the ones first. If the top digit is smaller, borrow a ten before subtracting.',
+        3:'Count up in friendly jumps: to the next hundred, then the rest.'}
+ },
+ mul:{
+  sheet:'<b>× means equal groups.</b><br>Skip-count for ×2, ×5, ×10.<br><b>Turn-around:</b> 3 × 7 = 7 × 3.<br><b>Big facts:</b> break apart — 7 × 8 = 5 × 8 + 2 × 8.<br><b>× 10:</b> add a zero.',
+  hint:{1:'Skip-count! By 2s, 5s, or 10s until you\u2019ve counted the right number of hops.',
+        2:'Swap if it helps: 3 × 8 is the same as 8 × 3. Or add the number over and over.',
+        3:'Split the hard fact into a ×5 piece plus a little piece.'}
+ },
+ plc:{
+  sheet:'<b>Places, right to left:</b> ones, tens, hundreds.<br><b>Value</b> = digit × its place (the 7 in 472 is 70).<br><b>Rounding:</b> look at the digit to the right — 5+ rounds up.<br><b>Expanded form:</b> 456 = 400 + 50 + 6.',
+  hint:{1:'Count places starting from the right: ones, then tens, then hundreds.',
+        2:'A digit\u2019s value is the digit × its place. In the tens place, a 7 is worth 70.',
+        3:'Rounding to tens? Only the ones digit gets a vote: 5 or more rounds up.'}
+ },
+ mny:{
+  sheet:'<b>Coins:</b> quarter 25¢ · dime 10¢ · nickel 5¢ · penny 1¢.<br><b>Count big coins first.</b><br><b>$1 = 100 cents.</b><br><b>Change:</b> count UP from the price to what you paid.',
+  hint:{1:'Count the quarters first, then dimes, nickels, pennies. Keep a running total.',
+        2:'Add the cents, add the dollars. 100 cents trades in for a dollar.',
+        3:'Count up like a cashier: cents to the next dollar, then dollars to the bill.'}
+ },
+ tim:{
+  sheet:'<b>1 hour = 60 minutes.</b><br>Each clock number = 5 minutes.<br><b>Elapsed time:</b> break it at the hour — count to :00, then keep going.',
+  hint:{1:'Each number on the clock face is worth 5 minutes. Skip-count by 5s.',
+        2:'Same hour? Just subtract the minutes.',
+        3:'Split the trip at the hour: minutes to :00, then minutes after. Add the two pieces.'}
+ },
+ shp:{
+  sheet:'<b>Sides:</b> tri=3, quad=4, penta=5, hexa=6, octa=8.<br><b>Perimeter</b> = add every side (square shortcut: 4 × side).<br><b>Rows × columns</b> counts squares inside (that\u2019s area!).',
+  hint:{1:'The shape\u2019s name is a clue: "tri" three, "penta" five, "octa" eight.',
+        2:'Perimeter = walk the whole fence. Add every side, even the ones you can\u2019t see written.',
+        3:'Missing side? Subtract the sides you know from the perimeter, then split what\u2019s left.'}
+ },
+ fr0:{
+  sheet:'<b>Bottom number:</b> total equal pieces.<br><b>Top number:</b> pieces you\u2019re talking about.<br><b>1/2 of something</b> = divide by 2 (1/3 → ÷3, 1/4 → ÷4).<br><b>More pieces = smaller pieces.</b>',
+  hint:{1:'Bottom = how many pieces in all. Top = how many are yours.',
+        2:'A unit fraction is a division in disguise: 1/4 of 12 means 12 ÷ 4.',
+        3:'Imagine sharing a pizza: would you rather split it 3 ways or 8 ways?'}
+ }
+};
+/*__CORE_END__*/
+
+// ================= APP (state + DOM) =================
+const PRAISE=[
+  'Nailed it!','That\u2019s the one! 🎯','Correct! You\u2019re on a roll.','Yes! Sharp thinking.',
+  'Exactly right.','Boom. ✅','You got it!','Perfect.','Smooth. Very smooth.','Right again!',
+  'Next year\u2019s teacher won\u2019t know what hit them.','Big brain energy. 🧠'
+];
+const MISS=[
+  'Not yet. Here\u2019s the trick:','So close. Watch this:','Not this time. Here\u2019s how it works:',
+  'Good try. The secret is:','Almost! Check this out:'
+];
+
+const KEY='mathgrove-v1';
+const mem={};
+const store={
+  save(s){ try{ localStorage.setItem(KEY, JSON.stringify(s)); }catch(e){ mem[KEY]=JSON.stringify(s); } },
+  load(){ try{ const v=localStorage.getItem(KEY); if(v) return JSON.parse(v); }catch(e){} 
+          try{ if(mem[KEY]) return JSON.parse(mem[KEY]); }catch(e){} return null; }
+};
+
+function freshTopics(){
+  const t={};
+  ALL_TOPICS.forEach(x=>{ t[x.key]={tier:1, cleared:0, recent:[], correct:0, total:0, up:0}; });
+  return t;
+}
+let S = store.load() || {
+  name:'', grade:'', sound:true, xp:0, coins:0,
+  streak:0, lastPlay:'', dailyDone:'', daily:null,
+  bestCombo:0, solved:0, days:[],
+  topics:freshTopics(), garden:[], owned:{},
+  snakeBest:0, snakeDay:'', snakeEarned:0
+};
+// migrate safety
+if(!S.topics) S.topics=freshTopics();
+ALL_TOPICS.forEach(x=>{ if(!S.topics[x.key]) S.topics[x.key]={tier:1,cleared:0,recent:[],correct:0,total:0,up:0}; });
+if(!S.garden) S.garden=[]; if(!S.owned) S.owned={}; if(!S.days) S.days=[];
+if(!S.grade) S.grade='g6';
+if(!S.snakeBest) S.snakeBest=0; if(!S.snakeDay) S.snakeDay=''; if(!S.snakeEarned) S.snakeEarned=0;
+
+function activeTopics(){ return TRACKS[S.grade] || TRACKS.g6; }
+function topicName(k){ const t=ALL_TOPICS.find(x=>x.key===k); return t? t.name : k; }
+function topicIcon(k){ const t=ALL_TOPICS.find(x=>x.key===k); return t? t.icon : '✦'; }
+
+let combo=0, mode='topic', curTopic='frac', cur=null, answered=false, retried=false;
+let dailyIdx=0, dailyCorrect=0, dailyProblems=null;
+
+const $=id=>document.getElementById(id);
+function todayStr(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function yestStr(){ const d=new Date(Date.now()-86400000); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+
+// ---------- sound ----------
+let AC=null;
+function beep(kind){
+  if(!S.sound) return;
+  try{
+    AC = AC || new (window.AudioContext||window.webkitAudioContext)();
+    const play=(f,t0,dur,type,vol)=>{
+      const o=AC.createOscillator(), g=AC.createGain();
+      o.type=type||'sine'; o.frequency.value=f;
+      g.gain.setValueAtTime(0.0001, AC.currentTime+t0);
+      g.gain.exponentialRampToValueAtTime(vol||0.05, AC.currentTime+t0+0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, AC.currentTime+t0+dur);
+      o.connect(g); g.connect(AC.destination);
+      o.start(AC.currentTime+t0); o.stop(AC.currentTime+t0+dur+0.02);
+    };
+    if(kind==='good'){ play(660,0,.09); play(880,.09,.12); }
+    else if(kind==='bad'){ play(196,0,.16,'triangle',.04); }
+    else if(kind==='buy'){ play(523,0,.08); play(659,.08,.08); play(784,.16,.12); }
+    else if(kind==='level'){ play(523,0,.1); play(659,.1,.1); play(784,.2,.1); play(1047,.3,.2); }
+  }catch(e){}
+}
+
+// ---------- toast & burst ----------
+let toastTimer=null;
+function toast(msg){
+  const t=$('toast'); t.innerHTML=msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'), 2600);
+}
+function burst(x,y){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const ems=['🌸','🌼','✨','🌷','⭐','🍃'];
+  for(let i=0;i<10;i++){
+    const s=document.createElement('span');
+    s.className='pet'; s.textContent=ems[i%ems.length];
+    s.style.left=x+'px'; s.style.top=y+'px';
+    document.body.appendChild(s);
+    const dx=(Math.random()-0.5)*220, dy=-40-Math.random()*160, rot=(Math.random()-0.5)*260;
+    requestAnimationFrame(()=>{ 
+      s.style.transform='translate('+dx+'px,'+dy+'px) rotate('+rot+'deg)'; s.style.opacity='0';
+    });
+    setTimeout(()=>s.remove(), 950);
+  }
+}
+
+// ---------- header ----------
+function renderHeader(){
+  const li=levelFor(S.xp), L=LEVELS[li], next=LEVELS[li+1];
+  $('levelPill').textContent=L.icon+' '+L.name;
+  const base=L.xp, top=next?next.xp:L.xp+1;
+  const pct=next? Math.min(100, Math.round((S.xp-base)/(top-base)*100)) : 100;
+  $('xpFill').style.width=pct+'%';
+  $('xpLabel').textContent= next? (S.xp+' / '+next.xp+' XP') : (S.xp+' XP · max level!');
+  $('coinPill').textContent='🪙 '+S.coins;
+  $('coinPill2').textContent='🪙 '+S.coins;
+  $('streakPill').textContent='🔥 '+S.streak;
+  $('soundBtn').textContent=S.sound?'🔊':'🔇';
+  const gl=GRADE_LABEL[S.grade]||'6th grade';
+  $('subline').textContent=(S.name? S.name+'\u2019s summer bridge to '+gl : 'Summer bridge to '+gl);
+}
+
+// ---------- tabs ----------
+document.querySelectorAll('.tab').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    ['play','garden','progress'].forEach(t=>$('tab-'+t).classList.toggle('hidden', t!==b.dataset.tab));
+    if(b.dataset.tab==='garden'){renderGarden(); renderShop();}
+    if(b.dataset.tab==='progress'){renderProgress();}
+    if(b.dataset.tab!=='garden' && window.snakeStop){ snakeStop(); }
+  });
+});
+
+// ---------- topic chips ----------
+function starsFor(k){ const c=S.topics[k].cleared; return '★'.repeat(c)+'☆'.repeat(3-c); }
+function renderChips(){
+  const c=$('chips'); c.innerHTML='';
+  const mixed=document.createElement('button');
+  mixed.className='chip'+((mode==='topic'&&curTopic==='mix')?' on':'');
+  mixed.innerHTML='🎲 Mixed';
+  mixed.addEventListener('click',()=>{ mode='topic'; curTopic='mix'; exitDailyUI(); nextProblem(); renderChips(); });
+  c.appendChild(mixed);
+  activeTopics().forEach(t=>{
+    const b=document.createElement('button');
+    b.className='chip'+((mode==='topic'&&curTopic===t.key)?' on':'');
+    b.innerHTML=t.icon+' '+t.name+' <span class="stars">'+starsFor(t.key)+'</span>';
+    b.addEventListener('click',()=>{ mode='topic'; curTopic=t.key; exitDailyUI(); nextProblem(); renderChips(); });
+    c.appendChild(b);
+  });
+}
+
+// weighted mixed: favor topics with fewer cleared stars
+function pickMixedTopic(){
+  const list=activeTopics();
+  const weights=list.map(t=>{ const c=S.topics[t.key].cleared; return 4-c; });
+  const sum=weights.reduce((a,b)=>a+b,0);
+  let x=Math.random()*sum;
+  for(let i=0;i<list.length;i++){ x-=weights[i]; if(x<=0) return list[i].key; }
+  return list[0].key;
+}
+
+// ---------- question flow ----------
+function nextProblem(){
+  answered=false; retried=false;
+  $('feedback').className='feedback'; $('feedback').innerHTML='';
+  $('explain').className='explain'; $('explain').innerHTML='';
+  $('whyBtn').classList.add('hidden');
+  $('answer').value=''; $('answer').disabled=false;
+  $('checkBtn').textContent='Check';
+
+  if(mode==='daily'){
+    if(dailyIdx>=10){ finishDaily(); return; }
+    cur=dailyProblems[dailyIdx];
+    $('qMeta').textContent='Daily Ten · Question '+(dailyIdx+1)+' of 10';
+    $('dailyFill').style.width=(dailyIdx*10)+'%';
+  } else {
+    const k = curTopic==='mix'? pickMixedTopic() : curTopic;
+    const tier=S.topics[k].tier;
+    cur=makeProblem(k,tier);
+    $('qMeta').textContent=topicName(k)+' · Tier '+tier+' '+'✦'.repeat(tier);
+  }
+  $('hintBtn').classList.remove('hidden');
+  $('prompt').innerHTML=cur.prompt;
+  $('answer').placeholder=cur.hint||'your answer';
+  renderCombo();
+  $('answer').focus();
+}
+function renderCombo(){
+  $('comboTag').textContent = combo>=2? '🔥 combo ×'+combo : '';
+}
+
+function grade(){
+  if(answered){ nextProblem(); return; }
+  const raw=$('answer').value;
+  const parsed=parseAnswer(raw);
+  const fb=$('feedback');
+  if(!parsed){
+    fb.className='feedback hint show';
+    fb.innerHTML='Hmm, I can\u2019t read that. Try a number like <b>12</b>, a decimal like <b>4.5</b>, a fraction like <b>3/4</b> (or <b>1 1/2</b>), or a ratio like <b>2:3</b>.';
+    return;
+  }
+  const result=checkAnswer(cur.answer, parsed);
+  if(result==='simplify' && !retried){
+    retried=true;
+    fb.className='feedback hint show';
+    fb.innerHTML='You found the right amount! 🎉 Now write it in <b>simplest form</b>: divide the top and bottom by their greatest common factor and try again.';
+    beep('bad');
+    $('answer').focus(); $('answer').select();
+    return;
+  }
+  answered=true;
+  $('answer').disabled=true;
+  $('checkBtn').textContent='Next →';
+
+  const correct=(result==='right');
+  recordResult(correct);
+  if(correct){
+    combo++;
+    if(combo>S.bestCombo){S.bestCombo=combo;}
+    let coins=4*cur.tier, xp=10*cur.tier;
+    if(combo>=10) coins+=6; else if(combo>=6) coins+=4; else if(combo>=3) coins+=2;
+    S.coins+=coins; addXP(xp);
+    fb.className='feedback good show';
+    fb.innerHTML='✅ '+PRAISE[Math.floor(Math.random()*PRAISE.length)]+' <span class="gain">+'+xp+' XP · +'+coins+' 🪙</span>';
+    $('whyBtn').classList.remove('hidden');
+    const rect=$('checkBtn').getBoundingClientRect();
+    burst(rect.left+rect.width/2, rect.top);
+    beep('good');
+    if(mode==='daily'){ dailyCorrect++; }
+  } else {
+    combo=0;
+    addXP(1);
+    fb.className='feedback bad show';
+    fb.innerHTML='✖ '+MISS[Math.floor(Math.random()*MISS.length)]+' <b>The answer is '+ansText(cur.answer)+'.</b>';
+    $('explain').className='explain show';
+    $('explain').innerHTML='<div class="lead">How to solve it</div>'+cur.explain;
+    beep('bad');
+  }
+  if(mode==='daily'){ dailyIdx++; $('dailyFill').style.width=(dailyIdx*10)+'%'; }
+  bumpStreakIfFirstToday();
+  renderCombo(); renderHeader(); renderChips();
+  store.save(S);
+}
+
+function recordResult(ok){
+  S.solved += ok?1:0;
+  const T=S.topics[cur.topic];
+  if(!T) return;
+  T.total++; if(ok) T.correct++;
+  T.recent.push(ok?1:0); if(T.recent.length>12) T.recent.shift();
+  if(ok){
+    T.up++;
+    if(T.up>=4){
+      // cleared this tier
+      const was=T.cleared;
+      if(T.cleared < cur.tier) T.cleared = cur.tier;
+      if(T.tier<3){
+        T.tier++;
+        toast('⭐ Tier '+(T.tier-1)+' cleared in '+topicName(cur.topic)+'! Harder problems unlocked.');
+      } else if(T.cleared===3 && was<3){
+        toast('🌟 '+topicName(cur.topic)+' fully mastered! Three stars!');
+      }
+      T.up=0;
+    }
+  } else {
+    T.up=0;
+    const last5=T.recent.slice(-5), wrong=last5.filter(x=>!x).length;
+    if(wrong>=3 && T.tier>1){ T.tier--; }
+  }
+}
+
+function addXP(n){
+  const before=levelFor(S.xp);
+  S.xp+=n;
+  const after=levelFor(S.xp);
+  if(after>before){
+    const L=LEVELS[after];
+    toast(L.icon+' Level up! You\u2019re now a <b>'+L.name+'</b>!');
+    beep('level');
+  }
+}
+
+function bumpStreakIfFirstToday(){
+  const t=todayStr();
+  if(S.lastPlay===t) return;
+  if(S.lastPlay===yestStr()) S.streak++;
+  else S.streak=1;
+  S.lastPlay=t;
+  if(!S.days.includes(t)) S.days.push(t);
+}
+
+$('checkBtn').addEventListener('click', grade);
+$('answer').addEventListener('keydown', e=>{ if(e.key==='Enter') grade(); });
+$('skipBtn').addEventListener('click', ()=>{ combo=0; if(mode==='daily'){ dailyIdx++; $('dailyFill').style.width=(dailyIdx*10)+'%'; } nextProblem(); });
+$('whyBtn').addEventListener('click', ()=>{
+  $('explain').className='explain show';
+  $('explain').innerHTML='<div class="lead">Why it works</div>'+cur.explain;
+  $('whyBtn').classList.add('hidden');
+});
+$('hintBtn').addEventListener('click', ()=>{
+  if(!cur) return;
+  const h=(HELP[cur.topic]&&HELP[cur.topic].hint[cur.tier])||'Read the question slowly and find what it\u2019s really asking.';
+  const fb=$('feedback');
+  fb.className='feedback hint show';
+  fb.innerHTML='💡 <b>Hint:</b> '+h;
+  $('answer').focus();
+});
+$('notesBtn').addEventListener('click', ()=>{
+  if(!cur) return;
+  const H=HELP[cur.topic];
+  showModal('<h2>'+topicIcon(cur.topic)+' '+topicName(cur.topic)+' notes</h2>'
+    +'<div class="sheet">'+(H?H.sheet:'')+'</div>'
+    +'<button class="btn" id="notesClose">Back to the problem</button>');
+  $('notesClose').addEventListener('click',hideModal);
+});
+
+// ---------- daily ----------
+function renderDailyCard(){
+  const t=todayStr();
+  if(S.dailyDone===t){
+    $('dailyText').innerHTML='<span class="done">✅ Done for today! Come back tomorrow for a fresh ten.</span>';
+    $('dailyBtn').classList.add('hidden');
+  } else if(S.daily && S.daily.date===t && S.daily.idx>0){
+    $('dailyText').textContent='You\u2019re at question '+(S.daily.idx+1)+' of 10. Keep going!';
+    $('dailyBtn').classList.remove('hidden');
+    $('dailyBtn').textContent='Resume';
+  } else {
+    $('dailyText').textContent='Ten quick questions. Finish for a +40 coin bonus.';
+    $('dailyBtn').classList.remove('hidden');
+    $('dailyBtn').textContent='Start';
+  }
+}
+$('dailyBtn').addEventListener('click', ()=>{
+  const t=todayStr();
+  mode='daily';
+  if(S.daily && S.daily.date===t){ dailyIdx=S.daily.idx; dailyCorrect=S.daily.correct; if(!S.daily.grade) S.daily.grade=S.grade; }
+  else { dailyIdx=0; dailyCorrect=0; S.daily={date:t, idx:0, correct:0, grade:S.grade}; }
+  dailyProblems=dailySet(t, TRACKS[S.daily.grade]||activeTopics());
+  $('dailyBarWrap').classList.remove('hidden');
+  renderChips();
+  nextProblem();
+});
+function exitDailyUI(){
+  $('dailyBarWrap').classList.add('hidden');
+}
+function finishDaily(){
+  const t=todayStr();
+  if(S.dailyDone!==t){
+    S.dailyDone=t; S.coins+=40; addXP(50);
+    toast('🌞 Daily Ten done: '+dailyCorrect+'/10 right! <b>+40 🪙 +50 XP</b>');
+    beep('level');
+  }
+  S.daily=null;
+  mode='topic'; curTopic='mix';
+  exitDailyUI(); renderDailyCard(); renderHeader(); renderChips();
+  store.save(S);
+  nextProblem();
+}
+// persist daily mid-progress
+setInterval(()=>{ if(mode==='daily'&&S.daily){ S.daily.idx=dailyIdx; S.daily.correct=dailyCorrect; store.save(S);} }, 1500);
+
+// ---------- garden ----------
+function placeFor(def){
+  const jitter=(a,b)=>a+Math.random()*(b-a);
+  if(def.zone==='sky'){
+    if(def.id==='rainbow') return {x:jitter(18,30), y:jitter(14,20)};
+    return {x:jitter(8,90), y:jitter(8,30)};
+  }
+  if(def.id==='cottage') return {x:jitter(74,84), y:jitter(52,58)};
+  if(def.id==='fountain') return {x:jitter(44,56), y:jitter(60,68)};
+  if(def.id==='pond') return {x:jitter(14,28), y:jitter(76,84)};
+  return {x:jitter(5,95), y:jitter(50,90)};
+}
+function renderGarden(){
+  const sc=$('scene');
+  sc.querySelectorAll('.gitem').forEach(e=>e.remove());
+  $('gardenSign').style.display = S.garden.length? 'none':'block';
+  S.garden.forEach(it=>{
+    const def=SHOP.find(s=>s.id===it.id); if(!def) return;
+    const sp=document.createElement('span');
+    sp.className='gitem'+(def.zone==='sky'?' sky':'')+(it.flip?' flip':'');
+    sp.textContent=def.em;
+    sp.style.left=it.x+'%'; sp.style.top=it.y+'%';
+    sp.style.fontSize=(def.big? 44:28)*(it.s||1)+'px';
+    sp.style.animationDelay=(it.x%3.6)+'s';
+    sp.title=def.name;
+    sc.appendChild(sp);
+  });
+}
+function renderShop(){
+  const sh=$('shop'); sh.innerHTML='';
+  SHOP.forEach(def=>{
+    const owned=S.owned[def.id]||0;
+    const card=document.createElement('div'); card.className='item';
+    const soldOut=def.unique&&owned>0;
+    card.innerHTML='<div class="em">'+def.em+'</div><div class="nm">'+def.name+'</div><div class="cost">🪙 '+def.cost+'</div>'
+      +(owned? '<span class="own">×'+owned+'</span>':'');
+    const btn=document.createElement('button');
+    btn.textContent= soldOut? 'In garden' : 'Plant it';
+    btn.disabled = soldOut || S.coins<def.cost;
+    btn.addEventListener('click',()=>{
+      if(S.coins<def.cost) return;
+      S.coins-=def.cost;
+      S.owned[def.id]=(S.owned[def.id]||0)+1;
+      const pos=placeFor(def);
+      S.garden.push({id:def.id, x:Math.round(pos.x*10)/10, y:Math.round(pos.y*10)/10, s:0.9+Math.random()*0.3, flip:Math.random()<0.5});
+      store.save(S);
+      renderHeader(); renderGarden(); renderShop();
+      toast(def.em+' '+def.name+' added to your garden!');
+      beep('buy');
+    });
+    card.appendChild(btn);
+    sh.appendChild(card);
+  });
+}
+
+// ---------- progress ----------
+function renderProgress(){
+  $('tSolved').textContent=S.solved;
+  $('tCombo').textContent=S.bestCombo;
+  $('tStreak').textContent=S.streak;
+  $('tGarden').textContent=S.garden.length;
+  const tb=$('topicTable'); tb.innerHTML='';
+  const head=document.createElement('div');
+  head.style.cssText='display:flex;justify-content:space-between;align-items:center;padding:2px 4px 10px;font-weight:900;font-size:13px;color:var(--ink-soft)';
+  head.innerHTML='<span>'+(GRADE_LABEL[S.grade]||'')+' topics</span>';
+  const sw=document.createElement('button'); sw.className='linky'; sw.textContent='Switch grade level';
+  sw.addEventListener('click',gradeModal);
+  head.appendChild(sw);
+  tb.appendChild(head);
+  activeTopics().forEach(t=>{
+    const T=S.topics[t.key];
+    const acc=T.total? Math.round(T.correct/T.total*100):0;
+    const row=document.createElement('div'); row.className='trow';
+    row.innerHTML='<div class="nm">'+t.icon+' '+t.name+'<small>'+T.total+' tried</small></div>'
+      +'<span class="tierchip">Tier '+T.tier+'</span>'
+      +'<span class="st">'+starsFor(t.key)+'</span>'
+      +'<span class="acc">'+(T.total? acc+'% right':'—')+'</span>';
+    tb.appendChild(row);
+  });
+}
+
+// ---------- modal ----------
+function showModal(html){ $('modalBox').innerHTML=html; $('overlay').classList.add('show'); }
+function hideModal(){ $('overlay').classList.remove('show'); }
+function gradeBtnsHTML(sel){
+  return '<div class="gradebtns">'
+    +'<button class="gradebtn'+(sel==='g3'?' on':'')+'" data-g="g3">🌱 Entering 3rd grade<small>add · subtract · multiply · money · time…</small></button>'
+    +'<button class="gradebtn'+(sel==='g6'?' on':'')+'" data-g="g6">🌳 Entering 6th grade<small>fractions · decimals · percents · ratios…</small></button>'
+    +'</div>';
+}
+function welcome(){
+  showModal('<h2>🌱 Welcome to Math Grove!</h2>'
+    +'<p>Solve math problems, earn coins, and grow a garden that\u2019s all yours. Each topic has three tiers — clear them all to earn stars!</p>'
+    +'<input id="nameIn" maxlength="20" placeholder="What\u2019s your name?" aria-label="Your name">'
+    +'<p style="margin-bottom:8px">Pick your summer bridge:</p>'
+    +gradeBtnsHTML('')
+    +'<p style="margin-top:12px; font-size:12px">Free · no account · saves on this device. You can switch grades any time with the 🎓 button.</p>');
+  document.querySelectorAll('.gradebtn').forEach(b=>{
+    b.addEventListener('click',()=>{
+      S.grade=b.dataset.g;
+      S.name=($('nameIn').value.trim()||'Gardener');
+      store.save(S); hideModal();
+      curTopic='mix'; renderHeader(); renderChips(); nextProblem();
+      toast('Welcome, '+S.name+'! First flower is 15 coins away. 🌼');
+    });
+  });
+}
+function gradeModal(){
+  showModal('<h2>🎓 Grade level</h2>'
+    +'<p>Your coins, garden, and stars are safe — each grade keeps its own topic progress.</p>'
+    +gradeBtnsHTML(S.grade)
+    +'<p style="margin-top:12px"><button class="linky" id="gradeCancel">Never mind</button></p>');
+  document.querySelectorAll('.gradebtn').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const g=b.dataset.g;
+      hideModal();
+      if(g===S.grade) return;
+      S.grade=g; store.save(S);
+      mode='topic'; curTopic='mix'; exitDailyUI();
+      renderHeader(); renderChips(); renderDailyCard(); nextProblem();
+      toast('🎓 Switched to the '+GRADE_LABEL[g]+' bridge!');
+    });
+  });
+  $('gradeCancel').addEventListener('click',hideModal);
+}
+$('gradeBtn').addEventListener('click',gradeModal);
+$('resetBtn').addEventListener('click',()=>{
+  showModal('<h2>Start over?</h2><p>This erases your garden, coins, XP, and stars. There\u2019s no undo.</p>'
+    +'<div style="display:flex;gap:10px;justify-content:center">'
+    +'<button class="btn ghost" id="cancelR">Keep my garden</button>'
+    +'<button class="btn" style="background:var(--berry);border-color:#C74B76" id="confirmR">Erase everything</button></div>');
+  $('cancelR').addEventListener('click',hideModal);
+  $('confirmR').addEventListener('click',()=>{
+    S={name:S.name, grade:S.grade, sound:S.sound, xp:0, coins:0, streak:0, lastPlay:'', dailyDone:'', daily:null,
+       bestCombo:0, solved:0, days:[], topics:freshTopics(), garden:[], owned:{},
+       snakeBest:0, snakeDay:'', snakeEarned:0};
+    store.save(S); hideModal();
+    renderHeader(); renderChips(); renderDailyCard(); renderProgress(); nextProblem();
+    toast('Fresh soil. Let\u2019s grow again! 🌱');
+  });
+});
+
+$('soundBtn').addEventListener('click',()=>{ S.sound=!S.sound; store.save(S); renderHeader(); });
+
+// ---------- garden snake ----------
+const GRID=17;
+const sn={running:false, paused:false, over:true, timer:null,
+  cells:[], dir:{x:1,y:0}, next:{x:1,y:0},
+  food:null, foods:0, score:0,
+  obstacles:[], water:[], fly:null, flyTtl:0, ghost:0, snail:null, snailTtl:0};
+const cellKey=(x,y)=>x+','+y;
+
+function snakeBoard(){
+  sn.obstacles=[]; sn.water=[];
+  const taken=new Set();
+  // start corridor stays clear
+  for(let x=2;x<=9;x++) taken.add(cellKey(x,8));
+  // obstacles come from what you planted
+  const defs=SHOP.filter(d=>(S.owned[d.id]||0)>0 && d.zone==='ground' && d.id!=='pond');
+  const pool=defs.slice().sort(()=>Math.random()-0.5).slice(0,7);
+  pool.forEach(d=>{
+    for(let t=0;t<40;t++){
+      const x=1+Math.floor(Math.random()*(GRID-2)), y=1+Math.floor(Math.random()*(GRID-2));
+      if(taken.has(cellKey(x,y))) continue;
+      taken.add(cellKey(x,y));
+      sn.obstacles.push({x:x,y:y,em:d.em});
+      break;
+    }
+  });
+  // the pond becomes real water: the snake can swim it, slowly
+  if((S.owned.pond||0)>0){
+    for(let t=0;t<40;t++){
+      const x=1+Math.floor(Math.random()*(GRID-3)), y=1+Math.floor(Math.random()*(GRID-3));
+      const spots=[[x,y],[x+1,y],[x,y+1],[x+1,y+1]];
+      if(spots.some(s=>taken.has(cellKey(s[0],s[1])))) continue;
+      spots.forEach(s=>{ taken.add(cellKey(s[0],s[1])); sn.water.push({x:s[0],y:s[1]}); });
+      break;
+    }
+  }
+}
+function isObstacle(x,y){ return sn.obstacles.some(o=>o.x===x&&o.y===y); }
+function isWater(x,y){ return sn.water.some(w=>w.x===x&&w.y===y); }
+function onSnake(x,y){ return sn.cells.some(c=>c.x===x&&c.y===y); }
+function emptyCell(){
+  for(let t=0;t<200;t++){
+    const x=Math.floor(Math.random()*GRID), y=Math.floor(Math.random()*GRID);
+    if(onSnake(x,y)||isObstacle(x,y)) continue;
+    if(sn.food&&sn.food.x===x&&sn.food.y===y) continue;
+    return {x:x,y:y};
+  }
+  return {x:0,y:0};
+}
+const FOOD_EMS=['🍓','🍎','🫐','🥕'];
+function spawnFood(){
+  const gold=((sn.foods+1)%5===0);
+  const c=emptyCell();
+  sn.food={x:c.x,y:c.y, gold:gold, em: gold?'⭐':FOOD_EMS[sn.foods%FOOD_EMS.length]};
+}
+function snakeReset(){
+  snakeBoard();
+  sn.cells=[{x:6,y:8},{x:5,y:8},{x:4,y:8}];
+  sn.dir={x:1,y:0}; sn.next={x:1,y:0};
+  sn.foods=0; sn.score=0; sn.fly=null; sn.flyTtl=0; sn.ghost=0; sn.snail=null; sn.snailTtl=0;
+  sn.over=false; sn.paused=false;
+  spawnFood();
+  $('snScore').textContent='0';
+  $('snBest').textContent=S.snakeBest;
+  snakeCapNote();
+}
+function snakeCapNote(){
+  const today=todayStr();
+  const earned=(S.snakeDay===today)? S.snakeEarned : 0;
+  const left=Math.max(0,30-earned);
+  $('snFoot').innerHTML = left>0
+    ? 'Arrow keys, WASD, swipe, or buttons. 2 points = 1 🪙 (up to '+left+' more today). Things you planted show up in the game…'
+    : 'Arrow keys, WASD, swipe, or buttons. Daily snake coins are maxed — now you play for glory. 🏆';
+}
+function snakeSpeed(){
+  let ms=Math.max(85, 135 - Math.floor(sn.foods/5)*8);
+  const h=sn.cells[0];
+  if(isWater(h.x,h.y)) ms=Math.round(ms*1.8); // swimming is slow
+  return ms;
+}
+function snakeStep(){
+  sn.dir=sn.next;
+  const h=sn.cells[0];
+  const nx=h.x+sn.dir.x, ny=h.y+sn.dir.y;
+  // walls always end the run
+  if(nx<0||ny<0||nx>=GRID||ny>=GRID){ return snakeDie(); }
+  // obstacles + tail: deadly unless fluttering
+  if(sn.ghost<=0 && isObstacle(nx,ny)) return snakeDie();
+  const tail=sn.cells[sn.cells.length-1];
+  const hitsSelf=sn.cells.some((c,i)=>c.x===nx&&c.y===ny&&!(c===tail));
+  if(sn.ghost<=0 && hitsSelf) return snakeDie();
+  sn.cells.unshift({x:nx,y:ny});
+  let grew=false;
+  if(sn.food && nx===sn.food.x && ny===sn.food.y){
+    grew=true; sn.foods++;
+    sn.score += sn.food.gold?3:1;
+    beep(sn.food.gold?'buy':'good');
+    spawnFood();
+  }
+  if(sn.snail && nx===sn.snail.x && ny===sn.snail.y){
+    sn.score+=5; sn.snail=null; beep('buy');
+  }
+  if(sn.fly && nx===sn.fly.x && ny===sn.fly.y){
+    sn.fly=null; sn.ghost=45; beep('level');
+  }
+  if(!grew) sn.cells.pop();
+  if(sn.ghost>0) sn.ghost--;
+  // surprise visitors, only if you own them in the garden
+  if((S.owned.snail||0)>0){
+    if(sn.snail){ if(--sn.snailTtl<=0) sn.snail=null; }
+    else if(Math.random()<0.008){ sn.snail=emptyCell(); sn.snailTtl=55; }
+  }
+  if((S.owned.butter||0)>0){
+    if(sn.fly){ if(--sn.flyTtl<=0) sn.fly=null; }
+    else if(Math.random()<0.006){ sn.fly=emptyCell(); sn.flyTtl=60; }
+  }
+  $('snScore').textContent=sn.score;
+}
+function snakeDie(){
+  sn.over=true; sn.running=false;
+  clearTimeout(sn.timer);
+  beep('bad');
+  if(sn.score>S.snakeBest){ S.snakeBest=sn.score; $('snBest').textContent=S.snakeBest; }
+  // coins, with a friendly daily cap
+  const today=todayStr();
+  if(S.snakeDay!==today){ S.snakeDay=today; S.snakeEarned=0; }
+  const earn=Math.min(Math.floor(sn.score/2), Math.max(0,30-S.snakeEarned));
+  if(earn>0){ S.coins+=earn; S.snakeEarned+=earn; toast('🐍 Run over! Score '+sn.score+' → <b>+'+earn+' 🪙</b>'); }
+  else { toast('🐍 Run over! Score '+sn.score+'. Coins maxed today — pure glory run!'); }
+  store.save(S); renderHeader(); snakeCapNote();
+  snakeDraw();
+  $('snStartBtn').textContent='▶ Play again';
+}
+function snakeDraw(){
+  const cv=$('snakeCanvas'), ctx=cv.getContext('2d');
+  const cs=cv.width/GRID;
+  ctx.clearRect(0,0,cv.width,cv.height);
+  // checkerboard grass
+  ctx.globalAlpha=0.13;
+  for(let x=0;x<GRID;x++)for(let y=0;y<GRID;y++){
+    if((x+y)%2===0){ ctx.fillStyle='#5AA85C'; ctx.fillRect(x*cs,y*cs,cs,cs); }
+  }
+  ctx.globalAlpha=1;
+  // water
+  sn.water.forEach(w=>{
+    ctx.fillStyle='rgba(88,164,222,.75)';
+    rr(ctx,w.x*cs+1,w.y*cs+1,cs-2,cs-2,6); ctx.fill();
+  });
+  ctx.font=(cs*0.82)+'px serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+  sn.obstacles.forEach(o=>ctx.fillText(o.em, o.x*cs+cs/2, o.y*cs+cs/2+1));
+  if(sn.snail) ctx.fillText('🐌', sn.snail.x*cs+cs/2, sn.snail.y*cs+cs/2+1);
+  if(sn.fly) ctx.fillText('🦋', sn.fly.x*cs+cs/2, sn.fly.y*cs+cs/2+1);
+  if(sn.food) ctx.fillText(sn.food.em, sn.food.x*cs+cs/2, sn.food.y*cs+cs/2+1);
+  // snake
+  sn.cells.forEach((c,i)=>{
+    const gh=sn.ghost>0;
+    const t=i/Math.max(1,sn.cells.length-1);
+    ctx.fillStyle= gh? 'rgba(139,124,232,'+(0.85-t*0.35)+')' : 'rgb('+(46+t*40)+','+(122+t*50)+','+(75+t*40)+')';
+    rr(ctx,c.x*cs+1.5,c.y*cs+1.5,cs-3,cs-3, i===0?8:6); ctx.fill();
+  });
+  // eyes on the head
+  const h=sn.cells[0];
+  if(h){
+    const ex=h.x*cs+cs/2, ey=h.y*cs+cs/2;
+    const ox=sn.dir.x*cs*0.16, oy=sn.dir.y*cs*0.16;
+    const px=sn.dir.y*cs*0.18, py=sn.dir.x*cs*0.18;
+    ctx.fillStyle='#fff';
+    ctx.beginPath(); ctx.arc(ex+ox+px,ey+oy-py,cs*0.13,0,7); ctx.arc(ex+ox-px,ey+oy+py,cs*0.13,0,7); ctx.fill();
+    ctx.fillStyle='#22433B';
+    ctx.beginPath(); ctx.arc(ex+ox+px,ey+oy-py,cs*0.06,0,7); ctx.arc(ex+ox-px,ey+oy+py,cs*0.06,0,7); ctx.fill();
+  }
+  if(sn.over && sn.cells.length){
+    ctx.fillStyle='rgba(34,67,59,.55)'; ctx.fillRect(0,0,cv.width,cv.height);
+    ctx.fillStyle='#FFFDF6'; ctx.font='700 26px Fredoka,sans-serif';
+    ctx.fillText('The snake bonked! 🌼', cv.width/2, cv.height/2-14);
+    ctx.font='800 15px Nunito,sans-serif';
+    ctx.fillText('Score: '+sn.score+'  ·  press Play again', cv.width/2, cv.height/2+16);
+  }
+  if(sn.paused && !sn.over){
+    ctx.fillStyle='rgba(34,67,59,.45)'; ctx.fillRect(0,0,cv.width,cv.height);
+    ctx.fillStyle='#FFFDF6'; ctx.font='700 24px Fredoka,sans-serif';
+    ctx.fillText('Paused — space to go', cv.width/2, cv.height/2);
+  }
+}
+function rr(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
+}
+function snakeTick(){
+  if(!sn.running) return;
+  if(!sn.paused){ snakeStep(); snakeDraw(); }
+  if(sn.running) sn.timer=setTimeout(snakeTick, snakeSpeed());
+}
+function snakeStart(){
+  clearTimeout(sn.timer);
+  snakeReset();
+  sn.running=true;
+  $('snStartBtn').textContent='⏸ Space pauses';
+  snakeDraw();
+  sn.timer=setTimeout(snakeTick, 350);
+}
+function snakeStop(){
+  sn.running=false; sn.paused=false; clearTimeout(sn.timer);
+  if(!sn.over){ sn.over=true; snakeDraw(); $('snStartBtn').textContent='▶ Start'; }
+}
+window.snakeStop=snakeStop;
+function setDir(d){
+  const map={up:{x:0,y:-1},down:{x:0,y:1},left:{x:-1,y:0},right:{x:1,y:0}};
+  const n=map[d]; if(!n) return;
+  if(sn.cells.length>1 && n.x===-sn.dir.x && n.y===-sn.dir.y) return; // no reversing
+  sn.next=n;
+}
+$('snakeOpenBtn').addEventListener('click',()=>{
+  $('snakeCard').classList.toggle('hidden');
+  if(!$('snakeCard').classList.contains('hidden')){
+    snakeReset(); sn.over=true; snakeDraw();
+    $('snStartBtn').textContent='▶ Start';
+    $('snakeCard').scrollIntoView({behavior:'smooth',block:'center'});
+  } else { snakeStop(); }
+});
+$('snCloseBtn').addEventListener('click',()=>{ snakeStop(); $('snakeCard').classList.add('hidden'); });
+$('snStartBtn').addEventListener('click',snakeStart);
+document.addEventListener('keydown',e=>{
+  if($('snakeCard').classList.contains('hidden')) return;
+  if($('tab-garden').classList.contains('hidden')) return;
+  const k=e.key;
+  const dirs={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right',w:'up',s:'down',a:'left',d:'right',W:'up',S:'down',A:'left',D:'right'};
+  if(dirs[k]!==undefined){ e.preventDefault(); setDir(dirs[k]); }
+  else if(k===' '){ e.preventDefault(); if(sn.running&&!sn.over){ sn.paused=!sn.paused; snakeDraw(); } }
+});
+document.querySelectorAll('#dpad button').forEach(b=>{
+  b.addEventListener('click',()=>setDir(b.dataset.d));
+});
+(function(){
+  let tx=0,ty=0;
+  const cv=$('snakeCanvas');
+  cv.addEventListener('touchstart',e=>{ const t=e.touches[0]; tx=t.clientX; ty=t.clientY; },{passive:true});
+  cv.addEventListener('touchend',e=>{
+    const t=e.changedTouches[0], dx=t.clientX-tx, dy=t.clientY-ty;
+    if(Math.abs(dx)<18&&Math.abs(dy)<18) return;
+    if(Math.abs(dx)>Math.abs(dy)) setDir(dx>0?'right':'left');
+    else setDir(dy>0?'down':'up');
+  },{passive:true});
+})();
+
+// ---------- boot ----------
+if(S.lastPlay && S.lastPlay!==todayStr() && S.lastPlay!==yestStr()){ S.streak=0; }
+renderHeader(); renderChips(); renderDailyCard();
+mode='topic'; curTopic='mix';
+nextProblem();
+if(!S.name) welcome();
+</script>
+</body>
+</html>
