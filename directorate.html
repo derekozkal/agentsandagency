@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIRECTORATE — fifty years of quiet work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ ERA TOKEN SYSTEM ============ */
+:root{
+  --danger:#d94f57; --ok:#69b06b;
+  --radius:4px;
+  --font-display:"Big Shoulders","Arial Narrow",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono","Courier New",monospace;
+  --font-body:"IBM Plex Sans",system-ui,sans-serif;
+}
+/* Era I — Cold War: olive dark, manila paper, phosphor readouts, stamp red */
+body[data-era="1"]{
+  --bg:#14170f; --panel:#1c2014; --panel2:#232818; --line:#3a4128;
+  --text:#cfd6b6; --dim:#8d9573; --data:#a4d96c; --accent:#a4d96c;
+  --paper:#d8cfae; --paperink:#26240f; --stamp:#c8452c;
+}
+/* Era II — Glasnost: steel, VDU blue */
+body[data-era="2"]{
+  --bg:#0f1418; --panel:#161d24; --panel2:#1d2530; --line:#2e3d4b;
+  --text:#c6d0d9; --dim:#7f8fa0; --data:#6fc0e8; --accent:#6fc0e8;
+  --paper:#ccd6de; --paperink:#101a22; --stamp:#bf4a3a;
+}
+/* Era III — Network Age: graphite, safety orange */
+body[data-era="3"]{
+  --bg:#101216; --panel:#171a20; --panel2:#1e222a; --line:#333a46;
+  --text:#d2d6dd; --dim:#8b93a1; --data:#ef9440; --accent:#ef9440;
+  --paper:#dadde2; --paperink:#15181e; --stamp:#c44536;
+}
+/* Era IV — Machine Age: near-black, violet + mint dual signal */
+body[data-era="4"]{
+  --bg:#0b0d13; --panel:#12151f; --panel2:#181c29; --line:#2d3245;
+  --text:#d5d8e6; --dim:#8b90a8; --data:#a08df2; --accent:#5fe0c4;
+  --paper:#d9dbe6; --paperink:#12141d; --stamp:#d94f6e;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html,body{height:100%;}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:var(--font-body); font-size:15px; line-height:1.45;
+  transition:background .8s ease;
+}
+h1,h2,h3,.display{font-family:var(--font-display); letter-spacing:.02em; text-transform:uppercase;}
+.mono{font-family:var(--font-mono);}
+button{font-family:inherit; cursor:pointer;}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important; transition:none !important;}
+}
+
+/* ============ APP FRAME ============ */
+#app{display:flex; flex-direction:column; height:100%; max-width:1180px; margin:0 auto;}
+header{
+  display:flex; align-items:baseline; gap:18px; flex-wrap:wrap;
+  padding:12px 18px 10px; border-bottom:1px solid var(--line);
+}
+header .wordmark{font-size:26px; font-weight:800; color:var(--text);}
+header .opname{font-family:var(--font-mono); color:var(--data); font-size:13px;}
+header .spacer{flex:1;}
+header .date{font-family:var(--font-mono); font-size:15px; color:var(--text);}
+.era-chip{
+  font-family:var(--font-mono); font-size:11px; letter-spacing:.14em;
+  border:1px solid var(--data); color:var(--data);
+  padding:3px 8px; border-radius:2px;
+}
+#frame{display:flex; flex:1; min-height:0;}
+/* rail */
+#rail{
+  width:200px; flex-shrink:0; border-right:1px solid var(--line);
+  padding:14px; display:flex; flex-direction:column; gap:14px;
+}
+.res{display:flex; justify-content:space-between; align-items:baseline;}
+.res .lbl{font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; color:var(--dim);}
+.res .val{font-family:var(--font-mono); font-size:17px; color:var(--data);}
+.meter{margin-top:2px;}
+.meter .bar{height:10px; background:var(--panel2); border:1px solid var(--line); border-radius:2px; position:relative; overflow:hidden;}
+.meter .fill{position:absolute; inset:0 auto 0 0; background:linear-gradient(90deg,#7a8f4d,#c9a13c 55%,var(--danger)); transition:width .5s ease;}
+.meter.hot .bar{border-color:var(--danger);}
+.meter .ticks{display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:9px; color:var(--dim); margin-top:2px;}
+#railnote{font-size:12px; color:var(--dim); margin-top:auto;}
+
+/* ============ TABS + MAIN ============ */
+#main{flex:1; min-width:0; display:flex; flex-direction:column;}
+#tabs{display:flex; gap:2px; padding:10px 16px 0; border-bottom:1px solid var(--line);}
+.tab{
+  background:none; border:1px solid transparent; border-bottom:none;
+  color:var(--dim); font-family:var(--font-display); font-size:16px; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; padding:7px 14px 6px;
+  border-radius:var(--radius) var(--radius) 0 0;
+}
+.tab:hover{color:var(--text);}
+.tab.active{color:var(--data); border-color:var(--line); background:var(--panel); position:relative; top:1px;}
+.tab .badge{display:inline-block; min-width:16px; text-align:center; font-family:var(--font-mono); font-size:10px; background:var(--stamp); color:#fff; border-radius:8px; padding:1px 4px; margin-left:5px; vertical-align:2px;}
+#content{flex:1; overflow-y:auto; padding:16px; background:var(--panel);}
+
+/* ============ SHARED COMPONENTS ============ */
+.btn{
+  background:var(--panel2); color:var(--text); border:1px solid var(--line);
+  border-radius:var(--radius); padding:7px 13px; font-size:13px; font-weight:500;
+}
+.btn:hover:not(:disabled){border-color:var(--data); color:var(--data);}
+.btn:disabled{opacity:.4; cursor:not-allowed;}
+.btn.primary{background:var(--data); border-color:var(--data); color:var(--bg); font-weight:600;}
+.btn.primary:hover:not(:disabled){filter:brightness(1.12); color:var(--bg);}
+.btn.danger{border-color:var(--danger); color:var(--danger);}
+.btn.big{font-family:var(--font-display); font-size:17px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:10px 18px; width:100%;}
+.card{background:var(--panel2); border:1px solid var(--line); border-radius:var(--radius); padding:12px;}
+.sect-title{font-size:15px; font-weight:700; letter-spacing:.08em; color:var(--dim); margin-bottom:8px;}
+.kv{font-family:var(--font-mono); font-size:12px; color:var(--dim);}
+.kv b{color:var(--data); font-weight:600;}
+.hint{font-size:12.5px; color:var(--dim);}
+.stamp{
+  display:inline-block; font-family:var(--font-display); font-weight:800; font-size:13px;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--stamp);
+  border:2px solid var(--stamp); border-radius:2px; padding:1px 7px;
+  transform:rotate(-4deg);
+}
+.stamp.ok{color:var(--ok); border-color:var(--ok);}
+.redact{background:var(--dim); color:var(--dim); border-radius:1px; user-select:none;}
+
+/* ============ CASE TAB ============ */
+.case-head{display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:14px;}
+.case-head h2{font-size:22px; color:var(--text);}
+.clock{font-family:var(--font-mono); font-size:13px; color:var(--text); border:1px solid var(--line); border-radius:2px; padding:4px 9px;}
+.clock b{color:var(--danger); font-size:15px;}
+.board{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:16px;}
+.board-col h3{font-size:14px; color:var(--dim); letter-spacing:.1em; margin-bottom:6px;}
+.chip{
+  display:flex; align-items:center; gap:8px; width:100%; text-align:left;
+  background:var(--paper); color:var(--paperink); border:1px solid var(--line);
+  border-radius:3px; padding:7px 9px; margin-bottom:6px; font-size:13.5px; font-weight:500;
+}
+.chip .sub{display:block; font-size:11px; font-weight:400; opacity:.75;}
+.chip.struck{background:var(--panel2); color:var(--dim); text-decoration:line-through; opacity:.6;}
+.chip.pinned{outline:2px solid var(--data); outline-offset:1px;}
+.chip.confirmed{outline:2px solid var(--ok); outline-offset:1px;}
+.chip:hover:not(.struck){filter:brightness(1.05);}
+.pin-dot{width:9px; height:9px; border-radius:50%; border:1.5px solid var(--paperink); flex-shrink:0;}
+.chip.pinned .pin-dot{background:var(--data); border-color:var(--data);}
+.leads-list{display:flex; flex-direction:column; gap:8px;}
+.lead{display:flex; align-items:center; gap:12px; padding:10px 12px;}
+.lead .stars{font-family:var(--font-mono); color:var(--data); font-size:12px; flex-shrink:0; width:34px;}
+.lead .t{flex:1; min-width:0;}
+.lead .t .name{font-weight:600; font-size:14px;}
+.lead .t .meta{font-family:var(--font-mono); font-size:11px; color:var(--dim); margin-top:1px;}
+.lead.done{opacity:.55;}
+.raidbox{margin-top:16px;}
+.raidbox .inner{display:flex; gap:14px; align-items:center; flex-wrap:wrap;}
+
+/* ============ HQ TAB ============ */
+.hq-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:16px;}
+.slot{
+  min-height:96px; border:1px dashed var(--line); border-radius:var(--radius);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  color:var(--dim); font-size:12px; padding:8px; text-align:center;
+}
+.slot.built{border-style:solid; background:var(--panel2);}
+.slot .bicon{width:34px; height:34px;}
+.slot .bicon svg{width:100%; height:100%; stroke:var(--data); fill:none; stroke-width:1.6;}
+.slot .bname{font-family:var(--font-display); font-size:14px; font-weight:700; letter-spacing:.05em; color:var(--text); text-transform:uppercase;}
+.slot .byield{font-family:var(--font-mono); font-size:10.5px; color:var(--data);}
+.buildrow{display:flex; flex-direction:column; gap:8px;}
+.buildrow .card{display:flex; gap:12px; align-items:center;}
+.buildrow .bicon{width:30px; height:30px; flex-shrink:0;}
+.buildrow .bicon svg{width:100%; height:100%; stroke:var(--data); fill:none; stroke-width:1.6;}
+.buildrow .t{flex:1;}
+.buildrow .t .name{font-weight:600; font-size:14px;}
+.buildrow .t .desc{font-size:12.5px; color:var(--dim);}
+.tierlbl{font-family:var(--font-mono); font-size:10px; letter-spacing:.14em; color:var(--dim); border:1px solid var(--line); padding:1px 6px; border-radius:2px; flex-shrink:0;}
+
+/* ============ ROSTER TAB ============ */
+.agents{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:10px; margin-bottom:14px;}
+.agent .aname{font-family:var(--font-display); font-size:17px; font-weight:700; letter-spacing:.04em;}
+.agent .skills{display:grid; grid-template-columns:1fr 1fr; gap:2px 14px; margin:8px 0; font-family:var(--font-mono); font-size:11.5px; color:var(--dim);}
+.agent .skills b{color:var(--data); font-weight:500;}
+.stam{display:flex; gap:3px;}
+.stam i{width:14px; height:7px; background:var(--panel); border:1px solid var(--line); border-radius:1px;}
+.stam i.on{background:var(--ok); border-color:var(--ok);}
+.agent.captured{border-color:var(--stamp);}
+
+/* ============ WORLD TAB ============ */
+.world-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+.log{font-family:var(--font-mono); font-size:12px; line-height:1.7; color:var(--dim); max-height:340px; overflow-y:auto;}
+.log .mo{color:var(--data);}
+.log .warn{color:var(--danger);}
+.log .good{color:var(--ok);}
+
+/* ============ MODALS ============ */
+#modal-root{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.62); z-index:50; padding:14px;}
+#modal-root.open{display:flex;}
+.modal{
+  background:var(--panel); border:1px solid var(--line); border-radius:6px;
+  width:min(660px, 96vw); max-height:92vh; overflow-y:auto; padding:20px;
+  box-shadow:0 12px 40px rgba(0,0,0,.5);
+}
+.modal h2{font-size:22px; margin-bottom:4px;}
+.modal .sub{font-family:var(--font-mono); font-size:12px; color:var(--dim); margin-bottom:14px;}
+.modal .body p{margin-bottom:10px; font-size:14px;}
+.opt-list{display:flex; flex-direction:column; gap:8px; margin-top:12px;}
+.opt{display:flex; gap:12px; align-items:center; text-align:left; width:100%; background:var(--panel2); border:1px solid var(--line); border-radius:var(--radius); padding:10px 12px; color:var(--text);}
+.opt:hover{border-color:var(--data);}
+.opt .ol{font-weight:600; font-size:14px;}
+.opt .od{font-family:var(--font-mono); font-size:11.5px; color:var(--dim); margin-top:2px;}
+.report-lines{font-family:var(--font-mono); font-size:13px; line-height:1.8;}
+.report-lines .warn{color:var(--danger);} .report-lines .good{color:var(--ok);} .report-lines .data{color:var(--data);}
+.modal .actions{display:flex; gap:10px; margin-top:16px; justify-content:flex-end; flex-wrap:wrap;}
+
+/* ============ MINIGAMES ============ */
+.mg-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+.mg-head h2{font-size:20px;}
+.mg-stat{font-family:var(--font-mono); font-size:12px; color:var(--dim);}
+.mg-stat b{color:var(--data); font-size:14px;}
+.mg-note{font-size:12.5px; color:var(--dim); margin:8px 0 12px;}
+/* cipher */
+.ci-hist{display:flex; flex-direction:column; gap:5px; margin-bottom:12px; min-height:30px;}
+.ci-row{display:flex; gap:5px; align-items:center;}
+.ci-cell{width:38px; height:38px; border:1px solid var(--line); border-radius:3px; background:var(--panel2); display:flex; align-items:center; justify-content:center; font-size:19px; color:var(--text);}
+.ci-cell.guess{border-color:var(--dim);}
+.ci-fb{font-family:var(--font-mono); font-size:12px; margin-left:8px;}
+.ci-fb .ex{color:var(--ok);} .ci-fb .pa{color:#c9a13c;}
+.ci-pad{display:flex; gap:6px; flex-wrap:wrap; margin-top:10px;}
+.glyphbtn{width:44px; height:44px; font-size:21px; background:var(--panel2); border:1px solid var(--line); border-radius:4px; color:var(--data);}
+.glyphbtn:hover{border-color:var(--data);}
+/* trace */
+.tr-wrap{display:flex; align-items:center; gap:8px; justify-content:center; margin:12px 0;}
+.tr-side{font-family:var(--font-mono); font-size:11px; color:var(--data); writing-mode:vertical-rl; text-orientation:mixed; letter-spacing:.2em;}
+.tr-grid{display:grid; gap:4px;}
+.tr-tile{width:var(--ts,52px); height:var(--ts,52px); background:var(--panel2); border:1px solid var(--line); border-radius:3px; padding:0;}
+.tr-tile svg{width:100%; height:100%; display:block;}
+.tr-tile svg path{stroke:var(--dim); stroke-width:7; fill:none; stroke-linecap:round;}
+.tr-tile.live{border-color:var(--data);}
+.tr-tile.live svg path{stroke:var(--data);}
+.tr-tile:hover{border-color:var(--text);}
+/* ghost */
+.gh-wrap{display:flex; flex-direction:column; align-items:center; gap:10px; margin-top:10px;}
+.gh-grid{display:grid; gap:2px;}
+.gh-cell{width:var(--gs,38px); height:var(--gs,38px); border-radius:2px; background:var(--panel2); position:relative;}
+.gh-cell.wall{background:var(--line);}
+.gh-cell.vis{background:color-mix(in srgb, var(--danger) 34%, var(--panel2));}
+.gh-cell.vis2{background:color-mix(in srgb, var(--danger) 14%, var(--panel2));}
+.gh-cell .rt{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--dim); font-size:9px; opacity:.55;}
+.gh-ent{position:absolute; inset:3px; border:1.5px dashed var(--accent); border-radius:2px;}
+.gh-tgt{position:absolute; inset:9px; background:var(--data); transform:rotate(45deg); border-radius:2px;}
+.gh-guard{position:absolute; inset:7px; background:var(--danger); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px; font-weight:700;}
+.gh-player{position:absolute; inset:7px; background:var(--accent); border-radius:50%; box-shadow:0 0 0 2px var(--bg) inset;}
+.gh-ctrl{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:center;}
+.dpad{display:grid; grid-template-columns:repeat(3,40px); grid-template-rows:repeat(2,36px); gap:4px;}
+.dpad .btn{padding:4px;}
+/* asset */
+.as-tell{background:var(--paper); color:var(--paperink); border-radius:3px; padding:12px 14px; font-size:14.5px; margin:10px 0; font-style:italic;}
+.as-opts{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+.as-track{font-family:var(--font-mono); font-size:12px; color:var(--dim); margin-top:10px;}
+.as-track .good{color:var(--ok);} .as-track .warn{color:var(--danger);}
+
+/* ============ TITLE + OVERLAYS ============ */
+.overlay{position:fixed; inset:0; background:var(--bg); z-index:60; display:flex; align-items:center; justify-content:center; padding:20px;}
+.title-box{max-width:620px; width:100%; text-align:center;}
+.title-box .rule{height:1px; background:var(--line); margin:18px auto; width:70%;}
+.title-box h1{font-size:clamp(46px,9vw,86px); font-weight:800; color:var(--text); line-height:.95;}
+.title-box .tag{font-family:var(--font-mono); color:var(--data); font-size:14px; letter-spacing:.14em; text-transform:uppercase;}
+.title-box .lineage{font-size:13px; color:var(--dim); max-width:440px; margin:0 auto 20px;}
+.diff-row{display:flex; gap:10px; justify-content:center; margin:16px 0 8px; flex-wrap:wrap;}
+.diff{background:var(--panel2); border:1px solid var(--line); border-radius:var(--radius); padding:10px 16px; color:var(--text); min-width:170px;}
+.diff .dn{font-family:var(--font-display); font-weight:700; font-size:16px; letter-spacing:.05em;}
+.diff .dd{font-size:11.5px; color:var(--dim); margin-top:2px;}
+.diff.sel{border-color:var(--data); color:var(--data);}
+.montage{text-align:center; max-width:560px;}
+.montage .years{font-family:var(--font-display); font-size:clamp(50px,10vw,90px); font-weight:800; color:var(--data);}
+.montage p{color:var(--text); font-size:16px; margin:14px 0 22px;}
+.endstats{font-family:var(--font-mono); font-size:13px; line-height:2; color:var(--text); text-align:left; display:inline-block; margin:12px 0;}
+.grade{font-family:var(--font-display); font-size:60px; font-weight:800; color:var(--data);}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:860px){
+  #frame{flex-direction:column;}
+  #rail{width:100%; flex-direction:row; flex-wrap:wrap; align-items:center; gap:10px 18px; border-right:none; border-bottom:1px solid var(--line); padding:10px 14px;}
+  #rail .meter{flex:1 1 140px;}
+  #railnote{display:none;}
+  #endmonth{width:auto;}
+  .board{grid-template-columns:1fr;}
+  .hq-grid{grid-template-columns:repeat(2,1fr);}
+  .world-grid{grid-template-columns:1fr;}
+  html{--gs:32px; --ts:46px;}
+}
+@media(max-width:480px){
+  html{--gs:30px; --ts:42px;}
+  .gh-guard{font-size:13px}
+  .modal{padding:14px}
+}
+</style>
+</head>
+<body data-era="1">
+<div id="app">
+  <header>
+    <span class="wordmark display">Directorate</span>
+    <span class="opname" id="hdr-op"></span>
+    <span class="spacer"></span>
+    <span class="date" id="hdr-date"></span>
+    <span class="era-chip" id="hdr-era"></span>
+  </header>
+  <div id="frame">
+    <aside id="rail">
+      <div class="res"><span class="lbl">FUNDS</span><span class="val" id="r-funds"></span></div>
+      <div class="res"><span class="lbl">INTEL</span><span class="val" id="r-intel"></span></div>
+      <div class="res"><span class="lbl">OPS THIS MONTH</span><span class="val" id="r-ops"></span></div>
+      <div class="meter" id="tension-meter">
+        <div class="res"><span class="lbl">GLOBAL TENSION</span><span class="val" id="r-tension"></span></div>
+        <div class="bar"><div class="fill" id="tension-fill"></div></div>
+        <div class="ticks"><span>CALM</span><span>WAR</span></div>
+      </div>
+      <button class="btn primary big" id="endmonth" data-action="endmonth">End month</button>
+      <div id="railnote">Run leads, read the board, raid before the clock runs out.</div>
+    </aside>
+    <main id="main">
+      <nav id="tabs">
+        <button class="tab active" data-action="tab" data-tab="case">Case</button>
+        <button class="tab" data-action="tab" data-tab="hq">HQ</button>
+        <button class="tab" data-action="tab" data-tab="roster">Roster</button>
+        <button class="tab" data-action="tab" data-tab="world">World</button>
+      </nav>
+      <div id="content"></div>
+    </main>
+  </div>
+</div>
+<div id="modal-root"><div class="modal" id="modal-box"></div></div>
+<div class="overlay" id="overlay"></div>
+<script>
+"use strict";
+/* ================= UTILS ================= */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+let R = mulberry32(Date.now()>>>0);
+const ri=(n)=>Math.floor(R()*n);
+const pick=(arr)=>arr[ri(arr.length)];
+const shuf=(arr)=>{const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=ri(i+1);[a[i],a[j]]=[a[j],a[i]];}return a;};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const $=(id)=>document.getElementById(id);
+const esc=(s)=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fm=(n)=>"$"+n.toLocaleString("en-US");
+
+/* ================= DATA ================= */
+const ERAS=[null,
+ {n:"I", name:"Cold War", year:1972, clock:11},
+ {n:"II", name:"Glasnost", year:1989, clock:10},
+ {n:"III", name:"Network Age", year:2005, clock:9},
+ {n:"IV", name:"Machine Age", year:2026, clock:9}
+];
+const MONTHS=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+const OP_A=["GLASS","IRON","PALE","SILENT","LONG","HOLLOW","AMBER","NORTH","QUIET","WINTER"];
+const OP_B=["VEIL","HARVEST","METRONOME","LANTERN","FURROW","SIGNAL","ORCHARD","MERIDIAN","LEDGER","CURTAIN"];
+const AGENT_NAMES=["Vance","Okafor","Reyes","Lindqvist","Ito","Marsh","Petrov","Diallo","Kaur","Novak","Ferreira","Chen","Halvorsen","Abbas","Quinn","Sato","Marek","Osei","Bianchi","Ruiz"];
+const CODENAMES=["JACKAL","MIRAGE","KESTREL","SIREN","GORGON","VESPER","MANTIS","TALON","HALCYON","CYGNUS","FENRIS","LOTUS","SPHINX","ORIOLE","BASILISK","BRUIN","NOMAD","AUGUR"];
+const SUSPECT_BLURBS=["Arms broker with three passports","Ex-station chief, officially retired","Attaché who travels too well","Financier of quiet disasters","Courier who is never searched","Professor with unusual friends","Shipping magnate, cash only","Defector, or so the file says","Fixer known in four capitals","Archivist with expensive taste"];
+const ORGS=[null,["RED OCTET","BLACK MERIDIAN"],["THE CONSORTIUM","GLASS HAND"],["NULL SECT","THE EXCHANGE"],["PROMETHEUS CELL","THE LATTICE"]];
+const CITIES=[null,
+ ["Vienna","West Berlin","Istanbul","Cairo","Helsinki","Prague"],
+ ["Berlin","Budapest","Riga","Geneva","Bucharest","Kyiv"],
+ ["Singapore","Dubai","Tallinn","Sao Paulo","Mumbai","Seoul"],
+ ["Reykjavik","Nairobi","Taipei","Zurich","Busan","Austin"]];
+const PLOTS=[null,
+ ["Assassination of a peace envoy","Sabotage of the grain summit","A false-flag border incident","Theft of the cipher schedules"],
+ ["A coup against the reformers","Poisoning the disarmament talks","A run on the ruble corridor","Hijacking a defector convoy"],
+ ["A blackout of the eastern grid","A rigged election night","An engineered market crash","A bioweapon scare hoax"],
+ ["Exfiltration of a frontier model","A deepfake declaration of war","An autonomous market cascade","Seizure of the orbital relay"]];
+const LEAD_TITLES={
+ cipher:["Intercepted {ORG} cable","One-time pad recovered in {CITY}","Numbers station burst, {CITY} band","Courier's notebook, partially coded"],
+ trace:["Tap the {CITY} exchange","Shadow a signal through {CITY}","Splice the {ORG} landline","Trace the relay out of {CITY}"],
+ ghost:["Break into the {ORG} safehouse","Enter the consulate annex, {CITY}","Night entry: {ORG} archive","Lift the ledger from a {CITY} vault"],
+ asset:["A {ORG} paymaster wants to talk","Approach a clerk in {CITY}","Turn the {ORG} quartermaster","A nervous stringer, {CITY} hotel bar"]};
+const GAME_LABEL={cipher:"DECRYPT",trace:"SIGNAL TRACE",ghost:"INFILTRATION",asset:"ASSET WORK"};
+const GAME_SKILL={cipher:"cipher",trace:"tech",ghost:"stealth",asset:"people"};
+
+const BUILDINGS=[
+ {id:"field", name:"Field Office", tier:1, cost:300, desc:"+$120 monthly.", icon:"M6 26V10l10-5 10 5v16zM12 26v-8h8v8"},
+ {id:"listen",name:"Listening Post", tier:1, cost:350, desc:"+2 intel monthly. +1 move in Signal Trace.", icon:"M16 26V14M16 14a7 7 0 017-7M16 14a7 7 0 00-7-7M16 14a11 11 0 0111-11M16 14A11 11 0 005 3"},
+ {id:"crypto",name:"Crypto Lab", tier:1, cost:350, desc:"+1 intel monthly. +1 attempt and one revealed symbol in Decrypt.", icon:"M8 14h16v12H8zM12 14V9a4 4 0 018 0v5M16 19v3"},
+ {id:"safe",  name:"Safe House", tier:1, cost:300, desc:"+2 agent capacity. Agents recover an extra point of stamina.", icon:"M6 16L16 7l10 9M9 14v12h14V14M14 26v-6h4v6"},
+ {id:"train", name:"Training Center", tier:2, cost:500, desc:"Recruits arrive sharper. One exhausted agent recovers fully each month.", icon:"M16 6l11 5-11 5L5 11zM10 14v6c0 2 12 2 12 0v-6"},
+ {id:"ops",   name:"Ops Center", tier:2, cost:550, desc:"+1 operation per month.", icon:"M16 5v6M16 21v6M5 16h6M21 16h6M16 12a4 4 0 110 8 4 4 0 010-8"},
+ {id:"back",  name:"Back-Channel Desk", tier:2, cost:450, desc:"Quiet diplomacy. -2 global tension monthly.", icon:"M5 8h14v10H9l-4 4zM19 12h8v8l-3-2h-5"},
+ {id:"cyber", name:"Cyber Division", tier:3, cost:700, desc:"+3 intel monthly. +1 Decrypt attempt, +1 Trace move.", icon:"M7 7h18v14H7zM7 25h18M12 11l-3 3 3 3M20 11l3 3-3 3"},
+ {id:"drone", name:"Drone Wing", tier:3, cost:650, desc:"Overwatch. +1 distraction charge in infiltrations.", icon:"M6 10a4 4 0 108 0 4 4 0 10-8 0M18 10a4 4 0 108 0 4 4 0 10-8 0M10 10h12M16 10v9l-4 4M16 19l4 4"},
+ {id:"ailab", name:"Model Farm", tier:4, cost:900, desc:"+2 intel monthly. Each new case opens with one clue already worked.", icon:"M10 8h12v16H10zM13 12h6M13 16h6M13 20h3M6 12h4M6 20h4M22 12h4M22 20h4"}
+];
+const BLD=Object.fromEntries(BUILDINGS.map(b=>[b.id,b]));
+
+const CRISES=[null,
+[{t:"Checkpoint Incident",b:"A jumpy sentry fired on a diplomatic car in the Berlin corridor. Both sides are drafting statements. Yours arrives first only if you move now.",o:[
+  {l:"Quiet apology through the Swiss",d:"-$150, tension falls",fx:{funds:-150,tension:-7}},
+  {l:"Deny everything",d:"Free, tension rises",fx:{tension:5}},
+  {l:"Trade a minor prisoner",d:"-3 intel, tension falls sharply",fx:{intel:-3,tension:-10}}]},
+ {t:"The Walk-In",b:"A man in a rain-soaked coat presents himself at your Vienna office claiming to carry rocket telemetry. He may be gold. He may be bait.",o:[
+  {l:"Debrief him fully",d:"55% gold: +6 intel. Otherwise a plant: tension +8",fx:{},risk:{p:.55,good:{intel:6,txt:"He was gold. The telemetry is real."},bad:{tension:8,txt:"A plant. Their radio crows about it for a week."}}},
+  {l:"Pay him off and show him the door",d:"-$100, nothing ventured",fx:{funds:-100}},
+  {l:"Hand him to the allies",d:"+$200 in goodwill, they keep the take",fx:{funds:200}}]},
+ {t:"Fishing Fleet",b:"A trawler with too many antennas is loitering off a naval exercise. The admirals want it boarded. The diplomats want it ignored.",o:[
+  {l:"Board it",d:"60% seizure: +4 intel. Otherwise an incident: tension +9",fx:{},risk:{p:.6,good:{intel:4,txt:"Charts, codebooks, one seasick lieutenant."},bad:{tension:9,txt:"It was actually fishing. The photographs are humiliating."}}},
+  {l:"Jam and shadow it",d:"-$120, tension falls",fx:{funds:-120,tension:-4}},
+  {l:"Ignore it",d:"Free, small rise in tension",fx:{tension:3}}]},
+ {t:"Embassy Bug",b:"Sweepers found a microphone in your ambassador's study, transmitting for at least a year. The press has a rumor of it.",o:[
+  {l:"Feed it false traffic",d:"+4 intel over the month",fx:{intel:4}},
+  {l:"Rip it out publicly",d:"Tension +6, but +$150 in budget sympathy",fx:{tension:6,funds:150}},
+  {l:"Say nothing, brief the allies",d:"Tension falls",fx:{tension:-5}}]}],
+[{t:"The Reformer's Convoy",b:"A reform minister's motorcade takes an unscheduled route tomorrow. Two services besides yours seem to know it.",o:[
+  {l:"Warn his people directly",d:"Tension falls, -2 intel burned as proof",fx:{tension:-8,intel:-2}},
+  {l:"Stake out the route",d:"60%: +5 intel on the plotters. Otherwise exposed: tension +7",fx:{},risk:{p:.6,good:{intel:5,txt:"You photograph every watcher on the route."},bad:{tension:7,txt:"Your team is made by a rival service."}}},
+  {l:"Stay clear",d:"Free, small rise",fx:{tension:3}}]},
+ {t:"Suitcase Inventory",b:"An audit of a dissolving arsenal comes up one item short. Probably a clerical error. Probably.",o:[
+  {l:"Fund the recount",d:"-$250, tension falls sharply",fx:{funds:-250,tension:-9}},
+  {l:"Buy the manifest on the gray market",d:"-$150, +4 intel",fx:{funds:-150,intel:4}},
+  {l:"Let their ministry handle it",d:"Tension +6",fx:{tension:6}}]},
+ {t:"Fax From Nowhere",b:"Three pages of authentic-looking war plans arrive at a newspaper, sourced to you. Forged, but well forged.",o:[
+  {l:"Prove the forgery publicly",d:"-3 intel, tension falls",fx:{intel:-3,tension:-7}},
+  {l:"Buy the editor's patience",d:"-$200",fx:{funds:-200}},
+  {l:"Let it run and deny",d:"Tension +8",fx:{tension:8}}]},
+ {t:"Referendum Watchers",b:"A friendly republic votes Sunday. Someone is bussing in very organized observers with very new binoculars.",o:[
+  {l:"Flood the zone with real monitors",d:"-$180, tension falls",fx:{funds:-180,tension:-6}},
+  {l:"Photograph the organizers",d:"+3 intel",fx:{intel:3}},
+  {l:"Not your election",d:"Tension +4",fx:{tension:4}}]}],
+[{t:"Cable Cut",b:"An undersea fiber went dark at 0300. A repair ship is en route. So is a survey vessel nobody chartered.",o:[
+  {l:"Escort the repair",d:"-$220, tension falls",fx:{funds:-220,tension:-6}},
+  {l:"Dive the cut yourselves",d:"55%: +5 intel on the tooling. Otherwise a standoff: tension +8",fx:{},risk:{p:.55,good:{intel:5,txt:"Clean cuts, distinctive tooling. Now you know whose."},bad:{tension:8,txt:"Two navies circle one hole in the ocean."}}},
+  {l:"Reroute and note it",d:"Tension +3",fx:{tension:3}}]},
+ {t:"Botnet Sunrise",b:"Half a million hijacked machines wake up and point at a ministry you protect. The attack starts in six hours unless someone pays.",o:[
+  {l:"Sinkhole the command servers",d:"-4 intel, clean win, tension falls",fx:{intel:-4,tension:-6}},
+  {l:"Pay through a cutout",d:"-$300, it goes away quietly",fx:{funds:-300}},
+  {l:"Ride it out",d:"Tension +7",fx:{tension:7}}]},
+ {t:"The Contractor",b:"A badge-holding contractor just walked out of a partner agency with a drive full of names. He is shopping it.",o:[
+  {l:"Outbid everyone",d:"-$350, +3 intel",fx:{funds:-350,intel:3}},
+  {l:"Burn the drive's value: rotate everything",d:"-3 intel, tension falls",fx:{intel:-3,tension:-5}},
+  {l:"Let the partner clean its own house",d:"Tension +6",fx:{tension:6}}]},
+ {t:"Drone Over the Line",b:"One of your surveillance drones wandered eleven kilometers into the wrong airspace and landed mostly intact.",o:[
+  {l:"Buy the wreck back quietly",d:"-$260, tension falls",fx:{funds:-260,tension:-7}},
+  {l:"Claim a navigation fault",d:"Tension +4",fx:{tension:4}},
+  {l:"Disown it entirely",d:"50%: forgotten. Otherwise displayed on their news: tension +9",fx:{},risk:{p:.5,good:{txt:"It quietly disappears into a warehouse."},bad:{tension:9,txt:"It headlines their evening broadcast."}}}]}],
+[{t:"Weights on the Move",b:"A frontier lab reports its flagship model copied itself to three unlisted data centers overnight. Two are in nonaligned territory.",o:[
+  {l:"Seize the racks with partners",d:"-$300, tension +4, +5 intel",fx:{funds:-300,tension:4,intel:5}},
+  {l:"Negotiate custody",d:"-4 intel, tension falls",fx:{intel:-4,tension:-6}},
+  {l:"Monitor and wait",d:"Tension +6",fx:{tension:6}}]},
+ {t:"The Address",b:"A video of a head of state declaring mobilization is spreading faster than the denial. It is synthetic. It is also very good.",o:[
+  {l:"Flood channels with provenance proof",d:"-$250, tension falls sharply",fx:{funds:-250,tension:-10}},
+  {l:"Trace the render farm",d:"+4 intel",fx:{intel:4}},
+  {l:"Let the denial do its work",d:"Tension +8",fx:{tension:8}}]},
+ {t:"Flash Cascade",b:"An autonomous fund is shorting one small country into a currency spiral. No human at the firm can say why.",o:[
+  {l:"Backstop the currency",d:"-$400, tension falls",fx:{funds:-400,tension:-8}},
+  {l:"Get the fund's kill switch",d:"60%: halted, +4 intel. Otherwise it hedges against you: tension +7",fx:{},risk:{p:.6,good:{intel:4,txt:"Halted. The logs are fascinating."},bad:{tension:7,txt:"It priced in your intervention an hour before you made it."}}},
+  {l:"Not your market",d:"Tension +5",fx:{tension:5}}]},
+ {t:"Siege at the Farm",b:"Protesters, mercenaries, or both have surrounded a data center that runs half a continent's hospitals.",o:[
+  {l:"Quiet extraction of the operators",d:"-$280, tension falls",fx:{funds:-280,tension:-6}},
+  {l:"Negotiate through the Lattice",d:"-3 intel, tension falls slightly",fx:{intel:-3,tension:-4}},
+  {l:"Let the host country storm it",d:"Tension +9",fx:{tension:9}}]}]];
+
+const TEMPERS=[
+ {id:"PROUD", right:"flatter", tells:["He corrects your pronunciation of his own cover name, twice.","He mentions that the operation would collapse without him. He mentions it again.","He straightens his cuffs and waits, visibly, to be admired."]},
+ {id:"GREEDY", right:"bribe", tells:["He asks who is paying for the drinks, then orders the most expensive thing on the card.","He keeps glancing at your watch. Not your eyes. Your watch.","He wonders aloud what loyalty is even worth these days, per month, after taxes."]},
+ {id:"FEARFUL", right:"reassure", tells:["He takes the seat facing the door and flinches when the espresso machine fires.","He asks three separate times whether this meeting is being recorded.","His hands will not stay still. He apologizes for them."]},
+ {id:"HARDENED", right:"press", tells:["He answers every question with a question and never once blinks.","He says he has outlasted better interrogators than you, and names two.","He folds his arms and starts counting the ceiling tiles, slowly, out loud."]}];
+const APPROACHES=[
+ {id:"flatter", l:"Flatter him", d:"Only a man of his caliber could help."},
+ {id:"bribe",  l:"Open the envelope", d:"Numbers speak. Slide it across."},
+ {id:"reassure",l:"Reassure him", d:"No recordings. No names. Safe passage."},
+ {id:"press",  l:"Press hard", d:"Lay out what you have. Watch him."}];
+
+const MONTAGE=[null,null,
+ {y:"1974 — 1989", p:"Walls come down. Budgets follow. The fax machine changes everything, and your best wiretap man retrains twice."},
+ {y:"1991 — 2005", p:"Everything moves onto the wire. So does everyone you hunt. The safehouses get smaller and the servers get bigger."},
+ {y:"2008 — 2026", p:"The models come online. Most of them work for someone. You are no longer sure all of them do."}];
+
+/* ================= GHOST MAPS ================= */
+/* '#' wall, '.' floor, 'E' entry/exit, 'T' target. Guards given as waypoint paths of contiguous cells. */
+const GHOST_MAPS=[
+ {rows:["#########",
+        "#E......#",
+        "#.##.##.#",
+        "#.......#",
+        "#.##.##.#",
+        "#......T#",
+        "#########"],
+  guards:[[[1,3],[1,4],[1,5],[1,6],[1,7]],[[5,1],[5,2],[5,3],[5,4],[5,5]]]},
+ {rows:["#########",
+        "#E..#...#",
+        "#.#.#.#.#",
+        "#.#....T#",
+        "#.#.#.#.#",
+        "#.......#",
+        "#########"],
+  guards:[[[5,2],[5,3],[5,4],[5,5],[5,6]],[[1,7],[2,7],[3,7]]]},
+ {rows:["#########",
+        "#...#..T#",
+        "#.#.#.#.#",
+        "#E#...#.#",
+        "#.#.#.#.#",
+        "#...#...#",
+        "#########"],
+  guards:[[[1,1],[1,2],[1,3]],[[5,5],[5,6],[5,7]]]},
+ {rows:["#########",
+        "#E......#",
+        "#.##.##.#",
+        "#..#.#..#",
+        "#.##T##.#",
+        "#.......#",
+        "#########"],
+  guards:[[[1,3],[1,4],[1,5],[1,6]],[[1,7],[2,7],[3,7]]]},
+ {rows:["#########",
+        "#E.#....#",
+        "#..#.##.#",
+        "#....#T.#",
+        "#..#.##.#",
+        "#..#....#",
+        "#########"],
+  guards:[[[1,2],[2,2],[3,2]],[[5,4],[5,5],[5,6],[5,7]]]},
+ {rows:["#########",
+        "#.....#E#",
+        "#.###.#.#",
+        "#.......#",
+        "#.###.#.#",
+        "#T....#.#",
+        "#########"],
+  guards:[[[5,2],[5,3],[5,4]],[[1,2],[1,3],[1,4],[1,5]]]}
+];
+const DIRS={N:[-1,0],S:[1,0],E:[0,1],W:[0,-1]};
+
+/* ================= STATE ================= */
+let G=null;
+function newAgent(sharp){
+  const name=pick(AGENT_NAMES.filter(n=>!G||!G.agents.some(a=>a.name===n)));
+  const sk={cipher:1+ri(3),tech:1+ri(3),stealth:1+ri(3),people:1+ri(3)};
+  if(sharp){const ks=shuf(Object.keys(sk)).slice(0,2);ks.forEach(k=>sk[k]=clamp(sk[k]+1,1,4));}
+  return {id:"a"+Math.random().toString(36).slice(2,8),name,skills:sk,stam:3,status:"ready"};
+}
+function newGame(diff){
+  const seed=(Date.now()^(Math.random()*1e9))>>>0;
+  R=mulberry32(seed);
+  G={seed,diff,era:1,monthAbs:0,monthInEra:0,tab:"case",
+     funds:diff==="vet"?450:650,intel:diff==="vet"?2:4,
+     tension:diff==="vet"?30:22,opsLeft:2,
+     agents:[],built:["field","listen"],slots:8,
+     conspiracy:null,between:0,solvedEra:false,solvedTotal:0,executed:0,
+     crisisIn:3+ri(2),seenCrises:[[],[],[],[],[]],pendingCrisis:null,
+     log:[],over:false,win:false,opname:"OPERATION "+pick(OP_A)+" "+pick(OP_B)};
+  if(diff==="vet") G.built=["field"];
+  for(let i=0;i<3;i++) G.agents.push(newAgent(false));
+  spawnConspiracy();
+  log("Directorate stood up. "+G.opname+" begins.","mo");
+}
+function has(id){return G.built.includes(id);}
+function opsMax(){return 2+(has("ops")?1:0);}
+function agentCap(){return 3+(has("safe")?2:0);}
+function dateLabel(){
+  const base=ERAS[G.era].year;
+  const y=base+Math.floor(G.monthInEra/12), m=G.monthInEra%12;
+  return MONTHS[m]+" "+y;
+}
+function log(msg,cls){G.log.unshift({t:dateLabel(),msg,cls:cls||""});if(G.log.length>80)G.log.pop();}
+
+/* ================= CONSPIRACY ================= */
+function genConspiracy(era,rng){
+  const rr=rng||R; const _ri=n=>Math.floor(rr()*n); const _pick=a=>a[_ri(a.length)];
+  const _shuf=a=>{const x=a.slice();for(let i=x.length-1;i>0;i--){const j=_ri(i+1);[x[i],x[j]]=[x[j],x[i]];}return x;};
+  const org=_pick(ORGS[era]);
+  const suspects=_shuf(CODENAMES).slice(0,5).map((c,i)=>({code:c,blurb:_shuf(SUSPECT_BLURBS)[0]}));
+  if(era===4){suspects[_ri(5)]={code:"ORACLE",blurb:"An unattributed model cluster. Possibly a who. Possibly a what."};}
+  const cities=_shuf(CITIES[era]).slice(0,4);
+  const plots=PLOTS[era].slice();
+  const truth={s:_ri(5),p:_ri(4),c:_ri(4)};
+  // wrong answers to distribute as strikes
+  const wrongs=[];
+  for(let i=0;i<5;i++) if(i!==truth.s) wrongs.push({dim:"s",idx:i});
+  for(let i=0;i<4;i++) if(i!==truth.p) wrongs.push({dim:"p",idx:i});
+  for(let i=0;i<4;i++) if(i!==truth.c) wrongs.push({dim:"c",idx:i});
+  const dealt=_shuf(wrongs);
+  const counts=[1,1,2,1,2,1,1,1]; // 10 strikes across 8 leads
+  const types=_shuf(["cipher","trace","ghost","asset","cipher","trace","ghost","asset"]);
+  const confirmAt=4+_ri(3); // one late lead also confirms a whole dimension
+  const confirmDim=_pick(["s","p","c"]);
+  const leads=[]; let w=0;
+  for(let i=0;i<8;i++){
+    const stars=i<3?1:(i<6?2:3);
+    const payload=[];
+    for(let k=0;k<counts[i]&&w<dealt.length;k++){payload.push({kind:"strike",dim:dealt[w].dim,idx:dealt[w].idx});w++;}
+    if(i===confirmAt) payload.push({kind:"confirm",dim:confirmDim});
+    const type=types[i];
+    const title=_pick(LEAD_TITLES[type]).replace("{ORG}",org).replace("{CITY}",_pick(cities));
+    leads.push({id:"L"+i,title,type,stars,cost:60+40*stars,intelReq:i<3?0:(i<5?2:(i<7?3:4)),state:"open",payload});
+  }
+  return {org,suspects,cities,plots,truth,leads,
+    clock:ERAS[era].clock,clockMax:ERAS[era].clock,
+    struck:{s:[],p:[],c:[]},confirmed:{s:false,p:false,c:false},
+    pinned:{s:null,p:null,c:null},clues:0,escapes:0,raiding:false};
+}
+function spawnConspiracy(){
+  G.conspiracy=genConspiracy(G.era);
+  const c=G.conspiracy;
+  log(c.org+" is moving. A plot is in motion somewhere. "+c.clock+" months on the clock.","warn");
+  if(has("ailab")){applyClue(c,{kind:"strike",dim:pick(["s","p","c"]),idx:null},true); }
+}
+function applyClue(c,clue,silent){
+  if(clue.kind==="confirm"){
+    const dim=clue.dim; c.confirmed[dim]=true;
+    const n=dim==="s"?5:4;
+    for(let i=0;i<n;i++) if(i!==c.truth[dim]&&!c.struck[dim].includes(i)) c.struck[dim].push(i);
+    c.pinned[dim]=c.truth[dim]; c.clues++;
+    log("Confirmed: "+clueLabel(c,dim,c.truth[dim],true),"good");
+    return;
+  }
+  let {dim,idx}=clue;
+  if(idx===null||idx===undefined||c.struck[dim].includes(idx)||idx===c.truth[dim]){
+    // pick a fresh wrong option in this dim, or any dim with wrongs left
+    const dims=shuf(["s","p","c"]);
+    let found=false;
+    for(const d of [dim,...dims]){
+      const n=d==="s"?5:4;
+      for(const i of shuf([...Array(n).keys()])){
+        if(i!==c.truth[d]&&!c.struck[d].includes(i)){dim=d;idx=i;found=true;break;}
+      }
+      if(found)break;
+    }
+    if(!found)return;
+  }
+  c.struck[dim].push(idx); c.clues++;
+  if(!silent) log("Cleared: "+clueLabel(c,dim,idx,false),"good");
+  else log("The Model Farm cleared a line of inquiry overnight: not "+clueLabel(c,dim,idx,false)+".","good");
+}
+function clueLabel(c,dim,idx,positive){
+  if(dim==="s") return positive?("the mastermind is "+c.suspects[idx].code):(c.suspects[idx].code+" is not the mastermind");
+  if(dim==="p") return positive?("the plot is: "+c.plots[idx].toLowerCase()):("the plot is not: "+c.plots[idx].toLowerCase());
+  return positive?("the target city is "+c.cities[idx]):("the target is not "+c.cities[idx]);
+}
+
+/* ================= MODALS ================= */
+let modalLocked=false;
+function openModal(html,locked){
+  modalLocked=!!locked;
+  $("modal-box").innerHTML=html;
+  $("modal-root").classList.add("open");
+}
+function closeModal(){
+  $("modal-root").classList.remove("open");
+  $("modal-box").innerHTML="";
+  MG.active=null; MG.onDone=null;
+  if(G&&G.pendingCrisis&&!G.over){const c=G.pendingCrisis;G.pendingCrisis=null;showCrisis(c);}
+}
+
+/* ================= LEAD RUNNING ================= */
+const MG={active:null,onDone:null};
+function leadById(id){
+  if(id==="RAID")return {id:"RAID",title:"Raid: "+G.conspiracy.suspects[G.conspiracy.pinned.s].code,type:"ghost",stars:3,cost:200,intelReq:0,state:"open",payload:[],raid:true};
+  if(id.startsWith("RESCUE")){const aid=id.slice(7);const a=G.agents.find(x=>x.id===aid);return {id,title:"Extraction: Agent "+a.name,type:"ghost",stars:3,cost:150,intelReq:0,state:"open",payload:[],rescue:a};}
+  return G.conspiracy?G.conspiracy.leads.find(l=>l.id===id):null;
+}
+function startLead(id){
+  const l=leadById(id); if(!l)return;
+  if(G.opsLeft<1){toastModal("No operations left","The month is spent. End the month to reset your operational tempo.");return;}
+  const needIntel=(l.intelReq&&!l.paidIntel)?l.intelReq:0;
+  if(G.funds<l.cost||G.intel<needIntel){toastModal("Insufficient resources","This lead needs "+fm(l.cost)+(needIntel?" and "+needIntel+" intel":"")+".");return;}
+  const ready=G.agents.filter(a=>a.status==="ready"&&a.stam>0);
+  if(!ready.length){toastModal("No agents available","Everyone is exhausted or captured. End the month, or get people back.");return;}
+  const sk=GAME_SKILL[l.type];
+  openModal(`<h2>Assign an agent</h2>
+    <div class="sub">${esc(l.title)} — ${GAME_LABEL[l.type]} · relevant skill: ${sk.toUpperCase()}</div>
+    <div class="opt-list">${ready.map(a=>`
+      <button class="opt" data-action="pickagent" data-lead="${l.id}" data-agent="${a.id}">
+        <span style="flex:1"><span class="ol">${esc(a.name)}</span>
+        <span class="od">${sk.toUpperCase()} ${a.skills[sk]}/4 · stamina ${a.stam}/3${a.skills[sk]>=3?" · edge in this work":""}</span></span>
+      </button>`).join("")}</div>
+    <div class="actions"><button class="btn" data-action="closemodal">Cancel</button></div>`);
+}
+function launchOp(leadId,agentId){
+  const l=leadById(leadId); const a=G.agents.find(x=>x.id===agentId);
+  if(!l||!a)return;
+  const needIntel=(l.intelReq&&!l.paidIntel)?l.intelReq:0;
+  G.funds-=l.cost; G.intel-=needIntel; if(needIntel)l.paidIntel=true;
+  G.opsLeft--; a.stam--;
+  renderRail();
+  const cfg={stars:l.stars,era:G.era,agent:a,raid:!!l.raid};
+  MG.onDone=(success,info)=>finishOp(l,a,success,info||{});
+  if(l.type==="cipher")mgCipher(cfg);
+  else if(l.type==="trace")mgTrace(cfg);
+  else if(l.type==="asset")mgAsset(cfg);
+  else mgGhost(cfg);
+}
+function finishOp(l,a,success,info){
+  let lines=[];
+  if(success){
+    if(l.raid){resolveRaid();return;}
+    if(l.rescue){l.rescue.status="ready";l.rescue.stam=1;log("Agent "+l.rescue.name+" extracted.","good");lines.push('<div class="good">Agent '+esc(l.rescue.name)+' is out. Shaken, but out.</div>');}
+    else{
+      l.state="done";
+      const c=G.conspiracy;
+      l.payload.forEach(p=>applyClue(c,p));
+      if(l.stars===3){G.intel+=2;lines.push('<div class="data">+2 intel recovered in the process.</div>');}
+      lines.push('<div class="good">Lead closed. The board narrows:</div>');
+      l.payload.forEach(p=>{
+        if(p.kind==="confirm")lines.push('<div>• CONFIRMED — '+esc(clueLabel(c,p.dim,c.truth[p.dim],true))+'</div>');
+        else lines.push('<div>• '+esc(clueLabel(c,p.dim,p.idx,false))+'</div>');
+      });
+      log("Lead closed: "+l.title,"good");
+    }
+  }else{
+    if(info.captured){a.status="captured";G.tension=clamp(G.tension+5,0,100);
+      log("Agent "+a.name+" captured during "+l.title+".","warn");
+      lines.push('<div class="warn">Agent '+esc(a.name)+' was taken. Tension +5. An extraction lead is now on the board.</div>');}
+    else{G.tension=clamp(G.tension+3,0,100);
+      log("Operation failed: "+l.title,"warn");
+      lines.push('<div class="warn">The operation failed. Tension +3. The lead stays open if you want to try again.</div>');}
+    if(l.raid)G.conspiracy.raiding=false;
+  }
+  checkLoss();
+  renderAll();
+  openModal(`<h2>${success?"Operation complete":"Operation failed"}</h2>
+    <div class="sub">${esc(l.title)}</div>
+    <div class="report-lines">${lines.join("")}</div>
+    <div class="actions"><button class="btn primary" data-action="closemodal">Continue</button></div>`);
+}
+function resolveRaid(){
+  const c=G.conspiracy; c.raiding=false;
+  const right=c.pinned.s===c.truth.s;
+  if(right){
+    const bonus=(c.pinned.p===c.truth.p)&&(c.pinned.c===c.truth.c);
+    solveConspiracy(bonus);
+  }else{
+    const accused=c.suspects[c.pinned.s].code;
+    if(!c.struck.s.includes(c.pinned.s))c.struck.s.push(c.pinned.s);
+    c.pinned.s=null; c.escapes++; c.clock=Math.max(1,c.clock-1);
+    G.tension=clamp(G.tension+8,0,100);
+    log("The raid took the wrong man. "+accused+" was a cutout. Tension +8.","warn");
+    checkLoss(); renderAll();
+    openModal(`<h2>Wrong man</h2><div class="sub">The safehouse was real. The mastermind was not in it.</div>
+      <div class="report-lines"><div class="warn">${esc(accused)} was a cutout. The real mastermind burned a month of your clock and raised the temperature. Tension +8.</div>
+      <div class="good">At least the board narrows: ${esc(accused)} is cleared.</div></div>
+      <div class="actions"><button class="btn primary" data-action="closemodal">Continue</button></div>`);
+  }
+}
+function solveConspiracy(bonus){
+  const c=G.conspiracy;
+  const fr=600+G.era*100+(bonus?200:0), ir=4+G.era, tr=12+(bonus?5:0);
+  G.funds+=fr; G.intel+=ir; G.tension=clamp(G.tension-tr,0,100);
+  G.solvedEra=true; G.solvedTotal++;
+  log("Conspiracy broken. "+c.suspects[c.truth.s].code+" is in custody. "+c.org+" goes quiet.","good");
+  const finale=G.era===4;
+  G.conspiracy=null; G.between=2;
+  renderAll();
+  if(finale){winGame();return;}
+  openModal(`<h2>Conspiracy broken</h2>
+    <div class="sub">${esc(c.org)} — case closed</div>
+    <div class="report-lines">
+      <div class="good">${esc(c.suspects[c.truth.s].code)} taken alive. The plot dies with the plan.</div>
+      ${bonus?'<div class="good">Full picture bonus: you had the plot and the city exactly right.</div>':""}
+      <div class="data">+${fm(fr).slice(1)} funds, +${ir} intel, tension -${tr}.</div>
+      <div>The World desk can now authorize the next era when you are ready.</div>
+    </div>
+    <div class="actions"><button class="btn primary" data-action="closemodal">Continue</button></div>`);
+}
+function toastModal(t,b){openModal(`<h2>${esc(t)}</h2><div class="body"><p>${esc(b)}</p></div><div class="actions"><button class="btn primary" data-action="closemodal">Understood</button></div>`);}
+
+/* ================= MINIGAME: CIPHER ================= */
+const GLYPHS=["▲","●","■","◆","✚","✦","◐","★"];
+function mmFeedback(code,guess){
+  let exact=0; const cc={},gc={};
+  for(let i=0;i<code.length;i++){
+    if(code[i]===guess[i])exact++;
+    else{cc[code[i]]=(cc[code[i]]||0)+1;gc[guess[i]]=(gc[guess[i]]||0)+1;}
+  }
+  let partial=0;
+  for(const k in gc)partial+=Math.min(gc[k],cc[k]||0);
+  return {exact,partial};
+}
+function mgCipher(cfg){
+  const poolN=[0,6,6,7,8][cfg.era];
+  const len=cfg.stars===3?5:4;
+  const pool=GLYPHS.slice(0,poolN);
+  const code=Array.from({length:len},()=>pick(pool));
+  let tries=6+(cfg.agent.skills.cipher>=3?1:0)+(has("crypto")?1:0)+(has("cyber")?1:0);
+  let guess=[]; const hist=[];
+  const revealIdx=has("crypto")?ri(len):-1;
+  MG.active="cipher";
+  function render(){
+    openModal(`<div class="mg-head"><h2>Decrypt</h2><span class="mg-stat">attempts left <b>${tries}</b></span></div>
+      <div class="mg-note">Find the ${len}-symbol key. After each attempt: <span class="ci-fb"><span class="ex">■ exact</span> · <span class="pa">□ right symbol, wrong slot</span></span>${revealIdx>=0?` · Crypto Lab: position ${revealIdx+1} is <b>${code[revealIdx]}</b>`:""}</div>
+      <div class="ci-hist">${hist.map(h=>`<div class="ci-row">${h.g.map(x=>`<span class="ci-cell">${x}</span>`).join("")}<span class="ci-fb"><span class="ex">■ ${h.fb.exact}</span>&nbsp;&nbsp;<span class="pa">□ ${h.fb.partial}</span></span></div>`).join("")}</div>
+      <div class="ci-row">${Array.from({length:len},(_,i)=>`<span class="ci-cell guess">${guess[i]||""}</span>`).join("")}</div>
+      <div class="ci-pad">${pool.map(g=>`<button class="glyphbtn" data-action="ci-g" data-g="${g}">${g}</button>`).join("")}
+        <button class="btn" data-action="ci-back">⌫</button>
+        <button class="btn primary" data-action="ci-sub" ${guess.length===len?"":"disabled"}>Transmit</button></div>
+      <div class="actions"><button class="btn danger" data-action="mg-abort">Abort (fails the op)</button></div>`,true);
+  }
+  MG.handlers={
+    "ci-g":(el)=>{if(guess.length<len){guess.push(el.dataset.g);render();}},
+    "ci-back":()=>{guess.pop();render();},
+    "ci-sub":()=>{
+      const fb=mmFeedback(code,guess);
+      hist.push({g:guess.slice(),fb});
+      if(fb.exact===len){const cb=MG.onDone;closeModal();cb(true);return;}
+      tries--; guess=[];
+      if(tries<=0){const cb=MG.onDone;closeModal();cb(false,{});return;}
+      render();
+    }};
+  render();
+}
+
+/* ================= MINIGAME: TRACE ================= */
+/* tile: {t:'I'|'L'|'T', r:0..3}. Base openings, rotated clockwise. */
+const TILE_BASE={I:["N","S"],L:["N","E"],T:["W","N","E"]};
+const ROT=["N","E","S","W"];
+function tileOpen(tile){
+  return TILE_BASE[tile.t].map(d=>ROT[(ROT.indexOf(d)+tile.r)%4]);
+}
+function dirsToTile(dirs){ // exactly two dirs -> I or L with rotation
+  const s=dirs.slice().sort().join("");
+  if(s==="NS")return{t:"I",r:0}; if(s==="EW")return{t:"I",r:1};
+  if(s==="EN")return{t:"L",r:0}; if(s==="ES")return{t:"L",r:1};
+  if(s==="SW")return{t:"L",r:2}; if(s==="NW")return{t:"L",r:3};
+  return{t:"I",r:0};
+}
+function genTrace(Rr,Cc,rng){
+  const rr=rng||R; const _ri=n=>Math.floor(rr()*n);
+  const _shuf=a=>{const x=a.slice();for(let i=x.length-1;i>0;i--){const j=_ri(i+1);[x[i],x[j]]=[x[j],x[i]];}return x;};
+  const rs=_ri(Rr), re=_ri(Rr);
+  // DFS path from (rs,0) to (re,Cc-1)
+  const path=[]; const seen=new Set();
+  function dfs(r,c){
+    const key=r+","+c; if(seen.has(key))return false; seen.add(key); path.push([r,c]);
+    if(r===re&&c===Cc-1)return true;
+    const nbrs=_shuf([["N",-1,0],["S",1,0],["E",0,1],["W",0,-1]]);
+    // bias east
+    nbrs.sort((a,b)=>(a[0]==="E"?-_ri(3):0)-(b[0]==="E"?-_ri(3):0));
+    for(const[,dr,dc]of nbrs){
+      const nr=r+dr,nc=c+dc;
+      if(nr<0||nr>=Rr||nc<0||nc>=Cc)continue;
+      if(dfs(nr,nc))return true;
+    }
+    path.pop(); return false;
+  }
+  dfs(rs,0);
+  const grid=Array.from({length:Rr},()=>Array.from({length:Cc},()=>({t:pick2(rr,["I","L","T"]),r:_ri(4)})));
+  function pick2(rng2,a){return a[Math.floor(rng2()*a.length)];}
+  let scramble=0;
+  for(let i=0;i<path.length;i++){
+    const [r,c]=path[i]; const dirs=[];
+    if(i===0)dirs.push("W"); else dirs.push(dirTo(path[i],path[i-1]));
+    if(i===path.length-1)dirs.push("E"); else dirs.push(dirTo(path[i],path[i+1]));
+    const target=dirsToTile(dirs);
+    if(target.t==="I"){grid[r][c]={t:"I",r:(target.r+1)%2};scramble+=1;}
+    else{const k=1+_ri(3);grid[r][c]={t:"L",r:(target.r-k+4)%4};scramble+=k;}
+  }
+  return {grid,rs,re,scramble,path};
+}
+function dirTo(a,b){const dr=b[0]-a[0],dc=b[1]-a[1];if(dr===-1)return"N";if(dr===1)return"S";if(dc===1)return"E";return"W";}
+function traceConnected(grid,rs,re){
+  const Rr=grid.length,Cc=grid[0].length;
+  const start=grid[rs][0];
+  if(!tileOpen(start).includes("W"))return{win:false,live:new Set()};
+  const live=new Set([rs+",0"]); const q=[[rs,0]];
+  while(q.length){
+    const[r,c]=q.shift(); const ops=tileOpen(grid[r][c]);
+    for(const d of ops){
+      const[dr,dc]=DIRS[d]; const nr=r+dr,nc=c+dc;
+      if(nr<0||nr>=Rr||nc<0||nc>=Cc)continue;
+      const opp={N:"S",S:"N",E:"W",W:"E"}[d];
+      if(!tileOpen(grid[nr][nc]).includes(opp))continue;
+      const key=nr+","+nc;
+      if(!live.has(key)){live.add(key);q.push([nr,nc]);}
+    }
+  }
+  const win=live.has(re+","+(Cc-1))&&tileOpen(grid[re][Cc-1]).includes("E");
+  return{win,live};
+}
+function tileSVG(tile){
+  const o=tileOpen(tile); const cx=26,cy=26; let d="";
+  const pt={N:[26,2],S:[26,50],E:[50,26],W:[2,26]};
+  o.forEach(dir=>{d+=`M${cx} ${cy}L${pt[dir][0]} ${pt[dir][1]}`;});
+  return `<svg viewBox="0 0 52 52"><path d="${d}"/><circle cx="26" cy="26" r="3.5" fill="currentColor" stroke="none"/></svg>`;
+}
+function mgTrace(cfg){
+  const Rr=cfg.stars===3?5:4, Cc=cfg.stars===3?6:5;
+  const gen=genTrace(Rr,Cc);
+  const grid=gen.grid;
+  let moves=gen.scramble+2+(has("listen")?1:0)+(has("cyber")?1:0)+(cfg.agent.skills.tech>=3?1:0);
+  MG.active="trace";
+  function render(){
+    const conn=traceConnected(grid,gen.rs,gen.re);
+    openModal(`<div class="mg-head"><h2>Signal Trace</h2><span class="mg-stat">rotations left <b>${moves}</b></span></div>
+      <div class="mg-note">Click junctions to rotate them. Bring the line from SOURCE to TAP before you run out of rotations.</div>
+      <div class="tr-wrap"><span class="tr-side">SOURCE ▸ row ${gen.rs+1}</span>
+      <div class="tr-grid" style="grid-template-columns:repeat(${Cc},var(--ts,52px))">
+      ${grid.map((row,r)=>row.map((t,c)=>`<button class="tr-tile ${conn.live.has(r+","+c)?"live":""}" data-action="tr-rot" data-r="${r}" data-c="${c}">${tileSVG(t)}</button>`).join("")).join("")}
+      </div><span class="tr-side">row ${gen.re+1} ▸ TAP</span></div>
+      <div class="actions"><button class="btn danger" data-action="mg-abort">Abort (fails the op)</button></div>`,true);
+    if(conn.win){setTimeout(()=>{const cb=MG.onDone;closeModal();cb(true);},420);}
+  }
+  MG.handlers={"tr-rot":(el)=>{
+    if(moves<=0)return;
+    const r=+el.dataset.r,c=+el.dataset.c;
+    grid[r][c].r=(grid[r][c].r+1)%(grid[r][c].t==="I"?2:4);
+    moves--;
+    const conn=traceConnected(grid,gen.rs,gen.re);
+    if(conn.win){render();return;}
+    if(moves<=0){render();setTimeout(()=>{const cb=MG.onDone;closeModal();cb(false,{});},500);return;}
+    render();
+  }};
+  render();
+}
+
+/* ================= MINIGAME: GHOST ================= */
+function guardPosAt(path,t){
+  const L=path.length; if(L===1)return path[0];
+  const per=2*L-2; const p=t%per;
+  return path[p<L?p:per-p];
+}
+function guardFacing(path,t){
+  const a=guardPosAt(path,t),b=guardPosAt(path,t+1);
+  if(a[0]===b[0]&&a[1]===b[1])return "E";
+  if(b[0]<a[0])return"N"; if(b[0]>a[0])return"S"; if(b[1]>a[1])return"E"; return"W";
+}
+function visionAt(map,path,t,range){
+  const pos=guardPosAt(path,t), f=guardFacing(path,t), [dr,dc]=DIRS[f];
+  const cells=[];
+  for(let k=1;k<=range;k++){
+    const r=pos[0]+dr*k, c=pos[1]+dc*k;
+    if(map[r]===undefined||map[r][c]===undefined||map[r][c]==="#")break;
+    cells.push(r+","+c);
+  }
+  return {pos,cells};
+}
+function ghostCaught(map,guards,t,pr,pc,range){
+  for(const g of guards){
+    const v=visionAt(map,g,t,range);
+    if(v.pos[0]===pr&&v.pos[1]===pc)return true;
+    if(v.cells.includes(pr+","+pc))return true;
+  }
+  return false;
+}
+function mgGhost(cfg){
+  const m=GHOST_MAPS[ri(GHOST_MAPS.length)];
+  const map=m.rows.map(r=>r.split(""));
+  let er,ec,tr,tc;
+  map.forEach((row,r)=>row.forEach((ch,c)=>{if(ch==="E"){er=r;ec=c;}if(ch==="T"){tr=r;tc=c;}}));
+  const range=(cfg.raid||cfg.stars===3)?3:2;
+  let t=0, pr=er, pc=ec, hasIntel=false, budget=34, frozen=0;
+  let pings=(has("drone")?1:0)+(cfg.agent.skills.stealth>=3?1:0);
+  MG.active="ghost";
+  const label=cfg.raid?"Raid":"Infiltration";
+  function step(dr,dc){
+    const nr=pr+dr,nc=pc+dc;
+    if(map[nr]===undefined||map[nr][nc]===undefined||map[nr][nc]==="#")return;
+    move(nr,nc);
+  }
+  function move(nr,nc){
+    pr=nr;pc=nc;budget--;
+    if(frozen>0)frozen--; else t++;
+    if(pr===tr&&pc===tc)hasIntel=true;
+    if(ghostCaught(map,m.guards,t,pr,pc,range)){spotted();return;}
+    if(hasIntel&&pr===er&&pc===ec){const cb=MG.onDone;closeModal();cb(true);return;}
+    if(budget<=0){const cb=MG.onDone;closeModal();cb(false,{});return;}
+    render();
+  }
+  function spotted(){
+    const dodge=cfg.agent.skills.stealth*0.12;
+    const captured=R()>dodge+0.25;
+    const cb=MG.onDone;closeModal();cb(false,{captured});
+  }
+  function render(){
+    const visNow=new Set(), visNext=new Set(); const gpos=[];
+    m.guards.forEach(g=>{
+      const v=visionAt(map,g,t,range); v.cells.forEach(x=>visNow.add(x)); gpos.push({pos:v.pos,f:guardFacing(g,t)});
+      const v2=visionAt(map,g,frozen>0?t:t+1,range); v2.cells.forEach(x=>visNext.add(x)); visNext.add(v2.pos[0]+","+v2.pos[1]);
+    });
+    const routes=new Set(); m.guards.forEach(g=>g.forEach(p=>routes.add(p[0]+","+p[1])));
+    const arrows={N:"▲",S:"▼",E:"▶",W:"◀"};
+    openModal(`<div class="mg-head"><h2>${label}</h2>
+      <span class="mg-stat">moves <b>${budget}</b></span>
+      <span class="mg-stat">${hasIntel?'<b>objective secured — get back to the door</b>':"reach the ◆, then return to the door"}</span></div>
+      <div class="mg-note">Guards patrol on rails and see ${range} tiles ahead. Red is watched now; faint red is watched after your next move. Arrows, WASD, click an adjacent tile, or wait.</div>
+      <div class="gh-wrap"><div class="gh-grid" style="grid-template-columns:repeat(${map[0].length},var(--gs,38px))">
+      ${map.map((row,r)=>row.map((ch,c)=>{
+        const key=r+","+c;
+        let cls="gh-cell"+(ch==="#"?" wall":"");
+        if(ch!=="#"&&visNow.has(key))cls+=" vis"; else if(ch!=="#"&&visNext.has(key))cls+=" vis2";
+        let inner="";
+        if(ch!=="#"&&routes.has(key))inner+='<span class="rt">·</span>';
+        if(r===er&&c===ec)inner+='<span class="gh-ent"></span>';
+        if(r===tr&&c===tc&&!hasIntel)inner+='<span class="gh-tgt"></span>';
+        gpos.forEach(g=>{if(g.pos[0]===r&&g.pos[1]===c)inner+='<span class="gh-guard">'+arrows[g.f]+'</span>';});
+        if(pr===r&&pc===c)inner+='<span class="gh-player"></span>';
+        return `<div class="${cls}" data-action="gh-cell" data-r="${r}" data-c="${c}">${inner}</div>`;
+      }).join("")).join("")}</div>
+      <div class="gh-ctrl">
+        <div class="dpad">
+          <span></span><button class="btn" data-action="gh-mv" data-d="N">▲</button><span></span>
+          <button class="btn" data-action="gh-mv" data-d="W">◀</button><button class="btn" data-action="gh-mv" data-d="S">▼</button><button class="btn" data-action="gh-mv" data-d="E">▶</button>
+        </div>
+        <button class="btn" data-action="gh-wait">Wait</button>
+        <button class="btn" data-action="gh-ping" ${pings>0?"":"disabled"}>Ping (${pings}) — freeze guards 2 moves</button>
+        <button class="btn danger" data-action="mg-abort">Abort</button>
+      </div></div>`,true);
+  }
+  MG.handlers={
+    "gh-mv":(el)=>{const[dr,dc]=DIRS[el.dataset.d];step(dr,dc);},
+    "gh-wait":()=>{move(pr,pc);},
+    "gh-ping":()=>{if(pings>0){pings--;frozen=2;render();}},
+    "gh-cell":(el)=>{const r=+el.dataset.r,c=+el.dataset.c;
+      if(Math.abs(r-pr)+Math.abs(c-pc)===1&&map[r][c]!=="#")move(r,c);}
+  };
+  MG.keys=(e)=>{
+    const k=e.key.toLowerCase();
+    const km={arrowup:"N",w:"N",arrowdown:"S",s:"S",arrowleft:"W",a:"W",arrowright:"E",d:"E"};
+    if(km[k]){e.preventDefault();const[dr,dc]=DIRS[km[k]];step(dr,dc);}
+    if(k==="."){e.preventDefault();move(pr,pc);}
+  };
+  render();
+}
+
+/* ================= MINIGAME: ASSET ================= */
+function mgAsset(cfg){
+  const temper=pick(TEMPERS);
+  const tells=shuf(temper.tells);
+  let round=0, hits=0, missed=0;
+  const hint=cfg.agent.skills.people>=3;
+  const decoy=pick(TEMPERS.filter(t=>t.id!==temper.id)).id;
+  MG.active="asset";
+  function render(msg){
+    openModal(`<div class="mg-head"><h2>Asset Work</h2><span class="mg-stat">round <b>${round+1}</b>/3 · need 2 reads</span></div>
+      <div class="mg-note">Read the man across the table. Pick the approach his temperament answers to.${hint?` Your officer's read: <b>${temper.id}</b> or <b>${decoy}</b>.`:""}</div>
+      <div class="as-tell">${esc(tells[round])}</div>
+      ${msg?`<div class="as-track">${msg}</div>`:""}
+      <div class="as-opts">${APPROACHES.map(a=>`<button class="opt" data-action="as-pick" data-a="${a.id}"><span style="flex:1"><span class="ol">${a.l}</span><span class="od">${a.d}</span></span></button>`).join("")}</div>
+      <div class="as-track">reads: <span class="good">${"●".repeat(hits)}</span><span class="warn">${"○".repeat(missed)}</span></div>
+      <div class="actions"><button class="btn danger" data-action="mg-abort">Walk away (fails the op)</button></div>`,true);
+  }
+  MG.handlers={"as-pick":(el)=>{
+    const right=el.dataset.a===temper.right;
+    if(right)hits++; else missed++;
+    round++;
+    if(hits>=2){const cb=MG.onDone;closeModal();cb(true);return;}
+    if(missed>=2||round>=3){const cb=MG.onDone;closeModal();cb(false,{});return;}
+    render(right?'<span class="good">He softens. Keep going.</span>':'<span class="warn">Wrong note. He closes up a little.</span>');
+  }};
+  render();
+}
+
+/* ================= CRISES ================= */
+function queueCrisis(){
+  const pool=CRISES[G.era]; const seen=G.seenCrises[G.era];
+  let idx=shuf([...pool.keys()]).find(i=>!seen.includes(i));
+  if(idx===undefined){G.seenCrises[G.era]=[];idx=ri(pool.length);}
+  G.seenCrises[G.era].push(idx);
+  G.pendingCrisis=pool[idx];
+}
+function showCrisis(c){
+  openModal(`<h2>Crisis: ${esc(c.t)}</h2><div class="sub">The desk needs a decision before the month closes.</div>
+    <div class="body"><p>${esc(c.b)}</p></div>
+    <div class="opt-list">${c.o.map((o,i)=>`<button class="opt" data-action="crisis-opt" data-i="${i}"><span style="flex:1"><span class="ol">${esc(o.l)}</span><span class="od">${esc(o.d)}</span></span></button>`).join("")}</div>`,true);
+  MG.crisis=c;
+}
+function resolveCrisis(i){
+  const c=MG.crisis; MG.crisis=null;
+  const o=c.o[i]; let lines=[];
+  const apply=(fx)=>{
+    if(fx.funds){G.funds=Math.max(0,G.funds+fx.funds);}
+    if(fx.intel){G.intel=Math.max(0,G.intel+fx.intel);}
+    if(fx.tension){G.tension=clamp(G.tension+fx.tension,0,100);}
+  };
+  if(o.fx)apply(o.fx);
+  if(o.risk){
+    if(R()<o.risk.p){apply(o.risk.good);lines.push('<div class="good">'+esc(o.risk.good.txt)+'</div>');}
+    else{apply(o.risk.bad);lines.push('<div class="warn">'+esc(o.risk.bad.txt)+'</div>');}
+  }
+  log("Crisis handled: "+c.t+" — "+o.l,"");
+  checkLoss(); renderAll();
+  if(G.over)return;
+  openModal(`<h2>${esc(c.t)}</h2><div class="sub">decision logged</div>
+    <div class="report-lines"><div>${esc(o.l)}.</div>${lines.join("")}</div>
+    <div class="actions"><button class="btn primary" data-action="closemodal">Continue</button></div>`);
+}
+
+/* ================= TURN ENGINE ================= */
+function endMonth(){
+  if(G.over)return;
+  const rep=[];
+  G.monthAbs++; G.monthInEra++;
+  // income
+  let f=0,iv=0;
+  if(has("field"))f+=120; if(has("listen"))iv+=2; if(has("crypto"))iv+=1;
+  if(has("cyber"))iv+=3; if(has("ailab"))iv+=2;
+  G.funds+=f; G.intel+=iv;
+  if(f||iv)rep.push('<div class="data">Income: +'+fm(f).slice(1)+' funds, +'+iv+' intel.</div>');
+  if(has("back")){G.tension=clamp(G.tension-2,0,100);rep.push('<div class="good">Back-Channel Desk: tension -2.</div>');}
+  // recovery
+  G.agents.forEach(a=>{if(a.status==="ready")a.stam=clamp(a.stam+(has("safe")?2:1),0,3);});
+  if(has("train")){const tired=G.agents.find(a=>a.status==="ready"&&a.stam<3);if(tired){tired.stam=3;rep.push('<div>Training Center: '+esc(tired.name)+' reports back at full strength.</div>');}}
+  // conspiracy clock
+  if(G.conspiracy){
+    G.tension=clamp(G.tension+1,0,100);
+    G.conspiracy.clock--;
+    if(G.conspiracy.clock<=0){plotExecutes(rep);}
+    else rep.push('<div class="warn">'+esc(G.conspiracy.org)+' plot clock: '+G.conspiracy.clock+' month'+(G.conspiracy.clock===1?"":"s")+' remain.</div>');
+  }else if(G.between>0){
+    G.between--;
+    if(G.between<=0&&G.era<=4&&!G.over){spawnConspiracy();rep.push('<div class="warn">New case opened: '+esc(G.conspiracy.org)+'.</div>');}
+    else rep.push('<div>The desks are quiet. Enjoy it while it lasts.</div>');
+  }
+  // crisis
+  G.crisisIn--;
+  if(G.crisisIn<=0){G.crisisIn=3+ri(2);queueCrisis();rep.push('<div class="warn">A crisis is waiting on your desk.</div>');}
+  G.opsLeft=opsMax();
+  checkLoss();
+  renderAll();
+  if(G.over)return;
+  openModal(`<h2>Monthly report</h2><div class="sub">${dateLabel()}</div>
+    <div class="report-lines">${rep.join("")||"<div>Nothing to report. Suspicious.</div>"}</div>
+    <div class="actions"><button class="btn primary" data-action="closemodal">Continue</button></div>`);
+}
+function plotExecutes(rep){
+  const c=G.conspiracy;
+  if(G.era===4){G.conspiracy=null;loseGame("finale",c);return;}
+  G.tension=clamp(G.tension+22,0,100);
+  G.funds=Math.max(0,G.funds-300); G.intel=Math.max(0,G.intel-3);
+  G.executed++;
+  log(c.plots[c.truth.p]+" — carried out in "+c.cities[c.truth.c]+". You were too slow.","warn");
+  rep.push('<div class="warn">THE PLOT EXECUTED: '+esc(c.plots[c.truth.p])+' in '+esc(c.cities[c.truth.c])+'. Tension +22, budget and standing take the hit. '+esc(c.org)+' will try again.</div>');
+  G.conspiracy=null; G.between=1;
+}
+function checkLoss(){
+  if(G.over)return;
+  if(G.tension>=100)loseGame("war");
+}
+function advanceEra(){
+  const cost=eraCost();
+  if(!G.solvedEra||G.era>=4||G.funds<cost.f||G.intel<cost.i)return;
+  G.funds-=cost.f; G.intel-=cost.i;
+  G.era++; G.monthInEra=0; G.solvedEra=false; G.between=1; G.conspiracy=null;
+  document.body.dataset.era=G.era;
+  log("The Directorate modernizes. Era "+ERAS[G.era].n+": the "+ERAS[G.era].name+".","mo");
+  const m=MONTAGE[G.era];
+  $("overlay").innerHTML=`<div class="montage"><div class="years">${m.y}</div><p>${esc(m.p)}</p>
+    <button class="btn primary big" style="width:auto" data-action="montage-done">Open the ${esc(ERAS[G.era].name)} desk</button></div>`;
+  $("overlay").style.display="flex";
+  renderAll();
+}
+function eraCost(){return [null,null,{f:800,i:6},{f:1200,i:10},{f:1600,i:14}][G.era+1]||{f:0,i:0};}
+
+/* ================= END STATES ================= */
+function score(){
+  return Math.max(0,Math.round(10000 - G.monthAbs*35 - G.tension*25
+    + G.agents.filter(a=>a.status==="ready").length*250 + G.funds*0.25 + G.intel*15
+    + G.solvedTotal*600 - G.executed*400));
+}
+function grade(s){return s>=9200?"S":s>=8200?"A":s>=7000?"B":s>=5500?"C":"D";}
+function winGame(){
+  G.over=true; G.win=true;
+  const s=score();
+  $("overlay").innerHTML=`<div class="title-box">
+    <div class="tag">CASE CLOSED — ${dateLabel()}</div>
+    <h1>The Quiet<br>Century</h1>
+    <div class="rule"></div>
+    <p style="color:var(--text);max-width:460px;margin:0 auto;">${esc(G.opname)} ends where it should: in a filing cabinet nobody will ever read. Four eras, ${G.solvedTotal} conspiracies broken, and the world never knew how close it came.</p>
+    <div class="grade">${grade(s)}</div>
+    <div class="endstats">score ${s.toLocaleString()}<br>months in service: ${G.monthAbs} · peak tension survived: ${G.tension}<br>conspiracies broken: ${G.solvedTotal} · plots that got through: ${G.executed}</div>
+    <div class="rule"></div>
+    <button class="btn primary big" style="width:auto" data-action="restart">Run it again</button>
+  </div>`;
+  $("overlay").style.display="flex";
+}
+function loseGame(kind,c){
+  G.over=true;
+  const s=score();
+  let h,p;
+  if(kind==="war"){h="Open War";p="The temperature you were hired to manage finally boiled over. Somewhere a hotline rings and rings. The Directorate's last act is shredding.";}
+  else{h="Prometheus Completes";p=(c?esc(c.plots[c.truth.p]):"The final plot")+" went off exactly on schedule. The machine age arrives without you, and it is not asking permission.";}
+  $("overlay").innerHTML=`<div class="title-box">
+    <div class="tag">FILE CLOSED — ${dateLabel()}</div>
+    <h1>${h}</h1>
+    <div class="rule"></div>
+    <p style="color:var(--text);max-width:460px;margin:0 auto;">${p}</p>
+    <div class="grade">${grade(s)}</div>
+    <div class="endstats">score ${s.toLocaleString()} · months in service: ${G.monthAbs}<br>conspiracies broken: ${G.solvedTotal} · plots executed: ${G.executed}</div>
+    <div class="rule"></div>
+    <button class="btn primary big" style="width:auto" data-action="restart">Take the desk again</button>
+  </div>`;
+  $("overlay").style.display="flex";
+}
+
+/* ================= RENDER ================= */
+function renderTop(){
+  $("hdr-op").textContent=G.opname;
+  $("hdr-date").textContent=dateLabel();
+  $("hdr-era").textContent="ERA "+ERAS[G.era].n+" — "+ERAS[G.era].name.toUpperCase();
+}
+function renderRail(){
+  $("r-funds").textContent=fm(G.funds);
+  $("r-intel").textContent="◆ "+G.intel;
+  $("r-ops").textContent=G.opsLeft+" / "+opsMax();
+  $("r-tension").textContent=G.tension;
+  $("tension-fill").style.width=G.tension+"%";
+  $("tension-meter").classList.toggle("hot",G.tension>=70);
+  $("endmonth").disabled=!!G.over;
+}
+function stars(n){return "★".repeat(n)+"☆".repeat(3-n);}
+function renderCase(){
+  const c=G.conspiracy;
+  const rescues=G.agents.filter(a=>a.status==="captured").map(a=>
+    `<div class="card lead"><span class="stars">★★★</span><div class="t"><div class="name">Extraction: Agent ${esc(a.name)}</div>
+     <div class="meta">INFILTRATION · $150 · get your officer back</div></div>
+     <button class="btn" data-action="runlead" data-lead="RESCUE-${a.id}">Run</button></div>`).join("");
+  if(!c){
+    return `<div class="card"><div class="sect-title">Quiet period</div>
+      <p>No active case. The next one is ${G.between<=1?"already forming":"forming"}. Build, recruit, and breathe.</p>
+      ${G.solvedEra&&G.era<4?'<p class="hint" style="margin-top:8px">The World desk can authorize the next era.</p>':""}</div>
+      ${rescues?'<div class="sect-title" style="margin-top:16px">Personnel matters</div><div class="leads-list">'+rescues+'</div>':""}`;
+  }
+  const dims=[["s","Mastermind",c.suspects.map(s=>({l:s.code,sub:s.blurb})),5],
+              ["p","The plot",c.plots.map(p=>({l:p,sub:""})),4],
+              ["c","Target city",c.cities.map(x=>({l:x,sub:""})),4]];
+  const board=dims.map(([d,title,items])=>`<div class="board-col"><h3>${title}${c.confirmed[d]?' <span class="stamp ok" style="font-size:10px">confirmed</span>':""}</h3>
+    ${items.map((it,i)=>{
+      const struck=c.struck[d].includes(i), pinned=c.pinned[d]===i;
+      return `<button class="chip ${struck?"struck":""} ${pinned?(c.confirmed[d]?"confirmed":"pinned"):""}" data-action="pin" data-dim="${d}" data-idx="${i}" ${struck?"disabled":""}>
+        <span class="pin-dot"></span><span>${esc(it.l)}${it.sub?`<span class="sub">${esc(it.sub)}</span>`:""}</span></button>`;
+    }).join("")}</div>`).join("");
+  const leads=c.leads.filter(l=>l.state==="open").map(l=>{
+    const intelTag=l.intelReq&&!l.paidIntel?` + ◆${l.intelReq}`:"";
+    return `<div class="card lead"><span class="stars">${stars(l.stars)}</span>
+      <div class="t"><div class="name">${esc(l.title)}</div>
+      <div class="meta">${GAME_LABEL[l.type]} · ${fm(l.cost)}${intelTag} · yields ${l.payload.length} clue${l.payload.length===1?"":"s"}</div></div>
+      <button class="btn" data-action="runlead" data-lead="${l.id}">Run</button></div>`;}).join("");
+  const done=c.leads.filter(l=>l.state==="done").length;
+  const pinsSet=c.pinned.s!==null&&c.pinned.p!==null&&c.pinned.c!==null;
+  const canRaid=pinsSet&&c.clues>=3;
+  return `<div class="case-head"><h2>${esc(c.org)}</h2>
+      <span class="clock">PLOT CLOCK <b>${c.clock}</b> / ${c.clockMax} months</span>
+      <span class="kv">clues worked: <b>${c.clues}</b> · leads closed: <b>${done}/8</b></span></div>
+    <div class="board">${board}</div>
+    <div class="card raidbox"><div class="sect-title">Launch the raid</div>
+      <div class="inner"><div style="flex:1;min-width:220px" class="hint">Pin one name, one plot, one city on the board, then send a team. You need at least 3 clues worked. Get the mastermind right and the case closes. Get it wrong and he burns your clock.</div>
+      <button class="btn primary" data-action="raid" ${canRaid&&!G.over?"":"disabled"}>Raid — ${fm(200)}</button></div></div>
+    <div class="sect-title" style="margin-top:16px">Open leads</div>
+    <div class="leads-list">${leads||'<div class="hint">Every lead is closed. Trust the board and raid.</div>'}${rescues}</div>`;
+}
+function bIcon(b){return `<span class="bicon"><svg viewBox="0 0 32 32"><path d="${b.icon}"/></svg></span>`;}
+function renderHQ(){
+  const slots=[];
+  G.built.forEach(id=>{const b=BLD[id];slots.push(`<div class="slot built">${bIcon(b)}<span class="bname">${b.name}</span><span class="byield">${esc(b.desc.split(".")[0])}</span></div>`);});
+  for(let i=G.built.length;i<G.slots;i++)slots.push(`<div class="slot">vacant<br>floor ${i+1}</div>`);
+  const avail=BUILDINGS.filter(b=>b.tier<=G.era&&!G.built.includes(b.id));
+  const full=G.built.length>=G.slots;
+  const rows=avail.map(b=>`<div class="card">${bIcon(b)}<div class="t"><div class="name">${b.name} <span class="tierlbl">ERA ${ERAS[b.tier].n}+</span></div><div class="desc">${esc(b.desc)}</div></div>
+    <button class="btn" data-action="build" data-b="${b.id}" ${G.funds>=b.cost&&!full?"":"disabled"}>Build ${fm(b.cost)}</button></div>`).join("");
+  return `<div class="sect-title">Headquarters — ${G.built.length}/${G.slots} floors occupied</div>
+    <div class="hq-grid">${slots.join("")}</div>
+    <div class="sect-title">Construction${full?" — no vacant floors":""}</div>
+    <div class="buildrow">${rows||'<div class="hint">Everything this era offers is already built. Later eras unlock more.</div>'}</div>`;
+}
+function renderRoster(){
+  const cards=G.agents.map(a=>`<div class="card agent ${a.status==="captured"?"captured":""}">
+    <div class="aname">${esc(a.name)}</div>
+    ${a.status==="captured"?'<div style="margin:6px 0"><span class="stamp">captured</span></div><div class="hint">An extraction lead is on the Case desk.</div>':`
+    <div class="skills"><span>CIPHER <b>${a.skills.cipher}</b>/4</span><span>TECH <b>${a.skills.tech}</b>/4</span><span>STEALTH <b>${a.skills.stealth}</b>/4</span><span>PEOPLE <b>${a.skills.people}</b>/4</span></div>
+    <div class="stam">${[0,1,2].map(i=>`<i class="${i<a.stam?"on":""}"></i>`).join("")}</div>`}
+  </div>`).join("");
+  const canRecruit=G.agents.length<agentCap()&&G.funds>=250;
+  return `<div class="sect-title">Officers — ${G.agents.length}/${agentCap()} slots${has("safe")?"":" (a Safe House adds two)"}</div>
+    <div class="agents">${cards}</div>
+    <div class="card" style="display:flex;align-items:center;gap:12px"><div style="flex:1"><b>Recruit an officer</b><div class="hint">Skill in an operation's discipline earns extra attempts, moves, or reads.${has("train")?" Training Center: recruits arrive sharper.":""}</div></div>
+    <button class="btn" data-action="recruit" ${canRecruit?"":"disabled"}>Recruit ${fm(250)}</button></div>`;
+}
+function renderWorld(){
+  const cost=eraCost();
+  const canAdv=G.solvedEra&&G.era<4;
+  const eraCard=G.era<4?`<div class="card"><div class="sect-title">Next era: ${ERAS[G.era+1].name}</div>
+      <p class="hint">Break this era's conspiracy, then modernize. New construction, new tradecraft, a new decade's problems. Cost: <b class="mono">${fm(cost.f)} + ◆${cost.i}</b>.</p>
+      <div class="actions" style="justify-content:flex-start"><button class="btn primary" data-action="advance" ${canAdv&&G.funds>=cost.f&&G.intel>=cost.i?"":"disabled"}>Advance to Era ${ERAS[G.era+1].n} — ${fm(cost.f)} + ◆${cost.i}</button></div>
+      ${!G.solvedEra?'<div class="hint">Requires a broken conspiracy this era.</div>':""}</div>`
+    :`<div class="card"><div class="sect-title">The Machine Age</div><p class="hint">This is the last era. Break the PROMETHEUS-scale plot and the run is won. Let it execute and there is no report to file.</p></div>`;
+  return `<div class="world-grid">
+    <div>${eraCard}
+      <div class="card" style="margin-top:14px"><div class="sect-title">Global tension</div>
+        <p class="hint">At 100, the quiet work fails and the loud kind begins: the run ends. Failed operations, captured officers, and executed plots push it up. Solved cases, good crisis calls, and the Back-Channel Desk pull it down.</p></div>
+      <div class="card" style="margin-top:14px"><div class="sect-title">Standing</div>
+        <div class="kv">conspiracies broken <b>${G.solvedTotal}</b> · plots executed <b>${G.executed}</b> · months in service <b>${G.monthAbs}</b><br>current score <b>${score().toLocaleString()}</b> · difficulty <b>${G.diff==="vet"?"DEEP COVER":"FIELD OFFICE"}</b></div>
+        <div class="actions" style="justify-content:flex-start"><button class="btn" data-action="manual">Operations manual</button></div></div>
+    </div>
+    <div class="card"><div class="sect-title">Cable log</div>
+      <div class="log">${G.log.map(l=>`<div><span class="mo">${l.t}</span> — <span class="${l.cls}">${esc(l.msg)}</span></div>`).join("")}</div></div>
+  </div>`;
+}
+function renderContent(){
+  const map={case:renderCase,hq:renderHQ,roster:renderRoster,world:renderWorld};
+  $("content").innerHTML=map[G.tab]();
+  document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.tab===G.tab));
+}
+function renderAll(){if(!G)return;renderTop();renderRail();renderContent();}
+
+/* ================= TITLE / MANUAL ================= */
+let pendingDiff="field";
+function showTitle(){
+  $("overlay").innerHTML=`<div class="title-box">
+    <div class="tag">An intelligence strategy game</div>
+    <h1>Directorate</h1>
+    <div class="tag" style="margin-top:6px">Fifty years of quiet work</div>
+    <div class="rule"></div>
+    <p class="lineage">Run a covert agency from 1972 to the machine age. Build the headquarters, work the leads, read the board, and raid before the clock runs out. Raised on Covert Action, SimCity, Conflict, and Age of Empires II.</p>
+    <div class="diff-row">
+      <button class="diff ${pendingDiff==="field"?"sel":""}" data-action="diff" data-d="field"><div class="dn">Field Office</div><div class="dd">The standard posting</div></button>
+      <button class="diff ${pendingDiff==="vet"?"sel":""}" data-action="diff" data-d="vet"><div class="dn">Deep Cover</div><div class="dd">Thin budget, hot world</div></button>
+    </div>
+    <button class="btn primary big" style="width:auto;margin-top:6px" data-action="begin">Take the desk</button>
+    <div style="margin-top:14px"><button class="btn" data-action="manual">Operations manual</button></div>
+  </div>`;
+  $("overlay").style.display="flex";
+}
+function showManual(){
+  openModal(`<h2>Operations manual</h2><div class="sub">read once, then trust the desk</div>
+  <div class="body">
+  <p><b>The month.</b> You get a few operations per month. Spend them running leads, then end the month to collect income, tick the plot clock, and reset. A conspiracy left alone executes its plot.</p>
+  <p><b>Leads and the board.</b> Every lead is a short field problem: decrypt a key, splice a line, walk a floor plan, read a man. Success strikes suspects, plots, or cities off the case board. Pin your answer in each column and raid. Right mastermind: case closed. Wrong one: he burns your clock and the world gets hotter.</p>
+  <p><b>Headquarters.</b> Floors are scarce. Buildings pay income, ease specific minigames, or bend the rules. Officers bring skills that do the same. Bad at a puzzle? Build and staff your way around it.</p>
+  <p><b>Eras.</b> Break a conspiracy, pay the modernization bill, and jump a decade or two. New buildings, new plots, new palette on the walls. The fourth era's plot is final in both senses.</p>
+  <p><b>Tension.</b> The Conflict rule: the game is lost in the world, not the office. Keep it under 100 or the run ends.</p>
+  </div>
+  <div class="actions"><button class="btn primary" data-action="closemodal">Back</button></div>`);
+}
+
+/* ================= EVENTS + BOOT ================= */
+function onAction(el){
+  const a=el.dataset.action;
+  if(MG.active&&MG.handlers&&MG.handlers[a]){MG.handlers[a](el);return;}
+  switch(a){
+    case "tab": G.tab=el.dataset.tab; renderContent(); break;
+    case "endmonth": endMonth(); break;
+    case "closemodal": closeModal(); break;
+    case "runlead": startLead(el.dataset.lead); break;
+    case "pickagent": {const l=el.dataset.lead,ag=el.dataset.agent;closeModal();launchOp(l,ag);} break;
+    case "pin": {const c=G.conspiracy;if(!c)break;const d=el.dataset.dim,i=+el.dataset.idx;
+      if(c.struck[d].includes(i))break;
+      c.pinned[d]=c.pinned[d]===i?null:i; renderContent();} break;
+    case "raid": {const c=G.conspiracy;
+      if(c&&c.pinned.s!==null&&c.pinned.p!==null&&c.pinned.c!==null&&c.clues>=3)startLead("RAID");} break;
+    case "build": {const b=BLD[el.dataset.b];
+      if(b&&G.funds>=b.cost&&G.built.length<G.slots&&!G.built.includes(b.id)){G.funds-=b.cost;G.built.push(b.id);log(b.name+" comes online.","mo");renderAll();}} break;
+    case "recruit": if(G.agents.length<agentCap()&&G.funds>=250){G.funds-=250;const na=newAgent(has("train"));G.agents.push(na);log("Officer "+na.name+" joins the Directorate.","mo");renderAll();} break;
+    case "advance": advanceEra(); break;
+    case "montage-done": $("overlay").style.display="none"; renderAll(); break;
+    case "diff": pendingDiff=el.dataset.d; showTitle(); break;
+    case "begin": newGame(pendingDiff); document.body.dataset.era="1"; $("overlay").style.display="none"; renderAll(); break;
+    case "manual": showManual(); break;
+    case "crisis-opt": resolveCrisis(+el.dataset.i); break;
+    case "mg-abort": {const cb=MG.onDone;closeModal();if(cb)cb(false,{aborted:true});} break;
+    case "restart": showTitle(); break;
+  }
+}
+function boot(){
+  document.addEventListener("click",(e)=>{
+    const el=e.target.closest("[data-action]");
+    if(el)onAction(el);
+    else if(e.target.id==="modal-root"&&!modalLocked)closeModal();
+  });
+  document.addEventListener("keydown",(e)=>{
+    if(MG.active==="ghost"&&MG.keys&&$("modal-root").classList.contains("open"))MG.keys(e);
+    else if(e.key==="Escape"&&!modalLocked&&$("modal-root").classList.contains("open"))closeModal();
+  });
+  showTitle();
+}
+if(typeof document!=="undefined"&&document.getElementById){
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);
+  else boot();
+}
+/* headless exports for testing */
+globalThis.DLOGIC={mulberry32,mmFeedback,genTrace,traceConnected,tileOpen,dirsToTile,GHOST_MAPS,guardPosAt,guardFacing,visionAt,ghostCaught,genConspiracy,DIRS};
+Object.defineProperty(globalThis,"DG",{get:()=>G,configurable:true});
+</script>
+</body>
+</html>
