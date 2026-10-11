@@ -7,7 +7,7 @@ A small static site. No build step, no framework, no hosting bill.
 - `research.html` : scholars funded, papers that acknowledge the work, and initiatives.
 - `media.html` : photos, videos (thumbnails load from YouTube), and the podcast.
 - `lab.html` : the Lab. Atlas, Legacy Project detail, simulator, jobs list, kitchen, and the games.
-- `assets/site.css` : shared styles for the four main pages. Fonts are Funnel Display and Instrument Sans.
+- `assets/site.css` : shared styles for the four main pages. Fonts are Montserrat and Instrument Sans.
 - `herd-mentality/`, `grove/`, `directorate.html`, `atlas.html` : the Lab exhibits.
 
 ## Launch it free (GitHub Pages, ~20 minutes)
