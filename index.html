@@ -203,6 +203,7 @@ details.more .rows li:first-child{border-top:0}
 .lab-card{display:grid;grid-template-columns:100px 1fr auto;gap:20px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--dark-line);color:var(--dark-text);text-decoration:none;transition:padding-left .2s ease}
 .lab-card:hover{color:#fff;padding-left:14px;padding-right:14px;background:var(--dark-2)}
 .lab-card:hover h3{color:var(--dark-link)}
+.lab-card .ext{color:var(--dark-warm)}
 .lab-card .n{font-family:'Archivo',sans-serif;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dark-soft)}
 .lab-card h3{font-family:'Fraunces',serif;font-weight:600;font-size:20px;color:var(--dark-text);transition:color .18s ease}
 .lab-card p{font-size:14.5px;color:var(--dark-soft);margin-top:3px}
@@ -449,7 +450,7 @@ footer .fine{font-family:'Archivo',sans-serif;font-size:12.5px;color:var(--dark-
   <div class="wrap">
     <span class="snum">03</span>
     <h2 class="sec">Watch &amp; listen</h2>
-    <p class="sec-intro">Talks, forums, and interviews. In 2026 I interviewed <strong>U.S. Senator John Hickenlooper</strong> for the national relaunch of the Kauffman Indicators, and built the briefing and interview protocol for <strong>former SBA Administrator Isabel Guzman</strong>.</p>
+    <p class="sec-intro">Talks, forums, and interviews. In 2026 I interviewed <strong>U.S. Senator John Hickenlooper</strong> on camera for the national relaunch of the Kauffman Indicators of Entrepreneurship, and built the briefing and interview protocol for <strong>former SBA Administrator Isabel Guzman</strong>. The resulting video opened the launch event as its keynote.</p>
  
     <div class="media-photos">
       <figure class="figure">
@@ -463,7 +464,7 @@ footer .fine{font-family:'Archivo',sans-serif;font-size:12.5px;color:var(--dark-
     </div>
  
     <ul class="rows">
-      <li><a class="row kinded" href="https://indicators.kauffman.org/" target="_blank" rel="noopener"><span class="kind">Interview</span><span><span class="t">Kauffman Indicators national relaunch, with Sen. John Hickenlooper</span><span class="v">Video forthcoming.</span></span><span class="yr">2026</span></a></li>
+      <li><a class="row kinded" href="https://indicators.kauffman.org/" target="_blank" rel="noopener"><span class="kind">Interview</span><span><span class="t">Kauffman Indicators national relaunch, with Sen. John Hickenlooper</span><span class="v">The keynote video for the launch. I led the interview.</span></span><span class="yr">2026</span></a></li>
       <li><a class="row kinded" href="https://open.spotify.com/episode/59IzbZW7csMxTFhJtYgSD5" target="_blank" rel="noopener"><span class="kind">Podcast</span><span><span class="t">The5 Podcast: AI and Nonprofits</span><span class="v">Audio, so the hand gestures were wasted.</span></span><span class="yr">Spotify · 2024</span></a></li>
       <li><a class="row kinded" href="https://www.youtube.com/watch?v=8ybt7uZMFhQ" target="_blank" rel="noopener"><span class="kind">Talk</span><span><span class="t">The Future of Work, Entrepreneurship, and Access to Opportunity</span><span class="v">A solo presentation for Missouri Humanities.</span></span><span class="yr">Missouri Humanities · 2021</span></a></li>
       <li><a class="row kinded" href="https://www.youtube.com/watch?v=Xe8B0OR6XPQ" target="_blank" rel="noopener"><span class="kind">Moderator</span><span><span class="t">Leaders Talk Economic Growth and Development, ESHIP Summit</span><span class="v">Moderated conversation.</span></span><span class="yr">Kauffman · 2019</span></a></li>
@@ -488,23 +489,28 @@ footer .fine{font-family:'Archivo',sans-serif;font-size:12.5px;color:var(--dark-
     <h2>The Lab: <em>where I test</em> what I write about.</h2>
     <p>Writing about AI and work is one thing. Building things with AI and seeing what holds up is a different thing. Everything below is a prototype and should be treated as such. This website is one of the exhibits.</p>
     <div class="lab-cards">
+      <a class="lab-card" href="herd-mentality/">
+        <span class="n">New · Exhibit G</span>
+        <div><h3>Herd Mentality</h3><p>Laser-horned unicorns defend a rainbow bridge from the Grumps. Shoot gates to grow the herd. Endless levels, plays on a phone.</p></div>
+        <span class="status">Live</span>
+      </a>
+      <a class="lab-card" href="lab.html#legacy">
+        <span class="n">Exhibit B</span>
+        <div><h3>The Legacy Project</h3><p>I led 46 volunteers in turning 60 years of Kauffman history into an AI-searchable archive. <span class="ext">The Foundation's story on it is live.</span></p></div>
+        <span class="status">Shipped · in production</span>
+      </a>
       <a class="lab-card" href="atlas.html">
         <span class="n">Exhibit A</span>
         <div><h3>The AI Diffusion Atlas</h3><p>Who is actually adopting AI: businesses, workers, states. Built on published Census, Fed, and Anthropic data.</p></div>
         <span class="status">Prototype · verification pending</span>
       </a>
-      <a class="lab-card" href="lab.html#legacy">
-        <span class="n">Exhibit B</span>
-        <div><h3>The Legacy Project</h3><p>46 volunteers, 60 years of Kauffman history, and an AI tool built for real needs.</p></div>
-        <span class="status">Shipped · in production</span>
-      </a>
       <a class="lab-card" href="directorate.html">
-        <span class="n">Exhibit C</span>
+        <span class="n">Exhibit I</span>
         <div><h3>Directorate</h3><p>Run a covert agency from the Cold War to now. Built out of the games I loved as a kid: Covert Action, SimCity, Conflict, Age of Empires II.</p></div>
         <span class="status">Live</span>
       </a>
       <a class="lab-card" href="grove/">
-        <span class="n">Exhibit D</span>
+        <span class="n">Exhibit H</span>
         <div><h3>Math Grove</h3><p>A math game built for my daughters to use this summer, open to anyone. They said it was "kinda neat".</p></div>
         <span class="status">Live</span>
       </a>
@@ -523,7 +529,7 @@ footer .fine{font-family:'Archivo',sans-serif;font-size:12.5px;color:var(--dark-
       <div>
         <p>I grew up in <strong>Nevada, Missouri</strong> (pronounced Knee-vay-duh because it's a rural Missouri town!).</p>
         <p>I studied economics at Truman State, then spent five years in market research and managing healthcare certification accounts. Two years as <strong>Director of Research at the Kansas City Business Journal</strong>.</p>
-        <p>The rest of my career has been at the <strong>Ewing Marion Kauffman Foundation</strong>, in two stints (2006–2008 and 2015–present). I've worked at the intersection of entrepreneurship research, labor markets, inclusive prosperity, and the economics of AI. Along the way came an executive MBA from Washington University's Olin School, a seat on the Foundation's core AI working group, and the <a href="lab.html#legacy">Legacy Project</a>, which turned 60 years of institutional history into a searchable resource.</p>
+        <p>The rest of my career has been at the <strong>Ewing Marion Kauffman Foundation</strong>, in two stints (2006–2008 and 2015–present). I've worked at the intersection of entrepreneurship research, labor markets, inclusive prosperity, and the economics of AI. Along the way came an executive MBA from Washington University's Olin School, a seat on the Foundation's core AI working group, and the <a href="lab.html#legacy">Legacy Project</a>, which I led. It turned 60 years of institutional history into a searchable resource, and the Foundation tells <a href="https://www.kauffman.org/legacy/story/60-years-of-kauffman-foundation/" target="_blank" rel="noopener">the story in its own words</a>.</p>
         <p>One constant is <strong>translation</strong>. Researchers and decision makers rarely speak the same language. My role is to connect the two so that research can be actionable.</p>
         <p><strong>Agents and Agency</strong> is where my current writing lives. <a href="lab.html">The Lab</a> is where I experiment with what AI tools can do, so that I'm not just writing in the abstract.</p>
       </div>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Lab · Agents &amp; Agency · Derek Özkal</title>
-<meta name="description" content="Working prototypes by Derek Özkal: an AI diffusion atlas on real data, the Kauffman Legacy Project, a toy model of expertise loss, a running list of jobs that didn't exist in 2022, and some baking.">
+<meta name="description" content="Working prototypes by Derek Özkal: an AI diffusion atlas on real data, the Kauffman Legacy Project, a toy model of expertise loss, a running list of jobs that didn't exist in 2022, three browser games including Herd Mentality, and some baking.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600;1,9..144,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
@@ -15,17 +15,17 @@
   --ink:#1C1B17;
   --soft:#5C5850;
   --line:#E3DFD3;
-  --brick:#A8432A;
-  --brick-deep:#7E2F1C;
-  --dark:#211F1A;
+  --brick:#17568C;
+  --brick-deep:#0E3355;
+  --dark:#141D26;
   --max:960px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 body{background:var(--bg);color:var(--ink);font-family:'Newsreader',Georgia,serif;font-size:17.5px;line-height:1.62}
-::selection{background:#EAD9C4;color:var(--ink)}
-a{color:var(--brick);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:#D8B7A8}
+::selection{background:#CFE0F0;color:var(--ink)}
+a{color:var(--brick);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:#A9C7E4}
 a:hover{color:var(--brick-deep);text-decoration-color:var(--brick-deep)}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--brick);outline-offset:3px;border-radius:1px}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
@@ -154,7 +154,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 
 footer{background:var(--dark);color:#F3EFE6;padding:40px 0;margin-top:20px}
 .foot-grid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:baseline}
-footer a{color:#E8A084;text-decoration-color:rgba(232,160,132,.4)}
+footer a{color:#7FBBEE;text-decoration-color:rgba(127,187,238,.4)}
 footer .fine{font-family:'Archivo',sans-serif;font-size:12.5px;color:#8F897B}
 </style>
 </head>
@@ -225,12 +225,14 @@ footer .fine{font-family:'Archivo',sans-serif;font-size:12.5px;color:#8F897B}
   <div class="wrap">
     <span class="snum">Exhibit B</span>
     <h2 class="sec">The Legacy Project</h2>
-    <span class="status good">Status: in beta · Ewing Marion Kauffman Foundation</span>
+    <span class="status good">Status: live · featured by the Ewing Marion Kauffman Foundation</span>
     <div class="legacy-grid" style="margin-top:18px">
       <div>
         <p>Sixty years of foundation history was sitting in boxes, binders, and file shares that nobody could search. I led <strong>46 volunteers</strong> in digitizing it, then helped design an <strong>AI research tool integrated with our grant-management software</strong>, so the archive answers questions instead of gathering dust.</p>
         <p>Staff can use it to pull institutional context in seconds: what we funded, what we learned, what we already tried in 1997. Information retrieval that took days now takes minutes, and the tool opened working capacity and possibilities for staff that didn't exist before.</p>
         <p>It's also the project that convinced me the "Expertise Encoder" role in Exhibit D isn't hypothetical. I've effectively done the job. It's hard, and it matters.</p>
+        <p>The Foundation tells the story in its own words, from the archive to the oral histories, as part of its 60th anniversary.</p>
+        <a class="btn" href="https://www.kauffman.org/legacy/story/60-years-of-kauffman-foundation/" target="_blank" rel="noopener">Read the Foundation's story</a>
       </div>
       <div class="legacy-facts">
         <div><b>Volunteers led</b><span>46</span></div>
@@ -239,6 +241,7 @@ footer .fine{font-family:'Archivo',sans-serif;font-size:12.5px;color:#8F897B}
         <div><b>Retrieval time</b><span>days → minutes (90%+ faster)</span></div>
         <div><b>Integration</b><span>grant-management software</span></div>
         <div><b>Users</b><span>foundation staff</span></div>
+        <div><b>Role</b><span>project lead</span></div>
       </div>
     </div>
   </div>
@@ -336,29 +339,41 @@ footer .fine{font-family:'Archivo',sans-serif;font-size:12.5px;color:#8F897B}
 </section>
 
 <!-- EXHIBIT F  -->
-<section>
+<section id="thiswebsite">
   <div class="wrap">
     <span class="snum">Exhibit F</span>
     <h2 class="sec">This website</h2>
     <span class="status good">Status: live · you're soaking in it</span>
     <p class="sec-intro">The site you're reading is itself a Lab project: written by me and built with <strong>Claude Fable 5</strong>, then argued with so it sounded like me. Two hands, one model, no web framework, no hosting bill. A few files of plain HTML, which is either charmingly analog or aggressively stubborn, depending on your view.</p>
 
- <!-- EXHIBIT G · MATH GROVE -->
-    <div style="margin-top:44px">
-      <span class="snum">Exhibit G</span>
-      <h2 class="sec">Math Grove</h2>
-      <span class="status good">Status: live · free to play</span>
-      <p class="sec-intro">A summer math tutor built as a public exhibit. Solve problems, earn coins, and grow a garden that's all yours. Two grade bridges — entering 3rd grade and entering 6th grade — each with 8 topics and 3 tiers. Clear all three tiers to earn a star. There's also a bonus Snake game played inside the garden you grew. <strong>No account, no ads, saves in your browser.</strong> <a href="/grove/">Open Math Grove →</a></p>
+    <!-- EXHIBITS G-I · THE ARCADE -->
+    <div id="arcade" style="margin-top:44px">
+      <span class="snum">Exhibits G to I</span>
+      <h2 class="sec">The Arcade</h2>
+      <p class="sec-intro">Games are the hardest test I know for building with AI. Rules have to hold, numbers have to balance, and a bored kid will find every bug in five minutes. All three are free, need no account, and run in a phone browser.</p>
     </div>
 
-    <!-- EXHIBIT H · DIRECTORATE -->
-    <div style="margin-top:44px">
+    <div id="herd" style="margin-top:34px">
+      <span class="snum">Exhibit G · New</span>
+      <h2 class="sec">Herd Mentality</h2>
+      <span class="status good">Status: live · free to play</span>
+      <p class="sec-intro">A herd of laser-horned unicorns holds a rainbow bridge against the Grumps, an army of angry gray clouds. Drag to steer, shoot gates to pump their numbers, run through the better one, and cheer up every Grump before it reaches you. Blasted Grumps don't die. They float away happy. Bosses include The Monday and Per My Last Email. <strong>Endless levels, saves in your browser.</strong> <a href="/herd-mentality/">Play Herd Mentality →</a></p>
+    </div>
+
+    <div id="grove" style="margin-top:44px">
       <span class="snum">Exhibit H</span>
+      <h2 class="sec">Math Grove</h2>
+      <span class="status good">Status: live · free to play</span>
+      <p class="sec-intro">A summer math tutor built for my daughters and open to anyone. Solve problems, earn coins, and grow a garden that's all yours. Two grade bridges, entering 3rd grade and entering 6th grade, each with 8 topics and 3 tiers. Clear all three tiers to earn a star. There's also a bonus Snake game played inside the garden you grew. <strong>No account, no ads, saves in your browser.</strong> <a href="/grove/">Open Math Grove →</a></p>
+    </div>
+
+    <div id="directorate" style="margin-top:44px">
+      <span class="snum">Exhibit I</span>
       <h2 class="sec">Directorate</h2>
       <span class="status good">Status: live · free to play</span>
       <p class="sec-intro">Run a covert agency across four eras: 1972 to 2026. Build headquarters, work field leads, solve conspiracies before they execute, and manage global tension. Eight minigames feed a strategy layer. Influenced by some of my favorite games as a kid like Covert Action, SimCity, Conflict, and Age of Empires II. <strong>One sitting, no save state.</strong> <a href="/directorate.html">Open Directorate →</a></p>
     </div>
-    
+
 <!-- ON DECK  -->  
     <div style="margin-top:44px">
       <span class="snum">Next on the bench</span>
@@ -388,7 +403,7 @@ footer .fine{font-family:'Archivo',sans-serif;font-size:12.5px;color:#8F897B}
 <footer>
   <div class="wrap foot-grid">
     <div>
-      <span style="font-family:'Fraunces',serif;font-weight:700;font-size:17px">Agents <span style="color:#E8A084;font-style:italic">&amp;</span> Agency</span>
+      <span style="font-family:'Fraunces',serif;font-weight:700;font-size:17px">Agents <span style="color:#E0A83C;font-style:italic">&amp;</span> Agency</span>
       <p class="fine" style="margin-top:6px">Written by me. Built with Claude Fable 5 · &copy; 2026 Derek Özkal</p>
     </div>
     <div class="fine">
@@ -464,7 +479,7 @@ function drawChart(){
     s+='<text x="'+X(minR.y)+'" y="'+(Y(minR.C)-10)+'" text-anchor="middle" font-family="Archivo" font-size="10.5" letter-spacing="1" fill="#A8432A">CRUNCH · YR '+minR.y+'</text>';
   }
   s+='<path d="'+path('T')+'" fill="none" stroke="#3E6B44" stroke-width="2.5"/>';
-  s+='<path d="'+path('E')+'" fill="none" stroke="#C67B4B" stroke-width="2.5"/>';
+  s+='<path d="'+path('E')+'" fill="none" stroke="#2E86D6" stroke-width="2.5"/>';
   s+='<path d="'+path('C')+'" fill="none" stroke="#1C1B17" stroke-width="3.5"/>';
   var labels=[
     {v:endR.C,txt:'TOTAL CAPACITY',c:'#1C1B17'},
