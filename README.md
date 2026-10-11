@@ -1,10 +1,14 @@
 # agentsandagency.com
 
-A two-page static site. No build step, no framework, no dependencies, no hosting bill.
+A small static site. No build step, no framework, no hosting bill.
 
-- `index.html` : home. Hero, the record, writing, standing, about.
-- `lab.html` : the Lab. Expertise Flow Simulator and the Genesis Ledger.
-- `cv.pdf` : add this yourself. The About section links to it.
+- `index.html` : home. Intro, the Legacy Project feature, links into each section, and About.
+- `writing.html` : Substack essays, Kauffman pieces, and earlier journalism.
+- `research.html` : scholars funded, papers that acknowledge the work, and initiatives.
+- `media.html` : photos, videos (thumbnails load from YouTube), and the podcast.
+- `lab.html` : the Lab. Atlas, Legacy Project detail, simulator, jobs list, kitchen, and the games.
+- `assets/site.css` : shared styles for the four main pages. Fonts are Funnel Display and Instrument Sans.
+- `herd-mentality/`, `grove/`, `directorate.html`, `atlas.html` : the Lab exhibits.
 
 ## Launch it free (GitHub Pages, ~20 minutes)
 
@@ -33,21 +37,12 @@ Alternative host: Cloudflare Pages is also free and works by drag-and-drop. Eith
 
 ## How to update the site
 
-Every editable spot is marked with an `<!-- EDIT -->` comment in the HTML. Edit on github.com (open the file, click the pencil icon, commit) and the live site updates in about a minute.
+Edit on github.com (open the file, click the pencil icon, commit). The live site updates in a minute or two.
 
-- **Add an essay:** in `index.html`, find the essay list. Copy one `<li>` row, paste it at the top, change the title and link.
-- **Change the featured essay:** find `<!-- EDIT: paste the exact essay URL -->` and swap the link and blurb.
-- **Add press coverage:** in `index.html`, the Press & media section has three placeholder rows. Replace outlet, headline, link, year. Copy a row to add more.
-- **Add a Genesis Ledger entry:** in `lab.html`, find `var LEDGER=[`. Copy one object, edit the four fields. The `cap` value must be one of CONTEXT, AGENCY, GENERALITY, CODE, COST, MULTIMODAL.
-- **Update the running balance numbers:** in `index.html`, the hero sidebar. Change the visible number and the `data-count` value together.
-- **CV:** export your resume as `cv.pdf` and upload it to the repo root.
-- **Contact email:** the footer has a placeholder mailto. Replace it with a real address. Spaceship offers email forwarding if you want hello@agentsandagency.com to reach your inbox.
+- **Add an essay:** in `writing.html`, copy one `<a class="essay">` block in the Substack grid, paste it first, and change the link, title, subtitle, and date. Give it a cover color class `c1` to `c4`. Then update the list on the home page Writing tile in `index.html`.
+- **Add a video:** in `media.html`, copy one `<a class="video">` block. Replace the YouTube ID in both the link and the thumbnail URL (`https://i.ytimg.com/vi/ID/hqdefault.jpg`).
+- **Add an acknowledgment:** in `research.html`, add a row to "The rest of the record," or copy an `<a class="paper">` block to feature it.
+- **Add a Lab entry for the jobs list:** in `lab.html`, find `var LEDGER=[`. Copy one object, edit the four fields. The `cap` value must be one of CONTEXT, AGENCY, GENERALITY, CODE, COST, MULTIMODAL.
+- **CV:** upload a new `cv.pdf` to the repo root.
 
-Or paste any file back into Claude and ask for the change. The site was built to be edited.
-
-## Things waiting on you
-
-1. Real press rows (three placeholders in Standing).
-2. Exact URL for The Liquidity Crisis of Expertise (featured essay card).
-3. `cv.pdf` uploaded to the repo.
-4. Real contact email in the footer.
+Or paste any file into Claude and ask for the change.

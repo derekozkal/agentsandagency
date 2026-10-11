@@ -7,7 +7,7 @@
 <meta name="description" content="Working prototypes by Derek Özkal: an AI diffusion atlas on real data, the Kauffman Legacy Project, a toy model of expertise loss, a running list of jobs that didn't exist in 2022, three browser games including Herd Mentality, and some baking.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#FCFBF7;
@@ -33,8 +33,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 
 header.masthead{border-bottom:1px solid var(--line)}
 .masthead-inner{display:flex;align-items:baseline;justify-content:space-between;padding:22px 24px 18px;max-width:var(--max);margin:0 auto;gap:16px}
-.wordmark{font-family:'Fraunces',serif;font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}
-.wordmark .amp{color:var(--brick);font-style:italic}
+.wordmark{font-family:'Funnel Display','Instrument Sans',sans-serif;font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}
+.wordmark .amp{color:#E0A83C}
 nav.primary{display:flex;gap:20px;align-items:baseline}
 nav.primary a{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:14px;color:var(--soft);text-decoration:none}
 nav.primary a:hover{color:var(--brick)}
@@ -52,8 +52,8 @@ nav.primary a.sub:hover{background:var(--brick);color:#fff}
 .lab-hero{padding:60px 0 12px}
 .kicker{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13.5px;color:var(--soft);margin-bottom:14px}
 .kicker b{color:var(--brick);font-weight:600}
-.lab-hero h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(31px,4.6vw,46px);line-height:1.14;letter-spacing:-.01em;margin:0 0 20px}
-.lab-hero h1 em{font-style:italic;color:var(--brick)}
+.lab-hero h1{font-family:'Funnel Display','Instrument Sans',sans-serif;font-weight:700;font-size:clamp(31px,4.6vw,46px);line-height:1.14;letter-spacing:-.01em;margin:0 0 20px}
+.lab-hero h1 em{font-style:normal;color:var(--brick);background:linear-gradient(transparent 66%,rgba(224,168,60,.4) 66%)}
 .lab-hero p{color:var(--soft);max-width:66ch;font-size:18px}
 .lab-hero p strong{color:var(--ink)}
 .ground-rule{margin-top:24px;background:var(--wash);border-left:3px solid var(--brick);padding:16px 22px;font-size:16px;color:var(--soft);max-width:760px}
@@ -64,13 +64,13 @@ nav.primary a.sub:hover{background:var(--brick);color:#fff}
 .trip-col.newwork{border-top-color:var(--brick)}
 .trip-col .lbl{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:12.5px;color:var(--soft)}
 .trip-col.newwork .lbl{color:var(--brick)}
-.trip-col h3{font-family:'Fraunces',serif;font-weight:600;font-size:20px;margin:6px 0 6px}
+.trip-col h3{font-family:'Funnel Display','Instrument Sans',sans-serif;font-weight:600;font-size:20px;margin:6px 0 6px}
 .trip-col p{font-size:15px;color:var(--soft)}
 @media (max-width:760px){.triptych{grid-template-columns:1fr;gap:20px}}
 
 section{padding:56px 0}
-.snum{font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:var(--brick);font-size:17px;display:block;margin-bottom:6px}
-h2.sec{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(26px,3.4vw,34px);letter-spacing:-.01em;margin-bottom:6px}
+.snum{font-family:'Instrument Sans',sans-serif;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--brick);font-size:12px;display:block;margin-bottom:6px}
+h2.sec{font-family:'Funnel Display','Instrument Sans',sans-serif;font-weight:700;font-size:clamp(26px,3.4vw,34px);letter-spacing:-.01em;margin-bottom:6px}
 .status{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13px;color:var(--brick);margin-bottom:14px;display:block}
 .status.good{color:#3E6B44}
 .sec-intro{max-width:66ch;color:var(--soft);margin:0 0 30px;font-size:17.5px}
@@ -81,7 +81,7 @@ hr.sep{border:0;border-top:1px solid var(--line)}
 
 /* Atlas card */
 .atlas-card{background:var(--wash);border-left:3px solid var(--brick);padding:26px 30px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
-.atlas-card h3{font-family:'Fraunces',serif;font-weight:700;font-size:23px;margin-bottom:6px}
+.atlas-card h3{font-family:'Funnel Display','Instrument Sans',sans-serif;font-weight:700;font-size:23px;margin-bottom:6px}
 .atlas-card p{color:var(--soft);max-width:60ch;font-size:16.5px}
 @media (max-width:700px){.atlas-card{grid-template-columns:1fr}}
 
@@ -92,7 +92,7 @@ hr.sep{border:0;border-top:1px solid var(--line)}
 .legacy-facts{border-top:2px solid var(--ink);padding-top:4px}
 .legacy-facts div{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15.5px}
 .legacy-facts b{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13.5px;color:var(--soft);font-weight:500}
-.legacy-facts span{font-family:'Fraunces',serif;font-weight:600;text-align:right}
+.legacy-facts span{font-family:'Funnel Display','Instrument Sans',sans-serif;font-weight:600;text-align:right}
 @media (max-width:760px){.legacy-grid{grid-template-columns:1fr}}
 
 /* Simulator */
@@ -103,7 +103,7 @@ hr.sep{border:0;border-top:1px solid var(--line)}
 .ctl{margin-bottom:24px}
 .ctl label{display:flex;justify-content:space-between;align-items:baseline;font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13.5px;font-weight:500;color:var(--ink);margin-bottom:8px}
 .ctl label output{color:var(--brick);font-weight:600}
-.ctl .hint{font-size:14px;color:var(--soft);margin-top:6px;line-height:1.5;font-style:italic}
+.ctl .hint{font-size:14px;color:var(--soft);margin-top:6px;line-height:1.5;font-style:normal}
 input[type=range]{width:100%;appearance:none;-webkit-appearance:none;height:2px;background:var(--line)}
 input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--brick);border:2px solid var(--ink);cursor:pointer}
 input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--brick);border:2px solid var(--ink);cursor:pointer}
@@ -112,9 +112,9 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .presets button:hover{border-color:var(--brick);color:var(--brick)}
 .sim-chart{padding:22px}
 .sim-chart svg{width:100%;height:auto;display:block}
-.verdict-bar{padding:16px 22px;border-top:1px solid var(--line);background:var(--wash);font-family:'Newsreader',serif;font-style:italic;font-size:17px;min-height:56px}
+.verdict-bar{padding:16px 22px;border-top:1px solid var(--line);background:var(--wash);font-family:'Instrument Sans',sans-serif;font-style:normal;font-size:17px;min-height:56px}
 .verdict-bar strong{color:var(--brick);font-style:normal;font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13px;margin-right:10px}
-.sim-note{font-size:15.5px;color:var(--soft);margin-top:18px;max-width:68ch;font-style:italic}
+.sim-note{font-size:15.5px;color:var(--soft);margin-top:18px;max-width:68ch;font-style:normal}
 .sim-note em{color:var(--ink);font-style:normal;font-weight:600}
 @media (max-width:860px){.sim-body{grid-template-columns:1fr}.sim-controls{border-right:0;border-bottom:1px solid var(--line)}}
 
@@ -127,9 +127,9 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .ledger-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
 .ledger-card{border-top:2px solid var(--ink);padding-top:12px;display:flex;flex-direction:column;gap:7px}
 .ledger-card .cap{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:11.5px;color:var(--brick)}
-.ledger-card h3{font-family:'Fraunces',serif;font-weight:600;font-size:19px}
+.ledger-card h3{font-family:'Funnel Display','Instrument Sans',sans-serif;font-weight:600;font-size:19px}
 .ledger-card p{font-size:15px;color:var(--soft);flex:1}
-.ledger-card .why{font-size:14px;color:var(--ink);font-style:italic;border-top:1px solid var(--line);padding-top:8px}
+.ledger-card .why{font-size:14px;color:var(--ink);font-style:normal;border-top:1px solid var(--line);padding-top:8px}
 .ledger-card .why::before{content:"New because: ";font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-style:normal;font-size:11.5px;color:var(--brick)}
 
 /* Kitchen */
@@ -142,13 +142,13 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .kfig img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
 .kfig figcaption{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:12.5px;color:var(--soft);padding:8px 4px 6px;line-height:1.5}
 @media (max-width:700px){.kitchen-grid{grid-template-columns:1fr}}
-.kitchen-note{font-size:16px;color:var(--soft);max-width:66ch;margin-top:16px;font-style:italic}
+.kitchen-note{font-size:16px;color:var(--soft);max-width:66ch;margin-top:16px;font-style:normal}
 
 /* Deck */
 .deck-list{list-style:none;border-top:2px solid var(--ink)}
 .deck-list li{display:grid;grid-template-columns:160px 1fr;gap:26px;padding:20px 0;border-bottom:1px solid var(--line)}
 .deck-list .st{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:12.5px;color:var(--brick);padding-top:5px}
-.deck-list h3{font-family:'Fraunces',serif;font-weight:600;font-size:20px;margin-bottom:4px}
+.deck-list h3{font-family:'Funnel Display','Instrument Sans',sans-serif;font-weight:600;font-size:20px;margin-bottom:4px}
 .deck-list p{font-size:16px;color:var(--soft);max-width:64ch}
 @media (max-width:640px){.deck-list li{grid-template-columns:1fr;gap:6px}}
 
@@ -156,16 +156,18 @@ footer{background:var(--dark);color:#F3EFE6;padding:40px 0;margin-top:20px}
 .foot-grid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:baseline}
 footer a{color:#7FBBEE;text-decoration-color:rgba(127,187,238,.4)}
 footer .fine{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:12.5px;color:#8F897B}
-.lab-quote{margin:6px 0 20px;padding:2px 0 2px 18px;border-left:2px solid var(--brick)}.lab-quote > p:first-child{font-family:'Fraunces',serif;font-style:italic;font-size:22px;line-height:1.3;color:var(--ink);margin:0 0 6px}.lab-quote .lab-src{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13px;color:var(--soft)}
+.lab-quote{margin:6px 0 20px;padding:2px 0 2px 18px;border-left:2px solid var(--brick)}.lab-quote > p:first-child{font-family:'Funnel Display','Instrument Sans',sans-serif;font-style:normal;font-size:22px;line-height:1.3;color:var(--ink);margin:0 0 6px}.lab-quote .lab-src{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13px;color:var(--soft)}
 
 /* ===== Readability pass (Oct 2026) ===== */
-:root{--ink:#1A1F26;--soft:#47505B;--line:#DCE3EA;--bg:#FBFCFD}
+:root{--ink:#1A1F26;--soft:#47505B;--line:#DCE3EA;--bg:#FBFCFD;--wash:#EEF3F8}
 body{font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
 h1,h2,h3{text-wrap:balance}
 .lab-hero{background:radial-gradient(70% 90% at 100% 0%,rgba(46,134,214,.14),rgba(46,134,214,0) 60%),linear-gradient(180deg,#EAF1F8 0%,#F6F9FC 100%)}
 #legacy{background:#EEF3F8}
 #arcade,#herd,#grove,#directorate{scroll-margin-top:20px}
 .btn{border-radius:999px}
+nav.primary a.sub{border-radius:999px}
+.wordmark{letter-spacing:-.02em}
 </style>
 </head>
 <body>
@@ -175,9 +177,9 @@ h1,h2,h3{text-wrap:balance}
     <a class="wordmark" href="index.html">Agents <span class="amp">&amp;</span> Agency</a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="nav" onclick="toggleMenu(this)">Menu</button>
     <nav class="primary" id="nav" aria-label="Primary">
-      <a href="index.html#writing">Writing</a>
-      <a href="index.html#network">Research network</a>
-      <a href="index.html#media">Watch &amp; listen</a>
+      <a href="writing.html">Writing</a>
+      <a href="research.html">Research</a>
+      <a href="media.html">Watch &amp; listen</a>
       <a href="lab.html" aria-current="page">The Lab</a>
       <a href="index.html#about">About</a>
       <a class="sub" href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Subscribe</a>
@@ -190,26 +192,26 @@ h1,h2,h3{text-wrap:balance}
 <section class="lab-hero">
   <div class="wrap">
     <p class="kicker"><b>The Lab</b> · Agents &amp; Agency</p>
-    <h1>I write essays about AI and work. Then I build things to <em>better understand what I am writing about in the abstract</em>.</h1>
-    <p>Writing about AI is not the same as building with it. These are just prototypes of what is possible. </p>
+    <h1>I write about AI and work. Here I build with it, to <em>check whether the ideas hold up</em>.</h1>
+    <p>Everything here is a prototype. Some are tools, some are models, and three are games.</p>
 
-    <div class="ground-rule"><b>Ground rule:</b> Everything marked <i>prototype, verification pending</i> is an argument, not a finding. If you think a number or a coefficient is wrong, good. That's the conversation. <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Bring it to the comments</a>.</div>
+    <div class="ground-rule"><b>Ground rule:</b> Anything marked <i>prototype, verification pending</i> is an argument I haven't verified yet. If a number or coefficient looks wrong, <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">tell me in the comments</a>.</div>
 
     <div class="triptych" role="list">
       <div class="trip-col" role="listitem">
         <span class="lbl">Column 01</span>
         <h3>AI does the task</h3>
-        <p>Automation. The worker moves on, up, or out. Measured to death.</p>
+        <p>Automation. The worker moves on, up, or out. This is the most studied case.</p>
       </div>
       <div class="trip-col" role="listitem">
         <span class="lbl">Column 02</span>
         <h3>AI helps with the task</h3>
-        <p>Augmentation. The worker produces more. Everyone's current favorite.</p>
+        <p>Augmentation. The worker gets more done. Most current research and hype sits here.</p>
       </div>
       <div class="trip-col newwork" role="listitem">
         <span class="lbl">Column 03</span>
         <h3>AI makes new tasks possible</h3>
-        <p>Work nobody could do at almost any price before. Barely counted. The Lab mostly lives here.</p>
+        <p>New work that wasn't affordable or possible before. It's barely measured, and most Lab projects sit here.</p>
       </div>
     </div>
   </div>
@@ -223,7 +225,7 @@ h1,h2,h3{text-wrap:balance}
         <span class="snum">Exhibit A</span>
         <h3>The AI Diffusion Atlas</h3>
         <span class="status">Status: working prototype · verification pending</span>
-        <p>Who is actually adopting AI in America: businesses, workers, and states, built entirely on published data from the Census Bureau, the Federal Reserve, and the Anthropic Economic Index. The two adoption numbers everyone quotes (18% of firms, 41% of workers) are both right. Understanding why is the whole game.</p>
+        <p>Who is actually adopting AI in America: businesses, workers, and states, built entirely on published data from the Census Bureau, the Federal Reserve, and the Anthropic Economic Index. The two adoption numbers people quote most (18% of firms, 41% of workers) are both right, and the Atlas shows why they differ.</p>
       </div>
       <a class="btn" href="atlas.html">Open the Atlas</a>
     </div>
@@ -240,7 +242,7 @@ h1,h2,h3{text-wrap:balance}
       <div>
         <p>Sixty years of foundation history was sitting in boxes, binders, and file shares that nobody could search. I led <strong>46 volunteers</strong> in digitizing it, then helped design an <strong>AI research tool integrated with our grant-management software</strong>, so the archive answers questions instead of gathering dust.</p>
         <p>Staff can use it to pull institutional context in seconds: what we funded, what we learned, what we already tried in 1997. Information retrieval that took days now takes minutes, and the tool opened working capacity and possibilities for staff that didn't exist before.</p>
-        <p>It's also the project that convinced me the "Expertise Encoder" role in Exhibit D isn't hypothetical. I've effectively done the job. It's hard, and it matters.</p>
+        <p>It also convinced me that the Expertise Encoder role in Exhibit D is real work, because I did a version of it here.</p>
         <blockquote class="lab-quote"><p>&ldquo;Led by Derek Ozkal, senior officer, strategic initiatives, RLE&rdquo;</p><p class="lab-src">The Kauffman Foundation, on the project, for its 60th anniversary</p></blockquote>
         <a class="btn" href="https://www.kauffman.org/legacy/story/60-years-of-kauffman-foundation/" target="_blank" rel="noopener">Read the Foundation's story</a>
       </div>
@@ -266,7 +268,7 @@ h1,h2,h3{text-wrap:balance}
     <span class="snum">Exhibit C</span>
     <h2 class="sec">The Expertise Flow Simulator</h2>
     <span class="status">Status: prototype · verification pending · a toy model, on purpose</span>
-    <p class="sec-intro">My essay <a href="https://agentsandagency.substack.com/p/the-liquidity-crisis-of-expertise" target="_blank" rel="noopener"><strong>The Liquidity Crisis of Expertise</strong></a> makes a claim: a profession can run out of usable judgment the way a bank runs out of cash. Solvent on paper, illiquid in the moment that counts. This is that claim as a machine you can argue with. Three sliders, one profession, 25 years. See what breaks.</p>
+    <p class="sec-intro">My essay <a href="https://agentsandagency.substack.com/p/the-liquidity-crisis-of-expertise" target="_blank" rel="noopener"><strong>The Liquidity Crisis of Expertise</strong></a> argues that a profession can run out of usable judgment the way a bank runs out of cash: solvent on paper, short when it counts. This simulator turns that claim into a model with three sliders, one profession, and a 25-year horizon.</p>
 
     <div class="sim">
       <div class="sim-head">
@@ -315,7 +317,7 @@ h1,h2,h3{text-wrap:balance}
     <span class="snum">Exhibit D</span>
     <h2 class="sec">Jobs that didn't exist in 2022</h2>
     <span class="status">Status: prototype · verification pending · a running list, nominations welcome</span>
-    <p class="sec-intro">Not old jobs with new tools, but <strong>work that wasn't possible before frontier models</strong>. Each entry says what the job is and why it couldn't exist earlier. Some have job postings today; some are one funding cycle away. Treat every entry as a hypothesis.</p>
+    <p class="sec-intro">A running list of <strong>work that wasn't possible before frontier models</strong>, as opposed to old jobs with new tools. Each entry says what the job is and why it couldn't exist earlier. Some have postings today, and some are still hypotheses.</p>
 
     <div class="filters" id="filters" role="group" aria-label="Filter by what unlocked the job"></div>
     <p class="ledger-count" id="ledgerCount"></p>
@@ -334,7 +336,7 @@ h1,h2,h3{text-wrap:balance}
     <div class="kitchen-grid">
       <figure class="kfig">
         <img src="kitchen-pie.jpg" alt="Homemade apple pie" onerror="this.parentElement.style.display='none'">
-        <figcaption>Apple pie. The crust is the hard part. The crust is always the hard part.</figcaption>
+        <figcaption>Apple pie. Most of the effort went into the crust.</figcaption>
       </figure>
       <figure class="kfig">
         <img src="kitchen-calzones.jpg" alt="Two homemade calzones" onerror="this.parentElement.style.display='none'">
@@ -345,7 +347,7 @@ h1,h2,h3{text-wrap:balance}
         <figcaption>Braided apple-cinnamon loaf. The braid is load-bearing.</figcaption>
       </figure>
     </div>
-    <p class="kitchen-note">Findings to date: AI is a good cooking partner. Patient with dumb questions, unbothered at 10 p.m., wrong about oven temperatures roughly once per project. Also in the rotation: veggie burgers, stews, and a cheesecake. Methodology shared on request.</p>
+    <p class="kitchen-note">Findings so far: AI is a good cooking partner. It's patient with basic questions, happy to help at 10 p.m., and wrong about an oven temperature about once per project. Also in the rotation: veggie burgers, stews, and a cheesecake. Methodology shared on request.</p>
   </div>
 </section>
 
@@ -355,20 +357,20 @@ h1,h2,h3{text-wrap:balance}
     <span class="snum">Exhibit F</span>
     <h2 class="sec">This website</h2>
     <span class="status good">Status: live · you're soaking in it</span>
-    <p class="sec-intro">The site you're reading is itself a Lab project: written by me and built with <strong>Claude Fable 5</strong>, then argued with so it sounded like me. Two hands, one model, no web framework, no hosting bill. A few files of plain HTML, which is either charmingly analog or aggressively stubborn, depending on your view.</p>
+    <p class="sec-intro">The site you're reading is a Lab project too. I wrote it and built it with Claude, then edited until it sounded like me. It's plain HTML files on GitHub Pages, with no framework and no hosting bill.</p>
 
     <!-- EXHIBITS G-I · THE ARCADE -->
     <div id="arcade" style="margin-top:44px">
       <span class="snum">Exhibits G to I</span>
       <h2 class="sec">The Arcade</h2>
-      <p class="sec-intro">Games are the hardest test I know for building with AI. Rules have to hold, numbers have to balance, and a bored kid will find every bug in five minutes. All three are free, need no account, and run in a phone browser.</p>
+      <p class="sec-intro">Three browser games built with AI. All are free, need no account, and work on a phone.</p>
     </div>
 
     <div id="herd" style="margin-top:34px">
       <span class="snum">Exhibit G · New</span>
       <h2 class="sec">Herd Mentality</h2>
       <span class="status good">Status: live · free to play</span>
-      <p class="sec-intro">A herd of laser-horned unicorns holds a rainbow bridge against the Grumps, an army of angry gray clouds. Drag to steer, shoot gates to pump their numbers, run through the better one, and cheer up every Grump before it reaches you. Blasted Grumps don't die. They float away happy. Bosses include The Monday and Per My Last Email. <strong>Endless levels, saves in your browser.</strong> <a href="/herd-mentality/">Play Herd Mentality →</a></p>
+      <p class="sec-intro">A herd of laser-horned unicorns defends a rainbow bridge from the Grumps, an army of gray clouds. Drag to steer, shoot gates to raise their numbers, and run through the better one. A Grump you hit floats away happy. Bosses include The Monday and Per My Last Email. <strong>Levels don't end, and progress saves in your browser.</strong> <a href="/herd-mentality/">Play Herd Mentality →</a></p>
     </div>
 
     <div id="grove" style="margin-top:44px">
@@ -395,14 +397,14 @@ h1,h2,h3{text-wrap:balance}
         <span class="st">In development</span>
         <div>
           <h3>The Translation Bench</h3>
-          <p>One research finding, rendered faithfully for five audiences: the scholar, the legislator, the founder, the journalist, the neighbor. Translation as infrastructure. The thing I've done by hand for twenty years, prototyped as a tool.</p>
+          <p>One research finding, written accurately for five audiences: a scholar, a legislator, a founder, a journalist, and a neighbor. It's a tool version of the translation work I've done by hand for twenty years.</p>
         </div>
       </li>
       <li>
         <span class="st">Sketching</span>
         <div>
           <h3>The Apprenticeship Protocol</h3>
-          <p>A designed loop where a junior, a senior, and a model make each other better, instead of the model quietly replacing the middle. The fix the simulator upstairs keeps asking for.</p>
+          <p>A structured loop where a junior, a senior, and a model each improve the others' work, so the model doesn't quietly replace the middle of the career ladder. The simulator above keeps pointing to this kind of fix.</p>
         </div>
       </li>
     </ul>
@@ -414,11 +416,17 @@ h1,h2,h3{text-wrap:balance}
 <footer>
   <div class="wrap foot-grid">
     <div>
-      <span style="font-family:'Fraunces',serif;font-weight:700;font-size:17px">Agents <span style="color:#E0A83C;font-style:italic">&amp;</span> Agency</span>
-      <p class="fine" style="margin-top:6px">Written by me. Built with Claude Fable 5 · &copy; 2026 Derek Özkal</p>
+      <span style="font-family:'Funnel Display','Instrument Sans',sans-serif;font-weight:700;font-size:18px">Agents <span style="color:#E0A83C">&amp;</span> Agency</span>
+      <p class="fine" style="margin-top:6px">Written by me, built with Claude · &copy; 2026 Derek Özkal</p>
     </div>
     <div class="fine">
       <a href="index.html">Home</a>
+      &nbsp;·&nbsp;
+      <a href="writing.html">Writing</a>
+      &nbsp;·&nbsp;
+      <a href="research.html">Research</a>
+      &nbsp;·&nbsp;
+      <a href="media.html">Watch &amp; listen</a>
       &nbsp;·&nbsp;
       <a href="atlas.html">The Atlas</a>
       &nbsp;·&nbsp;
