@@ -2,178 +2,365 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Derek Özkal · Agents &amp; Agency</title>
-<meta name="description" content="Derek Özkal, applied research leader on entrepreneurship, labor markets, and AI. Writing, the research network, talks and interviews, the Kauffman Legacy Project, and the Lab.">
-<meta name="theme-color" content="#E7EFF7">
+<meta name="description" content="Derek Özkal translates research on AI, work, and entrepreneurship into plain language. Essays, interactive figures, the research network, talks, the Kauffman Legacy Project, and the Lab.">
+<meta name="theme-color" content="#0A1A2E">
+<link rel="canonical" href="https://agentsandagency.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agents &amp; Agency">
+<meta property="og:title" content="Derek Özkal · Agents &amp; Agency">
+<meta property="og:description" content="Derek Özkal translates research on AI, work, and entrepreneurship into plain language. Essays, interactive figures, the research network, talks, the Kauffman Legacy Project, and the Lab.">
+<meta property="og:url" content="https://agentsandagency.com/">
+<meta property="og:image" content="https://agentsandagency.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="alternate" type="text/plain" href="llms.txt" title="Plain-text summary for AI agents">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<script>(function(h){h.className+=' js';var g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};var m=g('aa-motion');if(!m){m=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on'}h.setAttribute('data-motion',m);h.setAttribute('data-agent',g('aa-agent')||'on')})(document.documentElement)</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Derek Özkal","alternateName":"Derek Ozkal",
+"url":"https://agentsandagency.com/","image":"https://agentsandagency.com/assets/img/headshot.jpg",
+"jobTitle":"Senior Officer, Strategic Initiatives (Research, Learning & Evaluation)",
+"worksFor":{"@type":"Organization","name":"Ewing Marion Kauffman Foundation","url":"https://www.kauffman.org/"},
+"alumniOf":[{"@type":"CollegeOrUniversity","name":"Olin Business School, Washington University in St. Louis"},{"@type":"CollegeOrUniversity","name":"Truman State University"}],
+"homeLocation":{"@type":"Place","name":"Kansas City metro"},
+"knowsAbout":["Entrepreneurship","Labor markets","Artificial intelligence","Workforce development","Research translation"],
+"sameAs":["https://www.linkedin.com/in/derekozkal","https://agentsandagency.substack.com"]}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div id="progress" aria-hidden="true"></div>
-<header class="masthead">
+<header class="masthead on-dark" data-dark-until="#hero">
   <div class="masthead-inner">
-    <a class="wordmark" href="index.html">Agents <span class="amp">&amp;</span> Agency</a>
-    <button class="menu-toggle" aria-expanded="false" aria-controls="nav" onclick="toggleMenu(this)">Menu</button>
+    <a class="brand" href="index.html" aria-label="Agents and Agency, home"><svg class="mark" viewBox="0 0 34 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="#2457F5"/><circle cx="22" cy="12" r="9" fill="#12B07A"/><path d="M17 4.52A9 9 0 0 1 17 19.48A9 9 0 0 1 17 4.52Z" fill="currentColor"/></svg><span class="wordmark">Agents <span class="amp">&amp;</span> Agency</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav"><i aria-hidden="true"></i>Menu</button>
     <nav class="primary" id="nav" aria-label="Primary">
       <a href="writing.html">Writing</a>
       <a href="research.html">Research</a>
       <a href="media.html">Watch &amp; listen</a>
       <a href="lab.html">The Lab</a>
-      <a href="index.html#about">About</a>
-      <a class="sub" href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Subscribe</a>
+      <a href="about.html">About</a>
+      <a class="nav-agents" href="agents.html">For agents</a>
+      <a class="nav-cta" href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Subscribe</a>
     </nav>
   </div>
 </header>
 <main id="main">
 
-<script>
-(function(){var m={'#writing':'writing.html','#network':'research.html','#media':'media.html'};if(m[location.hash])location.replace(m[location.hash]);})();
-</script>
-<section class="hero" aria-label="Introduction">
-  <div class="wrap hero-grid">
-    <div>
-      <p class="kicker"><b>Derek Özkal</b> · Kansas City, Missouri</p>
-      <h1>Translating rigorous research into <em>plain language</em>.</h1>
-      <p class="standfirst">I've spent more than 20 years in economic research, philanthropy, and journalism, most of it at the <strong>Ewing Marion Kauffman Foundation</strong>. There I directed $31.9 million in research on entrepreneurship, labor markets, and what AI is doing to both. <strong>Agents and Agency</strong> is where I write about keeping people's judgment and sense of purpose at the center of the AI debate.</p>
-      <div class="hero-ctas">
-        <a class="btn" href="writing.html">Read the writing</a>
-        <a class="arrowlink" href="research.html">See the research</a>
-        <a class="arrowlink" href="lab.html">Enter the Lab</a>
-      </div>
-      <div class="stat-band">
-        <div><div class="v">$31.9M</div><div class="l">Directed</div></div>
-        <div><div class="v">125+</div><div class="l">Grants</div></div>
-        <div><div class="v">90+</div><div class="l">Convenings</div></div>
-        <div><div class="v">35+</div><div class="l">Bylines</div></div>
-      </div>
-    </div>
-    <figure class="portrait">
-      <img src="headshot.jpg" alt="Derek Özkal" width="560" height="700" onerror="this.parentElement.style.display='none'">
-      <figcaption>A human in the loop.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section class="legacy-feature" id="legacy" aria-labelledby="legacy-h">
+<section class="hero dark dots" id="hero" aria-label="Introduction">
   <div class="wrap">
-    <span class="lf-numeral" aria-hidden="true">60</span>
-    <p class="eyebrow">Featured · Ewing Marion Kauffman Foundation</p>
-    <h2 id="legacy-h">The Legacy Project</h2>
-    <div class="lf-grid">
-      <blockquote class="lf-quote" cite="https://www.kauffman.org/legacy/story/60-years-of-kauffman-foundation/">
-        <p>Led by Derek Ozkal, senior officer, strategic initiatives, RLE</p>
-        <p class="lf-src">From <cite>A project to learn from, and honor, 60 years of the Ewing Marion Kauffman Foundation</cite>, the Foundation's account of the work.</p>
-      </blockquote>
-      <div class="lf-body">
-        <p>Sixty years of foundation history sat in boxes, binders, and file shares that nobody could search. I led <strong>46 volunteers</strong> in turning tens of thousands of pages into a secure, searchable archive. Then I helped design an <strong>experimental AI tool</strong> so staff can ask the archive questions.</p>
-        <p>Finding what we funded, what we learned, and what we already tried in 1997 now takes minutes instead of days.</p>
-        <div class="lf-ctas">
-          <a class="btn gold" href="https://www.kauffman.org/legacy/story/60-years-of-kauffman-foundation/" target="_blank" rel="noopener">Read the Foundation's story</a>
-          <a class="lf-link" href="lab.html#legacy">How the tool works</a>
+    <div class="hero-grid">
+      <div class="hero-lead">
+        <p class="hero-kicker"><b>Derek Özkal</b><span class="sep" aria-hidden="true"></span>Kansas City<span class="sep" aria-hidden="true"></span>Agents &amp; Agency</p>
+        <h1>Translating rigorous research into plain language.</h1>
+      </div>
+
+      <div class="hero-portrait">
+        <figure class="loop">
+          <svg viewBox="0 0 440 540" role="img" aria-label="Derek Özkal">
+            <defs><clipPath id="hs-clip"><rect x="20" y="20" width="400" height="500" rx="26"/></clipPath></defs>
+            <image href="assets/img/headshot.jpg" x="20" y="20" width="400" height="500" preserveAspectRatio="xMidYMid slice" clip-path="url(#hs-clip)"/>
+            <rect class="loop-path" x="4" y="4" width="432" height="532" rx="40"/>
+            <g class="agent-chip" aria-hidden="true">
+              <circle class="agent-glow" r="22"/>
+              <rect x="-33" y="-14" width="66" height="28" rx="14"/>
+              <text x="0" y="5" text-anchor="middle">agent</text>
+              <animateMotion dur="18s" repeatCount="indefinite" path="M220 4H396A40 40 0 0 1 436 44V496A40 40 0 0 1 396 536H44A40 40 0 0 1 4 496V44A40 40 0 0 1 44 4Z"/>
+            </g>
+          </svg>
+          <figcaption><b>A human in the loop.</b></figcaption>
+        </figure>
+      </div>
+
+      <div class="hero-body">
+        <div class="dial-wrap">
+          <p class="dial-label" id="dial-label"><b>How much do you want to delegate?</b></p>
+          <div class="dial" role="radiogroup" aria-labelledby="dial-label" data-current="all">
+            <span class="knob" aria-hidden="true"></span>
+            <button type="button" role="radio" data-mode="all" aria-checked="true">Read it all</button>
+            <button type="button" role="radio" data-mode="skim" aria-checked="false">Skim it</button>
+            <button type="button" role="radio" data-mode="gist" aria-checked="false">Just the gist</button>
+          </div>
+          <div class="dial-body" aria-live="polite">
+            <div class="dial-pane" data-pane="all">
+              <p>I've spent more than 20 years in economic research, philanthropy, and journalism, most of it at the <strong>Ewing Marion Kauffman Foundation</strong>. There I directed $31.9 million in research on entrepreneurship, labor markets, and what AI is doing to both. Today my work covers AI across entrepreneurship, workforce development, and college access and completion.</p>
+              <p><strong>Agents and Agency</strong> is where I write about keeping people's judgment and sense of purpose at the center of the AI debate. The Lab is where I build things with AI to test those ideas.</p>
+            </div>
+            <div class="dial-pane" data-pane="skim" hidden>
+              <ul>
+                <li>More than 20 years in economic research, philanthropy, and journalism, mostly at the <strong>Kauffman Foundation</strong>.</li>
+                <li>Directed <strong>$31.9 million</strong> in research on entrepreneurship, labor markets, and AI.</li>
+                <li>Writes <strong>Agents and Agency</strong>, essays on keeping human judgment at the center of AI.</li>
+              </ul>
+            </div>
+            <div class="dial-pane" data-pane="gist" hidden>
+              <p class="gist">Applied research leader at the Kauffman Foundation. Writes about AI, work, and human agency.</p>
+              <p class="gist-link">If you read one thing, make it <a href="https://agentsandagency.substack.com/p/unprompted" target="_blank" rel="noopener">Unprompted</a>.</p>
+            </div>
+          </div>
+        </div>
+        <div class="hero-ctas">
+          <a class="btn light" href="writing.html">Read the writing <span class="arr" aria-hidden="true">&rarr;</span></a>
+          <a class="go" href="research.html">See the research</a>
+          <a class="go" href="lab.html">Enter the Lab</a>
         </div>
       </div>
     </div>
-    <div class="lf-stats">
-      <div><span class="v">46</span><span class="l">Volunteers led</span></div>
-      <div><span class="v">60 yrs</span><span class="l">Of history digitized</span></div>
-      <div><span class="v">20,000+</span><span class="l">Documents searchable</span></div>
-      <div><span class="v">90%+</span><span class="l">Faster to find answers</span></div>
+
+    <div class="stats">
+      <div><span class="v" data-count="31.9" data-dec="1" data-pre="$" data-suf="M">$31.9M</span><span class="l">in research directed</span></div>
+      <div><span class="v" data-count="125" data-suf="+">125+</span><span class="l">grants</span></div>
+      <div><span class="v" data-count="90" data-suf="+">90+</span><span class="l">convenings</span></div>
+      <div><span class="v" data-count="35" data-suf="+">35+</span><span class="l">bylines</span></div>
     </div>
-    <div class="lf-timeline" aria-hidden="true">
+  </div>
+</section>
+
+<section class="band-tint" id="ideas" aria-labelledby="ideas-h">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <p class="eyebrow">From the newest essay</p>
+        <h2 class="sec" id="ideas-h">What happens when AI acts before you ask?</h2>
+      </div>
+      <p class="sec-intro">AI started as a tool that waits for instructions. Agents can now plan and finish long projects, and some are built to start them on their own. Step through the stages and watch who makes the decisions.</p>
+    </div>
+    <figure class="fig" data-fig="moves" id="fig-moves" data-reveal>
+      <div class="fig-top">
+        <span class="fig-no">Fig. 1</span>
+        <h3 class="fig-title">Who moves first?</h3>
+        <a class="fig-src" href="https://agentsandagency.substack.com/p/unprompted" target="_blank" rel="noopener">Read Unprompted &rarr;</a>
+      </div>
+      <div class="fig-row">
+        <div class="seg" role="radiogroup" aria-label="How the AI works">
+          <button type="button" role="radio" data-stage="0" aria-checked="true">Hammer</button>
+          <button type="button" role="radio" data-stage="1" aria-checked="false">Contractor</button>
+          <button type="button" role="radio" data-stage="2" aria-checked="false">Unprompted</button>
+        </div>
+        <button type="button" class="fig-play" aria-pressed="false"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Watch it happen</button>
+      </div>
+      <ol class="track">
+        <li class="step you"><span class="n">01</span><span class="nm">Notice a need</span><span class="who"><i aria-hidden="true"></i><b>You</b></span></li>
+        <li class="step you"><span class="n">02</span><span class="nm">Choose the goal</span><span class="who"><i aria-hidden="true"></i><b>You</b></span></li>
+        <li class="step you"><span class="n">03</span><span class="nm">Plan the work</span><span class="who"><i aria-hidden="true"></i><b>You</b></span></li>
+        <li class="step ai"><span class="n">04</span><span class="nm">Do the work</span><span class="who"><i aria-hidden="true"></i><b>AI, when asked</b></span></li>
+      </ol>
+      <div class="story" aria-live="polite">
+        <p><span class="lede">Hammer.</span> You want a playhouse for your kid. You pick the design, buy the lumber, and drive the nails with a nail gun. The tool does what you aim it at.</p>
+        <div class="pips"><span>Decisions that stayed yours</span><span class="row"><i class="on"></i><i class="on"></i><i class="on"></i><b>3 of 3</b></span></div>
+      </div>
+      <figcaption class="cap"><b>Fig. 1.</b> Based on my July 2026 essay <a href="https://agentsandagency.substack.com/p/unprompted" target="_blank" rel="noopener">Unprompted</a>. Chat tools work like a hammer. Agentic tools work more like a contractor. The next step is agents that choose the goal themselves and act before anyone asks. The essay asks what that does to human agency.</figcaption>
+    </figure>
+    <p style="margin-top:22px" data-reveal><a class="go" href="writing.html#figures">Two more interactive figures on the Writing page</a></p>
+  </div>
+</section>
+
+<section class="legacy dark" id="legacy" aria-labelledby="legacy-h">
+  <span class="numeral" aria-hidden="true">60</span>
+  <div class="wrap">
+    <p class="eyebrow">Featured by the Ewing Marion Kauffman Foundation</p>
+    <h2 id="legacy-h">The Legacy Project</h2>
+    <div class="legacy-grid">
+      <blockquote class="quote" cite="https://www.kauffman.org/legacy/story/60-years-of-kauffman-foundation/" data-reveal>
+        <p class="q">&ldquo;Led by Derek Ozkal, senior officer, strategic initiatives, RLE&rdquo;</p>
+        <span class="src">From <cite>A project to learn from, and honor, 60 years of the Ewing Marion Kauffman Foundation</cite>, the Foundation's account of the work.</span>
+      </blockquote>
+      <div class="legacy-body" data-reveal="2">
+        <p>Sixty years of foundation history sat in boxes, binders, and file shares that nobody could search. I led <strong>46 volunteers</strong> in turning tens of thousands of pages into a secure, searchable archive. Then I helped design an <strong>experimental AI tool</strong> so staff can ask the archive questions.</p>
+        <p>Finding what we funded, what we learned, and what we already tried in 1997 now takes minutes instead of days.</p>
+        <div class="legacy-ctas">
+          <a class="btn sun" href="https://www.kauffman.org/legacy/story/60-years-of-kauffman-foundation/" target="_blank" rel="noopener">Read the Foundation's story <span class="arr" aria-hidden="true">&rarr;</span></a>
+          <a class="go light" href="lab.html#legacy">How the tool works</a>
+        </div>
+      </div>
+    </div>
+    <div class="lstats">
+      <div><span class="v" data-count="46">46</span><span class="l">volunteers led</span></div>
+      <div><span class="v" data-count="60" data-suf=" yrs">60 yrs</span><span class="l">of history digitized</span></div>
+      <div><span class="v" data-count="20000" data-comma data-suf="+">20,000+</span><span class="l">documents searchable</span></div>
+      <div><span class="v" data-count="90" data-suf="%+">90%+</span><span class="l">faster to find answers</span></div>
+    </div>
+    <div class="timeline" data-observe aria-hidden="true">
+      <div class="rail"><div class="fill"></div></div>
       <span style="left:0">1966</span><span style="left:16.67%">1976</span><span style="left:33.33%">1986</span><span style="left:50%">1996</span><span style="left:66.67%">2006</span><span style="left:83.33%">2016</span><span style="left:100%">2026</span>
     </div>
   </div>
 </section>
 
-<section aria-labelledby="explore-h">
+<section aria-labelledby="ways-h">
   <div class="wrap">
-    <p class="eyebrow">Explore</p>
-    <h2 class="sec" id="explore-h">Four ways in</h2>
-    <p class="sec-intro">Each has its own page, so you can skip straight to what you came for.</p>
-    <div class="tiles">
-      <a class="tile t-write" href="writing.html">
-        <span class="label">Writing</span>
-        <h3>Essays on AI, work, and agency</h3>
-        <ol>
-          <li>Unprompted</li>
-          <li>The Liquidity Crisis of Expertise</li>
-          <li>The Rise of the Agentic Class</li>
-          <li>Our Perfect Future</li>
-        </ol>
-        <p class="blurb">Plus nine Kauffman pieces going back to 2016, and data journalism from the Kansas City Business Journal.</p>
-        <span class="go">All the writing</span>
+    <div class="sec-head" data-reveal>
+      <div>
+        <p class="eyebrow green">Explore</p>
+        <h2 class="sec" id="ways-h">Four ways in</h2>
+      </div>
+      <p class="sec-intro">Each has its own page, so you can skip straight to what you came for.</p>
+    </div>
+    <div class="ways">
+      <a class="way way-writing" href="writing.html" data-reveal>
+        <div class="art" aria-hidden="true"><div class="mini-cover"><svg viewBox="0 0 320 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<rect width="320" height="400" fill="#FFC247"/>
+<circle cx="300" cy="380" r="120" fill="#FFCF66"/>
+<g transform="translate(0 -12)">
+<rect x="44" y="64" width="210" height="250" rx="16" fill="#fff" transform="rotate(-4 149 189)"/>
+<g transform="rotate(-4 149 189)" fill="#D7DEE7"><rect x="66" y="92" width="150" height="7" rx="3.5"/><rect x="66" y="108" width="166" height="5" rx="2.5"/><rect x="66" y="120" width="158" height="5" rx="2.5"/><rect x="66" y="132" width="166" height="5" rx="2.5"/><rect x="66" y="144" width="120" height="5" rx="2.5"/><rect x="66" y="162" width="166" height="5" rx="2.5"/><rect x="66" y="174" width="150" height="5" rx="2.5"/><rect x="66" y="186" width="160" height="5" rx="2.5"/><rect x="66" y="198" width="96" height="5" rx="2.5"/><rect x="66" y="216" width="164" height="5" rx="2.5"/><rect x="66" y="228" width="140" height="5" rx="2.5"/></g>
+<g transform="rotate(-4 149 189)"><rect x="66" y="256" width="26" height="26" rx="6" fill="#0A1A2E"/><path d="M72 269l5 5 9-10" stroke="#3EE6A4" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="102" y="276" font-family="Montserrat,sans-serif" font-weight="800" font-size="16" fill="#0A1A2E">I agree</text></g>
+</g>
+<path d="M262 54l7 19 19 7-19 7-7 19-7-19-19-7 19-7z" fill="#2457F5"/>
+<path d="M232 122l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#2457F5" opacity=".7"/>
+</svg></div><div class="mini-cover"><svg viewBox="0 0 320 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<rect width="320" height="400" fill="#0A1A2E"/>
+<g fill="rgba(143,176,255,.18)"><circle cx="40" cy="30" r="2"/><circle cx="96" cy="58" r="2"/><circle cx="270" cy="34" r="2"/><circle cx="220" cy="90" r="2"/><circle cx="296" cy="150" r="2"/></g>
+<path d="M36 70h150a20 20 0 0 1 20 20v44a20 20 0 0 1-20 20H86l-26 22v-22H36a20 20 0 0 1-20-20v-44a20 20 0 0 1 20-20z" fill="#FFC247"/>
+<text x="111" y="123" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="34" letter-spacing="-1.5" fill="#0A1A2E">Yes!</text>
+<path d="M134 170h150a20 20 0 0 1 20 20v44a20 20 0 0 1-20 20h-24v22l-26-22H134a20 20 0 0 1-20-20v-44a20 20 0 0 1 20-20z" fill="none" stroke="#8FB0FF" stroke-width="3"/>
+<text x="209" y="223" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="34" letter-spacing="-1.5" fill="#8FB0FF">Why?</text>
+</svg></div><div class="mini-cover"><svg viewBox="0 0 320 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<rect width="320" height="400" fill="#067A55"/>
+<circle cx="30" cy="40" r="110" fill="#0A8A61"/>
+<defs><clipPath id="cv-tank-m"><rect x="86" y="54" width="148" height="196" rx="20"/></clipPath></defs>
+<g clip-path="url(#cv-tank-m)"><path d="M70 170 C104 160 130 180 162 170 S222 160 250 170 V260 H70Z" fill="#3EE6A4"/><path d="M70 182 C104 174 130 192 162 184 S222 174 250 182 V260 H70Z" fill="#2BD493" opacity=".8"/></g>
+<rect x="86" y="54" width="148" height="196" rx="20" fill="none" stroke="#fff" stroke-width="2.4" stroke-dasharray="6 7"/>
+<text x="244" y="68" font-family="ui-monospace,Menlo,monospace" font-size="12" font-weight="700" fill="#fff">100%</text>
+<rect x="240" y="160" width="44" height="20" rx="5" fill="#3EE6A4"/><text x="246" y="174" font-family="ui-monospace,Menlo,monospace" font-size="12" font-weight="700" fill="#0A1A2E">61%</text>
+<g fill="#3EE6A4"><path d="M160 260c0 0-6 8-6 12a6 6 0 0 0 12 0c0-4-6-12-6-12z"/><path d="M160 284c0 0-4 5-4 8a4 4 0 0 0 8 0c0-3-4-8-4-8z" opacity=".6"/></g>
+</svg></div><div class="mini-cover"><svg viewBox="0 0 320 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<rect width="320" height="400" fill="#2457F5"/>
+<circle cx="292" cy="40" r="120" fill="#3A6BFF"/>
+<rect x="30" y="74" width="260" height="52" rx="26" fill="#1B44C9" stroke="rgba(255,255,255,.55)" stroke-width="2"/>
+<rect x="56" y="87" width="3" height="26" rx="1.5" fill="#fff"/>
+<rect x="30" y="150" width="214" height="38" rx="12" fill="rgba(255,255,255,.95)"/><rect x="30" y="196" width="186" height="38" rx="12" fill="rgba(255,255,255,.85)"/><rect x="30" y="242" width="200" height="38" rx="12" fill="rgba(255,255,255,.75)"/>
+<g fill="#12B07A"><circle cx="52" cy="169" r="9"/><circle cx="52" cy="215" r="9"/><circle cx="52" cy="261" r="9"/></g>
+<g stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M47.5 169l3 3 6-6"/><path d="M47.5 215l3 3 6-6"/><path d="M47.5 261l3 3 6-6"/></g>
+<g fill="#C9D6FF"><rect x="72" y="165" width="120" height="8" rx="4"/><rect x="72" y="211" width="96" height="8" rx="4"/><rect x="72" y="257" width="110" height="8" rx="4"/></g>
+<path d="M0 0V31L8 23.5L13.5 36L19.5 33.3L14 21H25Z" transform="translate(208 248) rotate(-8)" fill="#fff" stroke="#0A1A2E" stroke-width="2.4" stroke-linejoin="round"/>
+</svg></div></div>
+        <div class="body">
+          <span class="k">Writing</span>
+          <h3>Essays on AI, work, and agency</h3>
+          <p>Four essays on Agents and Agency, plus interactive figures for three of them. Also nine Kauffman pieces going back to 2016 and data journalism from the Kansas City Business Journal.</p>
+          <span class="go">All the writing</span>
+        </div>
       </a>
-      <a class="tile t-media" href="media.html">
-        <div class="thumb"><img src="https://i.ytimg.com/vi/wD2zZ3lbyD0/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></div>
-        <div class="tile-body">
-          <span class="label">Watch &amp; listen</span>
+      <a class="way way-media" href="media.html" data-reveal="2">
+        <div class="art"><img src="media-hickenlooper.jpg" alt="Derek interviewing Senator John Hickenlooper on camera" width="480" height="360" loading="lazy"><span class="play" aria-hidden="true"></span></div>
+        <div class="body">
+          <span class="k">Watch &amp; listen</span>
           <h3>The Kauffman Indicators relaunch</h3>
-          <p>The keynote video for the 2026 national relaunch, built from interviews I led, plus talks, forums, and a podcast.</p>
+          <p>I interviewed Sen. John Hickenlooper on camera for the keynote video of the 2026 national relaunch. Plus talks, forums, and a podcast.</p>
           <span class="go">All talks and interviews</span>
         </div>
       </a>
-      <a class="tile t-research" href="research.html">
-        <span class="label">Research</span>
-        <h3>The research network</h3>
-        <div class="names"><span>Brynjolfsson</span><span>Bloom</span><span>Haltiwanger</span><span>Chatterji</span><span>Seamans</span><span>+ more</span></div>
-        <p>$12M across 60+ projects. 34 papers and reports that thank, quote, or cite my work.</p>
-        <span class="go">See the network</span>
+      <a class="way way-research" href="research.html" data-reveal>
+        <div class="art" aria-hidden="true">
+          <div class="sheet" style="--pc:#2457F5"><span class="pub">NBER Working Paper</span><span class="st">Rationalizing Firm Forecasts</span><span class="ln"></span></div>
+          <div class="sheet" style="--pc:#067A55"><span class="pub">NBER / U. Chicago Press</span><span class="st">Entrepreneurship and Innovation Policy and the Economy</span><span class="ln"></span></div>
+          <div class="sheet" style="--pc:#0E2456"><span class="pub">RAND</span><span class="st">The Changing Nature of Entrepreneurship</span><span class="ln"></span></div>
+        </div>
+        <div class="body">
+          <span class="k">Research</span>
+          <h3>The research network</h3>
+          <div class="names"><span>Brynjolfsson</span><span>Bloom</span><span>Haltiwanger</span><span>Chatterji</span><span>Seamans</span><span>+ more</span></div>
+          <p>$12M across 60+ projects. 34 papers and reports that thank, quote, or cite my work.</p>
+          <span class="go">See the network</span>
+        </div>
       </a>
-      <a class="tile t-lab" href="lab.html">
-        <span class="label">The Lab</span>
-        <h3>Prototypes I built with AI</h3>
-        <p>I build things with AI to test the ideas I write about. Everything here is a prototype, this site included.</p>
-        <div class="exhibits"><span class="new">New: Herd Mentality</span><span>Directorate</span><span>Math Grove</span><span>AI Diffusion Atlas</span><span>Expertise Flow Simulator</span></div>
-        <span class="go">Enter the Lab</span>
+      <a class="way way-lab" href="lab.html" data-reveal="2">
+        <div class="art" aria-hidden="true">
+          <img src="assets/img/x-herd.jpg" alt="" loading="lazy">
+          <img src="assets/img/x-directorate.jpg" alt="" loading="lazy">
+          <img src="assets/img/x-grove.jpg" alt="" loading="lazy">
+        </div>
+        <div class="body">
+          <span class="k">The Lab</span>
+          <h3>Prototypes I built with AI</h3>
+          <p>I build things with AI to test the ideas I write about. Everything here is a prototype, this site included.</p>
+          <div class="exhibits"><span class="new">New: Herd Mentality</span><span>Directorate</span><span>Math Grove</span><span>AI Diffusion Atlas</span><span>Expertise Flow Simulator</span></div>
+          <span class="go">Enter the Lab</span>
+        </div>
       </a>
     </div>
   </div>
 </section>
 
-<section id="about" class="tint" aria-labelledby="about-h">
+<section class="band-tint" aria-labelledby="agents-h" style="padding:72px 0">
   <div class="wrap">
-    <p class="eyebrow">About</p>
-    <h2 class="sec" id="about-h">From Nevada, Missouri</h2>
-    <div class="about-grid" style="margin-top:32px">
+    <div class="callout" data-reveal>
+      <svg class="bot" viewBox="0 0 72 72" aria-hidden="true">
+<rect x="6" y="14" width="60" height="50" rx="16" fill="#2457F5"/>
+<circle cx="27" cy="38" r="6" fill="#fff"/><circle cx="45" cy="38" r="6" fill="#fff"/>
+<circle cx="28" cy="39" r="2.6" fill="#0A1A2E"/><circle cx="46" cy="39" r="2.6" fill="#0A1A2E"/>
+<rect x="27" y="50" width="18" height="4" rx="2" fill="#C9D6FF"/>
+<line x1="36" y1="14" x2="36" y2="5" stroke="#0A1A2E" stroke-width="3" stroke-linecap="round"/>
+<circle cx="36" cy="5" r="4.5" fill="#12B07A"/>
+</svg>
       <div>
-        <p>I grew up in <strong>Nevada, Missouri</strong> (pronounced Knee-vay-duh, because it's a rural Missouri town).</p>
-        <p>I studied economics at Truman State, then spent five years in market research and managing healthcare certification accounts, and two years as <strong>Director of Research at the Kansas City Business Journal</strong>.</p>
-        <p>The rest of my career has been at the <strong>Ewing Marion Kauffman Foundation</strong>, in two stints (2006 to 2008 and 2015 to now). My work covers entrepreneurship research, labor markets, inclusive prosperity, and the economics of AI. Along the way I earned an executive MBA from Washington University's Olin School, joined the Foundation's core AI working group, and led the <a href="#legacy">Legacy Project</a>.</p>
-        <p>Most of my work comes down to translation. Researchers and decision makers rarely speak the same language, and I connect the two so research gets used.</p>
+        <h2 id="agents-h">Reading this for someone else?</h2>
+        <p>AI agents get their own page here: the facts in plain language, what's verified and what's a prototype, and where to send the person who asked. It works for people in a hurry too.</p>
       </div>
-      <dl class="facts">
-        <dt>Base</dt><dd>Kansas City metro</dd>
-        <dt>Role</dt><dd>Senior Officer, Strategic Initiatives (Research, Learning &amp; Evaluation), Ewing Marion Kauffman Foundation</dd>
-        <dt>Education</dt><dd>Executive MBA, Olin Business School, Washington University in St. Louis · BS Economics, Truman State University</dd>
-        <dt>Honors</dt><dd>Inaugural Alumni Fellow, Truman State University School of Social and Cultural Studies, 2022</dd>
-        <dt>Elsewhere</dt><dd><a href="https://www.linkedin.com/in/derekozkal" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Substack</a></dd>
-        <dt>Curriculum vitae</dt><dd><a href="cv.pdf">Download the CV (PDF)</a></dd>
-      </dl>
+      <div class="acts">
+        <a class="btn ink" href="agents.html">The page for agents <span class="arr" aria-hidden="true">&rarr;</span></a>
+        <a href="llms.txt">or the plain-text <code>llms.txt</code></a>
+      </div>
     </div>
   </div>
 </section>
+
 </main>
 <footer class="site">
-  <div class="wrap foot-grid">
-    <div>
-      <a class="wordmark" href="index.html">Agents <span class="amp">&amp;</span> Agency</a>
-      <p class="fine" style="margin-top:6px">Written by me, built with Claude · &copy; 2026 Derek Özkal</p>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="index.html" aria-label="Agents and Agency, home"><svg class="mark" viewBox="0 0 34 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="#2457F5"/><circle cx="22" cy="12" r="9" fill="#12B07A"/><path d="M17 4.52A9 9 0 0 1 17 19.48A9 9 0 0 1 17 4.52Z" fill="currentColor"/></svg><span class="wordmark">Agents <span class="amp">&amp;</span> Agency</span></a>
+        <p class="fine">Essays, research, and prototypes by Derek Özkal on AI, work, and human agency. Written by me, built with Claude.</p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="writing.html">Writing</a><a href="research.html">Research</a>
+        <a href="media.html">Watch &amp; listen</a><a href="lab.html">The Lab</a>
+        <a href="about.html">About</a><a href="agents.html">For agents</a>
+        <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Substack</a><a href="https://www.linkedin.com/in/derekozkal" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="cv.pdf">CV (PDF)</a><a href="llms.txt">llms.txt</a>
+      </nav>
+      <div class="foot-controls">
+        <p class="k">This site has an agent</p>
+        <div class="toggles">
+          <button class="toggle" type="button" data-toggle="agent" aria-pressed="true"><i aria-hidden="true"></i>Agent: <b>on</b></button>
+          <button class="toggle" type="button" data-toggle="motion" aria-pressed="true"><i aria-hidden="true"></i>Motion: <b>on</b></button>
+        </div>
+        <p class="tally" id="agentTally">No unprompted offers yet this visit.</p>
+        <div class="share" aria-label="Share this site">
+          <button type="button" class="share-copy" data-copy="https://agentsandagency.com/">Copy link</button>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fagentsandagency.com%2F" target="_blank" rel="noopener">Share on LinkedIn</a>
+          <a href="https://bsky.app/intent/compose?text=Agents%20and%20Agency%2C%20essays%20and%20prototypes%20on%20AI%2C%20work%2C%20and%20human%20agency%20by%20Derek%20%C3%96zkal%3A%20https%3A%2F%2Fagentsandagency.com%2F" target="_blank" rel="noopener">Bluesky</a>
+        </div>
+      </div>
     </div>
-    <nav aria-label="Footer">
-      <a href="writing.html">Writing</a><a href="research.html">Research</a><a href="media.html">Watch &amp; listen</a><a href="lab.html">The Lab</a>
-      <a href="https://www.linkedin.com/in/derekozkal" target="_blank" rel="noopener">LinkedIn</a><a href="cv.pdf">CV</a>
-    </nav>
+    <div class="foot-base"><span>&copy; 2026 Derek Özkal</span><span>Plain HTML on GitHub Pages. The agent is a script, and it only makes offers.</span></div>
   </div>
 </footer>
+<script src="assets/site.js"></script>
+<script src="assets/figs.js"></script>
 <script>
-function toggleMenu(btn){var nav=document.getElementById('nav');var open=nav.classList.toggle('open');btn.setAttribute('aria-expanded',open?'true':'false');}
-document.querySelectorAll('nav.primary a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('nav').classList.remove('open');});});
-(function(){var bar=document.getElementById('progress'),t=false;function d(){var h=document.documentElement.scrollHeight-innerHeight;bar.style.width=(h>0?Math.min(100,scrollY/h*100):0)+'%';t=false;}
-addEventListener('scroll',function(){if(!t){requestAnimationFrame(d);t=true;}},{passive:true});d();})();
+(function(){
+  if(!window.AA||!AA.agent)return;
+  AA.agent.when({id:'home-skim',after:9000,inView:'#hero',dwell:5000,
+    test:function(){return AA.dial&&!AA.dial.touched()&&AA.dial.current()==='all'&&window.scrollY<300;},
+    msg:"You've been reading for a bit. Want me to shorten this page for you?",
+    yes:'Shorten it',no:"I'll read it",target:'.dial',
+    onYes:function(){AA.dial.set('skim');}});
+  AA.agent.when({id:'home-fig',after:5000,inView:'#fig-moves',dwell:4000,
+    test:function(){var f=document.getElementById('fig-moves');return f&&f._fig&&!f._fig.touched();},
+    msg:"I can run Fig. 1 for you, start to finish. You won't have to click anything.",
+    yes:'Run it',no:"I'll click",target:'#fig-moves .track',
+    onYes:function(){document.getElementById('fig-moves')._fig.run();}});
+})();
 </script>
 </body>
 </html>

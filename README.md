@@ -1,48 +1,46 @@
 # agentsandagency.com
 
-A small static site. No build step, no framework, no hosting bill.
+A small static site. No build step, no framework, no hosting bill. It runs on GitHub Pages.
 
-- `index.html` : home. Intro, the Legacy Project feature, links into each section, and About.
-- `writing.html` : Substack essays, Kauffman pieces, and earlier journalism.
-- `research.html` : scholars funded, papers that acknowledge the work, and initiatives.
-- `media.html` : photos, videos (thumbnails load from YouTube), and the podcast.
-- `lab.html` : the Lab. Atlas, Legacy Project detail, simulator, jobs list, kitchen, and the games.
-- `assets/site.css` : shared styles for the four main pages. Fonts are Montserrat and Instrument Sans.
-- `herd-mentality/`, `grove/`, `directorate.html`, `atlas.html` : the Lab exhibits.
+## Pages
 
-## Launch it free (GitHub Pages, ~20 minutes)
+- `index.html` : home. Hero with the delegation dial, Fig. 1, the Legacy Project, four ways in, and the For agents callout.
+- `writing.html` : Substack essays with cover art, three interactive figures, Kauffman pieces, and earlier journalism.
+- `research.html` : the research network, scholars funded, papers that acknowledge the work, and initiatives.
+- `media.html` : the keynote video, photos, more videos (they play on the page), and the podcast.
+- `lab.html` : the Lab. Exhibit cards, the Atlas, the Legacy Project, the simulator, the jobs list, the kitchen, and the arcade.
+- `about.html` : bio, facts, and what I'm working on now.
+- `agents.html` : a page for AI agents researching me. `llms.txt` has the same facts in plain text.
+- `404.html` : GitHub Pages shows this for broken links.
+- `herd-mentality/`, `grove/`, `directorate.html`, `atlas.html` : the Lab exhibits. Each is self-contained.
 
-1. Create a free account at github.com if you do not have one.
-2. Click New repository. Name it `agentsandagency`. Set it Public. Create.
-3. On the repo page, click "uploading an existing file" and drag in `index.html`, `lab.html`, and this README. Commit.
-4. Go to Settings, then Pages (left sidebar). Under Build and deployment, set Source to "Deploy from a branch," branch `main`, folder `/ (root)`. Save.
-5. Wait a minute. Your site is live at `https://YOURUSERNAME.github.io/agentsandagency/`.
-6. Still in Settings > Pages, enter `agentsandagency.com` in the Custom domain box and save. GitHub adds a CNAME file to the repo. Leave it there.
+## Shared files
 
-## Point the domain (Spaceship)
+- `assets/site.css` : all styles for the main pages. Fonts are Montserrat (headings) and Instrument Sans (text). Colors are set at the top under `:root`. Blue marks AI, green marks people, gold is for highlights.
+- `assets/site.js` : menu, scroll reveals, count-ups, the Agent and Motion switches in the footer, inline video, the hero dial, and the unprompted agent.
+- `assets/figs.js` : the interactive figures and the toy model behind Fig. 2 and the Lab simulator.
+- `assets/img/` : web-sized photos and the exhibit screenshots.
+- `assets/og.png` : the preview image that shows up when someone shares a link.
 
-1. In Spaceship, open the domain and find DNS / nameserver settings.
-2. First, remove the existing URL forwarding / redirect to Substack. That redirect and these records cannot coexist.
-3. Add four A records, all with host `@`:
-   - 185.199.108.153
-   - 185.199.109.153
-   - 185.199.110.153
-   - 185.199.111.153
-4. Add one CNAME record: host `www`, value `YOURUSERNAME.github.io`
-5. Wait for DNS to propagate (minutes to a few hours). Back in GitHub Settings > Pages, check "Enforce HTTPS" once it becomes clickable.
+## The agent
 
-Your Substack keeps working at agentsandagency.substack.com. Nothing about the newsletter changes. The site links to it in the nav, the writing section, and the footer.
+The site has a small scripted agent. Now and then it offers to do something the visitor didn't ask for, like shortening the home page or playing the keynote video. The visitor accepts or declines. It never acts without a click. Each offer shows at most once per visit, and visitors can turn it off in the footer.
 
-Alternative host: Cloudflare Pages is also free and works by drag-and-drop. Either is fine. GitHub Pages is recommended because you can edit files directly in the browser.
+The offers live in a short `<script>` near the bottom of each page that calls `AA.agent.when({...})`. To change a message, edit its `msg` text. To remove one, delete its `AA.agent.when(...)` block.
 
 ## How to update the site
 
 Edit on github.com (open the file, click the pencil icon, commit). The live site updates in a minute or two.
 
-- **Add an essay:** in `writing.html`, copy one `<a class="essay">` block in the Substack grid, paste it first, and change the link, title, subtitle, and date. Give it a cover color class `c1` to `c4`. Then update the list on the home page Writing tile in `index.html`.
-- **Add a video:** in `media.html`, copy one `<a class="video">` block. Replace the YouTube ID in both the link and the thumbnail URL (`https://i.ytimg.com/vi/ID/hqdefault.jpg`).
+- **Add an essay:** in `writing.html`, copy one `<a class="essay">` block, paste it first, and change the link, title, subtitle, and date. The cover art is an inline SVG. Copy one of the four and change its colors, or use a plain colored block. Then update the Writing card on the home page and the essay list in `llms.txt`.
+- **Add a video:** in `media.html`, copy one `<a class="video">` block. Replace the YouTube ID in the link, the `data-yt` attribute, and the thumbnail URL (`https://i.ytimg.com/vi/ID/hqdefault.jpg`).
 - **Add an acknowledgment:** in `research.html`, add a row to "The rest of the record," or copy an `<a class="paper">` block to feature it.
-- **Add a Lab entry for the jobs list:** in `lab.html`, find `var LEDGER=[`. Copy one object, edit the four fields. The `cap` value must be one of CONTEXT, AGENCY, GENERALITY, CODE, COST, MULTIMODAL.
+- **Add an entry to the jobs list:** in `lab.html`, find `var LEDGER=[`. Copy one object and edit the four fields. The `cap` value must be one of CONTEXT, AGENCY, GENERALITY, CODE, COST, MULTIMODAL.
+- **Change the header or footer:** they are repeated in each main page, so make the same edit in all eight, including `404.html`.
 - **CV:** upload a new `cv.pdf` to the repo root.
 
 Or paste any file into Claude and ask for the change.
+
+## Domain
+
+DNS is at Spaceship: four A records for `@` (185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153) and a CNAME for `www` pointing to `derekozkal.github.io`. The `CNAME` file in this repo tells GitHub Pages to serve the custom domain. Leave it there.

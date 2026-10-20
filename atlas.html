@@ -7,115 +7,116 @@
 <meta name="description" content="Who is actually adopting AI in America: businesses, workers, and states. Built on real, published data from the Census Bureau, the Federal Reserve, and the Anthropic Economic Index.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600;1,9..144,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <style>
 :root{
-  --bg:#FCFBF7;
-  --wash:#F4F1E8;
-  --ink:#1C1B17;
-  --soft:#5C5850;
-  --line:#E3DFD3;
-  --brick:#A8432A;
-  --brick-deep:#7E2F1C;
-  --dark:#211F1A;
-  --heart:#A8432A;
-  --west:#46628C;
-  --east:#3E7A70;
+  --bg:#F6F8FB;
+  --wash:#EAF0F8;
+  --ink:#0B1A2B;
+  --soft:#4A5568;
+  --line:#DCE3EC;
+  --brick:#2457F5;
+  --brick-deep:#173AAE;
+  --dark:#0A1A2E;
+  --heart:#067A55;
+  --west:#2457F5;
+  --east:#B7791F;
   --max:1000px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:'Newsreader',Georgia,serif;font-size:16px;line-height:1.6}
-::selection{background:#EAD9C4;color:var(--ink)}
-a{color:var(--brick);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:#D8B7A8}
+body{background:var(--bg);color:var(--ink);font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:16px;line-height:1.6}
+::selection{background:#FFC247;color:var(--ink)}
+a{color:var(--brick);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:#A9BFFB}
 a:hover{color:var(--brick-deep)}
 a:focus-visible,button:focus-visible{outline:2px solid var(--brick);outline-offset:3px;border-radius:1px}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
-.sans{font-family:'Archivo',sans-serif}
+.sans{font-family:'Instrument Sans',sans-serif}
 
-header.hd{background:var(--dark);color:#F3EFE6;padding:30px 0 28px}
-.hd .kicker{font-family:'Archivo',sans-serif;font-size:13px;color:#B9B2A2;margin-bottom:12px}
-.hd .kicker a{color:#E8A084;text-decoration-color:rgba(232,160,132,.4)}
-.hd .kicker b{color:#E8A084;font-weight:600}
-h1{font-family:'Fraunces',serif;font-size:clamp(27px,4.5vw,40px);font-weight:700;line-height:1.1}
-.statusline{font-family:'Archivo',sans-serif;font-size:12.5px;color:#D98A6E;margin-top:8px}
-.lede{max-width:720px;font-size:16px;line-height:1.6;color:#B9B2A2;margin-top:12px}
-.lede strong{color:#F3EFE6}
+header.hd{background:var(--dark);color:#EEF2F8;padding:30px 0 28px}
+.hd .kicker{font-family:'Instrument Sans',sans-serif;font-size:13px;color:#B4C0D3;margin-bottom:12px}
+.hd .kicker a{color:#8FB0FF;text-decoration-color:rgba(143,176,255,.4)}
+.hd .kicker b{color:#8FB0FF;font-weight:600}
+h1{font-family:'Montserrat',sans-serif;font-size:clamp(27px,4.5vw,40px);font-weight:700;line-height:1.1}
+.statusline{font-family:'Instrument Sans',sans-serif;font-size:12.5px;color:#3EE6A4;margin-top:8px}
+.lede{max-width:720px;font-size:16px;line-height:1.6;color:#B4C0D3;margin-top:12px}
+.lede strong{color:#EEF2F8}
 .stats{display:flex;gap:34px;margin-top:22px;flex-wrap:wrap}
-.stat .v{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:#E8A084}
-.stat .l{font-family:'Archivo',sans-serif;font-size:11.5px;color:#8F897B;margin-top:2px;max-width:190px;line-height:1.45}
+.stat .v{font-family:'Montserrat',sans-serif;font-size:26px;font-weight:700;color:#8FB0FF}
+.stat .l{font-family:'Instrument Sans',sans-serif;font-size:11.5px;color:#9AA7BA;margin-top:2px;max-width:190px;line-height:1.45}
 
 nav.tabsbar{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:5}
 .tabs{display:flex;overflow-x:auto;gap:4px}
-.tab{padding:14px 14px 12px;font-size:15px;white-space:nowrap;background:none;border:none;cursor:pointer;color:var(--soft);border-bottom:2px solid transparent;font-family:'Newsreader',serif;font-weight:500}
+.tab{padding:14px 14px 12px;font-size:15px;white-space:nowrap;background:none;border:none;cursor:pointer;color:var(--soft);border-bottom:2px solid transparent;font-family:'Instrument Sans',sans-serif;font-weight:500}
 .tab.on{color:var(--ink);border-bottom-color:var(--brick);font-weight:600}
 .tab:hover{color:var(--brick)}
 
 main{padding:30px 0 60px}
 section.pane{display:none}
 section.pane.on{display:block}
-h2{font-family:'Fraunces',serif;font-size:25px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
-h3{font-family:'Fraunces',serif;font-size:18px;font-weight:600;margin-bottom:6px}
+h2{font-family:'Montserrat',sans-serif;font-size:25px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
+h3{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:600;margin-bottom:6px}
 .sub{font-size:15.5px;line-height:1.6;color:var(--soft);max-width:740px;margin-bottom:22px}
 .sub strong{color:var(--ink)}
 .card{background:#fff;border:1px solid var(--line)}
 .pad{padding:18px 20px}
-.srcnote{font-family:'Archivo',sans-serif;font-size:11.5px;color:var(--soft);line-height:1.7;margin-top:14px;max-width:780px}
+.srcnote{font-family:'Instrument Sans',sans-serif;font-size:11.5px;color:var(--soft);line-height:1.7;margin-top:14px;max-width:780px}
 .srcnote a{color:var(--brick)}
 
 /* Two numbers */
 .duel{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px}
 .duel .card{padding:22px}
-.duel .big{font-family:'Fraunces',serif;font-size:46px;font-weight:900;color:var(--ink);line-height:1}
+.duel .big{font-family:'Montserrat',sans-serif;font-size:46px;font-weight:900;color:var(--ink);line-height:1}
 .duel .big.alt{color:var(--brick)}
-.duel .who{font-family:'Fraunces',serif;font-weight:600;font-size:18px;margin:8px 0 4px}
-.duel .src{font-family:'Archivo',sans-serif;font-size:11.5px;color:var(--soft);line-height:1.6}
+.duel .who{font-family:'Montserrat',sans-serif;font-weight:600;font-size:18px;margin:8px 0 4px}
+.duel .src{font-family:'Instrument Sans',sans-serif;font-size:11.5px;color:var(--soft);line-height:1.6}
 .duel p.d{font-size:14.5px;color:var(--soft);margin-top:8px}
 @media (max-width:640px){.duel{grid-template-columns:1fr}}
 .third{margin-top:4px;padding:18px 22px;border-left:3px solid var(--brick);background:var(--wash)}
-.third .big{font-family:'Fraunces',serif;font-size:30px;font-weight:900}
+.third .big{font-family:'Montserrat',sans-serif;font-size:30px;font-weight:900}
 .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:24px}
 .why{border-top:2px solid var(--ink);padding-top:10px}
-.why .k{font-family:'Archivo',sans-serif;font-size:12px;color:var(--brick);margin-bottom:5px;font-weight:600}
+.why .k{font-family:'Instrument Sans',sans-serif;font-size:12px;color:var(--brick);margin-bottom:5px;font-weight:600}
 .why p{font-size:14.5px;color:var(--soft)}
 .why p b{color:var(--ink)}
 @media (max-width:640px){.why-grid{grid-template-columns:1fr}}
 
 /* Ledger */
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
-.chip{padding:6px 12px;font-size:13px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--soft);font-family:'Archivo',sans-serif;border-radius:2px}
+.chip{padding:6px 12px;font-size:13px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--soft);font-family:'Instrument Sans',sans-serif;border-radius:2px}
 .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .chip:hover:not(.on){border-color:var(--brick);color:var(--brick)}
 .regcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:8px 0 18px}
 .regcard{border-top:2px solid var(--line);padding-top:10px}
-.regcard .nm{font-family:'Fraunces',serif;font-weight:600;font-size:16px}
-.regcard .n{font-family:'Archivo',sans-serif;font-size:11px;color:var(--soft)}
-.regcard .v{font-family:'Fraunces',serif;font-size:19px;font-weight:700;margin-top:5px}
-.regcard .v small{font-family:'Archivo',sans-serif;font-size:11.5px;color:var(--soft);font-weight:400}
+.regcard .nm{font-family:'Montserrat',sans-serif;font-weight:600;font-size:16px}
+.regcard .n{font-family:'Instrument Sans',sans-serif;font-size:11px;color:var(--soft)}
+.regcard .v{font-family:'Montserrat',sans-serif;font-size:19px;font-weight:700;margin-top:5px}
+.regcard .v small{font-family:'Instrument Sans',sans-serif;font-size:11.5px;color:var(--soft);font-weight:400}
 .row{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line)}
 .row:last-child{border-bottom:none}
-.rk{font-family:'Archivo',sans-serif;font-size:12px;color:var(--soft)}
-.nm{font-family:'Fraunces',serif;font-weight:600;font-size:15px}
-.rtag{font-family:'Archivo',sans-serif;font-size:11px;margin-left:8px;font-weight:500}
-.track{background:#ECE8DB;border-radius:99px;height:8px;overflow:hidden;position:relative;margin-top:5px;max-width:620px}
+.rk{font-family:'Instrument Sans',sans-serif;font-size:12px;color:var(--soft)}
+.nm{font-family:'Montserrat',sans-serif;font-weight:600;font-size:15px}
+.rtag{font-family:'Instrument Sans',sans-serif;font-size:11px;margin-left:8px;font-weight:500}
+.track{background:#E3E9F1;border-radius:99px;height:8px;overflow:hidden;position:relative;margin-top:5px;max-width:620px}
 .fill{height:100%;border-radius:99px;position:absolute;left:0;top:0}
-.statline{font-family:'Archivo',sans-serif;font-size:12px;color:var(--soft);margin-top:5px}
+.statline{font-family:'Instrument Sans',sans-serif;font-size:12px;color:var(--soft);margin-top:5px}
 .statline b{color:var(--ink);font-weight:600}
 .explain{border-left:3px solid var(--brick);background:var(--wash);padding:14px 18px;margin-top:16px;font-size:14.5px;line-height:1.6;max-width:760px}
-.explain b{font-family:'Fraunces',serif}
+.explain b{font-family:'Montserrat',sans-serif}
 
 /* Bars */
 .bar-list{margin-top:8px}
 .bar-item{padding:10px 0;border-bottom:1px solid var(--line)}
 .bar-item:last-child{border-bottom:0}
 .bar-item .t{display:flex;justify-content:space-between;font-size:14px;margin-bottom:5px}
-.bar-item .t b{font-family:'Fraunces',serif;font-weight:700}
+.bar-item .t b{font-family:'Montserrat',sans-serif;font-weight:700}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 @media (max-width:760px){.grid2{grid-template-columns:1fr}}
 
 /* Usage map tab */
 .aei-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:6px}
 .aei-card{border-top:2px solid var(--ink);padding-top:12px}
-.aei-card .v{font-family:'Fraunces',serif;font-size:32px;font-weight:900;color:var(--brick)}
+.aei-card .v{font-family:'Montserrat',sans-serif;font-size:32px;font-weight:900;color:var(--brick)}
 .aei-card .l{font-size:14.5px;color:var(--soft);margin-top:6px;line-height:1.55}
 .aei-card .l b{color:var(--ink)}
 @media (max-width:640px){.aei-grid{grid-template-columns:1fr}}
@@ -129,7 +130,19 @@ h3{font-family:'Fraunces',serif;font-size:18px;font-weight:600;margin-bottom:6px
 .prose li{margin-bottom:6px}
 
 footer.ft{border-top:1px solid var(--line);padding:22px 0 44px}
-.fineprint{font-family:'Archivo',sans-serif;font-size:11.5px;color:var(--soft);line-height:1.7}
+.fineprint{font-family:'Instrument Sans',sans-serif;font-size:11.5px;color:var(--soft);line-height:1.7}
+
+/* Oct 2026: matched to the main site */
+body{font-size:16.5px;-webkit-font-smoothing:antialiased}
+h1{font-weight:800;letter-spacing:-.03em}
+h2,h3{letter-spacing:-.02em}
+h2{font-weight:800}
+.duel .big,.third .big,.aei-card .v{letter-spacing:-.03em;font-weight:800}
+.stat .v{font-weight:800;letter-spacing:-.02em}
+.card{border-radius:14px}
+.chip{border-radius:999px}
+.third,.explain{border-radius:0 12px 12px 0}
+.tab.on{color:var(--ink)}
 </style>
 </head>
 <body>
@@ -207,7 +220,7 @@ footer.ft{border-top:1px solid var(--line);padding:22px 0 44px}
         <div class="bar-item"><div class="t"><span>Information</span><b>39.7%</b></div><div class="track"><div class="fill" style="width:79%;background:var(--ink)"></div></div></div>
         <div class="bar-item"><div class="t"><span>Finance &amp; insurance</span><b>33.9%</b></div><div class="track"><div class="fill" style="width:68%;background:var(--ink)"></div></div></div>
         <div class="bar-item"><div class="t"><span>All sectors (national)</span><b>19.8%</b></div><div class="track"><div class="fill" style="width:40%;background:var(--brick)"></div></div></div>
-        <div class="bar-item"><div class="t"><span>Retail trade</span><b>~14%</b></div><div class="track"><div class="fill" style="width:28%;background:#A9A294"></div></div></div>
+        <div class="bar-item"><div class="t"><span>Retail trade</span><b>~14%</b></div><div class="track"><div class="fill" style="width:28%;background:#9AA7BA"></div></div></div>
       </div>
       <p class="srcnote" style="margin-top:10px">BTOS, week ending May 3, 2026.</p>
     </div>
@@ -216,7 +229,7 @@ footer.ft{border-top:1px solid var(--line);padding:22px 0 44px}
       <div class="bar-list">
         <div class="bar-item"><div class="t"><span>250+ employees</span><b>37%</b></div><div class="track"><div class="fill" style="width:74%;background:var(--ink)"></div></div></div>
         <div class="bar-item"><div class="t"><span>100–249 employees</span><b>32%</b></div><div class="track"><div class="fill" style="width:64%;background:var(--ink)"></div></div></div>
-        <div class="bar-item"><div class="t"><span>4 or fewer employees</span><b>&lt;20%</b></div><div class="track"><div class="fill" style="width:38%;background:#A9A294"></div></div></div>
+        <div class="bar-item"><div class="t"><span>4 or fewer employees</span><b>&lt;20%</b></div><div class="track"><div class="fill" style="width:38%;background:#9AA7BA"></div></div></div>
       </div>
       <p class="srcnote" style="margin-top:10px">BTOS, Dec 2025 to May 2026. Growth over that stretch came from firms with 20+ employees; the smallest firms didn't move significantly.</p>
     </div>
@@ -374,7 +387,7 @@ var S=[
 ].map(function(a){return {st:a[0],name:a[1],r:a[2],cur:a[3],fut:a[4],star:a[5],
   jump:(a[3]!==null&&a[4]!==null)?+(a[4]-a[3]).toFixed(1):null};});
 
-var RHEX={H:"#A8432A",W:"#46628C",E:"#3E7A70"};
+var RHEX={H:"#067A55",W:"#2457F5",E:"#B7791F"};
 var RN={H:"Heartland",W:"West",E:"East"};
 
 var EXPLAIN={
@@ -424,7 +437,7 @@ function ledger(){
     var futW=s.fut===null?0:s.fut/28*100;
     return '<div class="row"><span class="rk">'+String(i+1).padStart(2,"0")+'</span><div>'+
       '<span class="nm">'+s.name+'<span class="rtag" style="color:'+RHEX[s.r]+'">'+RN[s.r]+'</span></span>'+
-      '<div class="track"><div class="fill" style="width:'+futW+'%;background:#DCCFB6"></div><div class="fill" style="width:'+curW+'%;background:'+RHEX[s.r]+'"></div></div>'+
+      '<div class="track"><div class="fill" style="width:'+futW+'%;background:#C5D3EE"></div><div class="fill" style="width:'+curW+'%;background:'+RHEX[s.r]+'"></div></div>'+
       '<div class="statline">Using now <b>'+curTxt+'</b> · expected in 6 months <b>'+futTxt+'</b> · expected jump <b>'+jumpTxt+'</b></div>'+
       '</div></div>';
   }).join("");

@@ -2,256 +2,144 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>The Lab · Agents &amp; Agency · Derek Özkal</title>
-<meta name="description" content="Working prototypes by Derek Özkal: an AI diffusion atlas on real data, the Kauffman Legacy Project, a toy model of expertise loss, a running list of jobs that didn't exist in 2022, three browser games including Herd Mentality, and some baking.">
+<meta name="description" content="Working prototypes by Derek Özkal: an AI diffusion atlas, the Kauffman Legacy Project, a toy model of expertise loss, a list of jobs that didn't exist in 2022, three browser games, and some baking.">
+<meta name="theme-color" content="#0A1A2E">
+<link rel="canonical" href="https://agentsandagency.com/lab.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agents &amp; Agency">
+<meta property="og:title" content="The Lab · Agents &amp; Agency · Derek Özkal">
+<meta property="og:description" content="Working prototypes by Derek Özkal: an AI diffusion atlas, the Kauffman Legacy Project, a toy model of expertise loss, a list of jobs that didn't exist in 2022, three browser games, and some baking.">
+<meta property="og:url" content="https://agentsandagency.com/lab.html">
+<meta property="og:image" content="https://agentsandagency.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="alternate" type="text/plain" href="llms.txt" title="Plain-text summary for AI agents">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#FCFBF7;
-  --wash:#F4F1E8;
-  --ink:#1C1B17;
-  --soft:#5C5850;
-  --line:#E3DFD3;
-  --brick:#17568C;
-  --brick-deep:#0E3355;
-  --dark:#141D26;
-  --max:960px;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
-body{background:var(--bg);color:var(--ink);font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:17.5px;line-height:1.62}
-::selection{background:#CFE0F0;color:var(--ink)}
-a{color:var(--brick);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:#A9C7E4}
-a:hover{color:var(--brick-deep);text-decoration-color:var(--brick-deep)}
-a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--brick);outline-offset:3px;border-radius:1px}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
-.sans{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif}
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(h){h.className+=' js';var g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};var m=g('aa-motion');if(!m){m=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on'}h.setAttribute('data-motion',m);h.setAttribute('data-agent',g('aa-agent')||'on')})(document.documentElement)</script>
 
-header.masthead{border-bottom:1px solid var(--line)}
-.masthead-inner{display:flex;align-items:baseline;justify-content:space-between;padding:22px 24px 18px;max-width:var(--max);margin:0 auto;gap:16px}
-.wordmark{font-family:'Montserrat','Instrument Sans',sans-serif;font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}
-.wordmark .amp{color:#E0A83C}
-nav.primary{display:flex;gap:20px;align-items:baseline}
-nav.primary a{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:14px;color:var(--soft);text-decoration:none}
-nav.primary a:hover{color:var(--brick)}
-nav.primary a[aria-current]{color:var(--brick)}
-nav.primary a.sub{color:var(--brick);border:1px solid var(--brick);padding:6px 12px;border-radius:2px}
-nav.primary a.sub:hover{background:var(--brick);color:#fff}
-.menu-toggle{display:none;background:none;border:1px solid var(--line);font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13px;padding:7px 12px;color:var(--ink);cursor:pointer;border-radius:2px}
-@media (max-width:860px){
-  nav.primary{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;padding:18px 24px;gap:14px;z-index:40}
-  nav.primary.open{display:flex}
-  .menu-toggle{display:block}
-  header.masthead{position:relative}
-}
-
-.lab-hero{padding:60px 0 12px}
-.kicker{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13.5px;color:var(--soft);margin-bottom:14px}
-.kicker b{color:var(--brick);font-weight:600}
-.lab-hero h1{font-family:'Montserrat','Instrument Sans',sans-serif;font-weight:700;font-size:clamp(31px,4.6vw,46px);line-height:1.14;letter-spacing:-.01em;margin:0 0 20px}
-.lab-hero h1 em{font-style:normal;color:var(--brick);background:linear-gradient(transparent 66%,rgba(224,168,60,.4) 66%)}
-.lab-hero p{color:var(--soft);max-width:66ch;font-size:18px}
-.lab-hero p strong{color:var(--ink)}
-.ground-rule{margin-top:24px;background:var(--wash);border-left:3px solid var(--brick);padding:16px 22px;font-size:16px;color:var(--soft);max-width:760px}
-.ground-rule b{color:var(--ink)}
-
-.triptych{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin:38px 0 0}
-.trip-col{border-top:2px solid var(--ink);padding-top:14px}
-.trip-col.newwork{border-top-color:var(--brick)}
-.trip-col .lbl{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:12.5px;color:var(--soft)}
-.trip-col.newwork .lbl{color:var(--brick)}
-.trip-col h3{font-family:'Montserrat','Instrument Sans',sans-serif;font-weight:600;font-size:20px;margin:6px 0 6px}
-.trip-col p{font-size:15px;color:var(--soft)}
-@media (max-width:760px){.triptych{grid-template-columns:1fr;gap:20px}}
-
-section{padding:56px 0}
-.snum{font-family:'Instrument Sans',sans-serif;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--brick);font-size:12px;display:block;margin-bottom:6px}
-h2.sec{font-family:'Montserrat','Instrument Sans',sans-serif;font-weight:700;font-size:clamp(26px,3.4vw,34px);letter-spacing:-.01em;margin-bottom:6px}
-.status{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13px;color:var(--brick);margin-bottom:14px;display:block}
-.status.good{color:#3E6B44}
-.sec-intro{max-width:66ch;color:var(--soft);margin:0 0 30px;font-size:17.5px}
-.sec-intro strong{color:var(--ink)}
-hr.sep{border:0;border-top:1px solid var(--line)}
-.btn{display:inline-block;font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:14.5px;font-weight:500;background:var(--ink);color:#fff;padding:10px 18px;border-radius:2px;text-decoration:none;border:0;cursor:pointer}
-.btn:hover{background:var(--brick);color:#fff}
-
-/* Atlas card */
-.atlas-card{background:var(--wash);border-left:3px solid var(--brick);padding:26px 30px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
-.atlas-card h3{font-family:'Montserrat','Instrument Sans',sans-serif;font-weight:700;font-size:23px;margin-bottom:6px}
-.atlas-card p{color:var(--soft);max-width:60ch;font-size:16.5px}
-@media (max-width:700px){.atlas-card{grid-template-columns:1fr}}
-
-/* Legacy */
-.legacy-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
-.legacy-grid p{color:var(--soft);margin-bottom:14px;font-size:17px}
-.legacy-grid p strong{color:var(--ink)}
-.legacy-facts{border-top:2px solid var(--ink);padding-top:4px}
-.legacy-facts div{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15.5px}
-.legacy-facts b{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13.5px;color:var(--soft);font-weight:500}
-.legacy-facts span{font-family:'Montserrat','Instrument Sans',sans-serif;font-weight:600;text-align:right}
-@media (max-width:760px){.legacy-grid{grid-template-columns:1fr}}
-
-/* Simulator */
-.sim{border:1px solid var(--ink);background:#fff}
-.sim-head{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:14px 22px;border-bottom:1px solid var(--line);flex-wrap:wrap;font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13px;color:var(--soft)}
-.sim-body{display:grid;grid-template-columns:300px 1fr;gap:0}
-.sim-controls{padding:22px;border-right:1px solid var(--line)}
-.ctl{margin-bottom:24px}
-.ctl label{display:flex;justify-content:space-between;align-items:baseline;font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13.5px;font-weight:500;color:var(--ink);margin-bottom:8px}
-.ctl label output{color:var(--brick);font-weight:600}
-.ctl .hint{font-size:14px;color:var(--soft);margin-top:6px;line-height:1.5;font-style:normal}
-input[type=range]{width:100%;appearance:none;-webkit-appearance:none;height:2px;background:var(--line)}
-input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--brick);border:2px solid var(--ink);cursor:pointer}
-input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--brick);border:2px solid var(--ink);cursor:pointer}
-.presets{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
-.presets button{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:12.5px;background:transparent;border:1px solid var(--line);color:var(--soft);padding:6px 10px;cursor:pointer;border-radius:2px}
-.presets button:hover{border-color:var(--brick);color:var(--brick)}
-.sim-chart{padding:22px}
-.sim-chart svg{width:100%;height:auto;display:block}
-.verdict-bar{padding:16px 22px;border-top:1px solid var(--line);background:var(--wash);font-family:'Instrument Sans',sans-serif;font-style:normal;font-size:17px;min-height:56px}
-.verdict-bar strong{color:var(--brick);font-style:normal;font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13px;margin-right:10px}
-.sim-note{font-size:15.5px;color:var(--soft);margin-top:18px;max-width:68ch;font-style:normal}
-.sim-note em{color:var(--ink);font-style:normal;font-weight:600}
-@media (max-width:860px){.sim-body{grid-template-columns:1fr}.sim-controls{border-right:0;border-bottom:1px solid var(--line)}}
-
-/* New jobs */
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
-.filters button{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--soft);padding:7px 13px;cursor:pointer;border-radius:2px}
-.filters button:hover{border-color:var(--brick);color:var(--brick)}
-.filters button.active{background:var(--ink);border-color:var(--ink);color:#fff}
-.ledger-count{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13px;color:var(--soft);margin-bottom:16px}
-.ledger-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
-.ledger-card{border-top:2px solid var(--ink);padding-top:12px;display:flex;flex-direction:column;gap:7px}
-.ledger-card .cap{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:11.5px;color:var(--brick)}
-.ledger-card h3{font-family:'Montserrat','Instrument Sans',sans-serif;font-weight:600;font-size:19px}
-.ledger-card p{font-size:15px;color:var(--soft);flex:1}
-.ledger-card .why{font-size:14px;color:var(--ink);font-style:normal;border-top:1px solid var(--line);padding-top:8px}
-.ledger-card .why::before{content:"New because: ";font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-style:normal;font-size:11.5px;color:var(--brick)}
-
-/* Kitchen */
-.kitchen-band{background:var(--wash);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.kitchen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:28px 0 6px}
-.kfig{padding:6px 6px 2px;border:1px solid var(--line);background:#fff;box-shadow:0 1px 4px rgba(28,27,23,.1)}
-.kfig:nth-child(1){transform:rotate(-1.1deg)}
-.kfig:nth-child(2){transform:rotate(.7deg)}
-.kfig:nth-child(3){transform:rotate(-.5deg)}
-.kfig img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
-.kfig figcaption{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:12.5px;color:var(--soft);padding:8px 4px 6px;line-height:1.5}
-@media (max-width:700px){.kitchen-grid{grid-template-columns:1fr}}
-.kitchen-note{font-size:16px;color:var(--soft);max-width:66ch;margin-top:16px;font-style:normal}
-
-/* Deck */
-.deck-list{list-style:none;border-top:2px solid var(--ink)}
-.deck-list li{display:grid;grid-template-columns:160px 1fr;gap:26px;padding:20px 0;border-bottom:1px solid var(--line)}
-.deck-list .st{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:12.5px;color:var(--brick);padding-top:5px}
-.deck-list h3{font-family:'Montserrat','Instrument Sans',sans-serif;font-weight:600;font-size:20px;margin-bottom:4px}
-.deck-list p{font-size:16px;color:var(--soft);max-width:64ch}
-@media (max-width:640px){.deck-list li{grid-template-columns:1fr;gap:6px}}
-
-footer{background:var(--dark);color:#F3EFE6;padding:40px 0;margin-top:20px}
-.foot-grid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:baseline}
-footer a{color:#7FBBEE;text-decoration-color:rgba(127,187,238,.4)}
-footer .fine{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:12.5px;color:#8F897B}
-.lab-quote{margin:6px 0 20px;padding:2px 0 2px 18px;border-left:2px solid var(--brick)}.lab-quote > p:first-child{font-family:'Montserrat','Instrument Sans',sans-serif;font-style:normal;font-size:22px;line-height:1.3;color:var(--ink);margin:0 0 6px}.lab-quote .lab-src{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13px;color:var(--soft)}
-
-/* ===== Readability pass (Oct 2026) ===== */
-:root{--ink:#1A1F26;--soft:#47505B;--line:#DCE3EA;--bg:#FBFCFD;--wash:#EEF3F8}
-body{font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
-h1,h2,h3{text-wrap:balance}
-.lab-hero{background:radial-gradient(70% 90% at 100% 0%,rgba(46,134,214,.14),rgba(46,134,214,0) 60%),linear-gradient(180deg,#EAF1F8 0%,#F6F9FC 100%)}
-#legacy{background:#EEF3F8}
-#arcade,#herd,#grove,#directorate{scroll-margin-top:20px}
-.btn{border-radius:999px}
-nav.primary a.sub{border-radius:999px}
-.wordmark{letter-spacing:-.02em}
-.lab-hero h1{letter-spacing:-.025em;font-weight:800}h2.sec,h2,h3{letter-spacing:-.02em}
-</style>
 </head>
 <body>
-
-<header class="masthead">
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead on-dark" data-dark-until="#labhead">
   <div class="masthead-inner">
-    <a class="wordmark" href="index.html">Agents <span class="amp">&amp;</span> Agency</a>
-    <button class="menu-toggle" aria-expanded="false" aria-controls="nav" onclick="toggleMenu(this)">Menu</button>
+    <a class="brand" href="index.html" aria-label="Agents and Agency, home"><svg class="mark" viewBox="0 0 34 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="#2457F5"/><circle cx="22" cy="12" r="9" fill="#12B07A"/><path d="M17 4.52A9 9 0 0 1 17 19.48A9 9 0 0 1 17 4.52Z" fill="currentColor"/></svg><span class="wordmark">Agents <span class="amp">&amp;</span> Agency</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav"><i aria-hidden="true"></i>Menu</button>
     <nav class="primary" id="nav" aria-label="Primary">
       <a href="writing.html">Writing</a>
       <a href="research.html">Research</a>
       <a href="media.html">Watch &amp; listen</a>
       <a href="lab.html" aria-current="page">The Lab</a>
-      <a href="index.html#about">About</a>
-      <a class="sub" href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Subscribe</a>
+      <a href="about.html">About</a>
+      <a class="nav-agents" href="agents.html">For agents</a>
+      <a class="nav-cta" href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Subscribe</a>
     </nav>
   </div>
 </header>
+<main id="main">
 
-<main>
-
-<section class="lab-hero">
+<section class="page-head dark dots" id="labhead">
   <div class="wrap">
-    <p class="kicker"><b>The Lab</b> · Agents &amp; Agency</p>
-    <h1>I write about AI and work. Here I build with it, to <em>check whether the ideas hold up</em>.</h1>
-    <p>Everything here is a prototype. Some are tools, some are models, and three are games.</p>
-
-    <div class="ground-rule"><b>Ground rule:</b> Anything marked <i>prototype, verification pending</i> is an argument I haven't verified yet. If a number or coefficient looks wrong, <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">tell me in the comments</a>.</div>
-
-    <div class="triptych" role="list">
-      <div class="trip-col" role="listitem">
-        <span class="lbl">Column 01</span>
-        <h3>AI does the task</h3>
-        <p>Automation. The worker moves on, up, or out. This is the most studied case.</p>
-      </div>
-      <div class="trip-col" role="listitem">
-        <span class="lbl">Column 02</span>
-        <h3>AI helps with the task</h3>
-        <p>Augmentation. The worker gets more done. Most current research and hype sits here.</p>
-      </div>
-      <div class="trip-col newwork" role="listitem">
-        <span class="lbl">Column 03</span>
-        <h3>AI makes new tasks possible</h3>
-        <p>New work that wasn't affordable or possible before. It's barely measured, and most Lab projects sit here.</p>
-      </div>
+    <p class="eyebrow green">The Lab</p>
+    <h1>I write about AI and work. Here I build with it.</h1>
+    <p class="lede">Building is how I check whether the ideas hold up. Everything here is a prototype. Some are tools, some are models, and three are games.</p>
+    <p class="ground"><b>Ground rule:</b> anything marked <span class="tag proto">Prototype</span> is an argument I haven't verified yet. If a number or coefficient looks wrong, <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">tell me in the comments</a>.</p>
+    <div class="trip" role="list">
+      <div role="listitem"><span class="lbl">Column 01</span><h3>AI does the task</h3><p>Automation. The worker moves on, up, or out. This is the most studied case.</p></div>
+      <div role="listitem"><span class="lbl">Column 02</span><h3>AI helps with the task</h3><p>Augmentation. The worker gets more done. Most current research and hype sits here.</p></div>
+      <div role="listitem" class="newwork"><span class="lbl">Column 03</span><h3>AI makes new tasks possible</h3><p>New work that wasn't affordable or possible before. It's barely measured, and most Lab projects sit here.</p></div>
     </div>
   </div>
 </section>
 
-<!-- EXHIBIT A · ATLAS -->
-<section id="atlas" style="padding-bottom:26px">
+<section aria-labelledby="xi-h">
   <div class="wrap">
-    <div class="atlas-card">
+    <div class="sec-head" data-reveal>
       <div>
-        <span class="snum">Exhibit A</span>
-        <h3>The AI Diffusion Atlas</h3>
-        <span class="status">Status: working prototype · verification pending</span>
-        <p>Who is actually adopting AI in America: businesses, workers, and states, built entirely on published data from the Census Bureau, the Federal Reserve, and the Anthropic Economic Index. The two adoption numbers people quote most (18% of firms, 41% of workers) are both right, and the Atlas shows why they differ.</p>
+        <p class="eyebrow">Exhibits</p>
+        <h2 class="sec" id="xi-h">What's on the bench</h2>
       </div>
-      <a class="btn" href="atlas.html">Open the Atlas</a>
+      <p class="sec-intro">Nine exhibits. Tap one to jump to it, or go straight to the games.</p>
+    </div>
+    <div class="xgrid">
+      <a class="xcard" href="#atlas" data-reveal>
+        <div class="shot"><img src="assets/img/x-atlas.jpg" alt="" loading="lazy"></div>
+        <div class="xb"><div class="tags"><span class="xl">A</span><span class="tag proto">Prototype</span></div><h3>The AI Diffusion Atlas</h3><p>Who is adopting AI in America, built on published data.</p></div>
+      </a>
+      <a class="xcard" href="#legacy" data-reveal="2">
+        <div class="shot art-b"><b aria-hidden="true">60</b></div>
+        <div class="xb"><div class="tags"><span class="xl">B</span><span class="tag live">Live</span></div><h3>The Legacy Project</h3><p>Sixty years of foundation history, searchable, with an AI tool on top.</p></div>
+      </a>
+      <a class="xcard" href="#simulator" data-reveal="3">
+        <div class="shot art-c"><svg viewBox="0 0 320 200" aria-hidden="true" style="width:100%;height:100%"><rect width="320" height="200" fill="#FFFFFF"/><line x1="20" y1="60" x2="300" y2="60" stroke="#748196" stroke-dasharray="3 6"/><path d="M20 60 C70 64 110 96 150 116 S230 120 300 84" fill="none" stroke="#0B1A2B" stroke-width="5" stroke-linecap="round"/><path d="M20 70 C80 90 140 130 300 160" fill="none" stroke="#067A55" stroke-width="3.5" stroke-linecap="round"/><path d="M20 170 C90 168 160 150 300 96" fill="none" stroke="#2457F5" stroke-width="3.5" stroke-linecap="round"/><circle cx="158" cy="118" r="7" fill="#fff" stroke="#C2410C" stroke-width="3"/><line x1="20" y1="180" x2="300" y2="180" stroke="#0B1A2B" stroke-width="2"/></svg></div>
+        <div class="xb"><div class="tags"><span class="xl">C</span><span class="tag proto">Prototype</span></div><h3>The Expertise Flow Simulator</h3><p>A toy model of how a profession runs short of judgment.</p></div>
+      </a>
+      <a class="xcard" href="#newjobs" data-reveal>
+        <div class="shot art-d" aria-hidden="true"><span>Context Engineer</span><span>Evals Designer</span><span>Agent Operations Lead</span></div>
+        <div class="xb"><div class="tags"><span class="xl">D</span><span class="tag proto">Prototype</span></div><h3>Jobs that didn't exist in 2022</h3><p>A running list of work that frontier models made possible.</p></div>
+      </a>
+      <a class="xcard" href="#kitchen" data-reveal="2">
+        <div class="shot"><img src="assets/img/kitchen-pie.jpg" alt="" loading="lazy"></div>
+        <div class="xb"><div class="tags"><span class="xl">E</span><span class="tag live">Verified by consumption</span></div><h3>The Kitchen</h3><p>Baking with AI as sous-chef. Peer reviewed by my family.</p></div>
+      </a>
+      <a class="xcard" href="#thiswebsite" data-reveal="3">
+        <div class="shot"><img src="assets/img/x-site.jpg" alt="" loading="lazy"></div>
+        <div class="xb"><div class="tags"><span class="xl">F</span><span class="tag live">Live</span></div><h3>This website</h3><p>Plain HTML, built with Claude, edited until it sounded like me.</p></div>
+      </a>
+      <a class="xcard" href="herd-mentality/" data-reveal>
+        <div class="shot"><img src="assets/img/x-herd.jpg" alt="" loading="lazy"></div>
+        <div class="xb"><div class="tags"><span class="xl">G</span><span class="tag new">New</span><span class="tag live">Play free</span></div><h3>Herd Mentality</h3><p>Laser unicorns defend a rainbow bridge from the Grumps.</p></div>
+      </a>
+      <a class="xcard" href="grove/" data-reveal="2">
+        <div class="shot"><img src="assets/img/x-grove.jpg" alt="" loading="lazy"></div>
+        <div class="xb"><div class="tags"><span class="xl">H</span><span class="tag live">Play free</span></div><h3>Math Grove</h3><p>A summer math tutor that grows you a garden.</p></div>
+      </a>
+      <a class="xcard" href="directorate.html" data-reveal="3">
+        <div class="shot"><img src="assets/img/x-directorate.jpg" alt="" loading="lazy"></div>
+        <div class="xb"><div class="tags"><span class="xl">I</span><span class="tag live">Play free</span></div><h3>Directorate</h3><p>Run a covert agency from 1972 to 2026.</p></div>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- EXHIBIT B · LEGACY PROJECT -->
-<section id="legacy">
+<section class="exhibit band-white" id="atlas" style="padding-top:72px">
   <div class="wrap">
-    <span class="snum">Exhibit B</span>
-    <h2 class="sec">The Legacy Project</h2>
-    <span class="status good">Status: live · featured by the Ewing Marion Kauffman Foundation</span>
-    <div class="legacy-grid" style="margin-top:18px">
+    <div class="feature-card" data-reveal>
+      <div class="fc-body">
+        <div class="xhead"><span class="xletter">Exhibit A</span><span class="tag proto">Working prototype · verification pending</span></div>
+        <h3>The AI Diffusion Atlas</h3>
+        <p>Who is actually adopting AI in America: businesses, workers, and states, built entirely on published data from the Census Bureau, the Federal Reserve, and the Anthropic Economic Index. The two adoption numbers people quote most (18% of firms, 41% of workers) are both right, and the Atlas shows why they differ.</p>
+        <p><a class="btn ink" href="atlas.html">Open the Atlas <span class="arr" aria-hidden="true">&rarr;</span></a></p>
+      </div>
+      <div class="fc-shot"><img src="assets/img/x-atlas.jpg" alt="The opening screen of the AI Diffusion Atlas" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section class="exhibit band-tint" id="legacy">
+  <div class="wrap">
+    <div class="xhead"><span class="xletter">Exhibit B</span><span class="tag live">Live · featured by the Ewing Marion Kauffman Foundation</span></div>
+    <h2>The Legacy Project</h2>
+    <div class="split" style="margin-top:26px">
       <div>
         <p>Sixty years of foundation history was sitting in boxes, binders, and file shares that nobody could search. I led <strong>46 volunteers</strong> in digitizing it, then helped design an <strong>AI research tool integrated with our grant-management software</strong>, so the archive answers questions instead of gathering dust.</p>
         <p>Staff can use it to pull institutional context in seconds: what we funded, what we learned, what we already tried in 1997. Information retrieval that took days now takes minutes, and the tool opened working capacity and possibilities for staff that didn't exist before.</p>
         <p>It also convinced me that the Expertise Encoder role in Exhibit D is real work, because I did a version of it here.</p>
-        <blockquote class="lab-quote"><p>&ldquo;Led by Derek Ozkal, senior officer, strategic initiatives, RLE&rdquo;</p><p class="lab-src">The Kauffman Foundation, on the project, for its 60th anniversary</p></blockquote>
-        <a class="btn" href="https://www.kauffman.org/legacy/story/60-years-of-kauffman-foundation/" target="_blank" rel="noopener">Read the Foundation's story</a>
+        <blockquote class="pull"><p>&ldquo;Led by Derek Ozkal, senior officer, strategic initiatives, RLE&rdquo;</p><span>The Kauffman Foundation, on the project, for its 60th anniversary</span></blockquote>
+        <a class="btn ink" href="https://www.kauffman.org/legacy/story/60-years-of-kauffman-foundation/" target="_blank" rel="noopener">Read the Foundation's story <span class="arr" aria-hidden="true">&rarr;</span></a>
       </div>
-      <div class="legacy-facts">
+      <div class="facts-table" data-reveal>
         <div><b>Volunteers led</b><span>46</span></div>
         <div><b>Institutional history digitized</b><span>60 years</span></div>
         <div><b>Documents in the archive</b><span>20,000+</span></div>
-        <div><b>Retrieval time</b><span>days → minutes (90%+ faster)</span></div>
+        <div><b>Retrieval time</b><span>days to minutes (90%+ faster)</span></div>
         <div><b>Integration</b><span>grant-management software</span></div>
         <div><b>Users</b><span>foundation staff</span></div>
         <div><b>Role</b><span>project lead</span></div>
@@ -261,31 +149,23 @@ nav.primary a.sub{border-radius:999px}
   </div>
 </section>
 
-<hr class="sep">
-
-<!-- EXHIBIT C · SIMULATOR -->
-<section id="simulator">
+<section class="exhibit" id="simulator">
   <div class="wrap">
-    <span class="snum">Exhibit C</span>
-    <h2 class="sec">The Expertise Flow Simulator</h2>
-    <span class="status">Status: prototype · verification pending · a toy model, on purpose</span>
+    <div class="xhead"><span class="xletter">Exhibit C</span><span class="tag proto">Prototype · a toy model, on purpose</span></div>
+    <h2>The Expertise Flow Simulator</h2>
     <p class="sec-intro">My essay <a href="https://agentsandagency.substack.com/p/the-liquidity-crisis-of-expertise" target="_blank" rel="noopener"><strong>The Liquidity Crisis of Expertise</strong></a> argues that a profession can run out of usable judgment the way a bank runs out of cash: solvent on paper, short when it counts. This simulator turns that claim into a model with three sliders, one profession, and a 25-year horizon.</p>
-
-    <div class="sim">
-      <div class="sim-head">
-        <span>One profession · 25-year horizon · year 0 = 100</span>
-        <span>Prototype v1 · unverified</span>
-      </div>
-      <div class="sim-body">
-        <div class="sim-controls">
+    <div class="fig" id="sim">
+      <div class="fig-top"><span class="fig-no">Model</span><h3 class="fig-title">One profession, 25 years, year 0 = 100</h3></div>
+      <div class="model">
+        <div>
           <div class="ctl">
             <label for="sAdopt">AI adoption speed <output id="oAdopt">70</output></label>
             <input type="range" id="sAdopt" min="0" max="100" value="70">
-            <p class="hint">How fast the profession hands cognitive work to models. Speeds up encoding; quietly starves the junior pipeline.</p>
+            <p class="hint">How fast the profession hands cognitive work to models. Speeds up encoding, and quietly starves the junior pipeline.</p>
           </div>
           <div class="ctl">
-            <label for="sApprentice">Apprenticeship investment <output id="oApprentice">30</output></label>
-            <input type="range" id="sApprentice" min="0" max="100" value="30">
+            <label for="sApprentice">Apprenticeship investment <output id="oApprentice" class="green">30</output></label>
+            <input type="range" class="green" id="sApprentice" min="0" max="100" value="30">
             <p class="hint">Deliberate spending on the slow way: juniors doing hard things next to seniors.</p>
           </div>
           <div class="ctl">
@@ -294,309 +174,206 @@ nav.primary a.sub{border-radius:999px}
             <p class="hint">How much of a retiring expert's judgment actually survives capture. Less than you'd hope.</p>
           </div>
           <div class="presets" aria-label="Preset scenarios">
-            <button type="button" onclick="preset(85,15,40)">Where we're headed</button>
-            <button type="button" onclick="preset(70,75,60)">The expensive fix</button>
-            <button type="button" onclick="preset(95,10,90)">Bet it all on encoding</button>
+            <button type="button" data-sim="85,15,40">Where we're headed</button>
+            <button type="button" data-sim="70,75,60">The expensive fix</button>
+            <button type="button" data-sim="95,10,90">Bet it all on encoding</button>
           </div>
         </div>
-        <div class="sim-chart">
-          <svg id="chart" viewBox="0 0 760 400" role="img" aria-label="Line chart of tacit expertise, encoded expertise, and total capacity over 25 years"></svg>
+        <div class="chart">
+          <svg id="chart" role="img" aria-label="Line chart of expertise held by people, expertise captured in AI, and total capacity over 25 years"></svg>
+          <div class="legend" aria-hidden="true"><span style="color:#0B1A2B"><i></i>Total capacity</span><span style="color:#067A55"><i></i>Held by people (tacit)</span><span style="color:#2457F5"><i></i>Captured in AI (encoded)</span></div>
+          <p class="verdict" id="verdict" aria-live="polite"></p>
         </div>
       </div>
-      <div class="verdict-bar" id="verdict" aria-live="polite"></div>
     </div>
-
-    <p class="sim-note"><em>How it works, in one breath.</em> Three stocks: judgment held by working seniors, judgment captured into systems, and the junior pipeline. Retirement drains the first at 5% a year; encoding takes about a decade to mature; your sliders control the rest. Toys make assumptions visible. If you'd set a coefficient differently, <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">tell me which one and why</a>.</p>
+    <p class="sim-note"><b>How it works, in one breath.</b> Three stocks: judgment held by working seniors, judgment captured into systems, and the junior pipeline. Retirement drains the first at 5% a year, encoding takes about a decade to mature, and your sliders control the rest. Toys make assumptions visible. If you'd set a coefficient differently, <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">tell me which one and why</a>.</p>
   </div>
 </section>
 
-<hr class="sep">
-
-<!-- EXHIBIT D · JOBS -->
-<section id="newjobs">
+<section class="exhibit band-tint" id="newjobs">
   <div class="wrap">
-    <span class="snum">Exhibit D</span>
-    <h2 class="sec">Jobs that didn't exist in 2022</h2>
-    <span class="status">Status: prototype · verification pending · a running list, nominations welcome</span>
+    <div class="xhead"><span class="xletter">Exhibit D</span><span class="tag proto">Prototype · a running list, nominations welcome</span></div>
+    <h2>Jobs that didn't exist in 2022</h2>
     <p class="sec-intro">A running list of <strong>work that wasn't possible before frontier models</strong>, as opposed to old jobs with new tools. Each entry says what the job is and why it couldn't exist earlier. Some have postings today, and some are still hypotheses.</p>
-
     <div class="filters" id="filters" role="group" aria-label="Filter by what unlocked the job"></div>
     <p class="ledger-count" id="ledgerCount"></p>
-    <div class="ledger-grid" id="ledgerGrid"></div>
+    <div class="ledger" id="ledgerGrid"></div>
+    <p style="margin-top:18px"><button type="button" class="btn ghost" id="ledgerMore" hidden>Show all entries</button></p>
   </div>
 </section>
 
-<!-- EXHIBIT E · KITCHEN -->
-<section id="kitchen" class="kitchen-band">
+<section class="exhibit" id="kitchen">
   <div class="wrap">
-    <span class="snum">Exhibit E</span>
-    <h2 class="sec">The Kitchen</h2>
-    <span class="status good">Status: verified by consumption · replication ongoing</span>
-    <p class="sec-intro">I spend my working hours on human-AI collaboration, so it seems only fair to disclose my own. These were made by me, with AI as sous-chef for recipes, ratios, and troubleshooting. <strong>Peer review was conducted by my family</strong>, and the braided cinnamon apple bread got a "revise and resubmit". So, I made an apple pie, much better.</p>
-
-    <div class="kitchen-grid">
-      <figure class="kfig">
-        <img src="kitchen-pie.jpg" alt="Homemade apple pie" onerror="this.parentElement.style.display='none'">
-        <figcaption>Apple pie. Most of the effort went into the crust.</figcaption>
-      </figure>
-      <figure class="kfig">
-        <img src="kitchen-calzones.jpg" alt="Two homemade calzones" onerror="this.parentElement.style.display='none'">
-        <figcaption>Calzones, n=2. One spinach, one not. Randomized within household.</figcaption>
-      </figure>
-      <figure class="kfig">
-        <img src="kitchen-braid.jpg" alt="Braided apple cinnamon bread" onerror="this.parentElement.style.display='none'">
-        <figcaption>Braided apple-cinnamon loaf. The braid is load-bearing.</figcaption>
-      </figure>
+    <div class="xhead"><span class="xletter">Exhibit E</span><span class="tag live">Verified by consumption · replication ongoing</span></div>
+    <h2>The Kitchen</h2>
+    <p class="sec-intro">I spend my working hours on human-AI collaboration, so it seems only fair to disclose my own. These were made by me, with AI as sous-chef for recipes, ratios, and troubleshooting. <strong>Peer review was conducted by my family</strong>, and the braided cinnamon apple bread got a "revise and resubmit." So I made an apple pie, which went much better.</p>
+    <div class="polaroids">
+      <figure class="polaroid" data-reveal><img src="assets/img/kitchen-pie.jpg" alt="Homemade apple pie" loading="lazy"><figcaption>Apple pie. Most of the effort went into the crust.</figcaption></figure>
+      <figure class="polaroid" data-reveal="2"><img src="assets/img/kitchen-calzones.jpg" alt="Two homemade calzones" loading="lazy"><figcaption>Calzones, n=2. One spinach, one not. Randomized within household.</figcaption></figure>
+      <figure class="polaroid" data-reveal="3"><img src="assets/img/kitchen-braid.jpg" alt="Braided apple cinnamon bread" loading="lazy"><figcaption>Braided apple-cinnamon loaf. The braid is load-bearing.</figcaption></figure>
     </div>
-    <p class="kitchen-note">Findings so far: AI is a good cooking partner. It's patient with basic questions, happy to help at 10 p.m., and wrong about an oven temperature about once per project. Also in the rotation: veggie burgers, stews, and a cheesecake. Methodology shared on request.</p>
+    <p class="sim-note" style="margin-top:28px">Findings so far: AI is a good cooking partner. It's patient with basic questions, happy to help at 10 p.m., and wrong about an oven temperature about once per project. Also in the rotation: veggie burgers, stews, and a cheesecake. Methodology shared on request.</p>
   </div>
 </section>
 
-<!-- EXHIBIT F  -->
-<section id="thiswebsite">
+<section class="exhibit band-white" id="thiswebsite">
   <div class="wrap">
-    <span class="snum">Exhibit F</span>
-    <h2 class="sec">This website</h2>
-    <span class="status good">Status: live · you're soaking in it</span>
-    <p class="sec-intro">The site you're reading is a Lab project too. I wrote it and built it with Claude, then edited until it sounded like me. It's plain HTML files on GitHub Pages, with no framework and no hosting bill.</p>
-
-    <!-- EXHIBITS G-I · THE ARCADE -->
-    <div id="arcade" style="margin-top:44px">
-      <span class="snum">Exhibits G to I</span>
-      <h2 class="sec">The Arcade</h2>
-      <p class="sec-intro">Three browser games built with AI. All are free, need no account, and work on a phone.</p>
+    <div class="feature-card" data-reveal>
+      <div class="fc-body">
+        <div class="xhead"><span class="xletter">Exhibit F</span><span class="tag live">Live · you're soaking in it</span></div>
+        <h3>This website</h3>
+        <p>The site you're reading is a Lab project too. I wrote it and built it with Claude, then edited until it sounded like me. It's plain HTML files on GitHub Pages, with no framework and no hosting bill.</p>
+        <p>It also has an agent. Every so often it offers to do something you didn't ask for, and you decide. The switch to turn it off is at the bottom of every page, along with a count of how often you said no.</p>
+      </div>
+      <div class="fc-shot"><img src="assets/img/x-site.jpg" alt="The home page of this site" loading="lazy"></div>
     </div>
+  </div>
+</section>
 
-    <div id="herd" style="margin-top:34px">
-      <span class="snum">Exhibit G · New</span>
-      <h2 class="sec">Herd Mentality</h2>
-      <span class="status good">Status: live · free to play</span>
-      <p class="sec-intro">A herd of laser-horned unicorns defends a rainbow bridge from the Grumps, an army of gray clouds. Drag to steer, shoot gates to raise their numbers, and run through the better one. A Grump you hit floats away happy. Bosses include The Monday and Per My Last Email. <strong>Levels don't end, and progress saves in your browser.</strong> <a href="/herd-mentality/">Play Herd Mentality →</a></p>
+<section class="exhibit dark dots" id="arcade">
+  <div class="wrap">
+    <div class="xhead"><span class="xletter" style="background:#fff;color:#0A1A2E">Exhibits G to I</span><span class="tag live">Free · no account · works on a phone</span></div>
+    <h2 style="color:#fff">The Arcade</h2>
+    <p class="sec-intro">Three browser games built with AI. All are free, need no account, and work on a phone.</p>
+    <div class="games">
+      <a class="game" id="herd" href="herd-mentality/" data-reveal>
+        <div class="shot"><img src="assets/img/x-herd.jpg" alt="Herd Mentality title screen: unicorns on a rainbow bridge" loading="lazy"></div>
+        <div class="gb"><div class="tags"><span class="tag new">New</span></div><h3>Herd Mentality</h3><p>A herd of laser-horned unicorns defends a rainbow bridge from the Grumps, an army of gray clouds. Drag to steer, shoot gates to raise their numbers, and run through the better one. A Grump you hit floats away happy. Bosses include The Monday and Per My Last Email. Levels don't end, and progress saves in your browser.</p><span class="play-cta">Play Herd Mentality</span></div>
+      </a>
+      <a class="game" id="grove" href="grove/" data-reveal="2">
+        <div class="shot"><img src="assets/img/x-grove.jpg" alt="Math Grove game screen" loading="lazy"></div>
+        <div class="gb"><h3>Math Grove</h3><p>A summer math tutor built for my daughters and open to anyone. Solve problems, earn coins, and grow a garden that's all yours. Two grade bridges, entering 3rd grade and entering 6th grade, each with 8 topics and 3 tiers. Clear all three tiers to earn a star. There's also a bonus Snake game played inside the garden you grew. No account, no ads, saves in your browser.</p><span class="play-cta">Open Math Grove</span></div>
+      </a>
+      <a class="game" id="directorate" href="directorate.html" data-reveal="3">
+        <div class="shot"><img src="assets/img/x-directorate.jpg" alt="Directorate title screen" loading="lazy"></div>
+        <div class="gb"><h3>Directorate</h3><p>Run a covert agency across four eras, 1972 to 2026. Build headquarters, work field leads, solve conspiracies before they execute, and manage global tension. Eight minigames feed a strategy layer. Influenced by some of my favorite games as a kid, like Covert Action, SimCity, Conflict, and Age of Empires II. One sitting, no save state.</p><span class="play-cta">Open Directorate</span></div>
+      </a>
     </div>
+  </div>
+</section>
 
-    <div id="grove" style="margin-top:44px">
-      <span class="snum">Exhibit H</span>
-      <h2 class="sec">Math Grove</h2>
-      <span class="status good">Status: live · free to play</span>
-      <p class="sec-intro">A summer math tutor built for my daughters and open to anyone. Solve problems, earn coins, and grow a garden that's all yours. Two grade bridges, entering 3rd grade and entering 6th grade, each with 8 topics and 3 tiers. Clear all three tiers to earn a star. There's also a bonus Snake game played inside the garden you grew. <strong>No account, no ads, saves in your browser.</strong> <a href="/grove/">Open Math Grove →</a></p>
+<section aria-labelledby="deck-h">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <p class="eyebrow">Next on the bench</p>
+        <h2 class="sec" id="deck-h">On deck</h2>
+      </div>
     </div>
-
-    <div id="directorate" style="margin-top:44px">
-      <span class="snum">Exhibit I</span>
-      <h2 class="sec">Directorate</h2>
-      <span class="status good">Status: live · free to play</span>
-      <p class="sec-intro">Run a covert agency across four eras: 1972 to 2026. Build headquarters, work field leads, solve conspiracies before they execute, and manage global tension. Eight minigames feed a strategy layer. Influenced by some of my favorite games as a kid like Covert Action, SimCity, Conflict, and Age of Empires II. <strong>One sitting, no save state.</strong> <a href="/directorate.html">Open Directorate →</a></p>
-    </div>
-
-<!-- ON DECK  -->  
-    <div style="margin-top:44px">
-      <span class="snum">Next on the bench</span>
-      <h2 class="sec">On deck</h2>
-    </div>
-    <ul class="deck-list" style="margin-top:16px">
-      <li>
-        <span class="st">In development</span>
-        <div>
-          <h3>The Translation Bench</h3>
-          <p>One research finding, written accurately for five audiences: a scholar, a legislator, a founder, a journalist, and a neighbor. It's a tool version of the translation work I've done by hand for twenty years.</p>
-        </div>
-      </li>
-      <li>
-        <span class="st">Sketching</span>
-        <div>
-          <h3>The Apprenticeship Protocol</h3>
-          <p>A structured loop where a junior, a senior, and a model each improve the others' work, so the model doesn't quietly replace the middle of the career ladder. The simulator above keeps pointing to this kind of fix.</p>
-        </div>
-      </li>
+    <ul class="deck">
+      <li data-reveal><span class="st">In development</span><h3>The Translation Bench</h3><p>One research finding, written accurately for five audiences: a scholar, a legislator, a founder, a journalist, and a neighbor. It's a tool version of the translation work I've done by hand for twenty years.</p></li>
+      <li data-reveal="2"><span class="st">Sketching</span><h3>The Apprenticeship Protocol</h3><p>A structured loop where a junior, a senior, and a model each improve the others' work, so the model doesn't quietly replace the middle of the career ladder. The simulator above keeps pointing to this kind of fix.</p></li>
     </ul>
   </div>
 </section>
 
 </main>
-
-<footer>
-  <div class="wrap foot-grid">
-    <div>
-      <span style="font-family:'Montserrat','Instrument Sans',sans-serif;font-weight:700;font-size:18px">Agents <span style="color:#E0A83C">&amp;</span> Agency</span>
-      <p class="fine" style="margin-top:6px">Written by me, built with Claude · &copy; 2026 Derek Özkal</p>
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="index.html" aria-label="Agents and Agency, home"><svg class="mark" viewBox="0 0 34 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="#2457F5"/><circle cx="22" cy="12" r="9" fill="#12B07A"/><path d="M17 4.52A9 9 0 0 1 17 19.48A9 9 0 0 1 17 4.52Z" fill="currentColor"/></svg><span class="wordmark">Agents <span class="amp">&amp;</span> Agency</span></a>
+        <p class="fine">Essays, research, and prototypes by Derek Özkal on AI, work, and human agency. Written by me, built with Claude.</p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="writing.html">Writing</a><a href="research.html">Research</a>
+        <a href="media.html">Watch &amp; listen</a><a href="lab.html">The Lab</a>
+        <a href="about.html">About</a><a href="agents.html">For agents</a>
+        <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Substack</a><a href="https://www.linkedin.com/in/derekozkal" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="cv.pdf">CV (PDF)</a><a href="llms.txt">llms.txt</a>
+      </nav>
+      <div class="foot-controls">
+        <p class="k">This site has an agent</p>
+        <div class="toggles">
+          <button class="toggle" type="button" data-toggle="agent" aria-pressed="true"><i aria-hidden="true"></i>Agent: <b>on</b></button>
+          <button class="toggle" type="button" data-toggle="motion" aria-pressed="true"><i aria-hidden="true"></i>Motion: <b>on</b></button>
+        </div>
+        <p class="tally" id="agentTally">No unprompted offers yet this visit.</p>
+        <div class="share" aria-label="Share this site">
+          <button type="button" class="share-copy" data-copy="https://agentsandagency.com/">Copy link</button>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fagentsandagency.com%2F" target="_blank" rel="noopener">Share on LinkedIn</a>
+          <a href="https://bsky.app/intent/compose?text=Agents%20and%20Agency%2C%20essays%20and%20prototypes%20on%20AI%2C%20work%2C%20and%20human%20agency%20by%20Derek%20%C3%96zkal%3A%20https%3A%2F%2Fagentsandagency.com%2F" target="_blank" rel="noopener">Bluesky</a>
+        </div>
+      </div>
     </div>
-    <div class="fine">
-      <a href="index.html">Home</a>
-      &nbsp;·&nbsp;
-      <a href="writing.html">Writing</a>
-      &nbsp;·&nbsp;
-      <a href="research.html">Research</a>
-      &nbsp;·&nbsp;
-      <a href="media.html">Watch &amp; listen</a>
-      &nbsp;·&nbsp;
-      <a href="atlas.html">The Atlas</a>
-      &nbsp;·&nbsp;
-      <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Substack</a>
-    </div>
+    <div class="foot-base"><span>&copy; 2026 Derek Özkal</span><span>Plain HTML on GitHub Pages. The agent is a script, and it only makes offers.</span></div>
   </div>
 </footer>
-
+<script src="assets/site.js"></script>
+<script src="assets/figs.js"></script>
 <script>
-function toggleMenu(btn){
-  var nav=document.getElementById('nav');
-  var open=nav.classList.toggle('open');
-  btn.setAttribute('aria-expanded',open?'true':'false');
-}
-document.querySelectorAll('nav.primary a').forEach(function(a){
-  a.addEventListener('click',function(){document.getElementById('nav').classList.remove('open');});
-});
-
-/* ================= EXHIBIT C · SIMULATOR ================= */
-var S={adopt:70,apprentice:30,fidelity:50};
-var YEARS=25;
-
-function simulate(a,p,f){
-  a/=100;p/=100;f/=100;
-  var T=100,E=8,J=45;
-  var rows=[];
-  for(var y=0;y<=YEARS;y++){
-    var C=T+0.85*f*E+0.35*J;
-    rows.push({y:y,T:T,E:E,J:J,C:C});
-    var retire=0.05*T;
-    var promote=0.05*p*J;
-    var ramp=1-Math.exp(-y/7);
-    var capture=retire*f*(0.15+0.45*a);
-    T=Math.max(0,T-retire+promote);
-    E=Math.max(0,E*(0.97+0.03*a)+capture+3.2*a*f*ramp);
-    J=Math.min(130,Math.max(0,J*(1+0.10*p-0.09*a*(1-0.5*p))+1));
+(function(){
+  'use strict';
+  /* Exhibit C: the full simulator, same model as the figures */
+  var S={adopt:70,apprentice:30,fidelity:50};
+  var svg=document.getElementById('chart'), verdict=document.getElementById('verdict');
+  var draw=AAModel.tweener(svg,{h:380});
+  function words(i){
+    if(!i.crunch)return '<b class="ok">NO CRUNCH</b>The junior pipeline keeps replenishing judgment while encoding compounds underneath. This is the managed transition. Notice what it cost you in the apprenticeship slider. Nobody said the good outcome was cheap.';
+    if(i.rebound)return '<b class="mid">CRUNCH, THEN PARTIAL RECOVERY</b>Capacity bottoms out at '+i.pct+'% of start in year '+i.min.y+', then the encoded stock matures and pulls it back to '+i.endPct+'%. Survivable, if the profession can hold its breath that long and nothing important happens during the dip.';
+    if(i.min.y>=AAModel.YEARS)return '<b class="bad">CRUNCH, NO RECOVERY</b>Capacity falls the whole horizon and ends at '+i.endPct+'% of start. The seniors left faster than anything replaced them. Solvent on paper, illiquid when it counted.';
+    return '<b class="bad">CRUNCH, NO RECOVERY</b>Capacity bottoms out at '+i.pct+'% in year '+i.min.y+' and ends at '+i.endPct+'%. The seniors left before the encoded stock matured. Solvent on paper, illiquid when it counted.';
   }
-  return rows;
-}
-
-function drawChart(){
-  var rows=simulate(S.adopt,S.apprentice,S.fidelity);
-  var W=760,H=400,padL=44,padR=118,padT=24,padB=40;
-  var x0=padL,x1=W-padR,y0=H-padB,y1=padT;
-  var maxV=0;rows.forEach(function(r){maxV=Math.max(maxV,r.C,r.T,r.E);});
-  var yMax=Math.max(140,Math.ceil((maxV+12)/20)*20);
-  function X(y){return x0+(x1-x0)*(y/YEARS);}
-  function Y(v){return y0-(y0-y1)*(Math.min(v,yMax)/yMax);}
-  function path(key){
-    return rows.map(function(r,i){return (i?'L':'M')+X(r.y).toFixed(1)+' '+Y(r[key]).toFixed(1);}).join(' ');
+  var ids={adopt:['sAdopt','oAdopt'],apprentice:['sApprentice','oApprentice'],fidelity:['sFidelity','oFidelity']};
+  function sync(){
+    Object.keys(ids).forEach(function(k){var el=document.getElementById(ids[k][0]);el.value=S[k];document.getElementById(ids[k][1]).textContent=S[k];AAModel.setFill(el);});
+    draw(AAModel.simulate(S.adopt,S.apprentice,S.fidelity),function(info){verdict.innerHTML=words(info);});
   }
-  var C0=rows[0].C;
-  var minI=0;
-  rows.forEach(function(r,i){if(r.C<rows[minI].C)minI=i;});
-  var minR=rows[minI],endR=rows[rows.length-1];
-  var crunch=minR.C < 0.88*C0 && minI>0;
-  var trough=crunch && minI<YEARS;
-
-  var s='';
-  s+='<line x1="'+x0+'" y1="'+Y(C0)+'" x2="'+x1+'" y2="'+Y(C0)+'" stroke="#B9B2A0" stroke-width="1" stroke-dasharray="2 5"/>';
-  s+='<text x="'+x0+'" y="'+(Y(C0)-7)+'" font-family="Instrument Sans, sans-serif" font-size="10.5" letter-spacing="1" fill="#8F897B">STARTING CAPACITY</text>';
-  s+='<line x1="'+x0+'" y1="'+y0+'" x2="'+x1+'" y2="'+y0+'" stroke="#1C1B17" stroke-width="1.5"/>';
-  for(var t=0;t<=YEARS;t+=5){
-    s+='<line x1="'+X(t)+'" y1="'+y0+'" x2="'+X(t)+'" y2="'+(y0+5)+'" stroke="#1C1B17" stroke-width="1"/>';
-    s+='<text x="'+X(t)+'" y="'+(y0+20)+'" text-anchor="middle" font-family="Instrument Sans, sans-serif" font-size="11" fill="#5C5850">'+(t===0?'YR 0':t)+'</text>';
-  }
-  if(trough){
-    s+='<line x1="'+X(minR.y)+'" y1="'+Y(minR.C)+'" x2="'+X(minR.y)+'" y2="'+y0+'" stroke="#A8432A" stroke-width="1" stroke-dasharray="3 4"/>';
-    s+='<text x="'+X(minR.y)+'" y="'+(Y(minR.C)-10)+'" text-anchor="middle" font-family="Instrument Sans, sans-serif" font-size="10.5" letter-spacing="1" fill="#A8432A">CRUNCH · YR '+minR.y+'</text>';
-  }
-  s+='<path d="'+path('T')+'" fill="none" stroke="#3E6B44" stroke-width="2.5"/>';
-  s+='<path d="'+path('E')+'" fill="none" stroke="#2E86D6" stroke-width="2.5"/>';
-  s+='<path d="'+path('C')+'" fill="none" stroke="#1C1B17" stroke-width="3.5"/>';
-  var labels=[
-    {v:endR.C,txt:'TOTAL CAPACITY',c:'#1C1B17'},
-    {v:endR.T,txt:'TACIT (SENIORS)',c:'#3E6B44'},
-    {v:endR.E,txt:'ENCODED',c:'#A8432A'}
-  ].sort(function(m,n){return n.v-m.v;});
-  var used=[];
-  labels.forEach(function(L){
-    var y=Y(L.v);
-    used.forEach(function(u){if(Math.abs(y-u)<16)y=u+16;});
-    used.push(y);
-    s+='<text x="'+(x1+8)+'" y="'+(y+4)+'" font-family="Instrument Sans, sans-serif" font-size="11" letter-spacing="1" fill="'+L.c+'">'+L.txt+'</text>';
+  Object.keys(ids).forEach(function(k){document.getElementById(ids[k][0]).addEventListener('input',function(e){S[k]=parseInt(e.target.value,10);sync();});});
+  Array.prototype.forEach.call(document.querySelectorAll('[data-sim]'),function(b){
+    b.addEventListener('click',function(){var v=b.getAttribute('data-sim').split(',').map(Number);S={adopt:v[0],apprentice:v[1],fidelity:v[2]};sync();});
   });
-  document.getElementById('chart').innerHTML=s;
+  sync();
 
-  var pct=Math.round(100*minR.C/C0);
-  var endPct=Math.round(100*endR.C/C0);
-  var rebound=trough && endR.C>=minR.C*1.04;
-  var v;
-  if(!crunch){
-    v='<strong>NO CRUNCH</strong>The junior pipeline keeps replenishing judgment while encoding compounds underneath. This is the managed transition. Notice what it cost you in the apprenticeship slider. Nobody said the good outcome was cheap.';
-  }else if(rebound){
-    v='<strong>CRUNCH, THEN PARTIAL RECOVERY</strong>Capacity bottoms out at '+pct+'% of start in year '+minR.y+', then the encoded stock matures and pulls it back to '+endPct+'%. Survivable, if the profession can hold its breath that long and nothing important happens during the dip.';
-  }else if(minR.y>=YEARS){
-    v='<strong>CRUNCH, NO RECOVERY</strong>Capacity falls the whole horizon and ends at '+endPct+'% of start. The seniors left faster than anything replaced them. Solvent on paper, illiquid when it counted.';
-  }else{
-    v='<strong>CRUNCH, NO RECOVERY</strong>Capacity bottoms out at '+pct+'% in year '+minR.y+' and ends at '+endPct+'%. The seniors left before the encoded stock matured. Solvent on paper, illiquid when it counted.';
+  /* Exhibit D: jobs that didn't exist in 2022.
+     EDIT: add an entry by copying an object. cap must be one of CONTEXT, AGENCY, GENERALITY, CODE, COST, MULTIMODAL */
+  var LEDGER=[
+   {t:'Expertise Encoder',cap:'CONTEXT',d:'Sits with a retiring machinist, nurse, or loan officer and turns thirty years of judgment into a corpus a model can actually use.',y:'No system could hold, let alone apply, a career of unstructured judgment.'},
+   {t:'Evals Designer',cap:'GENERALITY',d:'Writes the exams for AI systems. Decides what "good" means for software with no spec sheet, then measures it.',y:'Software did what it was told. There was nothing open-ended to examine.'},
+   {t:'Agent Operations Lead',cap:'AGENCY',d:'Runs a fleet of autonomous agents the way a plant manager runs a line: throughput, error budgets, escalation paths.',y:'Software never acted on its own long enough to need an operations discipline.'},
+   {t:'Context Engineer',cap:'CONTEXT',d:'Designs what a model sees before it answers: the documents, the ordering, the framing. Real job postings exist today.',y:'Nothing could read a million tokens, so nobody curated a million tokens.'},
+   {t:'AI Output Auditor',cap:'GENERALITY',d:'Checks machine output for a living: provenance, calibration, failure modes. Quality control for cognition.',y:'Output volume was human-scale and mostly self-verifying.'},
+   {t:'Synthetic Data Curator',cap:'COST',d:'Builds training data that never happened to teach models things that did. Data design as a full-time craft.',y:'Generating data used to cost more than collecting it.'},
+   {t:'Counterfactual Analyst',cap:'COST',d:'Runs a policy through a thousand simulated alternate versions before a legislature votes once.',y:'Each scenario used to take a team a quarter. Now the marginal one is nearly free.'},
+   {t:'Institutional Translator',cap:'CONTEXT',d:'Makes an organization\u2019s unwritten rules legible enough for agents to follow them.',y:'The unwritten rules could not run on anything.'},
+   {t:'Model Welfare Researcher',cap:'GENERALITY',d:'Studies whether and when AI systems warrant moral consideration. A real research program at real labs.',y:'Nothing artificial was a serious enough candidate to study.'},
+   {t:'AI Red Teamer',cap:'AGENCY',d:'Attacks models professionally so the failures get found on payroll instead of in production.',y:'Adversarial testing meant networks and locks, not minds.'},
+   {t:'Agent Economist',cap:'AGENCY',d:'Designs market rules for autonomous buyers, sellers, and negotiators. Mechanism design goes operational.',y:'Markets had no non-human participants with budgets and goals.'},
+   {t:'Curriculum Compiler',cap:'CODE',d:'Turns a master practitioner\u2019s method into a teachable, testable agent.',y:'Teaching could not be compiled.'},
+   {t:'Simulation Demographer',cap:'COST',d:'Builds synthetic populations so a city can test a policy on everyone before trying it on anyone.',y:'Population-scale simulation was a supercomputer grant, not a Tuesday.'},
+   {t:'Deep Research Editor',cap:'AGENCY',d:'Assigns, supervises, and edits a research staff that never sleeps. The judgment moves up a level, and the reading moves down.',y:'An editor\u2019s staff was limited to people.'},
+   {t:'Memory Architect',cap:'CONTEXT',d:'Decides what a long-lived agent keeps, forgets, and consolidates. Institutional memory as a built system.',y:'Software had storage. It did not have memory worth architecting.'},
+   {t:'Multimodal Field Auditor',cap:'MULTIMODAL',d:'Points a model at bridge photos, shop-floor video, or crop imagery and gets structured findings back.',y:'Seeing was not something you could delegate.'},
+   {t:'Capability Forecaster',cap:'GENERALITY',d:'Tracks the frontier and tells institutions what becomes possible next quarter, not next decade.',y:'The frontier moved slowly enough that strategy could ignore it.'},
+   {t:'Preference Elicitor',cap:'GENERALITY',d:'Turns messy human values into training signal a model can learn from.',y:'There was no system that could take values as an input.'}
+  ];
+  var CAPS=['ALL','CONTEXT','AGENCY','GENERALITY','CODE','COST','MULTIMODAL'], active='ALL';
+  function renderFilters(){
+    var f=document.getElementById('filters');
+    f.innerHTML=CAPS.map(function(c){return '<button type="button" data-cap="'+c+'" class="'+(c===active?'active':'')+'" aria-pressed="'+(c===active)+'">'+(c==='ALL'?'All entries':c.charAt(0)+c.slice(1).toLowerCase())+'</button>';}).join('');
+    Array.prototype.forEach.call(f.querySelectorAll('button'),function(b){b.addEventListener('click',function(){active=b.getAttribute('data-cap');renderFilters();renderLedger();});});
   }
-  document.getElementById('verdict').innerHTML=v;
-}
+  var expanded=false, more=document.getElementById('ledgerMore');
+  more.addEventListener('click',function(){expanded=true;renderLedger();});
+  function renderLedger(){
+    var items=LEDGER.filter(function(e){return active==='ALL'||e.cap===active;});
+    var total=items.length;
+    if(active==='ALL'&&!expanded&&total>6){items=items.slice(0,6);more.hidden=false;more.textContent='Show all '+total+' entries';}else{more.hidden=true;}
+    document.getElementById('ledgerCount').textContent=(items.length<total?'Showing '+items.length+' of '+total:total+' of '+LEDGER.length)+' entries · last reviewed July 2026';
+    document.getElementById('ledgerGrid').innerHTML=items.map(function(e,i){
+      return '<div class="lcard" style="animation-delay:'+(Math.min(i,8)*40)+'ms"><span class="cap">'+e.cap+'</span><h3>'+e.t+'</h3><p>'+e.d+'</p><p class="why">'+e.y+'</p></div>';
+    }).join('');
+  }
+  renderFilters(); renderLedger();
 
-function bindSlider(id,outId,key){
-  var el=document.getElementById(id),out=document.getElementById(outId);
-  el.addEventListener('input',function(){
-    S[key]=parseInt(el.value,10);
-    out.textContent=el.value;
-    drawChart();
-  });
-}
-function preset(a,p,f){
-  S={adopt:a,apprentice:p,fidelity:f};
-  document.getElementById('sAdopt').value=a;document.getElementById('oAdopt').textContent=a;
-  document.getElementById('sApprentice').value=p;document.getElementById('oApprentice').textContent=p;
-  document.getElementById('sFidelity').value=f;document.getElementById('oFidelity').textContent=f;
-  drawChart();
-}
-bindSlider('sAdopt','oAdopt','adopt');
-bindSlider('sApprentice','oApprentice','apprentice');
-bindSlider('sFidelity','oFidelity','fidelity');
-drawChart();
-
-/* ================= EXHIBIT D · JOBS THAT DIDN'T EXIST IN 2022 =================
-   EDIT: add a new entry by copying an object in this array.
-   cap must be one of: CONTEXT, AGENCY, GENERALITY, CODE, COST, MULTIMODAL
-*/
-var LEDGER=[
- {t:'Expertise Encoder',cap:'CONTEXT',d:'Sits with a retiring machinist, nurse, or loan officer and turns thirty years of judgment into a corpus a model can actually use.',y:'No system could hold, let alone apply, a career of unstructured judgment.'},
- {t:'Evals Designer',cap:'GENERALITY',d:'Writes the exams for AI systems. Decides what "good" means for software with no spec sheet, then measures it.',y:'Software did what it was told. There was nothing open-ended to examine.'},
- {t:'Agent Operations Lead',cap:'AGENCY',d:'Runs a fleet of autonomous agents the way a plant manager runs a line: throughput, error budgets, escalation paths.',y:'Software never acted on its own long enough to need an operations discipline.'},
- {t:'Context Engineer',cap:'CONTEXT',d:'Designs what a model sees before it answers: the documents, the ordering, the framing. Real job postings exist today.',y:'Nothing could read a million tokens, so nobody curated a million tokens.'},
- {t:'AI Output Auditor',cap:'GENERALITY',d:'Checks machine output for a living: provenance, calibration, failure modes. Quality control for cognition.',y:'Output volume was human-scale and mostly self-verifying.'},
- {t:'Synthetic Data Curator',cap:'COST',d:'Builds training data that never happened to teach models things that did. Data design as a full-time craft.',y:'Generating data used to cost more than collecting it.'},
- {t:'Counterfactual Analyst',cap:'COST',d:'Runs a policy through a thousand simulated alternate versions before a legislature votes once.',y:'Each scenario used to take a team a quarter. Now the marginal one is nearly free.'},
- {t:'Institutional Translator',cap:'CONTEXT',d:'Makes an organization’s unwritten rules legible enough for agents to follow them.',y:'The unwritten rules could not run on anything.'},
- {t:'Model Welfare Researcher',cap:'GENERALITY',d:'Studies whether and when AI systems warrant moral consideration. A real research program at real labs.',y:'Nothing artificial was a serious enough candidate to study.'},
- {t:'AI Red Teamer',cap:'AGENCY',d:'Attacks models professionally so the failures get found on payroll instead of in production.',y:'Adversarial testing meant networks and locks, not minds.'},
- {t:'Agent Economist',cap:'AGENCY',d:'Designs market rules for autonomous buyers, sellers, and negotiators. Mechanism design goes operational.',y:'Markets had no non-human participants with budgets and goals.'},
- {t:'Curriculum Compiler',cap:'CODE',d:'Turns a master practitioner’s method into a teachable, testable agent.',y:'Teaching could not be compiled.'},
- {t:'Simulation Demographer',cap:'COST',d:'Builds synthetic populations so a city can test a policy on everyone before trying it on anyone.',y:'Population-scale simulation was a supercomputer grant, not a Tuesday.'},
- {t:'Deep Research Editor',cap:'AGENCY',d:'Assigns, supervises, and edits a research staff that never sleeps. The judgment moves up a level; the reading moves down.',y:'An editor’s staff was limited to people.'},
- {t:'Memory Architect',cap:'CONTEXT',d:'Decides what a long-lived agent keeps, forgets, and consolidates. Institutional memory as a built system.',y:'Software had storage. It did not have memory worth architecting.'},
- {t:'Multimodal Field Auditor',cap:'MULTIMODAL',d:'Points a model at bridge photos, shop-floor video, or crop imagery and gets structured findings back.',y:'Seeing was not something you could delegate.'},
- {t:'Capability Forecaster',cap:'GENERALITY',d:'Tracks the frontier and tells institutions what becomes possible next quarter, not next decade.',y:'The frontier moved slowly enough that strategy could ignore it.'},
- {t:'Preference Elicitor',cap:'GENERALITY',d:'Turns messy human values into training signal a model can learn from.',y:'There was no system that could take values as an input.'}
-];
-
-var CAPS=['ALL','CONTEXT','AGENCY','GENERALITY','CODE','COST','MULTIMODAL'];
-var activeCap='ALL';
-
-function renderFilters(){
-  var f=document.getElementById('filters');
-  f.innerHTML=CAPS.map(function(c){
-    return '<button type="button" data-cap="'+c+'" class="'+(c===activeCap?'active':'')+'">'+(c==='ALL'?'All entries':c.toLowerCase())+'</button>';
-  }).join('');
-  f.querySelectorAll('button').forEach(function(b){
-    b.addEventListener('click',function(){activeCap=b.getAttribute('data-cap');renderFilters();renderLedger();});
-  });
-}
-function renderLedger(){
-  var items=LEDGER.filter(function(e){return activeCap==='ALL'||e.cap===activeCap;});
-  document.getElementById('ledgerCount').textContent=items.length+' of '+LEDGER.length+' entries · last reviewed July 2026';
-  document.getElementById('ledgerGrid').innerHTML=items.map(function(e){
-    return '<div class="ledger-card"><span class="cap">'+e.cap+'</span><h3>'+e.t+'</h3><p>'+e.d+'</p><p class="why">'+e.y+'</p></div>';
-  }).join('');
-}
-renderFilters();
-renderLedger();
+  if(window.AA&&AA.agent){
+    AA.agent.when({id:'lab-unicorns',after:8000,dwell:0,
+      test:function(){return window.scrollY<900;},
+      msg:"Fair warning: one of these exhibits has laser unicorns. Want me to take you there?",
+      yes:'Show me',no:"I'll browse",
+      onYes:function(){var h=document.getElementById('herd');h.scrollIntoView({behavior:AA.motionOn()?'smooth':'auto',block:'center'});AA.agent.focus(h);}});
+  }
+})();
 </script>
 </body>
 </html>
