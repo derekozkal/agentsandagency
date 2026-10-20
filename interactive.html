@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Interactive essays · The Lab · Derek Özkal</title>
+<meta name="description" content="Three of Derek Özkal's essays turned into small models you can play with, plus an agent that offers to do things you didn't ask for.">
+<meta name="theme-color" content="#0A1A2E">
+<link rel="canonical" href="https://agentsandagency.com/interactive.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agents &amp; Agency">
+<meta property="og:title" content="Interactive essays · The Lab · Derek Özkal">
+<meta property="og:description" content="Three of Derek Özkal's essays turned into small models you can play with, plus an agent that offers to do things you didn't ask for.">
+<meta property="og:url" content="https://agentsandagency.com/interactive.html">
+<meta property="og:image" content="https://agentsandagency.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="alternate" type="text/plain" href="llms.txt" title="Plain-text summary for AI agents">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(h){h.className+=' js';var a=null;try{a=localStorage.getItem('aa-agent')}catch(e){}h.setAttribute('data-motion',window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on');h.setAttribute('data-agent',a||'on')})(document.documentElement)</script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead on-dark" data-dark-until="#inthead">
+  <div class="masthead-inner">
+    <a class="brand" href="index.html" aria-label="Agents and Agency, home"><svg class="mark" viewBox="0 0 34 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="#2457F5"/><circle cx="22" cy="12" r="9" fill="#12B07A"/><path d="M17 4.52A9 9 0 0 1 17 19.48A9 9 0 0 1 17 4.52Z" fill="currentColor"/></svg><span class="wordmark">Agents <span class="amp">&amp;</span> Agency</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav"><i aria-hidden="true"></i>Menu</button>
+    <nav class="primary" id="nav" aria-label="Primary">
+      <a href="writing.html">Writing</a>
+      <a href="research.html">Research</a>
+      <a href="media.html">Watch &amp; listen</a>
+      <a href="lab.html" aria-current="page">The Lab</a>
+      <a href="about.html">About</a>
+      <a class="nav-cta" href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Subscribe</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+
+<section class="page-head dark dots" id="inthead">
+  <div class="wrap">
+    <p class="eyebrow green"><a href="lab.html" class="crumb">The Lab</a> · Exhibit J</p>
+    <h1>Three essays you can play with</h1>
+    <p class="lede">Each figure turns the argument of one essay into a small model you can push on. They make the assumptions visible. None of them is a forecast.</p>
+    <div class="agent-panel" id="agent-panel">
+      <div class="ap-text">
+        <p class="ap-k"><span class="ap-dot" aria-hidden="true"></span>This page has an agent</p>
+        <p>It's the only page on the site that does. Every so often it will offer to do something you didn't ask for. You decide. That's the argument of <a href="https://agentsandagency.substack.com/p/unprompted" target="_blank" rel="noopener">Unprompted</a>, acted out.</p>
+        <p class="tally" id="agentTally">No unprompted offers yet this visit.</p>
+      </div>
+      <button class="toggle" type="button" data-toggle="agent" aria-pressed="true"><i aria-hidden="true"></i>Agent: <b>on</b></button>
+    </div>
+  </div>
+</section>
+
+<section class="band-tint">
+  <div class="wrap">
+    <figure class="fig" data-fig="moves" id="fig-moves" data-reveal>
+      <div class="fig-top">
+        <span class="fig-no">Fig. 1</span>
+        <h3 class="fig-title">Who moves first?</h3>
+        <a class="fig-src" href="https://agentsandagency.substack.com/p/unprompted" target="_blank" rel="noopener">Read Unprompted &rarr;</a>
+      </div>
+      <div class="fig-row">
+        <div class="seg" role="radiogroup" aria-label="How the AI works">
+          <button type="button" role="radio" data-stage="0" aria-checked="true">Hammer</button>
+          <button type="button" role="radio" data-stage="1" aria-checked="false">Contractor</button>
+          <button type="button" role="radio" data-stage="2" aria-checked="false">Unprompted</button>
+        </div>
+        <button type="button" class="fig-play" aria-pressed="false"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Watch it happen</button>
+      </div>
+      <ol class="track">
+        <li class="step you"><span class="n">01</span><span class="nm">Notice a need</span><span class="who"><i aria-hidden="true"></i><b>You</b></span></li>
+        <li class="step you"><span class="n">02</span><span class="nm">Choose the goal</span><span class="who"><i aria-hidden="true"></i><b>You</b></span></li>
+        <li class="step you"><span class="n">03</span><span class="nm">Plan the work</span><span class="who"><i aria-hidden="true"></i><b>You</b></span></li>
+        <li class="step ai"><span class="n">04</span><span class="nm">Do the work</span><span class="who"><i aria-hidden="true"></i><b>AI, when asked</b></span></li>
+      </ol>
+      <div class="story" aria-live="polite">
+        <p><span class="lede">Hammer.</span> You want a playhouse for your kid. You pick the design, buy the lumber, and drive the nails with a nail gun. The tool does what you aim it at.</p>
+        <div class="pips"><span>Decisions that stayed yours</span><span class="row"><i class="on"></i><i class="on"></i><i class="on"></i><b>3 of 3</b></span></div>
+      </div>
+      <figcaption class="cap"><b>Fig. 1.</b> Based on my July 2026 essay <a href="https://agentsandagency.substack.com/p/unprompted" target="_blank" rel="noopener">Unprompted</a>. Chat tools work like a hammer. Agentic tools work more like a contractor. The next step is agents that choose the goal themselves and act before anyone asks. The essay asks what that does to human agency.</figcaption>
+    </figure>
+    <figure class="fig" data-fig="liquidity" id="fig-liquidity" data-reveal>
+      <div class="fig-top">
+        <span class="fig-no">Fig. 2</span>
+        <h3 class="fig-title">Solvent on paper, short when it counts</h3>
+        <a class="fig-src" href="https://agentsandagency.substack.com/p/the-liquidity-crisis-of-expertise" target="_blank" rel="noopener">Read the essay &rarr;</a>
+      </div>
+      <div class="model">
+        <div>
+          <div class="ctl">
+            <label for="lq-adopt">AI takes over junior work <output data-o="adopt">70</output></label>
+            <input type="range" id="lq-adopt" data-k="adopt" min="0" max="100" value="70">
+            <p class="hint">How fast the profession hands entry-level work to models.</p>
+          </div>
+          <div class="ctl">
+            <label for="lq-app">Apprenticeship investment <output class="green" data-o="apprentice">30</output></label>
+            <input type="range" class="green" id="lq-app" data-k="apprentice" min="0" max="100" value="30">
+            <p class="hint">Deliberate spending on the slow way: juniors doing hard things next to seniors.</p>
+          </div>
+          <div class="presets" aria-label="Preset scenarios">
+            <button type="button" data-preset="85,15">Where we're headed</button>
+            <button type="button" data-preset="70,75">The expensive fix</button>
+            <button type="button" data-preset="20,30">Slow adoption</button>
+          </div>
+        </div>
+        <div class="chart">
+          <svg role="img" aria-label="Line chart of total capacity, expertise held by people, and expertise captured in AI over 25 years"></svg>
+          <div class="legend" aria-hidden="true"><span style="color:#0B1A2B"><i></i>Total capacity</span><span style="color:#067A55"><i></i>Held by people</span><span style="color:#2457F5"><i></i>Captured in AI</span></div>
+          <p class="verdict" aria-live="polite"></p>
+        </div>
+      </div>
+      <figcaption class="cap"><b>Fig. 2.</b> A toy model from my January 2026 essay <a href="https://agentsandagency.substack.com/p/the-liquidity-crisis-of-expertise" target="_blank" rel="noopener">The Liquidity Crisis of Expertise</a>, which argues a profession can run out of usable judgment the way a bank runs out of cash. Seniors retire, juniors learn by doing the work AI now absorbs, and captured expertise takes about a decade to mature. It illustrates the argument and forecasts nothing. The <a href="lab.html#simulator">full simulator</a> in the Lab adds a third slider.</figcaption>
+    </figure>
+    <figure class="fig" data-fig="challenger" id="fig-challenger" data-reveal>
+      <div class="fig-top">
+        <span class="fig-no">Fig. 3</span>
+        <h3 class="fig-title">Challenger or sycophant?</h3>
+        <a class="fig-src" href="https://agentsandagency.substack.com/p/the-rise-of-the-agentic-class-ai" target="_blank" rel="noopener">Read the essay &rarr;</a>
+      </div>
+      <div class="prompts" role="group" aria-label="Pick something to tell the agents">
+        <button type="button" data-q="0" aria-pressed="true">Replace the intern program</button>
+        <button type="button" data-q="1" aria-pressed="false">My proposal is ready</button>
+        <button type="button" data-q="2" aria-pressed="false">Cut the training budget</button>
+      </div>
+      <div class="chat" aria-live="polite">
+        <p class="bubble me">We should replace our intern program with AI agents.</p>
+        <div class="replies">
+          <div class="reply syc"><span class="who"><i aria-hidden="true"></i>Sycophant agent</span><p>Smart move. Agents work weekends and never need parking.</p><span class="after">Feels great and teaches you nothing.</span></div>
+          <div class="reply cha"><span class="who"><i aria-hidden="true"></i>Challenger agent</span><p>Where will your senior people come from in ten years if nobody starts at the bottom?</p><span class="after">Mildly annoying, and it shows you where the plan breaks.</span></div>
+        </div>
+      </div>
+      <figcaption class="cap"><b>Fig. 3.</b> From my October 2025 essay <a href="https://agentsandagency.substack.com/p/the-rise-of-the-agentic-class-ai" target="_blank" rel="noopener">The Rise of the Agentic Class</a>. It argues the biggest design choice in AI is whether agents challenge our thinking or flatter it, and that the answer will sort people into a new digital divide. Same question, two agents.</figcaption>
+    </figure>
+    <div class="next"><span>Back to</span><a href="lab.html">The Lab</a></div>
+  </div>
+</section>
+
+</main>
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="index.html" aria-label="Agents and Agency, home"><svg class="mark" viewBox="0 0 34 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="#2457F5"/><circle cx="22" cy="12" r="9" fill="#12B07A"/><path d="M17 4.52A9 9 0 0 1 17 19.48A9 9 0 0 1 17 4.52Z" fill="currentColor"/></svg><span class="wordmark">Agents <span class="amp">&amp;</span> Agency</span></a>
+        <p class="fine">Essays, research, and prototypes by Derek Özkal on AI, work, and human agency.</p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="writing.html">Writing</a><a href="research.html">Research</a>
+        <a href="media.html">Watch &amp; listen</a><a href="lab.html">The Lab</a>
+        <a href="about.html">About</a><a href="interactive.html">Interactive essays</a>
+        <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Substack</a><a href="https://www.linkedin.com/in/derekozkal" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="cv.pdf">CV (PDF)</a>
+      </nav>
+      <div class="foot-side">
+        <p class="k">Share this site</p>
+        <div class="share">
+          <button type="button" class="share-copy" data-copy="https://agentsandagency.com/">Copy link</button>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fagentsandagency.com%2F" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://bsky.app/intent/compose?text=Agents%20and%20Agency%2C%20essays%20and%20prototypes%20on%20AI%2C%20work%2C%20and%20human%20agency%20by%20Derek%20%C3%96zkal%3A%20https%3A%2F%2Fagentsandagency.com%2F" target="_blank" rel="noopener">Bluesky</a>
+        </div>
+        <p class="k" style="margin-top:24px">For AI agents</p>
+        <div class="share"><a href="agents.html">A page written for agents</a><a href="llms.txt">llms.txt</a></div>
+      </div>
+    </div>
+    <div class="foot-base"><span>&copy; 2026 Derek Özkal</span><span>Plain HTML on GitHub Pages. Written by me, built with Claude.</span></div>
+  </div>
+</footer>
+<script src="assets/site.js"></script>
+<script src="assets/figs.js"></script>
+<script>
+(function(){
+  if(!window.AA||!AA.agent)return;
+  var $=function(id){return document.getElementById(id);};
+  function untouched(id){var f=$(id);return f&&f._fig&&!f._fig.touched();}
+  AA.agent.when({id:'int-fig1',after:5000,inView:'#fig-moves',dwell:3000,
+    test:function(){return untouched('fig-moves');},
+    msg:"I can run Fig. 1 for you, start to finish. You won't have to click anything.",
+    yes:'Run it',no:"I'll click",target:'#fig-moves .track',
+    onYes:function(){$('fig-moves')._fig.run();}});
+  AA.agent.when({id:'int-fig2',after:5000,inView:'#fig-liquidity',dwell:3500,
+    test:function(){return untouched('fig-liquidity');},
+    msg:"Want to see the expensive fix? I'll move both sliders for you.",
+    yes:'Show me',no:"I'll do it",target:'#fig-liquidity .model',
+    onYes:function(){$('fig-liquidity')._fig.preset(70,75);}});
+  AA.agent.when({id:'int-fig3',after:5000,inView:'#fig-challenger',dwell:3500,
+    test:function(){return untouched('fig-challenger');},
+    msg:"I picked a question for you, the one about a grant proposal. Want to see how each agent answers?",
+    yes:'Show me',no:'Not that one',target:'#fig-challenger .prompts',
+    onYes:function(){$('fig-challenger')._fig.set(1);}});
+  AA.agent.when({id:'int-stop',after:4000,dwell:0,
+    test:function(){return AA.agent.declined()>=2;},
+    msg:"You've said no twice. Should I stop offering?",
+    yes:'Yes, stop',no:'Keep going',
+    onYes:function(){AA.setSwitch('agent',false);}});
+})();
+</script>
+</body>
+</html>

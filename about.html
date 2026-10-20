@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
-<script>(function(h){h.className+=' js';var g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};var m=g('aa-motion');if(!m){m=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on'}h.setAttribute('data-motion',m);h.setAttribute('data-agent',g('aa-agent')||'on')})(document.documentElement)</script>
+<script>(function(h){h.className+=' js';var a=null;try{a=localStorage.getItem('aa-agent')}catch(e){}h.setAttribute('data-motion',window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on');h.setAttribute('data-agent',a||'on')})(document.documentElement)</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Derek Özkal","alternateName":"Derek Ozkal",
 "url":"https://agentsandagency.com/","image":"https://agentsandagency.com/assets/img/headshot.jpg",
@@ -47,7 +47,6 @@
       <a href="media.html">Watch &amp; listen</a>
       <a href="lab.html">The Lab</a>
       <a href="about.html" aria-current="page">About</a>
-      <a class="nav-agents" href="agents.html">For agents</a>
       <a class="nav-cta" href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Subscribe</a>
     </nav>
   </div>
@@ -112,41 +111,29 @@
     <div class="foot">
       <div>
         <a class="brand" href="index.html" aria-label="Agents and Agency, home"><svg class="mark" viewBox="0 0 34 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="#2457F5"/><circle cx="22" cy="12" r="9" fill="#12B07A"/><path d="M17 4.52A9 9 0 0 1 17 19.48A9 9 0 0 1 17 4.52Z" fill="currentColor"/></svg><span class="wordmark">Agents <span class="amp">&amp;</span> Agency</span></a>
-        <p class="fine">Essays, research, and prototypes by Derek Özkal on AI, work, and human agency. Written by me, built with Claude.</p>
+        <p class="fine">Essays, research, and prototypes by Derek Özkal on AI, work, and human agency.</p>
       </div>
       <nav class="foot-nav" aria-label="Footer">
         <a href="writing.html">Writing</a><a href="research.html">Research</a>
         <a href="media.html">Watch &amp; listen</a><a href="lab.html">The Lab</a>
-        <a href="about.html">About</a><a href="agents.html">For agents</a>
+        <a href="about.html">About</a><a href="interactive.html">Interactive essays</a>
         <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Substack</a><a href="https://www.linkedin.com/in/derekozkal" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="cv.pdf">CV (PDF)</a><a href="llms.txt">llms.txt</a>
+        <a href="cv.pdf">CV (PDF)</a>
       </nav>
-      <div class="foot-controls">
-        <p class="k">This site has an agent</p>
-        <div class="toggles">
-          <button class="toggle" type="button" data-toggle="agent" aria-pressed="true"><i aria-hidden="true"></i>Agent: <b>on</b></button>
-          <button class="toggle" type="button" data-toggle="motion" aria-pressed="true"><i aria-hidden="true"></i>Motion: <b>on</b></button>
-        </div>
-        <p class="tally" id="agentTally">No unprompted offers yet this visit.</p>
-        <div class="share" aria-label="Share this site">
+      <div class="foot-side">
+        <p class="k">Share this site</p>
+        <div class="share">
           <button type="button" class="share-copy" data-copy="https://agentsandagency.com/">Copy link</button>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fagentsandagency.com%2F" target="_blank" rel="noopener">Share on LinkedIn</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fagentsandagency.com%2F" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://bsky.app/intent/compose?text=Agents%20and%20Agency%2C%20essays%20and%20prototypes%20on%20AI%2C%20work%2C%20and%20human%20agency%20by%20Derek%20%C3%96zkal%3A%20https%3A%2F%2Fagentsandagency.com%2F" target="_blank" rel="noopener">Bluesky</a>
         </div>
+        <p class="k" style="margin-top:24px">For AI agents</p>
+        <div class="share"><a href="agents.html">A page written for agents</a><a href="llms.txt">llms.txt</a></div>
       </div>
     </div>
-    <div class="foot-base"><span>&copy; 2026 Derek Özkal</span><span>Plain HTML on GitHub Pages. The agent is a script, and it only makes offers.</span></div>
+    <div class="foot-base"><span>&copy; 2026 Derek Özkal</span><span>Plain HTML on GitHub Pages. Written by me, built with Claude.</span></div>
   </div>
 </footer>
 <script src="assets/site.js"></script>
-<script>
-(function(){
-  if(!window.AA||!AA.agent)return;
-  AA.agent.when({id:'about-cv',after:12000,dwell:0,
-    msg:"Want the CV instead? It has everything on this page and a lot more.",
-    yes:'Get the CV',no:"I'm good",
-    onYes:function(){window.location.href='cv.pdf';}});
-})();
-</script>
 </body>
 </html>

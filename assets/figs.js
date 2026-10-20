@@ -201,6 +201,10 @@
       b.addEventListener('click', function () { var v = b.getAttribute('data-preset').split(','); a.value = v[0]; p.value = v[1]; root._touched = true; update(); });
     });
     update();
+    root._fig = {
+      preset: function (x, y) { a.value = x; p.value = y; root._touched = true; update(); },
+      touched: function () { return !!root._touched; }
+    };
   }
 
   /* ---------- Fig. 3 · Challenger or sycophant ---------- */
@@ -238,7 +242,7 @@
     btns.forEach(function (b, k) { b.addEventListener('click', function () { root._touched = true; set(k); }); });
     var first = PROMPTS[0]; me.textContent = first.q; syc.textContent = first.s; cha.textContent = first.c;
     btns.forEach(function (b, j) { b.setAttribute('aria-pressed', j === 0 ? 'true' : 'false'); });
-    root._fig = { set: set };
+    root._fig = { set: function (k) { root._touched = true; set(k); }, touched: function () { return !!root._touched; } };
   }
 
   $$('[data-fig="moves"]').forEach(initMoves);

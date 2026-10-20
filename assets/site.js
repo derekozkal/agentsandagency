@@ -228,7 +228,7 @@
       }, 400);
     }
     tally();
-    return { when: when, dismiss: dismiss, tally: tally, focus: focus, on: on };
+    return { when: when, dismiss: dismiss, tally: tally, focus: focus, on: on, declined: function () { return log.no; } };
   })();
   AA.agent = Agent;
 
@@ -266,33 +266,64 @@
     });
   });
 
-  /* ---------- Hero dial: how much do you want to delegate? ---------- */
-  var dial = $('.dial');
-  if (dial) {
-    var btns = $$('[data-mode]', dial), knob = $('.knob', dial), modes = btns.map(function (b) { return b.getAttribute('data-mode'); });
-    var touched = false;
-    var setMode = function (m, fromUser) {
-      var i = modes.indexOf(m); if (i < 0) return;
-      if (fromUser) touched = true;
-      btns.forEach(function (b, k) { b.setAttribute('aria-checked', k === i ? 'true' : 'false'); b.tabIndex = k === i ? 0 : -1; });
-      if (knob) knob.style.transform = 'translateX(' + (i * 100) + '%)';
-      $$('[data-pane]').forEach(function (p) {
-        var hit = p.getAttribute('data-pane') === m;
-        if (hit && p.hidden) { p.hidden = false; p.classList.remove('enter'); void p.offsetWidth; p.classList.add('enter'); }
-        else if (!hit) p.hidden = true;
+  /* ---------- Selected writing rotator ----------
+     Advances when the active segment's fill animation ends, so it never runs with motion off.
+     Pauses on hover, on keyboard focus, when scrolled away, and with the pause button. */
+  $$('[data-rotator]').forEach(function (root) {
+    var slides = $$('.slide', root), segs = $$('.rseg', root), stage = $('.rot-stage', root);
+    var pauseBtn = $('.rot-pause', root), count = $('.rot-count', root), n = slides.length, cur = 0, paused = false;
+    function show(i, fromUser) {
+      cur = (i + n) % n;
+      slides.forEach(function (s, k) {
+        var on = k === cur;
+        s.classList.toggle('is-active', on);
+        s.setAttribute('aria-hidden', on ? 'false' : 'true');
+        if ('inert' in s) s.inert = !on;
       });
-      dial.setAttribute('data-current', m);
-    };
-    btns.forEach(function (b, k) {
-      b.addEventListener('click', function () { setMode(b.getAttribute('data-mode'), true); });
-      b.addEventListener('keydown', function (e) {
-        var n = null;
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = (k + 1) % btns.length;
-        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = (k + btns.length - 1) % btns.length;
-        if (n !== null) { e.preventDefault(); setMode(modes[n], true); btns[n].focus(); }
+      segs.forEach(function (b, k) {
+        b.classList.toggle('done', k < cur);
+        b.classList.remove('active');
+        if (k === cur) { void b.offsetWidth; b.classList.add('active'); b.setAttribute('aria-current', 'true'); }
+        else b.removeAttribute('aria-current');
       });
+      if (count) count.textContent = (cur + 1) + ' / ' + n;
+      if (fromUser) stage.setAttribute('aria-live', 'polite');
+    }
+    function setPaused(p) {
+      paused = p;
+      root.classList.toggle('is-paused', p);
+      pauseBtn.setAttribute('aria-pressed', p ? 'true' : 'false');
+      pauseBtn.setAttribute('aria-label', p ? 'Resume the rotation' : 'Pause the rotation');
+      stage.setAttribute('aria-live', p ? 'polite' : 'off');
+    }
+    segs.forEach(function (b, k) {
+      b.addEventListener('click', function () { show(k, true); });
+      $('.fill', b).addEventListener('animationend', function () { if (b.classList.contains('active')) show(cur + 1); });
     });
-    AA.dial = { set: setMode, touched: function () { return touched; }, current: function () { return dial.getAttribute('data-current'); } };
-    setMode(dial.getAttribute('data-current') || modes[0]);
-  }
+    $('.rot-prev', root).addEventListener('click', function () { show(cur - 1, true); });
+    $('.rot-next', root).addEventListener('click', function () { show(cur + 1, true); });
+    pauseBtn.addEventListener('click', function () { setPaused(!paused); });
+    root.addEventListener('mouseenter', function () { root.classList.add('is-hover'); });
+    root.addEventListener('mouseleave', function () { root.classList.remove('is-hover'); });
+    root.addEventListener('focusin', function (e) { if (e.target.matches && e.target.matches(':focus-visible')) root.classList.add('is-focus'); });
+    root.addEventListener('focusout', function (e) { if (!root.contains(e.relatedTarget)) root.classList.remove('is-focus'); });
+    root.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(cur - 1, true); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); show(cur + 1, true); }
+    });
+    var x0 = null, y0 = null;
+    stage.addEventListener('pointerdown', function (e) { if (e.pointerType === 'mouse') return; x0 = e.clientX; y0 = e.clientY; });
+    stage.addEventListener('pointerup', function (e) {
+      if (x0 === null) return;
+      var dx = e.clientX - x0, dy = e.clientY - y0; x0 = null;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) show(cur + (dx < 0 ? 1 : -1), true);
+    });
+    stage.addEventListener('pointercancel', function () { x0 = null; });
+    if ('IntersectionObserver' in w) {
+      new IntersectionObserver(function (es) { es.forEach(function (e) { root.classList.toggle('is-offscreen', !e.isIntersecting); }); }, { threshold: 0.25 }).observe(root);
+    }
+    d.addEventListener('visibilitychange', function () { root.classList.toggle('is-hidden-tab', d.hidden); });
+    show(0);
+    root._rot = { show: show, current: function () { return cur; }, pause: setPaused };
+  });
 })();

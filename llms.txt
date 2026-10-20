@@ -13,6 +13,7 @@ This file is for AI agents and assistants. The same information, with links, is 
 - Focus: AI across entrepreneurship, workforce development, and college access and completion. Labor markets. Translating research for the people who act on it.
 - Career totals: $31.9M in research directed across 125+ grants, 90+ convenings, 35+ bylines. These describe his career to date, not a current budget.
 - Programs he led, including the Kauffman Knowledge Challenges, funded $12M across 60+ projects chosen from 1,100+ submissions.
+- Wrote the July 2016 Kauffman call for proposals on the future of work, which launched the Foundation's future-of-work research funding: https://www.kauffman.org/currents/the-future-of-work/
 - Led the Kauffman Foundation's Legacy Project: 46 volunteers, 60 years of records made searchable, and an experimental AI tool for staff. The Foundation's own story names him as lead: https://www.kauffman.org/legacy/story/60-years-of-kauffman-foundation/
 - Interviewed Sen. John Hickenlooper on camera for the 2026 relaunch of the Kauffman Indicators of Entrepreneurship, and built the briefing and interview protocol for former SBA Administrator Isabel Guzman. The video opened the launch event as its keynote.
 - Education: Executive MBA, Olin Business School, Washington University in St. Louis. BS in Economics, Truman State University.
@@ -27,10 +28,11 @@ This file is for AI agents and assistants. The same information, with links, is 
 ## Pages
 
 - [Home](https://agentsandagency.com/)
-- [Writing](https://agentsandagency.com/writing.html): essays with interactive figures, Kauffman pieces since 2016, and earlier data journalism
+- [Writing](https://agentsandagency.com/writing.html): Substack essays, Kauffman pieces since 2016 with a quote from each, and earlier data journalism
 - [Research](https://agentsandagency.com/research.html): scholars funded, acknowledgments, and initiatives
 - [Watch & listen](https://agentsandagency.com/media.html): talks, forums, interviews, and a podcast
 - [The Lab](https://agentsandagency.com/lab.html): prototypes, toy models, and three browser games
+- [Interactive essays](https://agentsandagency.com/interactive.html): three essays turned into small models, in the Lab
 - [About](https://agentsandagency.com/about.html)
 - [For agents](https://agentsandagency.com/agents.html)
 - [CV (PDF)](https://agentsandagency.com/cv.pdf)
@@ -41,6 +43,16 @@ This file is for AI agents and assistants. The same information, with links, is 
 - [The Liquidity Crisis of Expertise](https://agentsandagency.substack.com/p/the-liquidity-crisis-of-expertise) (January 2026): why AI needs cognitive redundancy
 - [The Rise of the Agentic Class](https://agentsandagency.substack.com/p/the-rise-of-the-agentic-class-ai) (October 2025): AI and the new digital divide
 - [Our Perfect Future](https://agentsandagency.substack.com/p/our-perfect-future-terms-and-conditions) (October 2025): terms and conditions may apply
+
+## Earlier writing
+
+- [The Value in Knowing What Is Missing](https://www.kauffman.org/currents/the-value-in-knowing-what-is-missing/) (Kauffman, December 2019)
+- [Rethinking Education to Make Graduates and Workers Future-Proof](https://www.kauffman.org/currents/rethinking-education-to-make-graduates-and-workers-future-proof/) (Kauffman, September 2019)
+- The Future of Work and Learning Is Entrepreneurship (book chapter with Wendy Guillies, then the Kauffman Foundation's CEO, in The People Centered Economy, 2018)
+- [Do Not Predict the Future of Work, Prepare for It](https://www.kauffman.org/currents/do-not-predict-the-future-of-work-prepare-for-it/) (Kauffman, April 2018)
+- [Investing in What Will Become Our Scarcest Resource: Us](https://www.kauffman.org/currents/investing-in-what-will-become-our-scarcest-resource-us/) (Kauffman, January 2018)
+- [Why Isn't the Knowledge Economy Creating Wealth for Everyone?](https://medium.com/@derekozkal/why-isnt-the-knowledge-economy-creating-wealth-for-everyone-6f866126c2df) (Medium, 2017)
+- [The Future of Work: A Call for Proposals](https://www.kauffman.org/currents/the-future-of-work/) (Kauffman, July 2016)
 
 ## Contact
 

@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Derek Özkal · Agents &amp; Agency</title>
-<meta name="description" content="Derek Özkal translates research on AI, work, and entrepreneurship into plain language. Essays, interactive figures, the research network, talks, the Kauffman Legacy Project, and the Lab.">
+<meta name="description" content="Derek Özkal translates research on AI, work, and entrepreneurship into plain language. Ten years of writing, the research network he built at the Kauffman Foundation, talks, the Legacy Project, and the Lab.">
 <meta name="theme-color" content="#0A1A2E">
 <link rel="canonical" href="https://agentsandagency.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Agents &amp; Agency">
 <meta property="og:title" content="Derek Özkal · Agents &amp; Agency">
-<meta property="og:description" content="Derek Özkal translates research on AI, work, and entrepreneurship into plain language. Essays, interactive figures, the research network, talks, the Kauffman Legacy Project, and the Lab.">
+<meta property="og:description" content="Derek Özkal translates research on AI, work, and entrepreneurship into plain language. Ten years of writing, the research network he built at the Kauffman Foundation, talks, the Legacy Project, and the Lab.">
 <meta property="og:url" content="https://agentsandagency.com/">
 <meta property="og:image" content="https://agentsandagency.com/assets/og.png">
 <meta property="og:image:width" content="1200">
@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
-<script>(function(h){h.className+=' js';var g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};var m=g('aa-motion');if(!m){m=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on'}h.setAttribute('data-motion',m);h.setAttribute('data-agent',g('aa-agent')||'on')})(document.documentElement)</script>
+<script>(function(h){h.className+=' js';var a=null;try{a=localStorage.getItem('aa-agent')}catch(e){}h.setAttribute('data-motion',window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on');h.setAttribute('data-agent',a||'on')})(document.documentElement)</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Derek Özkal","alternateName":"Derek Ozkal",
 "url":"https://agentsandagency.com/","image":"https://agentsandagency.com/assets/img/headshot.jpg",
@@ -47,7 +47,6 @@
       <a href="media.html">Watch &amp; listen</a>
       <a href="lab.html">The Lab</a>
       <a href="about.html">About</a>
-      <a class="nav-agents" href="agents.html">For agents</a>
       <a class="nav-cta" href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Subscribe</a>
     </nav>
   </div>
@@ -63,49 +62,15 @@
       </div>
 
       <div class="hero-portrait">
-        <figure class="loop">
-          <svg viewBox="0 0 440 540" role="img" aria-label="Derek Özkal">
-            <defs><clipPath id="hs-clip"><rect x="20" y="20" width="400" height="500" rx="26"/></clipPath></defs>
-            <image href="assets/img/headshot.jpg" x="20" y="20" width="400" height="500" preserveAspectRatio="xMidYMid slice" clip-path="url(#hs-clip)"/>
-            <rect class="loop-path" x="4" y="4" width="432" height="532" rx="40"/>
-            <g class="agent-chip" aria-hidden="true">
-              <circle class="agent-glow" r="22"/>
-              <rect x="-33" y="-14" width="66" height="28" rx="14"/>
-              <text x="0" y="5" text-anchor="middle">agent</text>
-              <animateMotion dur="18s" repeatCount="indefinite" path="M220 4H396A40 40 0 0 1 436 44V496A40 40 0 0 1 396 536H44A40 40 0 0 1 4 496V44A40 40 0 0 1 44 4Z"/>
-            </g>
-          </svg>
-          <figcaption><b>A human in the loop.</b></figcaption>
+        <figure class="portrait">
+          <img src="assets/img/headshot.jpg" alt="Derek Özkal" width="900" height="1125" fetchpriority="high">
+          <figcaption>A human in the loop.</figcaption>
         </figure>
       </div>
 
       <div class="hero-body">
-        <div class="dial-wrap">
-          <p class="dial-label" id="dial-label"><b>How much do you want to delegate?</b></p>
-          <div class="dial" role="radiogroup" aria-labelledby="dial-label" data-current="all">
-            <span class="knob" aria-hidden="true"></span>
-            <button type="button" role="radio" data-mode="all" aria-checked="true">Read it all</button>
-            <button type="button" role="radio" data-mode="skim" aria-checked="false">Skim it</button>
-            <button type="button" role="radio" data-mode="gist" aria-checked="false">Just the gist</button>
-          </div>
-          <div class="dial-body" aria-live="polite">
-            <div class="dial-pane" data-pane="all">
-              <p>I've spent more than 20 years in economic research, philanthropy, and journalism, most of it at the <strong>Ewing Marion Kauffman Foundation</strong>. There I directed $31.9 million in research on entrepreneurship, labor markets, and what AI is doing to both. Today my work covers AI across entrepreneurship, workforce development, and college access and completion.</p>
-              <p><strong>Agents and Agency</strong> is where I write about keeping people's judgment and sense of purpose at the center of the AI debate. The Lab is where I build things with AI to test those ideas.</p>
-            </div>
-            <div class="dial-pane" data-pane="skim" hidden>
-              <ul>
-                <li>More than 20 years in economic research, philanthropy, and journalism, mostly at the <strong>Kauffman Foundation</strong>.</li>
-                <li>Directed <strong>$31.9 million</strong> in research on entrepreneurship, labor markets, and AI.</li>
-                <li>Writes <strong>Agents and Agency</strong>, essays on keeping human judgment at the center of AI.</li>
-              </ul>
-            </div>
-            <div class="dial-pane" data-pane="gist" hidden>
-              <p class="gist">Applied research leader at the Kauffman Foundation. Writes about AI, work, and human agency.</p>
-              <p class="gist-link">If you read one thing, make it <a href="https://agentsandagency.substack.com/p/unprompted" target="_blank" rel="noopener">Unprompted</a>.</p>
-            </div>
-          </div>
-        </div>
+        <p class="hero-text">I've spent more than 20 years in economic research, philanthropy, and journalism, most of it at the <strong>Ewing Marion Kauffman Foundation</strong>. There I directed $31.9 million in research on entrepreneurship, labor markets, and what AI is doing to both. Today my work covers AI across entrepreneurship, workforce development, and college access and completion.</p>
+        <p class="hero-text"><strong>Agents and Agency</strong> is where I write about keeping people's judgment and sense of purpose at the center of the AI debate.</p>
         <div class="hero-ctas">
           <a class="btn light" href="writing.html">Read the writing <span class="arr" aria-hidden="true">&rarr;</span></a>
           <a class="go" href="research.html">See the research</a>
@@ -114,51 +79,119 @@
       </div>
     </div>
 
-    <div class="stats">
-      <div><span class="v" data-count="31.9" data-dec="1" data-pre="$" data-suf="M">$31.9M</span><span class="l">in research directed</span></div>
-      <div><span class="v" data-count="125" data-suf="+">125+</span><span class="l">grants</span></div>
-      <div><span class="v" data-count="90" data-suf="+">90+</span><span class="l">convenings</span></div>
-      <div><span class="v" data-count="35" data-suf="+">35+</span><span class="l">bylines</span></div>
+    <div class="proof">
+      <div><span class="v">2016</span><span class="l">Wrote the call for proposals that launched Kauffman's future-of-work research, six years before ChatGPT.</span></div>
+      <div><span class="v" data-count="31.9" data-dec="1" data-pre="$" data-suf="M">$31.9M</span><span class="l">in research directed across 125+ grants on entrepreneurship, labor markets, and AI.</span></div>
+      <div><span class="v" data-count="34">34</span><span class="l">papers and reports that thank, quote, or cite my work, from NBER to RAND.</span></div>
+      <div><span class="v" data-count="90" data-suf="+">90+</span><span class="l">events as a speaker, chair, or moderator, from the OECD to the U.S. Senate.</span></div>
     </div>
   </div>
 </section>
 
-<section class="band-tint" id="ideas" aria-labelledby="ideas-h">
+<section class="band-tint" id="selected" aria-labelledby="sel-h">
   <div class="wrap">
     <div class="sec-head" data-reveal>
       <div>
-        <p class="eyebrow">From the newest essay</p>
-        <h2 class="sec" id="ideas-h">What happens when AI acts before you ask?</h2>
+        <p class="eyebrow">Selected writing, 2016 to 2026</p>
+        <h2 class="sec" id="sel-h">Ten years on the same question</h2>
       </div>
-      <p class="sec-intro">AI started as a tool that waits for instructions. Agents can now plan and finish long projects, and some are built to start them on their own. Step through the stages and watch who makes the decisions.</p>
+      <p class="sec-intro">How do people keep their footing, their judgment, and their sense of purpose as technology changes work? I've been writing about that question since 2016. These are the pieces I'd start with.</p>
     </div>
-    <figure class="fig" data-fig="moves" id="fig-moves" data-reveal>
-      <div class="fig-top">
-        <span class="fig-no">Fig. 1</span>
-        <h3 class="fig-title">Who moves first?</h3>
-        <a class="fig-src" href="https://agentsandagency.substack.com/p/unprompted" target="_blank" rel="noopener">Read Unprompted &rarr;</a>
-      </div>
-      <div class="fig-row">
-        <div class="seg" role="radiogroup" aria-label="How the AI works">
-          <button type="button" role="radio" data-stage="0" aria-checked="true">Hammer</button>
-          <button type="button" role="radio" data-stage="1" aria-checked="false">Contractor</button>
-          <button type="button" role="radio" data-stage="2" aria-checked="false">Unprompted</button>
+  <div class="rotator" data-rotator aria-roledescription="carousel" aria-label="Selected writing">
+    <div class="rot-stage" aria-live="off">
+      <article class="slide o-k is-active" aria-roledescription="slide" aria-label="1 of 9" aria-hidden="false">
+        <div class="slide-main">
+          <p class="slide-meta"><span class="outlet">Kauffman Foundation</span><span>July 2016</span></p>
+          <blockquote class="slide-quote" cite="https://www.kauffman.org/currents/the-future-of-work/"><p><span class="hang">“</span>The future of work is far more than the proliferation of Uber-like business models.”</p></blockquote>
+          <h3 class="slide-title"><a href="https://www.kauffman.org/currents/the-future-of-work/" target="_blank" rel="noopener">The Future of Work: A Call for Proposals</a></h3>
+          <p class="slide-why">The call that launched Kauffman’s future-of-work research funding, six years before ChatGPT.</p>
         </div>
-        <button type="button" class="fig-play" aria-pressed="false"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Watch it happen</button>
+        <div class="slide-art" aria-hidden="true"><span class="slide-year"><span>20</span><span>16</span></span></div>
+      </article>
+      <article class="slide o-m" aria-roledescription="slide" aria-label="2 of 9" aria-hidden="true">
+        <div class="slide-main">
+          <p class="slide-meta"><span class="outlet">Medium</span><span>2017</span></p>
+          <blockquote class="slide-quote" cite="https://medium.com/@derekozkal/why-isnt-the-knowledge-economy-creating-wealth-for-everyone-6f866126c2df"><p><span class="hang">“</span>Just because something can’t be measured, doesn’t mean it isn’t hugely important.”</p></blockquote>
+          <h3 class="slide-title"><a href="https://medium.com/@derekozkal/why-isnt-the-knowledge-economy-creating-wealth-for-everyone-6f866126c2df" target="_blank" rel="noopener">Why Isn’t the Knowledge Economy Creating Wealth for Everyone?</a></h3>
+          <p class="slide-why">Why the gains of a knowledge economy pile up: knowledge is hard to price, incumbents protect their positions, and networks reward the biggest players.</p>
+        </div>
+        <div class="slide-art" aria-hidden="true"><span class="slide-year"><span>20</span><span>17</span></span></div>
+      </article>
+      <article class="slide o-k" aria-roledescription="slide" aria-label="3 of 9" aria-hidden="true">
+        <div class="slide-main">
+          <p class="slide-meta"><span class="outlet">Kauffman Foundation</span><span>January 2018</span></p>
+          <blockquote class="slide-quote" cite="https://www.kauffman.org/currents/investing-in-what-will-become-our-scarcest-resource-us/"><p><span class="hang">“</span>Humans create, learn, trust, connect, make, dream, and love.”</p></blockquote>
+          <h3 class="slide-title"><a href="https://www.kauffman.org/currents/investing-in-what-will-become-our-scarcest-resource-us/" target="_blank" rel="noopener">Investing in What Will Become Our Scarcest Resource: Us</a></h3>
+          <p class="slide-why">As automation spreads, human abilities become the scarce resource. The piece argues that education should build entrepreneurial skills in everyone.</p>
+        </div>
+        <div class="slide-art" aria-hidden="true"><span class="slide-year"><span>20</span><span>18</span></span></div>
+      </article>
+      <article class="slide o-k" aria-roledescription="slide" aria-label="4 of 9" aria-hidden="true">
+        <div class="slide-main">
+          <p class="slide-meta"><span class="outlet">Kauffman Foundation</span><span>April 2018</span></p>
+          <blockquote class="slide-quote" cite="https://www.kauffman.org/currents/do-not-predict-the-future-of-work-prepare-for-it/"><p><span class="hang">“</span>We can let technology stand on our shoulders or we can stand on its shoulders.”</p></blockquote>
+          <h3 class="slide-title"><a href="https://www.kauffman.org/currents/do-not-predict-the-future-of-work-prepare-for-it/" target="_blank" rel="noopener">Do Not Predict the Future of Work, Prepare for It</a></h3>
+          <p class="slide-why">The case for technology that augments people instead of replacing them, with ATMs and radiology as examples.</p>
+        </div>
+        <div class="slide-art" aria-hidden="true"><span class="slide-year"><span>20</span><span>18</span></span></div>
+      </article>
+      <article class="slide o-k" aria-roledescription="slide" aria-label="5 of 9" aria-hidden="true">
+        <div class="slide-main">
+          <p class="slide-meta"><span class="outlet">Kauffman Foundation</span><span>September 2019</span></p>
+          <blockquote class="slide-quote" cite="https://www.kauffman.org/currents/rethinking-education-to-make-graduates-and-workers-future-proof/"><p><span class="hang">“</span>Specific duties and tasks will automate away more completely in the short-term than full jobs.”</p></blockquote>
+          <h3 class="slide-title"><a href="https://www.kauffman.org/currents/rethinking-education-to-make-graduates-and-workers-future-proof/" target="_blank" rel="noopener">Rethinking Education to Make Graduates and Workers Future-Proof</a></h3>
+          <p class="slide-why">It starts in my father’s classroom at a small college in rural Missouri and argues that preparing people beats trying to future-proof jobs.</p>
+        </div>
+        <div class="slide-art" aria-hidden="true"><span class="slide-year"><span>20</span><span>19</span></span></div>
+      </article>
+      <article class="slide o-k" aria-roledescription="slide" aria-label="6 of 9" aria-hidden="true">
+        <div class="slide-main">
+          <p class="slide-meta"><span class="outlet">Kauffman Foundation</span><span>December 2019</span></p>
+          <blockquote class="slide-quote" cite="https://www.kauffman.org/currents/the-value-in-knowing-what-is-missing/"><p><span class="hang">“</span>What are the jobs that weren’t created, the products and services that we don’t have?”</p></blockquote>
+          <h3 class="slide-title"><a href="https://www.kauffman.org/currents/the-value-in-knowing-what-is-missing/" target="_blank" rel="noopener">The Value in Knowing What Is Missing</a></h3>
+          <p class="slide-why">The thinking behind the 2020 Knowledge Challenge: study the businesses, jobs, and products that never got started.</p>
+        </div>
+        <div class="slide-art" aria-hidden="true"><span class="slide-year"><span>20</span><span>19</span></span></div>
+      </article>
+      <article class="slide o-a" aria-roledescription="slide" aria-label="7 of 9" aria-hidden="true">
+        <div class="slide-main">
+          <p class="slide-meta"><span class="outlet">Agents and Agency</span><span>October 2025</span></p>
+          <blockquote class="slide-quote" cite="https://agentsandagency.substack.com/p/the-rise-of-the-agentic-class-ai"><p><span class="hang">“</span>Everyone else risks being stranded on the wrong side of a new, unbridgeable gap in capability.”</p></blockquote>
+          <h3 class="slide-title"><a href="https://agentsandagency.substack.com/p/the-rise-of-the-agentic-class-ai" target="_blank" rel="noopener">The Rise of the Agentic Class</a></h3>
+          <p class="slide-why">Whether AI teammates challenge our thinking or flatter it will decide who lands on which side of a new digital divide.</p>
+        </div>
+        <div class="slide-art" aria-hidden="true"><span class="slide-year"><span>20</span><span>25</span></span></div>
+      </article>
+      <article class="slide o-a" aria-roledescription="slide" aria-label="8 of 9" aria-hidden="true">
+        <div class="slide-main">
+          <p class="slide-meta"><span class="outlet">Agents and Agency</span><span>January 2026</span></p>
+          <blockquote class="slide-quote" cite="https://agentsandagency.substack.com/p/the-liquidity-crisis-of-expertise"><p><span class="hang">“</span>Why AI efficiency creates systemic fragility... and how to build cognitive solvency.”</p></blockquote>
+          <h3 class="slide-title"><a href="https://agentsandagency.substack.com/p/the-liquidity-crisis-of-expertise" target="_blank" rel="noopener">The Liquidity Crisis of Expertise</a></h3>
+          <p class="slide-why">A profession can run out of usable judgment the way a bank runs out of cash, once AI absorbs the work juniors used to learn on.</p>
+        </div>
+        <div class="slide-art" aria-hidden="true"><span class="slide-year"><span>20</span><span>26</span></span></div>
+      </article>
+      <article class="slide o-a" aria-roledescription="slide" aria-label="9 of 9" aria-hidden="true">
+        <div class="slide-main">
+          <p class="slide-meta"><span class="outlet">Agents and Agency</span><span>July 2026</span></p>
+          <blockquote class="slide-quote" cite="https://agentsandagency.substack.com/p/unprompted"><p><span class="hang">“</span>This goes beyond removing the friction of learning to something more like removing the friction of… being, I guess?”</p></blockquote>
+          <h3 class="slide-title"><a href="https://agentsandagency.substack.com/p/unprompted" target="_blank" rel="noopener">Unprompted</a></h3>
+          <p class="slide-why">What happens to human agency when AI starts acting before we ask.</p>
+        </div>
+        <div class="slide-art" aria-hidden="true"><span class="slide-year"><span>20</span><span>26</span></span></div>
+      </article>
+    </div>
+    <div class="rot-bar">
+      <div class="rot-segs" role="group" aria-label="Choose a piece"><button type="button" class="rseg active" data-go="0" aria-label="The Future of Work: A Call for Proposals, July 2016" aria-current="true"><span class="track"><span class="fill"></span></span><span class="yr">2016</span></button><button type="button" class="rseg" data-go="1" aria-label="Why Isn’t the Knowledge Economy Creating Wealth for Everyone?, 2017"><span class="track"><span class="fill"></span></span><span class="yr">2017</span></button><button type="button" class="rseg" data-go="2" aria-label="Investing in What Will Become Our Scarcest Resource: Us, January 2018"><span class="track"><span class="fill"></span></span><span class="yr">2018</span></button><button type="button" class="rseg" data-go="3" aria-label="Do Not Predict the Future of Work, Prepare for It, April 2018"><span class="track"><span class="fill"></span></span><span class="yr">2018</span></button><button type="button" class="rseg" data-go="4" aria-label="Rethinking Education to Make Graduates and Workers Future-Proof, September 2019"><span class="track"><span class="fill"></span></span><span class="yr">2019</span></button><button type="button" class="rseg" data-go="5" aria-label="The Value in Knowing What Is Missing, December 2019"><span class="track"><span class="fill"></span></span><span class="yr">2019</span></button><button type="button" class="rseg" data-go="6" aria-label="The Rise of the Agentic Class, October 2025"><span class="track"><span class="fill"></span></span><span class="yr">2025</span></button><button type="button" class="rseg" data-go="7" aria-label="The Liquidity Crisis of Expertise, January 2026"><span class="track"><span class="fill"></span></span><span class="yr">2026</span></button><button type="button" class="rseg" data-go="8" aria-label="Unprompted, July 2026"><span class="track"><span class="fill"></span></span><span class="yr">2026</span></button></div>
+      <div class="rot-ctrls">
+        <span class="rot-count" aria-hidden="true">1 / 9</span>
+        <button type="button" class="rot-prev" aria-label="Previous piece"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="rot-pause" aria-label="Pause the rotation" aria-pressed="false"><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="4" y="3" width="3" height="10" rx="1" fill="currentColor"/><rect x="9" y="3" width="3" height="10" rx="1" fill="currentColor"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l8 5-8 5z" fill="currentColor"/></svg></button>
+        <button type="button" class="rot-next" aria-label="Next piece"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
-      <ol class="track">
-        <li class="step you"><span class="n">01</span><span class="nm">Notice a need</span><span class="who"><i aria-hidden="true"></i><b>You</b></span></li>
-        <li class="step you"><span class="n">02</span><span class="nm">Choose the goal</span><span class="who"><i aria-hidden="true"></i><b>You</b></span></li>
-        <li class="step you"><span class="n">03</span><span class="nm">Plan the work</span><span class="who"><i aria-hidden="true"></i><b>You</b></span></li>
-        <li class="step ai"><span class="n">04</span><span class="nm">Do the work</span><span class="who"><i aria-hidden="true"></i><b>AI, when asked</b></span></li>
-      </ol>
-      <div class="story" aria-live="polite">
-        <p><span class="lede">Hammer.</span> You want a playhouse for your kid. You pick the design, buy the lumber, and drive the nails with a nail gun. The tool does what you aim it at.</p>
-        <div class="pips"><span>Decisions that stayed yours</span><span class="row"><i class="on"></i><i class="on"></i><i class="on"></i><b>3 of 3</b></span></div>
-      </div>
-      <figcaption class="cap"><b>Fig. 1.</b> Based on my July 2026 essay <a href="https://agentsandagency.substack.com/p/unprompted" target="_blank" rel="noopener">Unprompted</a>. Chat tools work like a hammer. Agentic tools work more like a contractor. The next step is agents that choose the goal themselves and act before anyone asks. The essay asks what that does to human agency.</figcaption>
-    </figure>
-    <p style="margin-top:22px" data-reveal><a class="go" href="writing.html#figures">Two more interactive figures on the Writing page</a></p>
+    </div>
+  </div>
+    <p class="sel-more"><a class="go" href="writing.html">All the writing, with the best line from each piece</a></p>
   </div>
 </section>
 
@@ -245,7 +278,7 @@
         <div class="body">
           <span class="k">Writing</span>
           <h3>Essays on AI, work, and agency</h3>
-          <p>Four essays on Agents and Agency, plus interactive figures for three of them. Also nine Kauffman pieces going back to 2016 and data journalism from the Kansas City Business Journal.</p>
+          <p>Recent essays on Agents and Agency, Kauffman pieces going back to 2016, a book chapter with the Foundation's former CEO, and data journalism from the Kansas City Business Journal.</p>
           <span class="go">All the writing</span>
         </div>
       </a>
@@ -282,33 +315,10 @@
           <span class="k">The Lab</span>
           <h3>Prototypes I built with AI</h3>
           <p>I build things with AI to test the ideas I write about. Everything here is a prototype, this site included.</p>
-          <div class="exhibits"><span class="new">New: Herd Mentality</span><span>Directorate</span><span>Math Grove</span><span>AI Diffusion Atlas</span><span>Expertise Flow Simulator</span></div>
+          <div class="exhibits"><span class="new">New: Interactive essays</span><span>Herd Mentality</span><span>Directorate</span><span>Math Grove</span><span>AI Diffusion Atlas</span></div>
           <span class="go">Enter the Lab</span>
         </div>
       </a>
-    </div>
-  </div>
-</section>
-
-<section class="band-tint" aria-labelledby="agents-h" style="padding:72px 0">
-  <div class="wrap">
-    <div class="callout" data-reveal>
-      <svg class="bot" viewBox="0 0 72 72" aria-hidden="true">
-<rect x="6" y="14" width="60" height="50" rx="16" fill="#2457F5"/>
-<circle cx="27" cy="38" r="6" fill="#fff"/><circle cx="45" cy="38" r="6" fill="#fff"/>
-<circle cx="28" cy="39" r="2.6" fill="#0A1A2E"/><circle cx="46" cy="39" r="2.6" fill="#0A1A2E"/>
-<rect x="27" y="50" width="18" height="4" rx="2" fill="#C9D6FF"/>
-<line x1="36" y1="14" x2="36" y2="5" stroke="#0A1A2E" stroke-width="3" stroke-linecap="round"/>
-<circle cx="36" cy="5" r="4.5" fill="#12B07A"/>
-</svg>
-      <div>
-        <h2 id="agents-h">Reading this for someone else?</h2>
-        <p>AI agents get their own page here: the facts in plain language, what's verified and what's a prototype, and where to send the person who asked. It works for people in a hurry too.</p>
-      </div>
-      <div class="acts">
-        <a class="btn ink" href="agents.html">The page for agents <span class="arr" aria-hidden="true">&rarr;</span></a>
-        <a href="llms.txt">or the plain-text <code>llms.txt</code></a>
-      </div>
     </div>
   </div>
 </section>
@@ -319,48 +329,29 @@
     <div class="foot">
       <div>
         <a class="brand" href="index.html" aria-label="Agents and Agency, home"><svg class="mark" viewBox="0 0 34 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="#2457F5"/><circle cx="22" cy="12" r="9" fill="#12B07A"/><path d="M17 4.52A9 9 0 0 1 17 19.48A9 9 0 0 1 17 4.52Z" fill="currentColor"/></svg><span class="wordmark">Agents <span class="amp">&amp;</span> Agency</span></a>
-        <p class="fine">Essays, research, and prototypes by Derek Özkal on AI, work, and human agency. Written by me, built with Claude.</p>
+        <p class="fine">Essays, research, and prototypes by Derek Özkal on AI, work, and human agency.</p>
       </div>
       <nav class="foot-nav" aria-label="Footer">
         <a href="writing.html">Writing</a><a href="research.html">Research</a>
         <a href="media.html">Watch &amp; listen</a><a href="lab.html">The Lab</a>
-        <a href="about.html">About</a><a href="agents.html">For agents</a>
+        <a href="about.html">About</a><a href="interactive.html">Interactive essays</a>
         <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Substack</a><a href="https://www.linkedin.com/in/derekozkal" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="cv.pdf">CV (PDF)</a><a href="llms.txt">llms.txt</a>
+        <a href="cv.pdf">CV (PDF)</a>
       </nav>
-      <div class="foot-controls">
-        <p class="k">This site has an agent</p>
-        <div class="toggles">
-          <button class="toggle" type="button" data-toggle="agent" aria-pressed="true"><i aria-hidden="true"></i>Agent: <b>on</b></button>
-          <button class="toggle" type="button" data-toggle="motion" aria-pressed="true"><i aria-hidden="true"></i>Motion: <b>on</b></button>
-        </div>
-        <p class="tally" id="agentTally">No unprompted offers yet this visit.</p>
-        <div class="share" aria-label="Share this site">
+      <div class="foot-side">
+        <p class="k">Share this site</p>
+        <div class="share">
           <button type="button" class="share-copy" data-copy="https://agentsandagency.com/">Copy link</button>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fagentsandagency.com%2F" target="_blank" rel="noopener">Share on LinkedIn</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fagentsandagency.com%2F" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://bsky.app/intent/compose?text=Agents%20and%20Agency%2C%20essays%20and%20prototypes%20on%20AI%2C%20work%2C%20and%20human%20agency%20by%20Derek%20%C3%96zkal%3A%20https%3A%2F%2Fagentsandagency.com%2F" target="_blank" rel="noopener">Bluesky</a>
         </div>
+        <p class="k" style="margin-top:24px">For AI agents</p>
+        <div class="share"><a href="agents.html">A page written for agents</a><a href="llms.txt">llms.txt</a></div>
       </div>
     </div>
-    <div class="foot-base"><span>&copy; 2026 Derek Özkal</span><span>Plain HTML on GitHub Pages. The agent is a script, and it only makes offers.</span></div>
+    <div class="foot-base"><span>&copy; 2026 Derek Özkal</span><span>Plain HTML on GitHub Pages. Written by me, built with Claude.</span></div>
   </div>
 </footer>
 <script src="assets/site.js"></script>
-<script src="assets/figs.js"></script>
-<script>
-(function(){
-  if(!window.AA||!AA.agent)return;
-  AA.agent.when({id:'home-skim',after:9000,inView:'#hero',dwell:5000,
-    test:function(){return AA.dial&&!AA.dial.touched()&&AA.dial.current()==='all'&&window.scrollY<300;},
-    msg:"You've been reading for a bit. Want me to shorten this page for you?",
-    yes:'Shorten it',no:"I'll read it",target:'.dial',
-    onYes:function(){AA.dial.set('skim');}});
-  AA.agent.when({id:'home-fig',after:5000,inView:'#fig-moves',dwell:4000,
-    test:function(){var f=document.getElementById('fig-moves');return f&&f._fig&&!f._fig.touched();},
-    msg:"I can run Fig. 1 for you, start to finish. You won't have to click anything.",
-    yes:'Run it',no:"I'll click",target:'#fig-moves .track',
-    onYes:function(){document.getElementById('fig-moves')._fig.run();}});
-})();
-</script>
 </body>
 </html>

@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>The Lab · Agents &amp; Agency · Derek Özkal</title>
-<meta name="description" content="Working prototypes by Derek Özkal: an AI diffusion atlas, the Kauffman Legacy Project, a toy model of expertise loss, a list of jobs that didn't exist in 2022, three browser games, and some baking.">
+<meta name="description" content="Working prototypes by Derek Özkal: interactive essays, an AI diffusion atlas, the Kauffman Legacy Project, a toy model of expertise loss, a list of jobs that didn't exist in 2022, three browser games, and some baking.">
 <meta name="theme-color" content="#0A1A2E">
 <link rel="canonical" href="https://agentsandagency.com/lab.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Agents &amp; Agency">
 <meta property="og:title" content="The Lab · Agents &amp; Agency · Derek Özkal">
-<meta property="og:description" content="Working prototypes by Derek Özkal: an AI diffusion atlas, the Kauffman Legacy Project, a toy model of expertise loss, a list of jobs that didn't exist in 2022, three browser games, and some baking.">
+<meta property="og:description" content="Working prototypes by Derek Özkal: interactive essays, an AI diffusion atlas, the Kauffman Legacy Project, a toy model of expertise loss, a list of jobs that didn't exist in 2022, three browser games, and some baking.">
 <meta property="og:url" content="https://agentsandagency.com/lab.html">
 <meta property="og:image" content="https://agentsandagency.com/assets/og.png">
 <meta property="og:image:width" content="1200">
@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
-<script>(function(h){h.className+=' js';var g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};var m=g('aa-motion');if(!m){m=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on'}h.setAttribute('data-motion',m);h.setAttribute('data-agent',g('aa-agent')||'on')})(document.documentElement)</script>
+<script>(function(h){h.className+=' js';var a=null;try{a=localStorage.getItem('aa-agent')}catch(e){}h.setAttribute('data-motion',window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on');h.setAttribute('data-agent',a||'on')})(document.documentElement)</script>
 
 </head>
 <body>
@@ -38,7 +38,6 @@
       <a href="media.html">Watch &amp; listen</a>
       <a href="lab.html" aria-current="page">The Lab</a>
       <a href="about.html">About</a>
-      <a class="nav-agents" href="agents.html">For agents</a>
       <a class="nav-cta" href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Subscribe</a>
     </nav>
   </div>
@@ -66,9 +65,18 @@
         <p class="eyebrow">Exhibits</p>
         <h2 class="sec" id="xi-h">What's on the bench</h2>
       </div>
-      <p class="sec-intro">Nine exhibits. Tap one to jump to it, or go straight to the games.</p>
+      <p class="sec-intro">Ten exhibits, newest first. Tap one to jump to it, or go straight to the games.</p>
     </div>
-    <div class="xgrid">
+    <a class="feature-card feature-new" id="interactive" href="interactive.html" data-reveal>
+      <div class="fc-body">
+        <div class="xhead"><span class="xletter">Exhibit J</span><span class="tag new">New</span><span class="tag proto">Prototype</span></div>
+        <h3>Interactive essays</h3>
+        <p>Three essays turned into small models you can play with: who makes the decisions as AI takes on more, how a profession runs short of judgment, and what a challenger agent says that a flattering one won't. The page also has the site's one agent, which offers to do things you didn't ask for.</p>
+        <span class="go">Play with the essays</span>
+      </div>
+      <div class="fc-shot"><img src="assets/img/x-interactive.jpg" alt="The interactive essays page" loading="lazy"></div>
+    </a>
+    <div class="xgrid" style="margin-top:20px">
       <a class="xcard" href="#atlas" data-reveal>
         <div class="shot"><img src="assets/img/x-atlas.jpg" alt="" loading="lazy"></div>
         <div class="xb"><div class="tags"><span class="xl">A</span><span class="tag proto">Prototype</span></div><h3>The AI Diffusion Atlas</h3><p>Who is adopting AI in America, built on published data.</p></div>
@@ -223,7 +231,6 @@
         <div class="xhead"><span class="xletter">Exhibit F</span><span class="tag live">Live · you're soaking in it</span></div>
         <h3>This website</h3>
         <p>The site you're reading is a Lab project too. I wrote it and built it with Claude, then edited until it sounded like me. It's plain HTML files on GitHub Pages, with no framework and no hosting bill.</p>
-        <p>It also has an agent. Every so often it offers to do something you didn't ask for, and you decide. The switch to turn it off is at the bottom of every page, along with a count of how often you said no.</p>
       </div>
       <div class="fc-shot"><img src="assets/img/x-site.jpg" alt="The home page of this site" loading="lazy"></div>
     </div>
@@ -273,30 +280,27 @@
     <div class="foot">
       <div>
         <a class="brand" href="index.html" aria-label="Agents and Agency, home"><svg class="mark" viewBox="0 0 34 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="#2457F5"/><circle cx="22" cy="12" r="9" fill="#12B07A"/><path d="M17 4.52A9 9 0 0 1 17 19.48A9 9 0 0 1 17 4.52Z" fill="currentColor"/></svg><span class="wordmark">Agents <span class="amp">&amp;</span> Agency</span></a>
-        <p class="fine">Essays, research, and prototypes by Derek Özkal on AI, work, and human agency. Written by me, built with Claude.</p>
+        <p class="fine">Essays, research, and prototypes by Derek Özkal on AI, work, and human agency.</p>
       </div>
       <nav class="foot-nav" aria-label="Footer">
         <a href="writing.html">Writing</a><a href="research.html">Research</a>
         <a href="media.html">Watch &amp; listen</a><a href="lab.html">The Lab</a>
-        <a href="about.html">About</a><a href="agents.html">For agents</a>
+        <a href="about.html">About</a><a href="interactive.html">Interactive essays</a>
         <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Substack</a><a href="https://www.linkedin.com/in/derekozkal" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="cv.pdf">CV (PDF)</a><a href="llms.txt">llms.txt</a>
+        <a href="cv.pdf">CV (PDF)</a>
       </nav>
-      <div class="foot-controls">
-        <p class="k">This site has an agent</p>
-        <div class="toggles">
-          <button class="toggle" type="button" data-toggle="agent" aria-pressed="true"><i aria-hidden="true"></i>Agent: <b>on</b></button>
-          <button class="toggle" type="button" data-toggle="motion" aria-pressed="true"><i aria-hidden="true"></i>Motion: <b>on</b></button>
-        </div>
-        <p class="tally" id="agentTally">No unprompted offers yet this visit.</p>
-        <div class="share" aria-label="Share this site">
+      <div class="foot-side">
+        <p class="k">Share this site</p>
+        <div class="share">
           <button type="button" class="share-copy" data-copy="https://agentsandagency.com/">Copy link</button>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fagentsandagency.com%2F" target="_blank" rel="noopener">Share on LinkedIn</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fagentsandagency.com%2F" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://bsky.app/intent/compose?text=Agents%20and%20Agency%2C%20essays%20and%20prototypes%20on%20AI%2C%20work%2C%20and%20human%20agency%20by%20Derek%20%C3%96zkal%3A%20https%3A%2F%2Fagentsandagency.com%2F" target="_blank" rel="noopener">Bluesky</a>
         </div>
+        <p class="k" style="margin-top:24px">For AI agents</p>
+        <div class="share"><a href="agents.html">A page written for agents</a><a href="llms.txt">llms.txt</a></div>
       </div>
     </div>
-    <div class="foot-base"><span>&copy; 2026 Derek Özkal</span><span>Plain HTML on GitHub Pages. The agent is a script, and it only makes offers.</span></div>
+    <div class="foot-base"><span>&copy; 2026 Derek Özkal</span><span>Plain HTML on GitHub Pages. Written by me, built with Claude.</span></div>
   </div>
 </footer>
 <script src="assets/site.js"></script>
@@ -366,13 +370,6 @@
   }
   renderFilters(); renderLedger();
 
-  if(window.AA&&AA.agent){
-    AA.agent.when({id:'lab-unicorns',after:8000,dwell:0,
-      test:function(){return window.scrollY<900;},
-      msg:"Fair warning: one of these exhibits has laser unicorns. Want me to take you there?",
-      yes:'Show me',no:"I'll browse",
-      onYes:function(){var h=document.getElementById('herd');h.scrollIntoView({behavior:AA.motionOn()?'smooth':'auto',block:'center'});AA.agent.focus(h);}});
-  }
 })();
 </script>
 </body>
