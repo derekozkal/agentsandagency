@@ -642,6 +642,7 @@ details.more ul{margin-bottom:14px}
 .shot.art-d span:nth-child(3){margin-left:8px}
 .shot.art-b{background:var(--navy);display:grid;place-items:center}
 .shot.art-b b{font:900 92px/1 var(--display);letter-spacing:-.07em;color:transparent;-webkit-text-stroke:2px rgba(255,194,71,.8)}
+@media (min-width:901px){.xgrid .xcard:last-child:nth-child(3n+1){grid-column:2}}
 @media (max-width:900px){.xgrid{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.xgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -24px;padding:4px 24px 14px;scrollbar-width:none}.xgrid::-webkit-scrollbar{display:none}.xcard{flex:0 0 78%;scroll-snap-align:start}.xgrid .xcard:hover{transform:none}}
 .exhibit{scroll-margin-top:80px}
@@ -701,6 +702,7 @@ details.more ul{margin-bottom:14px}
 .game p{font-size:15px;color:var(--on-dark-soft);flex:1}
 .game .play-cta{font-weight:700;font-size:15px;color:var(--mint)}
 .game .play-cta::after{content:" \2192"}
+@media (min-width:901px){.game.wide{grid-column:1/-1;flex-direction:row}.game.wide .shot{flex:0 0 48%}.game.wide .gb{justify-content:center;gap:14px;padding:30px 36px}.game.wide h3{font-size:30px}.game.wide p{flex:0 0 auto;font-size:16px}}
 @media (max-width:900px){.games{grid-template-columns:1fr 1fr}}
 @media (max-width:600px){.games{grid-template-columns:1fr}}
 .deck{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:16px}

@@ -13,7 +13,7 @@ A small static site. No build step, no framework, no hosting bill. It runs on Gi
 - `about.html` : bio, facts, and what I'm working on now.
 - `agents.html` : a page for AI agents researching me. `llms.txt` has the same facts in plain text. Both are linked from the footer.
 - `404.html` : GitHub Pages shows this for broken links.
-- `herd-mentality/`, `grove/`, `directorate.html`, `atlas.html` : the Lab exhibits. Each is self-contained.
+- `chains-and-chaos/`, `herd-mentality/`, `grove/`, `directorate.html`, `atlas.html` : the Lab exhibits. Each is self-contained. `chains-and-chaos/og.jpg` is that game's share image.
 
 ## Shared files
 
