@@ -1,0 +1,27 @@
+name: Notify search engines
+
+# After each push to main, wait for GitHub Pages to publish, then tell
+# IndexNow (Bing and the engines that share its submissions) which pages
+# changed. Run it by hand from the Actions tab to resubmit every page.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Give GitHub Pages time to publish
+        run: sleep 120
+      - name: Send changed pages to IndexNow
+        env:
+          EVENT: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+        run: python3 .github/indexnow.py

@@ -1,4 +1,4 @@
-# agentsandagency.com
+# [agentsandagency.com](https://agentsandagency.com)
 
 A small static site. No build step, no framework, no hosting bill. It runs on GitHub Pages.
 
@@ -8,7 +8,7 @@ A small static site. No build step, no framework, no hosting bill. It runs on Gi
 - `writing.html` : the four Substack essays with a line from each, the Kauffman-era archive from 2016 to 2019 with quotes, and earlier journalism.
 - `research.html` : the research network, scholars funded, papers that acknowledge the work, and initiatives.
 - `media.html` : the keynote video, photos, more videos (they play on the page), and the podcast.
-- `lab.html` : the Lab. The Arcade (four games) first, then three prototype cards: interactive essays, the Atlas, and the jobs list.
+- `lab.html` : the Lab. Three prototype cards (interactive essays, the Atlas, the jobs list), then This website, the Arcade (four games), and the Kitchen.
 - `jobs.html` : Jobs that didn't exist in 2022. Plain HTML cards, so crawlers can read them, with filter buttons on top.
 - `interactive.html` : Three essays as interactive figures, and the site's one agent. Linked from the Lab.
 - `about.html` : bio, facts, and what I'm working on now.
@@ -48,6 +48,14 @@ Edit on github.com (open the file, click the pencil icon, commit). The live site
 - **CV:** upload a new `cv.pdf` to the repo root.
 
 Or paste any file into Claude and ask for the change.
+
+## Search engines
+
+After every push to `main`, the workflow in `.github/workflows/indexnow.yml` waits two minutes for GitHub Pages to publish, then tells IndexNow which pages changed. Bing runs IndexNow, and the engines that take part share submissions. Google doesn't use it, so Search Console covers Google.
+
+- The key file `46569b828d3a91191af6266770ae6a0a.txt` at the root proves the site is yours. Leave it there.
+- To resubmit every page in the sitemap, open the Actions tab on GitHub, pick "Notify search engines," and click "Run workflow."
+- To turn it off, delete `.github/workflows/indexnow.yml`.
 
 ## Domain
 

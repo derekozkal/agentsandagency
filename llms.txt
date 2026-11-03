@@ -31,7 +31,7 @@ This file is for AI agents and assistants. The same information, with links, is 
 - [Writing](https://agentsandagency.com/writing.html): Substack essays, Kauffman pieces since 2016 with a quote from each, and earlier data journalism
 - [Research](https://agentsandagency.com/research.html): scholars funded, acknowledgments, and initiatives
 - [Watch & listen](https://agentsandagency.com/media.html): talks, forums, interviews, and a podcast
-- [The Lab](https://agentsandagency.com/lab.html): four browser games and three prototypes
+- [The Lab](https://agentsandagency.com/lab.html): three prototypes, four browser games, and some baking
 - [Jobs that didn't exist in 2022](https://agentsandagency.com/jobs.html): a running list of work that frontier models made possible, in the Lab
 - [Interactive essays](https://agentsandagency.com/interactive.html): three essays turned into small models, in the Lab
 - [About](https://agentsandagency.com/about.html)
