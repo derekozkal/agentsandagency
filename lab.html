@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>The Lab · Agents &amp; Agency · Derek Özkal</title>
-<meta name="description" content="Working prototypes by Derek Özkal: interactive essays, an AI diffusion atlas, the Kauffman Legacy Project, a toy model of expertise loss, a list of jobs that didn't exist in 2022, four browser games, and some baking.">
+<meta name="description" content="Four free browser games and a few working prototypes by Derek Özkal: interactive essays, an AI diffusion atlas, and a running list of jobs that didn't exist in 2022.">
 <meta name="theme-color" content="#0A1A2E">
 <link rel="canonical" href="https://agentsandagency.com/lab.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Agents &amp; Agency">
 <meta property="og:title" content="The Lab · Agents &amp; Agency · Derek Özkal">
-<meta property="og:description" content="Working prototypes by Derek Özkal: interactive essays, an AI diffusion atlas, the Kauffman Legacy Project, a toy model of expertise loss, a list of jobs that didn't exist in 2022, four browser games, and some baking.">
+<meta property="og:description" content="Four free browser games and a few working prototypes by Derek Özkal: interactive essays, an AI diffusion atlas, and a running list of jobs that didn't exist in 2022.">
 <meta property="og:url" content="https://agentsandagency.com/lab.html">
 <meta property="og:image" content="https://agentsandagency.com/assets/og.png">
 <meta property="og:image:width" content="1200">
@@ -28,7 +28,7 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="masthead on-dark" data-dark-until="#labhead">
+<header class="masthead on-dark" data-dark-until="#arcade">
   <div class="masthead-inner">
     <a class="brand" href="index.html" aria-label="Agents and Agency, home"><svg class="mark" viewBox="0 0 34 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="#2457F5"/><circle cx="22" cy="12" r="9" fill="#12B07A"/><path d="M17 4.52A9 9 0 0 1 17 19.48A9 9 0 0 1 17 4.52Z" fill="currentColor"/></svg><span class="wordmark">Agents <span class="amp">&amp;</span> Agency</span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav"><i aria-hidden="true"></i>Menu</button>
@@ -48,218 +48,27 @@
   <div class="wrap">
     <p class="eyebrow green">The Lab</p>
     <h1>I write about AI and work. Here I build with it.</h1>
-    <p class="lede">Building is how I check whether the ideas hold up. Everything here is a prototype. Some are tools, some are models, and four are games.</p>
-    <p class="ground"><b>Ground rule:</b> anything marked <span class="tag proto">Prototype</span> is an argument I haven't verified yet. If a number or coefficient looks wrong, <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">tell me in the comments</a>.</p>
-    <div class="trip" role="list">
-      <div role="listitem"><span class="lbl">Column 01</span><h3>AI does the task</h3><p>Automation. The worker moves on, up, or out. This is the most studied case.</p></div>
-      <div role="listitem"><span class="lbl">Column 02</span><h3>AI helps with the task</h3><p>Augmentation. The worker gets more done. Most current research and hype sits here.</p></div>
-      <div role="listitem" class="newwork"><span class="lbl">Column 03</span><h3>AI makes new tasks possible</h3><p>New work that wasn't affordable or possible before. It's barely measured, and most Lab projects sit here.</p></div>
-    </div>
+    <p class="lede">Building is how I check whether the ideas hold up. Four of the builds are games. They're free, need no account, and work on a phone.</p>
   </div>
 </section>
 
-<section aria-labelledby="xi-h">
+<section class="exhibit dark" id="arcade" aria-labelledby="arcade-h" style="padding-top:8px">
   <div class="wrap">
-    <div class="sec-head" data-reveal>
-      <div>
-        <p class="eyebrow">Exhibits</p>
-        <h2 class="sec" id="xi-h">What's on the bench</h2>
-      </div>
-      <p class="sec-intro">Eleven exhibits. Tap one to jump to it, or go straight to the games.</p>
-    </div>
-    <a class="feature-card feature-new" id="interactive" href="interactive.html" data-reveal>
-      <div class="fc-body">
-        <div class="xhead"><span class="xletter">Exhibit J</span><span class="tag new">New</span><span class="tag proto">Prototype</span></div>
-        <h3>Interactive essays</h3>
-        <p>Three essays turned into small models you can play with: who makes the decisions as AI takes on more, how a profession runs short of judgment, and what a challenger agent says that a flattering one won't. The page also has the site's one agent, which offers to do things you didn't ask for.</p>
-        <span class="go">Play with the essays</span>
-      </div>
-      <div class="fc-shot"><img src="assets/img/x-interactive.jpg" alt="The interactive essays page" loading="lazy"></div>
-    </a>
-    <div class="xgrid" style="margin-top:20px">
-      <a class="xcard" href="#atlas" data-reveal>
-        <div class="shot"><img src="assets/img/x-atlas.jpg" alt="" loading="lazy"></div>
-        <div class="xb"><div class="tags"><span class="xl">A</span><span class="tag proto">Prototype</span></div><h3>The AI Diffusion Atlas</h3><p>Who is adopting AI in America, built on published data.</p></div>
-      </a>
-      <a class="xcard" href="#legacy" data-reveal="2">
-        <div class="shot art-b"><b aria-hidden="true">60</b></div>
-        <div class="xb"><div class="tags"><span class="xl">B</span><span class="tag live">Live</span></div><h3>The Legacy Project</h3><p>Sixty years of foundation history, searchable, with an AI tool on top.</p></div>
-      </a>
-      <a class="xcard" href="#simulator" data-reveal="3">
-        <div class="shot art-c"><svg viewBox="0 0 320 200" aria-hidden="true" style="width:100%;height:100%"><rect width="320" height="200" fill="#FFFFFF"/><line x1="20" y1="60" x2="300" y2="60" stroke="#748196" stroke-dasharray="3 6"/><path d="M20 60 C70 64 110 96 150 116 S230 120 300 84" fill="none" stroke="#0B1A2B" stroke-width="5" stroke-linecap="round"/><path d="M20 70 C80 90 140 130 300 160" fill="none" stroke="#067A55" stroke-width="3.5" stroke-linecap="round"/><path d="M20 170 C90 168 160 150 300 96" fill="none" stroke="#2457F5" stroke-width="3.5" stroke-linecap="round"/><circle cx="158" cy="118" r="7" fill="#fff" stroke="#C2410C" stroke-width="3"/><line x1="20" y1="180" x2="300" y2="180" stroke="#0B1A2B" stroke-width="2"/></svg></div>
-        <div class="xb"><div class="tags"><span class="xl">C</span><span class="tag proto">Prototype</span></div><h3>The Expertise Flow Simulator</h3><p>A toy model of how a profession runs short of judgment.</p></div>
-      </a>
-      <a class="xcard" href="#newjobs" data-reveal>
-        <div class="shot art-d" aria-hidden="true"><span>Context Engineer</span><span>Evals Designer</span><span>Agent Operations Lead</span></div>
-        <div class="xb"><div class="tags"><span class="xl">D</span><span class="tag proto">Prototype</span></div><h3>Jobs that didn't exist in 2022</h3><p>A running list of work that frontier models made possible.</p></div>
-      </a>
-      <a class="xcard" href="#kitchen" data-reveal="2">
-        <div class="shot"><img src="assets/img/kitchen-pie.jpg" alt="" loading="lazy"></div>
-        <div class="xb"><div class="tags"><span class="xl">E</span><span class="tag live">Verified by consumption</span></div><h3>The Kitchen</h3><p>Baking with AI as sous-chef. Peer reviewed by my family.</p></div>
-      </a>
-      <a class="xcard" href="#thiswebsite" data-reveal="3">
-        <div class="shot"><img src="assets/img/x-site.jpg" alt="" loading="lazy"></div>
-        <div class="xb"><div class="tags"><span class="xl">F</span><span class="tag live">Live</span></div><h3>This website</h3><p>Plain HTML, built with Claude, edited until it sounded like me.</p></div>
-      </a>
-      <a class="xcard" href="herd-mentality/" data-reveal>
-        <div class="shot"><img src="assets/img/x-herd.jpg" alt="" loading="lazy"></div>
-        <div class="xb"><div class="tags"><span class="xl">G</span><span class="tag live">Play free</span></div><h3>Herd Mentality</h3><p>Laser unicorns defend a rainbow bridge from the Grumps.</p></div>
-      </a>
-      <a class="xcard" href="grove/" data-reveal="2">
-        <div class="shot"><img src="assets/img/x-grove.jpg" alt="" loading="lazy"></div>
-        <div class="xb"><div class="tags"><span class="xl">H</span><span class="tag live">Play free</span></div><h3>Math Grove</h3><p>A summer math tutor that grows you a garden.</p></div>
-      </a>
-      <a class="xcard" href="directorate.html" data-reveal="3">
-        <div class="shot"><img src="assets/img/x-directorate.jpg" alt="" loading="lazy"></div>
-        <div class="xb"><div class="tags"><span class="xl">I</span><span class="tag live">Play free</span></div><h3>Directorate</h3><p>Run a covert agency from 1972 to 2026.</p></div>
-      </a>
-      <a class="xcard" href="chains-and-chaos/" data-reveal>
-        <div class="shot"><img src="assets/img/x-chains.jpg" alt="" loading="lazy"></div>
-        <div class="xb"><div class="tags"><span class="xl">K</span><span class="tag new">New</span><span class="tag live">Play free</span></div><h3>Chains &amp; Chaos</h3><p>Kansas City disc golf at Heritage Park and Water Works.</p></div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="exhibit band-white" id="atlas" style="padding-top:72px">
-  <div class="wrap">
-    <div class="feature-card" data-reveal>
-      <div class="fc-body">
-        <div class="xhead"><span class="xletter">Exhibit A</span><span class="tag proto">Working prototype · verification pending</span></div>
-        <h3>The AI Diffusion Atlas</h3>
-        <p>Who is actually adopting AI in America: businesses, workers, and states, built entirely on published data from the Census Bureau, the Federal Reserve, and the Anthropic Economic Index. The two adoption numbers people quote most (18% of firms, 41% of workers) are both right, and the Atlas shows why they differ.</p>
-        <p><a class="btn ink" href="atlas.html">Open the Atlas <span class="arr" aria-hidden="true">&rarr;</span></a></p>
-      </div>
-      <div class="fc-shot"><img src="assets/img/x-atlas.jpg" alt="The opening screen of the AI Diffusion Atlas" loading="lazy"></div>
-    </div>
-  </div>
-</section>
-
-<section class="exhibit band-tint" id="legacy">
-  <div class="wrap">
-    <div class="xhead"><span class="xletter">Exhibit B</span><span class="tag live">Live · featured by the Ewing Marion Kauffman Foundation</span></div>
-    <h2>The Legacy Project</h2>
-    <div class="split" style="margin-top:26px">
-      <div>
-        <p>Sixty years of foundation history was sitting in boxes, binders, and file shares that nobody could search. I led <strong>46 volunteers</strong> in digitizing it, then helped design an <strong>AI research tool integrated with our grant-management software</strong>, so the archive answers questions instead of gathering dust.</p>
-        <p>Staff can use it to pull institutional context in seconds: what we funded, what we learned, what we already tried in 1997. Information retrieval that took days now takes minutes, and the tool opened working capacity and possibilities for staff that didn't exist before.</p>
-        <p>It also convinced me that the Expertise Encoder role in Exhibit D is real work, because I did a version of it here.</p>
-        <blockquote class="pull"><p>&ldquo;Led by Derek Ozkal, senior officer, strategic initiatives, RLE&rdquo;</p><span>The Kauffman Foundation, on the project, for its 60th anniversary</span></blockquote>
-        <a class="btn ink" href="https://www.kauffman.org/legacy/story/60-years-of-kauffman-foundation/" target="_blank" rel="noopener">Read the Foundation's story <span class="arr" aria-hidden="true">&rarr;</span></a>
-      </div>
-      <div class="facts-table" data-reveal>
-        <div><b>Volunteers led</b><span>46</span></div>
-        <div><b>Institutional history digitized</b><span>60 years</span></div>
-        <div><b>Documents in the archive</b><span>20,000+</span></div>
-        <div><b>Retrieval time</b><span>days to minutes (90%+ faster)</span></div>
-        <div><b>Integration</b><span>grant-management software</span></div>
-        <div><b>Users</b><span>foundation staff</span></div>
-        <div><b>Role</b><span>project lead</span></div>
-        <div><b>Commissioned by</b><span>Chief Research, Learning &amp; Evaluation Officer</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="exhibit" id="simulator">
-  <div class="wrap">
-    <div class="xhead"><span class="xletter">Exhibit C</span><span class="tag proto">Prototype · a toy model, on purpose</span></div>
-    <h2>The Expertise Flow Simulator</h2>
-    <p class="sec-intro">My essay <a href="https://agentsandagency.substack.com/p/the-liquidity-crisis-of-expertise" target="_blank" rel="noopener"><strong>The Liquidity Crisis of Expertise</strong></a> argues that a profession can run out of usable judgment the way a bank runs out of cash: solvent on paper, short when it counts. This simulator turns that claim into a model with three sliders, one profession, and a 25-year horizon.</p>
-    <div class="fig" id="sim">
-      <div class="fig-top"><span class="fig-no">Model</span><h3 class="fig-title">One profession, 25 years, year 0 = 100</h3></div>
-      <div class="model">
-        <div>
-          <div class="ctl">
-            <label for="sAdopt">AI adoption speed <output id="oAdopt">70</output></label>
-            <input type="range" id="sAdopt" min="0" max="100" value="70">
-            <p class="hint">How fast the profession hands cognitive work to models. Speeds up encoding, and quietly starves the junior pipeline.</p>
-          </div>
-          <div class="ctl">
-            <label for="sApprentice">Apprenticeship investment <output id="oApprentice" class="green">30</output></label>
-            <input type="range" class="green" id="sApprentice" min="0" max="100" value="30">
-            <p class="hint">Deliberate spending on the slow way: juniors doing hard things next to seniors.</p>
-          </div>
-          <div class="ctl">
-            <label for="sFidelity">Encoding fidelity <output id="oFidelity">50</output></label>
-            <input type="range" id="sFidelity" min="0" max="100" value="50">
-            <p class="hint">How much of a retiring expert's judgment actually survives capture. Less than you'd hope.</p>
-          </div>
-          <div class="presets" aria-label="Preset scenarios">
-            <button type="button" data-sim="85,15,40">Where we're headed</button>
-            <button type="button" data-sim="70,75,60">The expensive fix</button>
-            <button type="button" data-sim="95,10,90">Bet it all on encoding</button>
-          </div>
-        </div>
-        <div class="chart">
-          <svg id="chart" role="img" aria-label="Line chart of expertise held by people, expertise captured in AI, and total capacity over 25 years"></svg>
-          <div class="legend" aria-hidden="true"><span style="color:#0B1A2B"><i></i>Total capacity</span><span style="color:#067A55"><i></i>Held by people (tacit)</span><span style="color:#2457F5"><i></i>Captured in AI (encoded)</span></div>
-          <p class="verdict" id="verdict" aria-live="polite"></p>
-        </div>
-      </div>
-    </div>
-    <p class="sim-note"><b>How it works, in one breath.</b> Three stocks: judgment held by working seniors, judgment captured into systems, and the junior pipeline. Retirement drains the first at 5% a year, encoding takes about a decade to mature, and your sliders control the rest. Toys make assumptions visible. If you'd set a coefficient differently, <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">tell me which one and why</a>.</p>
-  </div>
-</section>
-
-<section class="exhibit band-tint" id="newjobs">
-  <div class="wrap">
-    <div class="xhead"><span class="xletter">Exhibit D</span><span class="tag proto">Prototype · a running list, nominations welcome</span></div>
-    <h2>Jobs that didn't exist in 2022</h2>
-    <p class="sec-intro">A running list of <strong>work that wasn't possible before frontier models</strong>, as opposed to old jobs with new tools. Each entry says what the job is and why it couldn't exist earlier. Some have postings today, and some are still hypotheses.</p>
-    <div class="filters" id="filters" role="group" aria-label="Filter by what unlocked the job"></div>
-    <p class="ledger-count" id="ledgerCount"></p>
-    <div class="ledger" id="ledgerGrid"></div>
-    <p style="margin-top:18px"><button type="button" class="btn ghost" id="ledgerMore" hidden>Show all entries</button></p>
-  </div>
-</section>
-
-<section class="exhibit" id="kitchen">
-  <div class="wrap">
-    <div class="xhead"><span class="xletter">Exhibit E</span><span class="tag live">Verified by consumption · replication ongoing</span></div>
-    <h2>The Kitchen</h2>
-    <p class="sec-intro">I spend my working hours on human-AI collaboration, so it seems only fair to disclose my own. These were made by me, with AI as sous-chef for recipes, ratios, and troubleshooting. <strong>Peer review was conducted by my family</strong>, and the braided cinnamon apple bread got a "revise and resubmit." So I made an apple pie, which went much better.</p>
-    <div class="polaroids">
-      <figure class="polaroid" data-reveal><img src="assets/img/kitchen-pie.jpg" alt="Homemade apple pie" loading="lazy"><figcaption>Apple pie. Most of the effort went into the crust.</figcaption></figure>
-      <figure class="polaroid" data-reveal="2"><img src="assets/img/kitchen-calzones.jpg" alt="Two homemade calzones" loading="lazy"><figcaption>Calzones, n=2. One spinach, one not. Randomized within household.</figcaption></figure>
-      <figure class="polaroid" data-reveal="3"><img src="assets/img/kitchen-braid.jpg" alt="Braided apple cinnamon bread" loading="lazy"><figcaption>Braided apple-cinnamon loaf. The braid is load-bearing.</figcaption></figure>
-    </div>
-    <p class="sim-note" style="margin-top:28px">Findings so far: AI is a good cooking partner. It's patient with basic questions, happy to help at 10 p.m., and wrong about an oven temperature about once per project. Also in the rotation: veggie burgers, stews, and a cheesecake. Methodology shared on request.</p>
-  </div>
-</section>
-
-<section class="exhibit band-white" id="thiswebsite">
-  <div class="wrap">
-    <div class="feature-card" data-reveal>
-      <div class="fc-body">
-        <div class="xhead"><span class="xletter">Exhibit F</span><span class="tag live">Live · you're soaking in it</span></div>
-        <h3>This website</h3>
-        <p>The site you're reading is a Lab project too. I wrote it and built it with Claude, then edited until it sounded like me. It's plain HTML files on GitHub Pages, with no framework and no hosting bill.</p>
-      </div>
-      <div class="fc-shot"><img src="assets/img/x-site.jpg" alt="The home page of this site" loading="lazy"></div>
-    </div>
-  </div>
-</section>
-
-<section class="exhibit dark dots" id="arcade">
-  <div class="wrap">
-    <div class="xhead"><span class="xletter" style="background:#fff;color:#0A1A2E">Exhibits G to I and K</span><span class="tag live">Free · no account · works on a phone</span></div>
-    <h2 style="color:#fff">The Arcade</h2>
-    <p class="sec-intro">Four browser games built with AI. All are free, need no account, and work on a phone.</p>
+    <h2 id="arcade-h" style="color:#fff;margin:0 0 28px">The Arcade</h2>
     <div class="games">
-      <a class="game wide" id="chains" href="chains-and-chaos/" data-reveal>
+      <a class="game wide" id="chains" href="chains-and-chaos/">
         <div class="shot"><img src="assets/img/x-chains.jpg" alt="Chains and Chaos: a disc golf hole on a phone next to three player cards" loading="lazy"></div>
         <div class="gb"><div class="tags"><span class="tag new">New</span></div><h3>Chains &amp; Chaos</h3><p>Disc golf at Heritage Park and Water Works, with hole lengths and pars from the published UDisc layouts. Draft from 20 players, including six KC locals. Murph gets a stroke back after three straight pars. TC has tattoos and extra power. Pick a disc, its stability, and a high or low line, then thread the gold gaps for a bonus. Each player gets ten face-down wild cards. One might skip your disc across a pond. Another hands it to a duck.</p><span class="play-cta">Play Chains &amp; Chaos</span></div>
       </a>
-      <a class="game" id="herd" href="herd-mentality/" data-reveal>
+      <a class="game" id="herd" href="herd-mentality/">
         <div class="shot"><img src="assets/img/x-herd.jpg" alt="Herd Mentality title screen: unicorns on a rainbow bridge" loading="lazy"></div>
         <div class="gb"><h3>Herd Mentality</h3><p>A herd of laser-horned unicorns defends a rainbow bridge from the Grumps, an army of gray clouds. Drag to steer, shoot gates to raise their numbers, and run through the better one. A Grump you hit floats away happy. Bosses include The Monday and Per My Last Email. Levels don't end, and progress saves in your browser.</p><span class="play-cta">Play Herd Mentality</span></div>
       </a>
-      <a class="game" id="grove" href="grove/" data-reveal="2">
+      <a class="game" id="grove" href="grove/">
         <div class="shot"><img src="assets/img/x-grove.jpg" alt="Math Grove game screen" loading="lazy"></div>
         <div class="gb"><h3>Math Grove</h3><p>A summer math tutor built for my daughters and open to anyone. Solve problems, earn coins, and grow a garden that's all yours. Two grade bridges, entering 3rd grade and entering 6th grade, each with 8 topics and 3 tiers. Clear all three tiers to earn a star. There's also a bonus Snake game played inside the garden you grew. No account, no ads, saves in your browser.</p><span class="play-cta">Open Math Grove</span></div>
       </a>
-      <a class="game" id="directorate" href="directorate.html" data-reveal="3">
+      <a class="game" id="directorate" href="directorate.html">
         <div class="shot"><img src="assets/img/x-directorate.jpg" alt="Directorate title screen" loading="lazy"></div>
         <div class="gb"><h3>Directorate</h3><p>Run a covert agency across four eras, 1972 to 2026. Build headquarters, work field leads, solve conspiracies before they execute, and manage global tension. Eight minigames feed a strategy layer. Influenced by some of my favorite games as a kid, like Covert Action, SimCity, Conflict, and Age of Empires II. One sitting, no save state.</p><span class="play-cta">Open Directorate</span></div>
       </a>
@@ -267,18 +76,26 @@
   </div>
 </section>
 
-<section aria-labelledby="deck-h">
+<section id="prototypes" aria-labelledby="proto-h">
   <div class="wrap">
-    <div class="sec-head" data-reveal>
-      <div>
-        <p class="eyebrow">Next on the bench</p>
-        <h2 class="sec" id="deck-h">On deck</h2>
-      </div>
+    <div class="sec-head">
+      <h2 class="sec" id="proto-h">Prototypes</h2>
+      <p class="sec-intro">Working versions of ideas I write about. Each one is an argument I haven't verified yet. If a number looks wrong, <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">tell me in the comments</a>.</p>
     </div>
-    <ul class="deck">
-      <li data-reveal><span class="st">In development</span><h3>The Translation Bench</h3><p>One research finding, written accurately for five audiences: a scholar, a legislator, a founder, a journalist, and a neighbor. It's a tool version of the translation work I've done by hand for twenty years.</p></li>
-      <li data-reveal="2"><span class="st">Sketching</span><h3>The Apprenticeship Protocol</h3><p>A structured loop where a junior, a senior, and a model each improve the others' work, so the model doesn't quietly replace the middle of the career ladder. The simulator above keeps pointing to this kind of fix.</p></li>
-    </ul>
+    <div class="xgrid">
+      <a class="xcard" href="interactive.html">
+        <div class="shot"><img src="assets/img/x-interactive.jpg" alt="" loading="lazy"></div>
+        <div class="xb"><h3>Interactive essays</h3><p>Three essays turned into small models you can play with, plus the site's one agent.</p></div>
+      </a>
+      <a class="xcard" href="atlas.html">
+        <div class="shot"><img src="assets/img/x-atlas.jpg" alt="" loading="lazy"></div>
+        <div class="xb"><h3>The AI Diffusion Atlas</h3><p>Who is adopting AI in America, built on published data.</p></div>
+      </a>
+      <a class="xcard" href="jobs.html">
+        <div class="shot art-d" aria-hidden="true"><span>Context Engineer</span><span>Evals Designer</span><span>Agent Operations Lead</span></div>
+        <div class="xb"><h3>Jobs that didn't exist in 2022</h3><p>A running list of work that frontier models made possible.</p></div>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -312,73 +129,5 @@
   </div>
 </footer>
 <script src="assets/site.js"></script>
-<script src="assets/figs.js"></script>
-<script>
-(function(){
-  'use strict';
-  /* Exhibit C: the full simulator, same model as the figures */
-  var S={adopt:70,apprentice:30,fidelity:50};
-  var svg=document.getElementById('chart'), verdict=document.getElementById('verdict');
-  var draw=AAModel.tweener(svg,{h:380});
-  function words(i){
-    if(!i.crunch)return '<b class="ok">NO CRUNCH</b>The junior pipeline keeps replenishing judgment while encoding compounds underneath. This is the managed transition. Notice what it cost you in the apprenticeship slider. Nobody said the good outcome was cheap.';
-    if(i.rebound)return '<b class="mid">CRUNCH, THEN PARTIAL RECOVERY</b>Capacity bottoms out at '+i.pct+'% of start in year '+i.min.y+', then the encoded stock matures and pulls it back to '+i.endPct+'%. Survivable, if the profession can hold its breath that long and nothing important happens during the dip.';
-    if(i.min.y>=AAModel.YEARS)return '<b class="bad">CRUNCH, NO RECOVERY</b>Capacity falls the whole horizon and ends at '+i.endPct+'% of start. The seniors left faster than anything replaced them. Solvent on paper, illiquid when it counted.';
-    return '<b class="bad">CRUNCH, NO RECOVERY</b>Capacity bottoms out at '+i.pct+'% in year '+i.min.y+' and ends at '+i.endPct+'%. The seniors left before the encoded stock matured. Solvent on paper, illiquid when it counted.';
-  }
-  var ids={adopt:['sAdopt','oAdopt'],apprentice:['sApprentice','oApprentice'],fidelity:['sFidelity','oFidelity']};
-  function sync(){
-    Object.keys(ids).forEach(function(k){var el=document.getElementById(ids[k][0]);el.value=S[k];document.getElementById(ids[k][1]).textContent=S[k];AAModel.setFill(el);});
-    draw(AAModel.simulate(S.adopt,S.apprentice,S.fidelity),function(info){verdict.innerHTML=words(info);});
-  }
-  Object.keys(ids).forEach(function(k){document.getElementById(ids[k][0]).addEventListener('input',function(e){S[k]=parseInt(e.target.value,10);sync();});});
-  Array.prototype.forEach.call(document.querySelectorAll('[data-sim]'),function(b){
-    b.addEventListener('click',function(){var v=b.getAttribute('data-sim').split(',').map(Number);S={adopt:v[0],apprentice:v[1],fidelity:v[2]};sync();});
-  });
-  sync();
-
-  /* Exhibit D: jobs that didn't exist in 2022.
-     EDIT: add an entry by copying an object. cap must be one of CONTEXT, AGENCY, GENERALITY, CODE, COST, MULTIMODAL */
-  var LEDGER=[
-   {t:'Expertise Encoder',cap:'CONTEXT',d:'Sits with a retiring machinist, nurse, or loan officer and turns thirty years of judgment into a corpus a model can actually use.',y:'No system could hold, let alone apply, a career of unstructured judgment.'},
-   {t:'Evals Designer',cap:'GENERALITY',d:'Writes the exams for AI systems. Decides what "good" means for software with no spec sheet, then measures it.',y:'Software did what it was told. There was nothing open-ended to examine.'},
-   {t:'Agent Operations Lead',cap:'AGENCY',d:'Runs a fleet of autonomous agents the way a plant manager runs a line: throughput, error budgets, escalation paths.',y:'Software never acted on its own long enough to need an operations discipline.'},
-   {t:'Context Engineer',cap:'CONTEXT',d:'Designs what a model sees before it answers: the documents, the ordering, the framing. Real job postings exist today.',y:'Nothing could read a million tokens, so nobody curated a million tokens.'},
-   {t:'AI Output Auditor',cap:'GENERALITY',d:'Checks machine output for a living: provenance, calibration, failure modes. Quality control for cognition.',y:'Output volume was human-scale and mostly self-verifying.'},
-   {t:'Synthetic Data Curator',cap:'COST',d:'Builds training data that never happened to teach models things that did. Data design as a full-time craft.',y:'Generating data used to cost more than collecting it.'},
-   {t:'Counterfactual Analyst',cap:'COST',d:'Runs a policy through a thousand simulated alternate versions before a legislature votes once.',y:'Each scenario used to take a team a quarter. Now the marginal one is nearly free.'},
-   {t:'Institutional Translator',cap:'CONTEXT',d:'Makes an organization\u2019s unwritten rules legible enough for agents to follow them.',y:'The unwritten rules could not run on anything.'},
-   {t:'Model Welfare Researcher',cap:'GENERALITY',d:'Studies whether and when AI systems warrant moral consideration. A real research program at real labs.',y:'Nothing artificial was a serious enough candidate to study.'},
-   {t:'AI Red Teamer',cap:'AGENCY',d:'Attacks models professionally so the failures get found on payroll instead of in production.',y:'Adversarial testing meant networks and locks, not minds.'},
-   {t:'Agent Economist',cap:'AGENCY',d:'Designs market rules for autonomous buyers, sellers, and negotiators. Mechanism design goes operational.',y:'Markets had no non-human participants with budgets and goals.'},
-   {t:'Curriculum Compiler',cap:'CODE',d:'Turns a master practitioner\u2019s method into a teachable, testable agent.',y:'Teaching could not be compiled.'},
-   {t:'Simulation Demographer',cap:'COST',d:'Builds synthetic populations so a city can test a policy on everyone before trying it on anyone.',y:'Population-scale simulation was a supercomputer grant, not a Tuesday.'},
-   {t:'Deep Research Editor',cap:'AGENCY',d:'Assigns, supervises, and edits a research staff that never sleeps. The judgment moves up a level, and the reading moves down.',y:'An editor\u2019s staff was limited to people.'},
-   {t:'Memory Architect',cap:'CONTEXT',d:'Decides what a long-lived agent keeps, forgets, and consolidates. Institutional memory as a built system.',y:'Software had storage. It did not have memory worth architecting.'},
-   {t:'Multimodal Field Auditor',cap:'MULTIMODAL',d:'Points a model at bridge photos, shop-floor video, or crop imagery and gets structured findings back.',y:'Seeing was not something you could delegate.'},
-   {t:'Capability Forecaster',cap:'GENERALITY',d:'Tracks the frontier and tells institutions what becomes possible next quarter, not next decade.',y:'The frontier moved slowly enough that strategy could ignore it.'},
-   {t:'Preference Elicitor',cap:'GENERALITY',d:'Turns messy human values into training signal a model can learn from.',y:'There was no system that could take values as an input.'}
-  ];
-  var CAPS=['ALL','CONTEXT','AGENCY','GENERALITY','CODE','COST','MULTIMODAL'], active='ALL';
-  function renderFilters(){
-    var f=document.getElementById('filters');
-    f.innerHTML=CAPS.map(function(c){return '<button type="button" data-cap="'+c+'" class="'+(c===active?'active':'')+'" aria-pressed="'+(c===active)+'">'+(c==='ALL'?'All entries':c.charAt(0)+c.slice(1).toLowerCase())+'</button>';}).join('');
-    Array.prototype.forEach.call(f.querySelectorAll('button'),function(b){b.addEventListener('click',function(){active=b.getAttribute('data-cap');renderFilters();renderLedger();});});
-  }
-  var expanded=false, more=document.getElementById('ledgerMore');
-  more.addEventListener('click',function(){expanded=true;renderLedger();});
-  function renderLedger(){
-    var items=LEDGER.filter(function(e){return active==='ALL'||e.cap===active;});
-    var total=items.length;
-    if(active==='ALL'&&!expanded&&total>6){items=items.slice(0,6);more.hidden=false;more.textContent='Show all '+total+' entries';}else{more.hidden=true;}
-    document.getElementById('ledgerCount').textContent=(items.length<total?'Showing '+items.length+' of '+total:total+' of '+LEDGER.length)+' entries · last reviewed July 2026';
-    document.getElementById('ledgerGrid').innerHTML=items.map(function(e,i){
-      return '<div class="lcard" style="animation-delay:'+(Math.min(i,8)*40)+'ms"><span class="cap">'+e.cap+'</span><h3>'+e.t+'</h3><p>'+e.d+'</p><p class="why">'+e.y+'</p></div>';
-    }).join('');
-  }
-  renderFilters(); renderLedger();
-
-})();
-</script>
 </body>
 </html>

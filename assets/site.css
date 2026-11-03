@@ -682,6 +682,7 @@ details.more ul{margin-bottom:14px}
 .lcard p{font-size:14.5px;color:var(--soft);flex:1}
 .lcard .why{flex:none;font-size:14px;color:var(--ink);padding-top:10px;border-top:1px dashed var(--line)}
 .lcard .why::before{content:"New because ";font-weight:700;color:var(--green)}
+.lcard[hidden]{display:none}
 .polaroids{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px}
 .polaroid{margin:0;padding:8px 8px 4px;background:#fff;border-radius:4px;box-shadow:0 2px 6px rgba(11,26,43,.12),0 14px 28px rgba(11,26,43,.1);transition:transform .3s var(--ease)}
 .polaroid:nth-child(1){transform:rotate(-1.6deg)}
