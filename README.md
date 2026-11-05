@@ -45,6 +45,7 @@ Edit on github.com (open the file, click the pencil icon, commit). The live site
 - **Add an acknowledgment:** in `research.html`, add a row to "The rest of the record," or copy an `<a class="paper">` block to feature it.
 - **Add an entry to the jobs list:** in `jobs.html`, copy one `<div class="lcard">` block and edit the title, the description, and the "why" line. Set `data-cap` and the label inside it to the same value, one of CONTEXT, AGENCY, GENERALITY, CODE, COST, MULTIMODAL. The count updates itself.
 - **Change the header or footer:** they are repeated in each main page, so make the same edit in every page that has them: index, writing, research, media, lab, jobs, interactive, about, agents, and 404.
+- **Change the About page bio or links:** also update `dateModified` in the structured data near the top of `about.html`. Use a full date and time with an offset, like `2026-11-04T10:21:22-06:00`. Central time is `-06:00` in winter and `-05:00` in summer. A date alone, like `2026-11-04`, triggers an "Invalid datetime value" warning in Search Console.
 - **CV:** upload a new `cv.pdf` to the repo root.
 
 Or paste any file into Claude and ask for the change.
