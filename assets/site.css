@@ -854,3 +854,20 @@ html[data-motion="off"] [data-reveal]{opacity:1!important;transform:none!importa
 .lost h1{font-size:clamp(28px,4vw,44px);color:#fff;margin-top:10px}
 .lost p{color:var(--on-dark-soft);margin:14px auto 28px;max-width:46ch}
 @media (min-width:901px){.xgrid-4{grid-template-columns:repeat(4,1fr)}.xgrid-4 .xcard:last-child:nth-child(3n+1){grid-column:auto}}
+
+/* Rotating quotes under the home portrait */
+.qrot{display:block;text-decoration:none;color:#fff}
+.qrot ul{list-style:none;margin:0;padding:0;display:grid}
+.qrot li{grid-area:1/1;opacity:0;transform:translateY(8px);transition:opacity .7s ease,transform .7s ease;pointer-events:none}
+.qrot li.on{opacity:1;transform:none;pointer-events:auto}
+.qrot q{display:block;font-size:15px;font-weight:600;line-height:1.45;quotes:"\201C" "\201D"}
+.qrot cite{display:block;margin-top:6px;font-size:12px;font-weight:500;font-style:normal;color:var(--green-bright);opacity:.9}
+.qrot:hover q{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.portrait figcaption .credit{margin-top:12px}
+.portrait.has-qrot::before{display:none}
+.pframe{position:relative;display:block}
+.pframe::before{content:"";position:absolute;left:20px;top:20px;right:-20px;bottom:-20px;border-radius:26px;background:linear-gradient(145deg,var(--blue) 0%,var(--green-bright) 100%)}
+.portrait.has-qrot figcaption{margin-top:40px}
+.portrait .qrot,.portrait .qrot:hover,.portrait .qrot:visited{color:#fff}
+@media (max-width:900px){.pframe::before{left:14px;top:14px;right:-14px;bottom:-14px}.portrait.has-qrot figcaption{margin-top:32px}}
+.portrait .qrot q{color:#fff}

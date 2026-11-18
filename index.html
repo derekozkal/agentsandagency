@@ -103,9 +103,23 @@
       </div>
 
       <div class="hero-portrait">
-        <figure class="portrait">
-          <img src="assets/img/headshot.jpg" alt="Derek Özkal" width="900" height="1125" fetchpriority="high">
-          <figcaption>A human in the loop.<span class="credit">Photo: Matt Long</span></figcaption>
+        <figure class="portrait has-qrot">
+          <span class="pframe"><img src="assets/img/headshot.jpg" alt="Derek Özkal" width="900" height="1125" fetchpriority="high"></span>
+          <figcaption>
+          <a class="qrot" href="writing.html" aria-label="Quotes from my writing. Go to the Writing page.">
+            <ul>
+            <li class="on"><q>This goes beyond removing the friction of learning to something more like removing the friction of… being, I guess?</q><cite>Unprompted, 2026</cite></li>
+            <li><q>Everyone else risks being stranded on the wrong side of a new, unbridgeable gap in capability.</q><cite>The Rise of the Agentic Class, 2025</cite></li>
+            <li><q>I write to keep human dignity, judgment, and meaning at the center of every AI debate.</q><cite>Our Perfect Future, 2025</cite></li>
+            <li><q>Technology can replace us, but it can also empower us by augmenting human activity.</q><cite>Do Not Predict the Future of Work, Prepare for It, 2018</cite></li>
+            <li><q>Humans create, learn, trust, connect, make, dream, and love.</q><cite>Investing in What Will Become Our Scarcest Resource: Us, 2018</cite></li>
+            <li><q>Just because something can’t be measured, doesn’t mean it isn’t hugely important.</q><cite>Why Isn’t the Knowledge Economy Creating Wealth for Everyone?, 2017</cite></li>
+            <li><q>What are the jobs that weren’t created, the products and services that we don’t have?</q><cite>The Value in Knowing What Is Missing, 2019</cite></li>
+            <li><q>Because if we don’t prepare them for the future, they’ll never be ready for it.</q><cite>Rethinking Education to Make Graduates and Workers Future-Proof, 2019</cite></li>
+            </ul>
+          </a>
+          <span class="credit">Photo: Matt Long</span>
+        </figcaption>
         </figure>
       </div>
 
@@ -393,5 +407,10 @@
   </div>
 </footer>
 <script src="assets/site.js"></script>
+<script>(function(){var r=document.querySelector('.qrot');if(!r)return;var li=r.querySelectorAll('li'),i=0,p=false;
+if(document.documentElement.getAttribute('data-motion')==='off'||li.length<2)return;
+r.addEventListener('mouseenter',function(){p=true});r.addEventListener('mouseleave',function(){p=false});
+r.addEventListener('focus',function(){p=true});r.addEventListener('blur',function(){p=false});
+setInterval(function(){if(p||document.hidden)return;li[i].classList.remove('on');i=(i+1)%li.length;li[i].classList.add('on')},6500)})()</script>
 </body>
 </html>
