@@ -8,7 +8,8 @@ A small static site. No build step, no framework, no hosting bill. It runs on Gi
 - `writing.html` : the four Substack essays with a line from each, the Kauffman-era archive from 2016 to 2019 with quotes, and earlier journalism.
 - `research.html` : the research network, scholars funded, papers that acknowledge the work, and initiatives.
 - `media.html` : the keynote video, photos, more videos (they play on the page), and the podcast.
-- `lab.html` : the Lab. Three prototype cards (interactive essays, the Atlas, the jobs list), then This website, the Arcade (four games), and the Kitchen.
+- `lab.html` : the Lab. Four prototype cards (interactive essays, the Atlas, the jobs list, this website), a Playground teaser, and the Kitchen.
+- `playground.html` : the Playground. The four browser games.
 - `jobs.html` : Jobs that didn't exist in 2022. Plain HTML cards, so crawlers can read them, with filter buttons on top.
 - `interactive.html` : Three essays as interactive figures, and the site's one agent. Linked from the Lab.
 - `about.html` : bio, facts, and what I'm working on now.

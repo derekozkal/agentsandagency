@@ -853,3 +853,4 @@ html[data-motion="off"] [data-reveal]{opacity:1!important;transform:none!importa
 .lost .code{font:900 clamp(96px,18vw,200px)/1 var(--display);letter-spacing:-.07em;color:transparent;-webkit-text-stroke:3px var(--sky)}
 .lost h1{font-size:clamp(28px,4vw,44px);color:#fff;margin-top:10px}
 .lost p{color:var(--on-dark-soft);margin:14px auto 28px;max-width:46ch}
+@media (min-width:901px){.xgrid-4{grid-template-columns:repeat(4,1fr)}.xgrid-4 .xcard:last-child:nth-child(3n+1){grid-column:auto}}
