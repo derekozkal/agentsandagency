@@ -871,3 +871,5 @@ html[data-motion="off"] [data-reveal]{opacity:1!important;transform:none!importa
 .portrait .qrot,.portrait .qrot:hover,.portrait .qrot:visited{color:#fff}
 @media (max-width:900px){.pframe::before{left:14px;top:14px;right:-14px;bottom:-14px}.portrait.has-qrot figcaption{margin-top:32px}}
 .portrait .qrot q{color:#fff}
+.pframe .credit-tag{left:12px;bottom:12px;z-index:1}
+.pframe img{display:block}
