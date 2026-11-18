@@ -5,7 +5,7 @@ A small static site. No build step, no framework, no hosting bill. It runs on Gi
 ## Pages
 
 - `index.html` : home. Hero with four proof points, the rotating selected-writing feature, the Legacy Project, and four ways in.
-- `writing.html` : the four Substack essays with a line from each, the Kauffman-era archive from 2016 to 2019 with quotes, and earlier journalism.
+- `writing.html` : the four Substack essays with a line from each, the Kauffman-era archive with quotes, and earlier journalism.
 - `research.html` : the research network, scholars funded, papers that acknowledge the work, and initiatives.
 - `media.html` : the keynote video, photos, more videos (they play on the page), and the podcast.
 - `lab.html` : the Lab. Four prototype cards (interactive essays, the Atlas, the jobs list, this website), a Playground teaser, and the Kitchen.
