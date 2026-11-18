@@ -221,7 +221,7 @@ h2.sec{font-size:clamp(30px,4vw,48px);margin-top:14px;max-width:18ch}
 .rseg .yr{position:absolute;left:0;top:23px;font:600 11.5px/1 var(--mono);color:var(--faint);transition:color .2s ease}
 .rseg.active .yr{color:var(--ink)}
 .rseg:hover .track{background:#C9D3E0}
-.rotator.is-paused .rseg.active .fill,.rotator.is-hover .rseg.active .fill,.rotator.is-focus .rseg.active .fill,.rotator.is-offscreen .rseg.active .fill,.rotator.is-hidden-tab .rseg.active .fill{animation-play-state:paused}
+.rotator.is-paused .rseg.active .fill,.rotator.is-focus .rseg.active .fill,.rotator.is-offscreen .rseg.active .fill,.rotator.is-hidden-tab .rseg.active .fill{animation-play-state:paused}
 html[data-motion="off"] .rseg.active .fill{transform:scaleX(1)}
 @keyframes segfill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes paneIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -879,3 +879,6 @@ html[data-motion="off"] [data-reveal]{opacity:1!important;transform:none!importa
 .qnav button:focus-visible{outline:2px solid var(--green-bright);outline-offset:2px}
 .qnav svg{width:15px;height:15px}
 .qcount{font-size:12px;font-weight:500;color:rgba(255,255,255,.6);min-width:44px;text-align:center;font-variant-numeric:tabular-nums}
+.qrot q{font-size:19px;line-height:1.4}
+.qrot cite{font-size:13px}
+@media (max-width:900px){.qrot q{font-size:17px}}
