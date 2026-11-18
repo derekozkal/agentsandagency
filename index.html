@@ -108,10 +108,10 @@
           <figcaption>
           <a class="qrot" href="writing.html" aria-label="Quotes from my writing. Go to the Writing page.">
             <ul>
-            <li class="on"><q>This goes beyond removing the friction of learning to something more like removing the friction of… being, I guess?</q><cite>Unprompted, 2026</cite></li>
+            <li class="on"><q>Perhaps it is because we see the flaws in ourselves that we are so fearful of the machines we can and will create.</q><cite>The People Centered Economy, 2018</cite></li>
+            <li><q>This goes beyond removing the friction of learning to something more like removing the friction of… being, I guess?</q><cite>Unprompted, 2026</cite></li>
             <li><q>As artificial intelligence, automation, machines, and robotics become more common, humans will become the scarce resource, so we must invest in people.</q><cite>Investing in What Will Become Our Scarcest Resource: Us, 2018</cite></li>
             <li><q>Friction is the premium we pay for survival.</q><cite>The Liquidity Crisis of Expertise, 2026</cite></li>
-            <li><q>Perhaps it is because we see the flaws in ourselves that we are so fearful of the machines we can and will create.</q><cite>The People Centered Economy, 2018</cite></li>
             <li><q>Everyone else risks being stranded on the wrong side of a new, unbridgeable gap in capability.</q><cite>The Rise of the Agentic Class, 2025</cite></li>
             <li><q>We must prepare people to work under ambiguity, be agile, and use technology to augment rather than replace.</q><cite>Do Not Predict the Future of Work, Prepare for It, 2018</cite></li>
             <li><q>For a novice, that drudgery is not waste; it is training.</q><cite>The Liquidity Crisis of Expertise, 2026</cite></li>
@@ -436,7 +436,7 @@
 <script>(function(){var r=document.querySelector('.qrot');if(!r)return;var li=r.querySelectorAll('li'),n=li.length,i=0,p=false,last=Date.now();
 var still=document.documentElement.getAttribute('data-motion')==='off',c=document.querySelector('.qcount');
 function show(k){li[i].classList.remove('on');i=(k+n)%n;li[i].classList.add('on');if(c)c.textContent=(i+1)+' / '+n;last=Date.now()}
-show(still?0:Math.floor(Math.random()*n));
+show(0);
 document.querySelector('.qprev').addEventListener('click',function(){show(i-1)});
 document.querySelector('.qnext').addEventListener('click',function(){show(i+1)});
 r.addEventListener('mouseenter',function(){p=true});r.addEventListener('mouseleave',function(){p=false});
