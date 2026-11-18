@@ -43,10 +43,10 @@ This file is for AI agents and assistants. The same information, with links, is 
 
 ## Essays
 
-- [Unprompted](https://agentsandagency.substack.com/p/unprompted) (July 2026): what happens when we give AI power to act on our behalf
-- [The Liquidity Crisis of Expertise](https://agentsandagency.substack.com/p/the-liquidity-crisis-of-expertise) (January 2026): why AI needs cognitive redundancy
-- [The Rise of the Agentic Class](https://agentsandagency.substack.com/p/the-rise-of-the-agentic-class-ai) (October 2025): AI and the new digital divide
-- [Our Perfect Future](https://agentsandagency.substack.com/p/our-perfect-future-terms-and-conditions) (October 2025): terms and conditions may apply
+- [Unprompted](https://agentsandagency.substack.com/p/unprompted) (July 2026): what happens when we give AI power to act on our behalf. Full text: https://agentsandagency.com/essays/unprompted.html
+- [The Liquidity Crisis of Expertise](https://agentsandagency.substack.com/p/the-liquidity-crisis-of-expertise) (January 2026): why AI needs cognitive redundancy. Full text: https://agentsandagency.com/essays/the-liquidity-crisis-of-expertise.html
+- [The Rise of the Agentic Class](https://agentsandagency.substack.com/p/the-rise-of-the-agentic-class-ai) (October 2025): AI and the new digital divide. Full text: https://agentsandagency.com/essays/the-rise-of-the-agentic-class.html
+- [Our Perfect Future](https://agentsandagency.substack.com/p/our-perfect-future-terms-and-conditions) (October 2025): terms and conditions may apply. Full text: https://agentsandagency.com/essays/our-perfect-future.html
 
 ## Earlier writing
 

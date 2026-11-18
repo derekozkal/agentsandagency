@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Unprompted · Agents &amp; Agency · Derek Özkal</title>
+<meta name="description" content="Derek Özkal on ambient AI agents that act before we ask, and why keeping human agency now takes deliberate effort.">
+<meta name="theme-color" content="#0A1A2E">
+<link rel="canonical" href="https://agentsandagency.substack.com/p/unprompted">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Agents &amp; Agency">
+<meta property="og:title" content="Unprompted: What happens when we give AI power to act on our behalf?">
+<meta property="og:description" content="Derek Özkal on ambient AI agents that act before we ask, and why keeping human agency now takes deliberate effort.">
+<meta property="og:url" content="https://agentsandagency.com/essays/unprompted.html">
+<meta property="og:image" content="https://agentsandagency.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="alternate" type="text/plain" href="../llms.txt" title="Plain-text summary for AI agents">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<script>(function(h){h.className+=' js';var a=null;try{a=localStorage.getItem('aa-agent')}catch(e){}h.setAttribute('data-motion',window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on');h.setAttribute('data-agent',a||'on')})(document.documentElement)</script>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Unprompted", "alternativeHeadline": "What happens when we give AI power to act on our behalf?", "description": "Derek Özkal on ambient AI agents that act before we ask, and why keeping human agency now takes deliberate effort.", "datePublished": "2026-07-13", "url": "https://agentsandagency.com/essays/unprompted.html", "mainEntityOfPage": "https://agentsandagency.substack.com/p/unprompted", "sameAs": "https://agentsandagency.substack.com/p/unprompted", "isPartOf": {"@type": "Blog", "name": "Agents and Agency", "url": "https://agentsandagency.substack.com"}, "author": {"@type": "Person", "@id": "https://agentsandagency.com/#derek", "name": "Derek Özkal", "url": "https://agentsandagency.com/about.html"}, "inLanguage": "en"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="brand" href="../index.html" aria-label="Agents and Agency, home"><svg class="mark" viewBox="0 0 34 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="#2457F5"/><circle cx="22" cy="12" r="9" fill="#12B07A"/><path d="M17 4.52A9 9 0 0 1 17 19.48A9 9 0 0 1 17 4.52Z" fill="currentColor"/></svg><span class="wordmark">Agents <span class="amp">&amp;</span> Agency</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav"><i aria-hidden="true"></i>Menu</button>
+    <nav class="primary" id="nav" aria-label="Primary">
+      <a href="../writing.html" aria-current="page">Writing</a>
+      <a href="../research.html">Research</a>
+      <a href="../media.html">Watch &amp; listen</a>
+      <a href="../lab.html">The Lab</a>
+      <a href="../about.html">About</a>
+      <a class="nav-cta" href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Subscribe</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<article class="essay-page" itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="essay-head">
+    <div class="wrap narrow">
+      <p class="eyebrow"><a href="writing.html">Agents and Agency</a> · No. 4</p>
+      <h1 itemprop="headline">Unprompted</h1>
+      <p class="essay-sub">What happens when we give AI power to act on our behalf?</p>
+      <p class="essay-by">By <a href="about.html" itemprop="author">Derek Özkal</a> · <time datetime="2026-07-13" itemprop="datePublished">July 13, 2026</time> · <a href="https://agentsandagency.substack.com/p/unprompted" target="_blank" rel="noopener">Originally published on Substack</a></p>
+    </div>
+  </header>
+  <div class="wrap narrow">
+    <div class="prose" itemprop="articleBody">
+<p>I often describe my feelings on AI as a mix of awe and existential crisis. When I work with the frontier models, I’m often struck by what they can deliver. Then, I immediately get this sinking feeling. Something like guilt, or like I stole something.<sup class="fn"><a href="#fn1" id="fnref1" aria-label="Note 1">1</a></sup> I don’t think I’m alone in feeling this way, but solidarity is limited comfort.</p>
+<p>A quick note before we go further: <a href="https://agentsandagency.com/">agentsandagency.com</a> has grown well beyond the blog.<sup class="fn"><a href="#fn2" id="fnref2" aria-label="Note 2">2</a></sup> I think it is important to actually use AI products if you are going to write about them, so I’ve deliberately taken a step back from writing to make sure I’m not just working in the abstract. That building is also partially responsible for why I no longer believe it is appropriate to call AI a “tool.”</p>
+<h2>The Hammer and the Playhouse</h2>
+<p>I’m not usually a fan of analogies,<sup class="fn"><a href="#fn3" id="fnref3" aria-label="Note 3">3</a></sup> but humor me. If you primarily engage with large language models via a chat interface, they do seem mostly like technology tools. Summarize this email, turn these bullet points into a memo, tell me the key people on topic X. With this approach, the internet probably seems like a hammer and an LLM probably seems like a nail gun. But products like Claude Cowork, Claude Code, and OpenAI’s Codex are something different. Why are you hammering something in the first place? Is it to build a playhouse? Tell these agentic models your goal and they are more than a hammer; they are the general contractor looking up local ordinances, sourcing materials, designing the layout, and then, sure, hammering too. This is powerful stuff and it brings lots of concerns.<sup class="fn"><a href="#fn4" id="fnref4" aria-label="Note 4">4</a></sup> But I want to go a layer deeper.</p>
+<p>What happens when AI agents know enough about you to suggest it’s time to build a playhouse without you asking? Once you feel comfortable with the performance of the agent, maybe you won’t even ask; it will just know you need one and build it. Obviously not a physical playhouse, since robots manipulating the physical world still lag way behind human capabilities.<sup class="fn"><a href="#fn5" id="fnref5" aria-label="Note 5">5</a></sup></p>
+<h2>Is “On Our Behalf” in Our Best Interest?</h2>
+<p>Set the analogy aside for a moment, and return to what these AI “tools” can do. They can increasingly deliver complicated, long-form, multi-step work, and the length of task they can handle keeps doubling.<sup class="fn"><a href="#fn6" id="fnref6" aria-label="Note 6">6</a></sup> When these platforms get enough information about us, the next step will be creating on our behalf without us ever formally identifying the goal, task, or project. We will have things built for us <em>unprompted</em>.<sup class="fn"><a href="#fn7" id="fnref7" aria-label="Note 7">7</a></sup></p>
+<p>The earliest versions are already here. OpenAI’s Pulse does research overnight by drawing on your chats, your memory, your connected calendar and greets you each morning with cards you never asked for. OpenAI’s stated ambition is for progress to happen “even when you are not asking.”<sup class="fn"><a href="#fn8" id="fnref8" aria-label="Note 8">8</a></sup> The industry has started calling this category “ambient agents.” Whatever we call it, the direction is clear.</p>
+<p>Right now, I could build an AI agent to read my emails, prepare responses, and send replies. I’m talking about the next level, where the agent has enough context about me to identify someone I don’t know that I should know, reach out to them on my behalf, and write to them in my voice. This goes beyond removing the friction of learning to something more like removing the friction of… being, I guess?</p>
+<h2>Will This Make Us Happy?</h2>
+<p>I’ve been struck by the findings in the Walton Family Foundation-Gallup research on Gen Z’s attitudes about AI.<sup class="fn"><a href="#fn9" id="fnref9" aria-label="Note 9">9</a></sup> To oversimplify a bit, there are three combined findings that may not be surprising, but are alarming: 1. Most report using AI — just over half now use it weekly or more. 2. Most have a negative view of AI along some dimension — anxiety holds at four in ten, anger is rising, and excitement is falling. 3. Few have sufficient training — in the companion survey of heartland Gen Zers, only about one in ten workers felt extremely prepared to use AI on the job. Collectively, that’s, uh, not great. And I don’t think this is just a Gen Z story. Gallup’s workplace research finds half of U.S. employees now use AI in some form, while only about a quarter say their employer has clearly communicated how it should be used.<sup class="fn"><a href="#fn10" id="fnref10" aria-label="Note 10">10</a></sup></p>
+<p>If AI agents start creating things for us that they think we will like, will these sentiments improve? I fear the opposite, because we will have given up our agency. We have run a version of this experiment before. Recommendation feeds already decide, unprompted, what billions of people see every day, and few would say the arrangement made us calmer or more in control. Agentic AI extends that logic from selecting our content to producing our work, our words, and maybe our relationships.</p>
+<p>One of the original motivations for this blog<sup class="fn"><a href="#fn11" id="fnref11" aria-label="Note 11">11</a></sup> was to focus on how we maintain our dignity through human agency in a world that is going to be increasingly full of AI agents. The convenience of AI responses and products requires deliberate effort on our part to confront. The old adage to “think for yourself” may be cliché, but it’s a necessary first step.</p>
+<p>Maybe that’s also what the guilt at the top of this post is about. The sinking feeling shows up when something gets made and I wasn’t fully in it. As AI agents become increasingly capable and gain enough context to generate on our behalf, it will take even more deliberate effort on our part to “be human.” Here’s one place to start: remember that “unprompted” used to be a human word. It’s the kid who cleans her room without being asked, the friend who calls out of nowhere. The machines are learning to act unprompted. Don’t hand over the world without a fight. Want things no algorithm suggested, reach out to people no agent picked for you, build the playhouse nobody told you to build.</p>
+    </div>
+    <section class="footnotes" aria-label="Notes"><h2>Notes</h2><ol><li id="fn1">Given how the models are trained, I am always concerned that parts of real humans’ IP have been stolen and given to me, but I don’t think this explains everything for me. <a class="back" href="#fnref1" aria-label="Back to note 1 in the text">↩</a></li><li id="fn2">The site now includes more about my journey and work on AI, plus an area called “the lab” where I am building prototypes of what is possible with these systems. <a class="back" href="#fnref2" aria-label="Back to note 2 in the text">↩</a></li><li id="fn3">Yes, technically the fallacy is the false analogy, not analogy itself. But arguments by analogy break easily, which is exactly why I distrust them — including my own. <a class="back" href="#fnref3" aria-label="Back to note 3 in the text">↩</a></li><li id="fn4">See my previous post on the liquidity crisis of expertise: <a href="https://agentsandagency.substack.com/p/the-liquidity-crisis-of-expertise" target="_blank" rel="noopener">https://agentsandagency.substack.com/p/the-liquidity-crisis-of-expertise</a> <a class="back" href="#fnref4" aria-label="Back to note 4 in the text">↩</a></li><li id="fn5">When robots have their “ChatGPT, November 2022” moment, things are going to get really weird. Roboticists even have a name for why it is taking longer: Moravec’s paradox: the “hard” cognitive problems turned out to be easy for machines, and the “easy” physical ones turned out to be hard. <a class="back" href="#fnref5" aria-label="Back to note 5 in the text">↩</a></li><li id="fn6">METR estimates the length of tasks frontier AI agents can complete (at a 50% success rate) has been doubling roughly every seven months since 2019, and faster since 2024: <a href="https://metr.org/time-horizons/" target="_blank" rel="noopener">https://metr.org/time-horizons/</a> <a class="back" href="#fnref6" aria-label="Back to note 6 in the text">↩</a></li><li id="fn7">Oh exciting, it’s like when a character in a movie says the name of the movie in dialogue! <a class="back" href="#fnref7" aria-label="Back to note 7 in the text">↩</a></li><li id="fn8">OpenAI, “Introducing ChatGPT Pulse” (September 2025): <a href="https://openai.com/index/introducing-chatgpt-pulse/" target="_blank" rel="noopener">https://openai.com/index/introducing-chatgpt-pulse/</a> <a class="back" href="#fnref8" aria-label="Back to note 8 in the text">↩</a></li><li id="fn9">The 2026 installment, “The AI Paradox,” is worth a read: <a href="https://www.gallup.com/analytics/708176/gallup-walton-voices-gen-paradox.aspx" target="_blank" rel="noopener">https://www.gallup.com/analytics/708176/gallup-walton-voices-gen-paradox.aspx</a> The companion survey of heartland Gen Zers, conducted with Heartland Forward, is here: <a href="https://news.gallup.com/poll/660302/heartland-gen-zers-feel-unprepared-work.aspx" target="_blank" rel="noopener">https://news.gallup.com/poll/660302/heartland-gen-zers-feel-unprepared-work.aspx</a> <a class="back" href="#fnref9" aria-label="Back to note 9 in the text">↩</a></li><li id="fn10">Gallup’s workplace AI tracking (2026): <a href="https://www.gallup.com/workplace/704252/workplace-separates-adopters-holdouts.aspx" target="_blank" rel="noopener">https://www.gallup.com/workplace/704252/workplace-separates-adopters-holdouts.aspx</a> <a class="back" href="#fnref10" aria-label="Back to note 10 in the text">↩</a></li><li id="fn11">And literally why it is named “Agents and Agency”! <a class="back" href="#fnref11" aria-label="Back to note 11 in the text">↩</a></li></ol></section>
+    <aside class="essay-cta">
+      <p>New essays go to Substack first. <a class="btn" href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Subscribe free</a> <a class="go" href="https://agentsandagency.substack.com/p/unprompted" target="_blank" rel="noopener">Comment on Substack</a></p>
+    </aside>
+    <nav class="essay-pn" aria-label="More essays"><a class="prev" href="the-liquidity-crisis-of-expertise.html"><span>Earlier</span>The Liquidity Crisis of Expertise</a><span></span></nav>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="../index.html" aria-label="Agents and Agency, home"><svg class="mark" viewBox="0 0 34 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="#2457F5"/><circle cx="22" cy="12" r="9" fill="#12B07A"/><path d="M17 4.52A9 9 0 0 1 17 19.48A9 9 0 0 1 17 4.52Z" fill="currentColor"/></svg><span class="wordmark">Agents <span class="amp">&amp;</span> Agency</span></a>
+        <p class="fine">Essays, research, and prototypes by Derek Özkal on AI, work, and human agency.</p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="../writing.html">Writing</a><a href="../research.html">Research</a>
+        <a href="../media.html">Watch &amp; listen</a><a href="../lab.html">The Lab</a><a href="../playground.html">Playground</a>
+        <a href="../about.html">About</a><a href="../interactive.html">Interactive essays</a>
+        <a href="https://agentsandagency.substack.com" target="_blank" rel="noopener">Substack</a><a href="https://www.linkedin.com/in/derekozkal" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="../cv.pdf">CV (PDF)</a>
+      </nav>
+      <div class="foot-side">
+        <p class="k">Share this site</p>
+        <div class="share">
+          <button type="button" class="share-copy" data-copy="https://agentsandagency.com/">Copy link</button>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fagentsandagency.com%2F" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://bsky.app/intent/compose?text=Agents%20and%20Agency%2C%20essays%20and%20prototypes%20on%20AI%2C%20work%2C%20and%20human%20agency%20by%20Derek%20%C3%96zkal%3A%20https%3A%2F%2Fagentsandagency.com%2F" target="_blank" rel="noopener">Bluesky</a>
+        </div>
+        <p class="k" style="margin-top:24px">For AI agents</p>
+        <div class="share"><a href="../agents.html">A page written for agents</a><a href="../llms.txt">llms.txt</a></div>
+      </div>
+    </div>
+    <div class="foot-base"><span>&copy; 2026 Derek Özkal</span><span>Plain HTML on GitHub Pages. Written by me, built with Claude.</span></div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

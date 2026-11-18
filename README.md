@@ -9,6 +9,7 @@ A small static site. No build step, no framework, no hosting bill. It runs on Gi
 - `research.html` : the research network, scholars funded, papers that acknowledge the work, and initiatives.
 - `media.html` : the keynote video, photos, more videos (they play on the page), and the podcast.
 - `lab.html` : the Lab. Four prototype cards (interactive essays, the Atlas, the jobs list, this website), a Playground teaser, and the Kitchen.
+- `essays/` : full text of the four Substack essays. Each page's canonical points to Substack, the original.
 - `playground.html` : the Playground. The four browser games.
 - `jobs.html` : Jobs that didn't exist in 2022. Plain HTML cards, so crawlers can read them, with filter buttons on top.
 - `interactive.html` : Three essays as interactive figures, and the site's one agent. Linked from the Lab.
